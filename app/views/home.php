@@ -17,43 +17,58 @@
         <?php include 'app\views\topBar.php'; ?>
 
         <div id = "container">
-        
-        <div class="leftSection">
-            
-            <div class="leftGrid">
-                
-                <img src="app\resources\image7.jpg" id="image7" class='images'>
-                <img src="app\resources\image8.jpg" id="image8" class='images'>
-                <img src="app\resources\image9.jpg" id="image9" class='images'>
-                <img src="app\resources\image10.jpg" id="image10" class='images'>
-                <img src="app\resources\image11.jpg" id="image11" class='images'>
-                <img src="app\resources\image12.jpg" id="image12" class='images'>
+            <div class = "one">
+                <div class = "two">
+                    <div id = "topLayer">
+                        <div class="leftSection">
+                        
+                            <div class="leftGrid">
+                                
+                                <img src="app\resources\image7.jpg" id="image7" class='images'>
+                                <img src="app\resources\image8.jpg" id="image8" class='images'>
+                                <img src="app\resources\image9.jpg" id="image9" class='images'>
+                                <img src="app\resources\image10.jpg" id="image10" class='images'>
+                                <img src="app\resources\image11.jpg" id="image11" class='images'>
+                                <img src="app\resources\image12.jpg" id="image12" class='images'>
 
-            </div>
-        </div>
+                            </div>
+                        </div>
 
-        <div id="middleHeading">
-            <label>The World's</label>
-            <label style="color: #006eff; font-size: 100px; ">Best Prices</label>
-            <label>Are On PriceWave</label>
-            <h4 style="margin-top: 35px; color: #707070">A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another</h4>
-            <a id="log" href="">Get Started</a>
-        </div>
-        
-        <div class="rightSection">
-            
-            <div class="rightGrid">
-                
-                <img src="app\resources\pizza.jpg" id="image2" class='images'>
-                <img src="app\resources\image4.jpg" id="image3" class='images'>
-                <img src="app\resources\image3.jpg" id="image4" class='images'>
-                <img src="app\resources\image5.jpg" id="image5" class='images'>
-                <img src="app\resources\image6.jpg" id="image6" class='images'>
+                        <div id="middleHeading">
+
+                            <h1 class = 'leading'>
+                                The World's
+                                <br>
+                                <span style="color: #006eff;">Best Prices</span>
+                                <br>
+                                Are On PriceWave
+                            </h1>
+
+                            <h4 class = 'subText'>A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another</h4>
+                            <div class = 'buttonArea'>
+                                <a id="log" href="">Get Started</a>
+                            </div>
+                            
+                        </div>
+                    
+                        <div class="rightSection">
+                        
+                            <div class="rightGrid">
+                                
+                                <img src="app\resources\pizza.jpg" id="image2" class='images'>
+                                <img src="app\resources\image4.jpg" id="image3" class='images'>
+                                <img src="app\resources\image3.jpg" id="image4" class='images'>
+                                <img src="app\resources\image5.jpg" id="image5" class='images'>
+                                <img src="app\resources\image6.jpg" id="image6" class='images'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        
-            
+
+            <div class = "content">
+            </div>
+           
             
         </div>
 
