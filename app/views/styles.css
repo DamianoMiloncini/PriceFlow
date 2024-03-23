@@ -1,0 +1,76 @@
+#wrapper {
+    background-color: #fffbfb; 
+    color: #333; 
+    padding: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed; 
+    top: 0; 
+    width: 100%;
+}
+
+#wrapper::after {
+    content: ""; 
+    height: 0.5px; 
+    background-color: rgba(0, 0, 0, 0.08); 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+}
+
+h1{
+    color: #191919;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 125%;
+    line-height: 1.3;
+    font-weight:  700;
+    padding-left: 15px;
+    padding-top: 8px;
+}
+.buttons{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 15;
+    font-weight: 300;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#register{
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #006eff;
+    font-size: 15;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+#login {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #eff7ff;
+    font-size: 15px; /* Specify the font size with 'px' */
+    font-weight: 600;
+    color: #006eff;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Add a subtle border line */
+    border-radius: 35px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+img {
+    max-width: 5%; /* Ensure the image fits the container width */
+    max-height: 5%; /* Ensure the image fits the container height */
+}
+
+
