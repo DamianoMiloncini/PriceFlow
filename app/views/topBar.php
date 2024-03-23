@@ -20,9 +20,10 @@
             <nav class = 'buttons'>
                 <a id="login" href="">Log In</a>
                 <a id="register" href="">Sign Up</a>
-                <!-- <img src="app\resources\PriceWaveLogo.png"> -->
+                
             </nav>
-
+            <img src="app\resources\PriceWaveLogo.png">
+            
         </div>
 
     </body>

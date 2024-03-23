@@ -7,6 +7,7 @@
     align-items: center; 
     position: fixed; 
     top: 0; 
+    left: 0;
     width: 100%;
 }
 
@@ -20,57 +21,78 @@
     width: 100%; 
 }
 
-h1{
+h1 {
     color: #191919;
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 125%;
+    font-size: 20px;
     line-height: 1.3;
     font-weight:  700;
     padding-left: 15px;
     padding-top: 8px;
 }
-.buttons{
+
+.buttons {
     display: inline-block;
     padding: 10px 20px;
-    font-size: 15;
+    font-size: 15px;
     font-weight: 300;
     text-decoration: none;
     border: none;
     border-radius: 5px;
-    margin-right: 10px;
     cursor: pointer;
+    margin-left: auto; /* Align buttons to the right */
 }
 
-#register{
+#register {
     display: inline-block;
     padding: 5px 20px;
     background-color: #006eff;
-    font-size: 15;
+    font-size: 15px;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
     border: none;
     border-radius: 35px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+#register:hover {
+    background-color: #0059c6; /* Change background color on hover */
 }
 
 #login {
     display: inline-block;
     padding: 5px 20px;
     background-color: #eff7ff;
-    font-size: 15px; /* Specify the font size with 'px' */
+    font-size: 15px;
     font-weight: 600;
     color: #006eff;
     text-decoration: none;
-    border: 1px solid rgba(0, 0, 0, 0.08); /* Add a subtle border line */
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 35px;
+    margin-right: 8px;
     margin-left: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
 }
+
+#login:hover {
+    background-color: #d4e7ff; /* Change background color on hover */
+}
+
 
 img {
-    max-width: 5%; /* Ensure the image fits the container width */
-    max-height: 5%; /* Ensure the image fits the container height */
+    width: 55px;
+    height: auto;
+    margin-right: 10px;
 }
 
-
+#middleHeading{
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 90px;
+    font-weight: 600;
+    letter-spacing: -3px;
+    line-height: 83px;
+    max-width: 70vw;
+}

@@ -5,7 +5,7 @@ class Welcome extends \app\core\Controller {
 
     function index(){
         
-        $this->view('topBar');
+        $this->view('home');
 
     }
 

@@ -1,0 +1,171 @@
+#container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    margin-top: 175px;
+}
+
+#middleHeading {
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 90px;
+    font-weight: 600;
+    line-height: 83px;
+    text-align: center;
+    max-width: 70vw;
+    margin-top: 250px;
+}
+
+h4 {
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 40px 0 60px;
+    max-width: 900px;
+    letter-spacing: 0px;
+    width: 100%;
+}
+
+#middleHeading label {
+    display: block;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    letter-spacing: 0.1px;
+    margin: 5px;
+}
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.rightGrid {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    height: 576px;
+    width: 396px;
+}
+
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.leftGrid {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    height: 576px;
+    width: 396px;
+}
+
+
+#image2 {
+    grid-column: 4 / 7;
+    grid-row: 7 / 9;
+    width: 115%;
+    height: auto;
+}
+
+#image3{
+    grid-column: 8 / 11;
+    grid-row: 9 / 12;
+    width: 215%;
+    height: auto;
+}
+
+#image4{
+    grid-column: 8 / 11;
+    grid-row: 3 / 6;
+    width: 175%;
+    height: auto;
+}
+
+#image5{
+    grid-column: 2 / 5;
+    grid-row: 12 / 14;
+    width: 182%;
+    height: auto;
+}
+
+#image6{
+    grid-column: 8 / 11;
+    grid-row: 14 / 16;
+    width: 160%;
+    height: auto;
+}
+
+#image7{
+    grid-column: 1 / 4;
+    grid-row: 16 / 18;
+    width: 175%;
+    height: auto;
+}
+
+#image8{
+    grid-column: 6 / 9;
+    grid-row: 5 / 8;
+    width: 160%;
+    height: auto;
+}
+
+#image9{
+    grid-column: 6 / 9;
+    grid-row: 9 / 11;
+    width: 205%;
+    height: auto;
+}
+
+#image10{
+    grid-column: 7 / 9;
+    grid-row: 16 / 20;
+    width: 215%;
+    height: auto;
+}
+
+#image11{
+    grid-column: 1 / 4;
+    grid-row: 11 / 15;
+    width: 145%;
+    height: auto;
+}
+
+#image12{
+    grid-column: 1 / 4;
+    grid-row: 4 / 10;
+    width: 130%;
+    height: auto;
+}
+
+.images{
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+#log {
+    margin-top: 50px;
+    width: 25%;
+    height: auto;
+    display: inline-block;
+    background-color: #006eff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 0px;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+#log:hover {
+    background-color: #0059c6; /* Change background color on hover */
+}
+
+
+
+
