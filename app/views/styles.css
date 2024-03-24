@@ -59,6 +59,7 @@ h1 {
 
 #register:hover {
     background-color: #0059c6; /* Change background color on hover */
+    cursor: pointer;
 }
 
 #login {
@@ -79,6 +80,7 @@ h1 {
 
 #login:hover {
     background-color: #d4e7ff; /* Change background color on hover */
+    cursor: pointer;
 }
 
 
@@ -86,13 +88,4 @@ img {
     width: 55px;
     height: auto;
     margin-right: 10px;
-}
-
-#middleHeading{
-    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 90px;
-    font-weight: 600;
-    letter-spacing: -3px;
-    line-height: 83px;
-    max-width: 70vw;
 }

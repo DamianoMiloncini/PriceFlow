@@ -23,7 +23,8 @@
                 
             </nav>
             <img src="app\resources\PriceWaveLogo.png">
-            
+
+
         </div>
 
     </body>

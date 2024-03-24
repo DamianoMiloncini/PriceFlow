@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <?php include 'app\views\topBar.php'; ?>
+        <?php include 'app/views/topBar.php'; ?>
 
         <div id = "container">
             <div class = "one">
@@ -66,10 +66,29 @@
                 </div>
             </div>
 
-            <div class = "content">
-            </div>
+            
            
             
+        </div>
+
+        <div class = "content">
+
+            <div class = 'navBar'>
+                <a id = 'filterButton' href="">
+                    <i class="bi bi-funnel"></i>
+                    Filter
+                </a>
+                <textarea id = "search" name="searchBar" placeholder='Search'></textarea></textarea>
+
+                <a id = "sortButton" href="">
+                    <i class="bi bi-funnel"></i>
+                    Sort
+                </a>
+            </div>
+
+                <div class = "divider">
+                    
+                </div>
         </div>
 
     </body>
