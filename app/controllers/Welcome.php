@@ -9,4 +9,10 @@ class Welcome extends \app\core\Controller {
 
     }
 
+    function map(){
+        
+        $this->view('mapTest');
+
+    }
+
 }
