@@ -1,0 +1,2 @@
+tests/Acceptance/authentication.feature:User creates account successfully
+tests/Acceptance/authentication.feature:User logs in with valid credentials
