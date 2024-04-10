@@ -159,4 +159,141 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see('All your bookmarks');
     }
 
+    /**
+     * @When I create a new recipe with title :arg1 and ingredients :arg2
+     */
+    public function iCreateANewRecipeWithTitleAndIngredients($title, $ingredients)
+    {
+        $this->click('Create Recipe');
+        $this->fillField('Title', $title);
+        $this->fillField('Ingredients', $ingredients);
+        $this->click('Save Recipe');
+    }
+
+    /**
+     * @Then the recipe :arg1 should be created successfully
+     */
+    public function theRecipeShouldBeCreatedSuccessfully($recipeTitle)
+    {
+        $this->see($recipeTitle);
+    }
+
+    /**
+     * @Given I have a recipe titled :arg1 with cooking instructions :arg2
+     */
+    public function iHaveARecipeTitledWithCookingInstructions($title, $instructions)
+    {
+        $this->click('Edit Recipe');
+        $this->fillField('Cooking Instructions', $instructions);
+        $this->click('Save Recipe');
+    }
+
+    /**
+     * @When I update the cooking instructions of the recipe :arg1 to :arg2
+     */
+    public function iUpdateTheCookingInstructionsOfTheRecipeTo($title, $instructions)
+    {
+        $this->click('Edit Recipe');
+        $this->fillField('Cooking Instructions', $instructions);
+        $this->click('Save Recipe');
+    }
+
+    /**
+     * @Then the cooking instructions for the recipe :arg1 should be updated successfully
+     */
+    public function theCookingInstructionsForTheRecipeShouldBeUpdatedSuccessfully($recipeTitle)
+    {
+        $this->see('Cooking instructions updated successfully for ' . $recipeTitle);
+    }
+
+    /**
+     * @When I view the recipes
+     */
+    public function iViewTheRecipes()
+    {
+        $this->click('View Recipes');
+    }
+
+    /**
+     * @Then I should see a list of recipes
+     */
+    public function iShouldSeeAListOfRecipes()
+    {
+        $this->seeElement('.recipe');
+    }
+
+    /**
+     * @When I view my profile
+     */
+    public function iViewMyProfile()
+    {
+        $this->click('My Profile');
+    }
+
+    /**
+     * @Then I should see only my own recipes
+     */
+    public function iShouldSeeOnlyMyOwnRecipes()
+    {
+        $this->see('My Recipes');
+    }
+
+    /**
+     * @Given there are recipes available
+     */
+    public function thereAreRecipesAvailable()
+    {
+        $this->seeElement('.recipe');
+    }
+
+    /**
+     * @When I filter recipes by date created
+     */
+    public function iFilterRecipesByDateCreated()
+    {
+        $this->selectOption('Sort By', 'Date Created');
+    }
+
+    /**
+     * @Then I should see recipes sorted by date created
+     */
+    public function iShouldSeeRecipesSortedByDateCreated()
+    {
+        $this->see('Sorted by Date Created');
+    }
+
+    /**
+     * @When I filter recipes by price
+     */
+    public function iFilterRecipesByPrice()
+    {
+        $this->selectOption('Sort By', 'Price');
+    }
+
+    /**
+     * @Then I should see recipes sorted by price
+     */
+    public function iShouldSeeRecipesSortedByPrice()
+    {
+        $this->see('Sorted by Price');
+    }
+
+    /**
+     * @When I search for :arg1
+     */
+    public function iSearchFor($searchQuery)
+    {
+        $this->fillField('Search', $searchQuery);
+        $this->executeJS("document.querySelector('#search-field').dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));");
+    }
+    
+
+    /**
+     * @Then I should see relevant recipes
+     */
+    public function iShouldSeeRelevantRecipes()
+    {
+        $this->see('Search Results');
+    }
+
 }
