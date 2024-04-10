@@ -296,4 +296,46 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see('Search Results');
     }
 
+    /**
+     * @When I delete the recipe :arg1
+     */
+    public function iDeleteTheRecipe($recipeTitle)
+    {
+        $this->click('Delete Recipe');
+    }
+
+    /**
+     * @Then the recipe :arg1 should be deleted successfully
+     */
+    public function theRecipeShouldBeDeletedSuccessfully($recipeTitle)
+    {
+        $this->dontSee($recipeTitle);
+    }
+
+    /**
+     * @Given there is a recipe titled :arg1
+     */
+    public function thereIsARecipeTitled($recipeTitle)
+    {
+        $this->click('View Recipes');
+        $this->see($recipeTitle);
+    }
+
+    /**
+     * @When I view the current price of the recipe :arg1
+     */
+    public function iViewTheCurrentPriceOfTheRecipe($recipeTitle)
+    {
+        $this->click('View Recipe');
+        $this->click('View Price');
+    }
+
+    /**
+     * @Then I should see the total price of ingredients per store
+     */
+    public function iShouldSeeTheTotalPriceOfIngredientsPerStore()
+    {
+        $this->see('Total Price per Store');
+    }
+
 }
