@@ -1,5 +1,5 @@
 # PriceFlow repository 
-- Ecommerce semester 4 final project
+Ecommerce semester 4 final project
 
 # First Push
 - Began html layout and css to chose a website design we will go for
@@ -13,7 +13,7 @@ Deliverable 1 requires us to complete an entire suite of feature tests using Cod
 Additionally, a completed ERD must be completed to present our database.
 
 ## Feature Suite
-- **Progress:** At this point, 3 out of 4 feature suites in the suite have been completed.
+- **Progress:** At this point, 3 out of 4 feature suites have been completed.
 
 ## ERD 
 - **Status:** ERD has been completed!
