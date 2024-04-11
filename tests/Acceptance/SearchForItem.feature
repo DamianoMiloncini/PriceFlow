@@ -15,4 +15,4 @@ Feature: SearchForItem
         When I enter "nckaj" in the search bar
         And click Search
 	Then I am redirected to "http://localhost/items/nckaj"
-        And I see a div displaying "No item matched the search query"
+        And I see a message displaying "No item matched the search query"
