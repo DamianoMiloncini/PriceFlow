@@ -19,4 +19,4 @@ Feature: BookmarkItem
   Scenario: try bookmark "milk"
         Given I am on "http://localhost/items/{id1}"
         When I click the "Bookmark item" button
-        Then "{id1} should be added to my bookmarks"
+        Then I should see a "{id1} should be added to my bookmarks" message
