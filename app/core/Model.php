@@ -10,7 +10,7 @@ class Model{
     // Whereas 'this' refers to the objects being created (reference to objects)
 	public function __construct(){
 		$host = 'localhost';
-		$dbname = 'assignment2';
+		$dbname = 'projectDB';
 		$user = 'root'; 
 		$pass = '';
 		try { # MySQL with PDO_MYSQL, PDO acts this middle man betwen SQL and this application

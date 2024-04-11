@@ -1,4 +1,4 @@
-# PriceFlow repository 
+# PriceWave repository 
 Ecommerce semester 4 final project
 
 **First Push**
@@ -7,14 +7,13 @@ Ecommerce semester 4 final project
 **Second Push**
 - Began the implementation of the map API using Leaflet
 
-# Deliverable 1
+# Deliverable 1 - **Completed**
 Deliverable 1 requires us to complete an entire suite of feature tests using CodeCeption to write and execute these tests using Gherkin.
 
-Additionally, a completed ERD must be completed to present our database.
+Additionally, a completed ERD is required to present the full structure of the database.
 
 ## Feature Suite
-- **Progress:** At this point, 3 out of 4 feature suites have been completed.
+- **Status:** Feature suite has been completed!
 
 ## ERD 
 - **Status:** ERD has been completed!
-
