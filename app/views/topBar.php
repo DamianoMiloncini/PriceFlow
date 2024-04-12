@@ -18,8 +18,8 @@
             <h1>PriceWave</h1>
 
             <nav class = 'buttons'>
-                <a id="login" href="/User/login">Log In</a>
-                <a id="register" href="/User/creation">Sign Up</a>
+                <a id="login" href="User/login">Log In</a>
+                <a id="register" href="User/registration">Sign Up</a>
                 
             </nav>
             <img src="app\resources\PriceWaveLogo.png">

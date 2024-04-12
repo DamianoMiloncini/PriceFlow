@@ -29,6 +29,7 @@ class User extends \app\core\Model {
     $STMT->execute(
         [
             'username'=> $this->username,
+            'password_hash'=> $this->password_hash,
             'first_name'=> $this->first_name,
             'last_name'=> $this->last_name,
             'address'=> $this->address,
@@ -38,6 +39,9 @@ class User extends \app\core\Model {
             'postal_code'=> $this->postal_code,
         ]
         );
+
+        $this->user_id = self::$_conn->lastInsertId();
+        return $this->user_id;
    }
 
    //search a user based on their username
@@ -49,7 +53,7 @@ class User extends \app\core\Model {
     //execute the statement
     $STMT -> execute(
         [
-            'username'=> $this->username
+            'username'=> $username
         ]
         );
     //return the data fetched
@@ -66,7 +70,7 @@ class User extends \app\core\Model {
     //execute the statement
     $STMT -> execute(
         [
-            'user_id'=> $this->user_id
+            'user_id'=> $user_id
         ]
         );
     //return the data fetched
@@ -85,5 +89,12 @@ class User extends \app\core\Model {
     $STMT->execute((array)$this);
    }
 
+   public function add2FA(){
+    //change anything but the PK
+    $SQL = 'UPDATE user SET secret = :secret WHERE user_id = :user_id';
+    $STMT = self::$_conn->prepare($SQL);
+    $STMT->execute(['user_id'=>$this->user_id,
+                    'secret'=>$this->secret]);
+}
 
 }

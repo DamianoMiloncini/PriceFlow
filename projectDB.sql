@@ -20,14 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectDB`
 --
-
+CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `projectDB`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
-CREATE DATABASE IF NOT EXISTS 'projectDB' DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE 'projectDB';
+
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,

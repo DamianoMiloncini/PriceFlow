@@ -11,7 +11,7 @@
             <label>Username</label>
             <input type="text" name="username" placeholder="micka"><br>
             <label>Password</label>
-            <input type="text" name="password" placeholder="1234!"><br>
+            <input type="password" name="password_hash" placeholder="1234!"><br>
             <label>First Name</label>
             <input type="text" name="first_name" placeholder="Michaella"><br>
             <label>Last Name</label>
@@ -26,6 +26,7 @@
             <input type="text" name="province" placeholder="Quebec"><br>
             <label>Postal Code</label>
             <input type="text" name="postal_code" placeholder="H4L 3X9"><br>
+            <input type="submit" name="button" value="Submit"><br>
         </form>
     </div>
 

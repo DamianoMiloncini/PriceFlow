@@ -57,7 +57,7 @@ h1 {
     transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
 }
 
-#register:hover {
+#register:hover { /*this is not working  -M*/
     background-color: #0059c6; /* Change background color on hover */
     cursor: pointer;
 }
@@ -78,7 +78,7 @@ h1 {
     transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
 }
 
-#login:hover {
+#login:hover { /*this is not working -M */
     background-color: #d4e7ff; /* Change background color on hover */
     cursor: pointer;
 }
