@@ -15,15 +15,16 @@
 .two {
     align-items: center;
     display: flex;
-    height: min(74vh, 800px);
+    /* height: min(74vh, 50%); */
+    height: 74vh;
+    margin-top: -5%;
     justify-content: center;
     overflow: hidden;
-    padding-top: 40px;
-    position: relative;
+    /* position: relative; */
 }
 
 .content{
-    margin-top:100px;
+    margin-top:-8%;
 }
 
 .content::after{
@@ -37,18 +38,17 @@
 }
 
 
-.two::after {
+/* .rightGrid::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px; /* Adjust the height of the fade effect */
+    height: 50%; 
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
-    pointer-events: none; /* Ensures that the gradient doesn't interfere with content */
-}
-
-
+    pointer-events: none; 
+} 
+ */
 
 
 #middleHeading {
@@ -64,16 +64,17 @@
 .subText{
     color: #707070;
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 22px;
+    /* font-size: 22px; */
+    font-size: 135%;
     font-weight: 400;
-    margin: 40px 0 60px;
-    max-width: 826px;
-    width: 100%;
+    margin: 3% 0 4%;
+    max-width: 40vw;
 }
 
 .leading{
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 90px;
+    /* font-size: 90px; */
+    font-size: 575%;
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 83px;
@@ -114,91 +115,100 @@ h4 {
 
 
 
-.rightGrid,
+/* .rightGrid,
 .leftGrid {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(16, 1fr);
     height: 576px;
     width: 396px
+} */
+
+.rightGrid,
+.leftGrid {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    height: 38vh; /* 60% of the viewport height */
+    width: 18vw; /* 40% of the viewport width */
 }
 
 
 #image2 {
     grid-column: 4 / 7;
     grid-row: 8 / 10;
-    width: 105%;
+    width: 90%;
     height: auto;
 }
 
 #image3{
-    grid-column: 8 / 11;
+    grid-column: 7 / 11;
     grid-row: 10 / 13;
-    width: 205%;
+    width: 125%;
     height: auto;
 }
 
 #image4{
-    grid-column: 8 / 11;
+    grid-column: 7 / 11;
     grid-row: 4 / 7;
-    width: 165%;
+    width: 102%;
     height: auto;
 }
 
 #image5{
     grid-column: 2 / 5;
     grid-row: 13 / 15;
-    width: 172%;
+    width: 157%;
     height: auto;
 }
 
 #image6{
-    grid-column: 8 / 11;
+    grid-column: 7 / 11;
     grid-row: 15 / 17;
-    width: 150%;
+    width: 100%;
     height: auto;
 }
 
 #image7{
-    grid-column: 2 / 5;
+    grid-column: 3 / 6;
     grid-row: 16 / 18;
-    width: 165%;
+    width: 152%;
     height: auto;
 }
 
 #image8{
     grid-column: 7 / 10;
     grid-row: 5 / 8;
-    width: 150%;
+    width: 130%;
     height: auto;
 }
 
 #image9{
     grid-column: 7 / 10;
     grid-row: 9 / 11;
-    width: 205%;
+    width: 165%;
     height: auto;
 }
 
 #image10{
     grid-column: 8 / 10;
     grid-row: 16 / 20;
-    width: 205%;
+    width: 165%;
     height: auto;
 }
 
 #image11{
-    grid-column: 1 / 4;
+    grid-column: 3 / 6;
     grid-row: 11 / 15;
-    width: 145%;
+    width: 112%;
     height: auto;
 }
 
 #image12{
-    grid-column: 2 / 5;
-    grid-row: 4 / 10;
-    width: 145%;
-    height: auto;
+    grid-column: 3 / 6;
+    grid-row: 4 / 11;
+    width: 112%;
+    height: 88%;
 }
 
 .images{

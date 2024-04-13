@@ -14,7 +14,9 @@
     </head>
 
     <body>
+
         <div id = 'wrapper'>
+            
             <h1>PriceWave</h1>
 
             <nav class = 'buttons'>
@@ -22,7 +24,7 @@
                 <a id="register" href="User/registration">Sign Up</a>
                 
             </nav>
-            <img src="app\resources\PriceWaveLogo.png">
+            
 
 
         </div>

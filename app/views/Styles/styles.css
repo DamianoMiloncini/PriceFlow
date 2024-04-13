@@ -1,7 +1,7 @@
 #wrapper {
     background-color: #fffbfb; 
     color: #333; 
-    padding: 10px; 
+    padding: 0.3%; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
@@ -84,8 +84,4 @@ h1 {
 }
 
 
-img {
-    width: 55px;
-    height: auto;
-    margin-right: 10px;
-}
+
