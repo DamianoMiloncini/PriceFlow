@@ -5,7 +5,7 @@
 $ch = curl_init();
 
 // Set the URL
-curl_setopt($ch, CURLOPT_URL, 'https://www.metro.ca/en/online-grocery/search?filter=milk');
+curl_setopt($ch, CURLOPT_URL, 'https://www.superc.ca/en/search?filter=milk');
 
 // Set the HTTP method
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');

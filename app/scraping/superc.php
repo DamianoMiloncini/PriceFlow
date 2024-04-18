@@ -7,7 +7,7 @@ use Symfony\Component\HttpClient\HttpClient;
 
 $browser = new HttpBrowser(HttpClient::create());
 
-$crawler = $browser->request('GET', 'https://www.metro.ca/en/online-grocery/search?filter=milk', [
+$crawler = $browser->request('GET', 'https://www.superc.ca/en/search?filter=milk', [
     'headers' => [
         'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
     ],
@@ -19,7 +19,7 @@ $names = $crawler->evaluate('//div[contains(@class, "head__title")]');
 $quantities = $crawler->evaluate('//span[contains(@class, "head__unit-details")]');
 $brands = $crawler->evaluate('//span[contains(@class, "head__brand")]');
 $prices = $crawler->evaluate('//span[contains(@class, "price-update")]');
-$images = $crawler->evaluate('//img[contains(@data-default, "/images/shared/placeholders/icon-no-picture.svg")]/@src'); // Select images with the specified data attribute
+$images = $crawler->evaluate('//img[contains(@data-default, "/images/shared/large/default--400x400.jpg")]/@src');
 
 $quantityArray = [];
 foreach ($quantities as $key => $quantity) {

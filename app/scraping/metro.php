@@ -20,6 +20,7 @@ $quantities = $crawler->evaluate('//span[contains(@class, "head__unit-details")]
 $brands = $crawler->evaluate('//span[contains(@class, "head__brand")]');
 $prices = $crawler->evaluate('//span[contains(@class, "price-update")]');
 $images = $crawler->evaluate('//img[contains(@data-default, "/images/shared/placeholders/icon-no-picture.svg")]/@src'); // Select images with the specified data attribute
+$links = $crawler->evaluate('//a[contains(@class, "product-details-link")]/@href'); // Select links with the specified class
 
 $quantityArray = [];
 foreach ($quantities as $key => $quantity) {
@@ -41,6 +42,11 @@ foreach ($images as $key => $image) {
     $imageArray[] = $image->textContent;
 }
 
+$linkArray = [];
+foreach ($links as $key => $link) {
+    $linkArray[] = $link->textContent;
+}
+
 // we extract the titles, brands, quantities, and prices and display them together
 // Print the items with labels
 foreach ($names as $key => $name) {
@@ -48,6 +54,7 @@ foreach ($names as $key => $name) {
     echo "Name: " . $name->textContent . "\n";
     echo "Quantity: " . $quantityArray[$key] . "\n";
     echo "Price: " . $priceArray[$key] . "\n";
-    echo "Image URL: " . $imageArray[$key] . "\n\n";
+    echo "Image URL: " . $imageArray[$key] . "\n";
+    echo "Link: " . $linkArray[$key] . "\n\n";
 }
 ?>
