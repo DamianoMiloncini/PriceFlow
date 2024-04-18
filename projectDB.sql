@@ -20,10 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectDB`
 --
-<<<<<<< HEAD
-CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `projectDB`;
-=======
 
 CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `projectDB`;
@@ -34,7 +30,7 @@ USE `projectDB`;
 -- Table structure for table `Boomarked_Item`
 --
 
-CREATE TABLE `Boomarked_Item` (
+CREATE TABLE `Bookmarked_Item` (
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -154,16 +150,12 @@ CREATE TABLE `Store` (
   `province` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
->>>>>>> b18056be46de68ed41cbaf0cca695cc7bbdf6b93
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
-<<<<<<< HEAD
 
-=======
->>>>>>> b18056be46de68ed41cbaf0cca695cc7bbdf6b93
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
@@ -176,7 +168,7 @@ CREATE TABLE `user` (
   `postal_code` varchar(15) DEFAULT NULL,
   `city` varchar(20) DEFAULT NULL,
   `province` varchar(20) DEFAULT NULL,
-  `secret` int(32) DEFAULT NULL
+  `secret` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -186,7 +178,7 @@ CREATE TABLE `user` (
 --
 -- Indexes for table `Boomarked_Item`
 --
-ALTER TABLE `Boomarked_Item`
+ALTER TABLE `Bookmarked_Item`
   ADD PRIMARY KEY (`item_id`,`user_id`),
   ADD KEY `user_id_FOREIGN_KEY5` (`user_id`);
 
@@ -296,9 +288,9 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `Boomarked_Item`
+-- Constraints for table `Bookmarked_Item`
 --
-ALTER TABLE `Boomarked_Item`
+ALTER TABLE `Bookmarked_Item`
   ADD CONSTRAINT `item_id_FOREIGN_KEY4` FOREIGN KEY (`item_id`) REFERENCES `Item` (`item_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_id_FOREIGN_KEY5` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
 

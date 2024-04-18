@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+
 use chillerlan\Authenticator\{Authenticator, AuthenticatorOptions};
 use chillerlan\QRCode\QRCode;
 
@@ -139,7 +140,7 @@ class User extends \app\core\Controller {
 				$user->secret = $_SESSION['secret_setup'];
                 $user->add2FA();
                 //redirect the user to the login page
-                header('location:/User/login');
+                header('location:/home');
 
 			}else{
 				//if wrong code, show the same view
@@ -170,5 +171,25 @@ class User extends \app\core\Controller {
         }
     }
 
+
+    function viewAccount() {
+        if(isset($_SESSION['user_id'])) {
+            $user = new \app\models\User();
+            //get user's information
+            $user = $user->getByID($_SESSION['user_id']);
+
+            //if the user has informations (which means they are logged in), display profile button & logoutbutton
+            if($user) {
+             $this->view('User/account', $user);  
+            }
+            else { //if the user is not logged in, show the register and login button
+               echo 'Not able to retrieve user informations.';
+            }
+        }
     }
+}
+
+
+
+
 
