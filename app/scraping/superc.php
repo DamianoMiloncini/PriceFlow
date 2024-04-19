@@ -4,6 +4,7 @@ require '../vendor/autoload.php';
 
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\DomCrawler\Crawler;
 
 $browser = new HttpBrowser(HttpClient::create());
 
@@ -13,41 +14,31 @@ $crawler = $browser->request('GET', 'https://www.superc.ca/en/search?filter=milk
     ],
 ]);
 
-//--------------------------------------------
+// Create a DomCrawler instance
+$crawler = new Crawler($crawler->html());
 
-$names = $crawler->evaluate('//div[contains(@class, "head__title")]');
-$quantities = $crawler->evaluate('//span[contains(@class, "head__unit-details")]');
-$brands = $crawler->evaluate('//span[contains(@class, "head__brand")]');
-$prices = $crawler->evaluate('//span[contains(@class, "price-update")]');
-$images = $crawler->evaluate('//img[contains(@data-default, "/images/shared/large/default--400x400.jpg")]/@src');
+// Find all div elements with the specified class
+$products = $crawler->filter('div.default-product-tile.tile-product.item-addToCart');
 
-$quantityArray = [];
-foreach ($quantities as $key => $quantity) {
-    $quantityArray[] = $quantity->textContent;
-}
+// Loop through each filtered product
+$products->each(function (Crawler $product, $i) {
+    // Fetch attributes for each product
+    $id = $product->attr("data-product-code"); 
+    $name = $product->filter('div.head__title')->text();
+    $quantity = $product->filter('span.head__unit-details')->text();
+    $brand = $product->filter('span.head__brand')->text();
+    $price = $product->filter('span.price-update')->text();
+    $image = $product->filter('img[data-default="/images/shared/large/default--400x400.jpg"]')->attr('src');
+    $link = $product->filter('a.product-details-link')->attr('href');
+    $link = 'https://www.superc.ca' . $link;
 
-$brandArray = [];
-foreach ($brands as $key => $brand) {
-    $brandArray[] = trim($brand->textContent);
-}
-
-$priceArray = [];
-foreach ($prices as $key => $price) {
-    $priceArray[] = trim($price->textContent);
-}
-
-$imageArray = [];
-foreach ($images as $key => $image) {
-    $imageArray[] = $image->textContent;
-}
-
-// we extract the titles, brands, quantities, and prices and display them together
-// Print the items with labels
-foreach ($names as $key => $name) {
-    echo "Brand: " . $brandArray[$key] . "\n";
-    echo "Name: " . $name->textContent . "\n";
-    echo "Quantity: " . $quantityArray[$key] . "\n";
-    echo "Price: " . $priceArray[$key] . "\n";
-    echo "Image URL: " . $imageArray[$key] . "\n\n";
-}
-?>
+    // Print or process the fetched attributes
+    echo "ID: $id\n";
+    echo "Name: $name\n";
+    echo "Quantity: $quantity\n";
+    echo "Brand: $brand\n";
+    echo "Price: $price\n";
+    echo "Image: $image\n";
+    echo "Link: $link\n";
+    echo "-----------------------------\n";
+});
