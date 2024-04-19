@@ -29,14 +29,14 @@
 
                     //if the user has informations (which means they are logged in), display profile button & logoutbutton
                     if($user) {
-                        echo '<a id="Account" href="User/account">View Account</a>';
-                        echo '<input type="submit" name="logout" value = "Log out">';
-                    }
-                    else { //if the user is not logged in, show the register and login button
-                       echo '<a id="login" href="User/login">Log In</a>'; 
-                       echo '<a id="register" href="User/registration">Sign Up</a>';
+                        echo '<a id="Account" href="User/account">View Account</a> <br>';
+                        echo '<a id="logout" href="User/logout">Log Out</a>';
                     }
                 }
+                else { //if the user is not logged in, show the register and login button
+                    echo '<a id="login" href="User/login">Log In</a>'; 
+                    echo '<a id="register" href="User/registration">Sign Up</a>';
+                 }
                 ?>
                 
             </nav>

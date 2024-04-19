@@ -49,7 +49,7 @@ class User extends \app\core\Controller {
         //instantiate the User model class
         $user = new \app\models\User();
         //get the user by username
-        $user->getByUsername($username);
+        $user = $user->getByUsername($username);
         //check if what the user submitted matches the data in the db
         if ($user && password_verify($password,$user->password_hash)) {
             //store the user_id in a session
@@ -62,8 +62,11 @@ class User extends \app\core\Controller {
                 header('location:/User/setup2fa');
 
             }
+            else {
+                header('location:/User/check2fa'); 
+            }
 
-            header('location:/home');
+            //header('location:/home');
         }
         else {
             header('location:/User/login');
@@ -72,7 +75,7 @@ class User extends \app\core\Controller {
         else {
             $this->view('User/login');
         }
-        }
+    }
     
 
     //user logout
@@ -81,7 +84,7 @@ class User extends \app\core\Controller {
         session_destroy();
 
         //redirect the user to the login page
-        header('location:/User/login');
+        header('location:/home');
     }
 
     //update user account informations
@@ -89,7 +92,7 @@ class User extends \app\core\Controller {
     function updateUser() {
         $user = new \app\models\User();
         //get the user by id from Session
-        $user->getByID($_SESSION['user_id']);
+        $user = $user->getByID($_SESSION['user_id']);
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
         //instantiate the user model class
         //update the information
@@ -97,11 +100,13 @@ class User extends \app\core\Controller {
         $password = $_POST['password_hash'];
         $user->first_name = $_POST['first_name'];
         $user->last_name = $_POST['last_name'];
-        $user->address = $_POST['address'];
-        $user->street = $_POST['street'];
-        $user->city =$_POST['city'];
-        $user->province = $_POST['province'];
-        $user->postal_code = $_POST['postal_code'];
+
+        //This should be in the update location view (**TODO later)
+        // $user->address = $_POST['address'];
+        // $user->street = $_POST['street'];
+        // $user->city =$_POST['city'];
+        // $user->province = $_POST['province'];
+        // $user->postal_code = $_POST['postal_code'];
         //check if the user changed the password beforehand otherwise youll redo the hashing for no reason
         if(!empty($password)) {
             $user->password_hash = password_hash($password,PASSWORD_DEFAULT);
@@ -120,7 +125,6 @@ class User extends \app\core\Controller {
    
     function setup2fa() { //comment later on
         $user = new \app\models\User();
-        var_dump($_SESSION);
         $options = new AuthenticatorOptions();
 		$authenticator = new Authenticator($options);
 
@@ -161,7 +165,7 @@ class User extends \app\core\Controller {
             $authenticator->setSecret($_SESSION['secret']);
             if($authenticator->verify($_POST['totp'])){
                 unset($_SESSION['secret']);
-                header('location:/Profile/index');//the good place
+                header('location:/home');//the good place
             }else{
                 session_destroy();
                 header('location:/User/login');

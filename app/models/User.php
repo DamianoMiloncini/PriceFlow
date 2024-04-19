@@ -17,6 +17,7 @@ class User extends \app\core\Model {
     public $city;
     public $province;
     public $postal_code;
+    public $secret;
 
    
    //insert data into the DB
@@ -82,11 +83,22 @@ class User extends \app\core\Model {
    //update user's information details
    function update() {
     //SQL statement
-    $SQL = 'UPDATE user SET username = :username, password_hash = :password_hash, first_name = :first_name, last_name = :last_name, address = :address, street = :street, city = :city, province = :province, postal_code = :postalcode where user_id = :user_id ';
+    $SQL = 'UPDATE user SET username = :username, password_hash = :password_hash, first_name = :first_name, last_name = :last_name where user_id = :user_id ';
     //prepare the statement
     $STMT = self::$_conn->prepare($SQL);
     //execute the statement
-    $STMT->execute((array)$this);
+    $STMT->execute([
+        'user_id'=> $this->user_id,
+        'username'=>$this->username,
+        'password_hash'=>$this->password_hash,
+        'first_name'=>$this->first_name,
+        'last_name'=>$this->last_name,
+        // 'address'=> null,
+        //     'street'=> null,
+        //     'city'=>null,
+        //     'province'=> null,
+        //     'postal_code'=> null,
+    ]);
    }
 
    public function add2FA(){
