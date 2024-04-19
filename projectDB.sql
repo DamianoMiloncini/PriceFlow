@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2024 at 08:44 PM
+-- Generation Time: Apr 19, 2024 at 08:04 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -21,13 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `projectDB`
 --
 
-CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `projectDB`;
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Boomarked_Item`
+-- Table structure for table `Bookmarked_Item`
 --
 
 CREATE TABLE `Bookmarked_Item` (
@@ -57,9 +54,10 @@ CREATE TABLE `Item` (
   `item_id` int(11) NOT NULL,
   `name` varchar(35) NOT NULL,
   `price` float NOT NULL,
-  `image` blob NOT NULL,
+  `image` text NOT NULL,
   `quantity` int(11) NOT NULL,
-  `brand` varchar(35) NOT NULL
+  `brand` varchar(35) NOT NULL,
+  `link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -156,7 +154,6 @@ CREATE TABLE `Store` (
 -- Table structure for table `user`
 --
 
-
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -176,7 +173,7 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `Boomarked_Item`
+-- Indexes for table `Bookmarked_Item`
 --
 ALTER TABLE `Bookmarked_Item`
   ADD PRIMARY KEY (`item_id`,`user_id`),
