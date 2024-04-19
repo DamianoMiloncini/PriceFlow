@@ -23,6 +23,7 @@ $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCa
 // Loop through each filtered product
 $products->each(function (Crawler $product, $i) {
     // Fetch attributes for each product
+    $id = $product->attr("data-product-code"); 
     $name = $product->filter('div.head__title')->text();
     $quantity = $product->filter('span.head__unit-details')->text();
     $brand = $product->filter('span.head__brand')->text();
@@ -32,6 +33,7 @@ $products->each(function (Crawler $product, $i) {
     $link = 'https://www.superc.ca' . $link;
 
     // Print or process the fetched attributes
+    echo "ID: $id\n";
     echo "Name: $name\n";
     echo "Quantity: $quantity\n";
     echo "Brand: $brand\n";
