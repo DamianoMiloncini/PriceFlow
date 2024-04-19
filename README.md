@@ -17,3 +17,7 @@ Additionally, a completed ERD is required to present the full structure of the d
 
 ## ERD 
 - **Status:** ERD has been completed!
+
+## User authentication
+- **Status:** User basic authentication(register,login,log out, update profile, view profile, setup2fa, check2fa) is complete.
+Left to do: Update user 2fa & save + update user's location
