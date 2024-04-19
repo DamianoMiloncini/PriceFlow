@@ -9,4 +9,5 @@ $this->addRoute('User/updateAccount','User,updateUser');
 $this->addRoute('User/setup2fa' , 'User,setup2fa');
 $this->addRoute('User/check2fa' , 'User,check2fa');
 $this->addRoute('User/account' , 'User,viewAccount');
-$this->addRoute('list','ItemController,search');
+$this->addRoute('User/passwordCheck' , 'User,verifyPassword');
+$this->addRoute('User/update2fa' , 'User,update2fa');

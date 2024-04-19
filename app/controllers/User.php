@@ -60,7 +60,6 @@ class User extends \app\core\Controller {
             if ($_SESSION['secret'] == null) {
                 $_SESSION['secret'] = 1;
                 header('location:/User/setup2fa');
-
             }
             else {
                 header('location:/User/check2fa'); 
@@ -189,6 +188,66 @@ class User extends \app\core\Controller {
             else { //if the user is not logged in, show the register and login button
                echo 'Not able to retrieve user informations.';
             }
+        }
+    }
+
+    function update2FA() {
+        $user = new \app\models\User();
+        $options = new AuthenticatorOptions();
+		$authenticator = new Authenticator($options);
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){ 
+            //get the session id to get the users information
+            $user = $user->getByID($_SESSION['user_id']);
+             //if the password is right, let the user change their secret
+			if(isset($_SESSION['secret_setup'])){
+				$authenticator->setSecret($_SESSION['secret_setup']);
+			}else{
+				header("location:/User/setup2fa");
+			}
+			//was submitted, check the TOTP
+			$totp = $_POST['totp'];
+			if($authenticator->verify($totp)){
+				//add the secret to the user record
+				$user->secret = $_SESSION['secret_setup'];
+                $user->add2FA();
+                //redirect the user to the successfull page
+                echo 'You successfully updated your 2FA ! <br> You will be redirected to the Home page in a few seconds...';
+                //redirect the user to another page after 3 seconds
+                header('refresh:2; url = http://localhost/home');
+
+			}else{
+				//if wrong code, show the same view
+                $this->view('User/setup2fa');
+			}
+		}else{
+			$_SESSION['secret_setup'] = $authenticator->createSecret();
+			//generate the URI with the secret for the user
+			$uri = $authenticator->getUri('Superb application', 'localhost');
+			$QRCode = (new QRCode)->render($uri);
+			$this->view('User/setup2fa',['QRCode'=>$QRCode]);
+		}
+    }
+
+    function verifyPassword() {
+        //check that the user has submitted something
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = new \app\models\User();
+            $user = $user->getByID($_SESSION['user_id']);
+            $password = $_POST['password'];
+            //check if the password matches the user account password
+            if ($user && password_verify($password,$user->password_hash)) {
+                //redirect the user to update2fa to scan the QR code again
+                header('location:/User/update2fa');
+            }
+            else {
+                //try again
+                $msg = 'Wrong password, please try again';
+                var_dump($user);
+                $this->view('User/passwordCheck',$msg);
+            }
+        }
+        else {
+            $this->view('User/passwordCheck');
         }
     }
 }
