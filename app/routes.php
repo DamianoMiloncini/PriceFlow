@@ -9,3 +9,4 @@ $this->addRoute('User/updateAccount','User,updateUser');
 $this->addRoute('User/setup2fa' , 'User,setup2fa');
 $this->addRoute('User/check2fa' , 'User,check2fa');
 $this->addRoute('User/account' , 'User,viewAccount');
+$this->addRoute('cart','Welcome,cart'); // WILL ADD USER ID TO ROUTE

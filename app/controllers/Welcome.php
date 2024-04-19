@@ -11,8 +11,15 @@ class Welcome extends \app\core\Controller {
 
     function map(){
         
-        $this->view('mapTest');
+        $store = new \app\models\Map();
+        $store = $store->getById(1);
+        
+        $this->view('map', $store);
 
+    }
+
+    function cart(){
+        $this->view('cart');
     }
 
 }

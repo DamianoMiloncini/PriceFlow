@@ -6,13 +6,11 @@
 
     <style>
         #map {
-            border: solid;
-            border-color: rgba(255, 255, 255, 0.8);
+            border: none;
             box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            height: 30%;
-            width: 40%;
-            margin-top: 20%;
+            height: 35%;
+            width: 100%;
         }
     </style>
 
@@ -29,7 +27,33 @@
 
     <div id="map"></div>
 
+    <!-- <?php
+
+        // $address = "$data->address $data->city $data->province $data->postal_code"; // Put your address here
+        // print_r($address);
+
+        // $region = "";
+
+        // $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=$region");
+        // $json = json_decode($json);
+
+        // $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+        // $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+        // echo $lat."
+        // ".$long;
+        ?> 
+        -->
+
     <script>
+
+        var requestOptions = {
+        method: 'GET',
+        };
+
+        fetch("https://api.geoapify.com/v1/geocode/search?text=38%20Upper%20Montagu%20Street%2C%20Westminster%20W1H%201LJ%2C%20United%20Kingdom&apiKey=f9b7061858b746fc84136bc23dfef6b0", requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
         // These coordinates will be changed depending on the users location - By default, it is set to Montreal
         var map = L.map('map').setView([45.5019, -73.5674], 13); // 13 refers to the default zoom when loaded

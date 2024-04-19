@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2024 at 08:44 PM
+-- Generation Time: Apr 19, 2024 at 08:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -21,13 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `projectDB`
 --
 
-CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `projectDB`;
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Boomarked_Item`
+-- Table structure for table `Bookmarked_Item`
 --
 
 CREATE TABLE `Bookmarked_Item` (
@@ -144,18 +141,24 @@ CREATE TABLE `Search_Query` (
 CREATE TABLE `Store` (
   `store_id` int(11) NOT NULL,
   `store_name` varchar(25) NOT NULL,
-  `address` varchar(25) NOT NULL,
+  `address` varchar(50) NOT NULL,
   `postal_code` varchar(10) NOT NULL,
   `city` text NOT NULL,
   `province` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Store`
+--
+
+INSERT INTO `Store` (`store_id`, `store_name`, `address`, `postal_code`, `city`, `province`) VALUES
+(1, 'Metro', '740 Boulevard Cote Vertu', 'H4L 5C8', 'Montreal', 'Quebec');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
-
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
@@ -172,11 +175,20 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password_hash`, `first_name`, `last_name`, `address`, `street`, `postal_code`, `city`, `province`, `secret`) VALUES
+(1, 'Damiano', '$2y$10$JOy2v91Im0Y0/GEKEfJhluK5jleiySVOxlslagtJsxlo1Pj1I7jg2', 'Damiano', 'Miloncini', '3456', 'BumBum', 'H8W1J1', 'Montreal', 'Quebec', NULL),
+(2, 'Damiano33', '$2y$10$ajKGebUr6fqrsaQ5B8Eub.3CoV7olsJMYWbqmcnhcXj23ZiCJ8Rqa', 'Damiano', 'Miloncini', '', '', '', '', '', NULL),
+(3, 'Damiano!', '$2y$10$z6uprSPVwFL3cxGv.bJAEuxxTbyzHGdTDPvykgGBeFX88lwPqdI2C', 'Damiano', 'Miloncini', '', '', '', '', '', NULL);
+
+--
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Boomarked_Item`
+-- Indexes for table `Bookmarked_Item`
 --
 ALTER TABLE `Bookmarked_Item`
   ADD PRIMARY KEY (`item_id`,`user_id`),
@@ -275,13 +287,13 @@ ALTER TABLE `Recipe`
 -- AUTO_INCREMENT for table `Store`
 --
 ALTER TABLE `Store`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
