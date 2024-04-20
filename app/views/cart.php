@@ -24,7 +24,7 @@
 
         <div id="cartWrapper">
             <h3>Your Cart</h3>
-            <h6>Thank your choosing PriceWave!</h6>
+            <h6>Thank you for choosing PriceWave!</h6>
 
             <div id="cartItems">
             </div>

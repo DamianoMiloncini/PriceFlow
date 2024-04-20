@@ -38,6 +38,7 @@
 <body>
     <?php include 'app/views/topBar.php'; ?>
 
+    <!-- Display the map  -->
     <div id="map"></div>
 
     <script>
@@ -50,7 +51,39 @@
         }).addTo(map);
     </script>
 
-    <?php foreach ($data as $store) :
+    <?php 
+        // Getting user's location
+        $userAddress = $user->address;
+        $userStreet = $user->street;
+        $userPostalCode = $user->postal_code;
+        $userCity = $user->city;
+        $userProvince = $user->province;
+
+        $userLocation = "$userAddress $userStreet, $userCity, $userProvince, $userPostalCode";
+        //echo($userLocation);
+        $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
+        // Fetching the data from the API
+        $response = file_get_contents($api_url);
+
+        // Decoding JSON response that is generated
+        $coordiantes = json_decode($response, true);
+
+        // Check if the response is successful
+        if ($coordiantes && isset($coordiantes['features'][0])) {
+            // Gettting the latitude and longitude!!
+            $userLatitude = $coordiantes['features'][0]['properties']['lat'];   
+            $userLongitude = $coordiantes['features'][0]['properties']['lon'];
+        }
+
+    ?>
+
+        <script>
+            // CREATING MARKERS - These will be generated when we fetch the closest stores.
+            var marker = L.marker([<?php echo $userLatitude ?>, <?php echo $userLongitude ?>]).addTo(map); // Coordinates will be changed to the stores location
+            marker.bindPopup("This is you!").openPopup();
+        </script>
+
+    <?php foreach ($data['stores'] as $store) :
 
         $address = $store['address'];
         $city = $store['city'];
@@ -58,6 +91,7 @@
         $postalCode = $store['postal_code'];
         
         $location = "$address $city $province $postalCode";
+        //echo($location);
 
         $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($location) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
 
@@ -70,15 +104,21 @@
         // Check if the response is successful
         if ($coordiantes && isset($coordiantes['features'][0])) {
             // Gettting the latitude and longitude!!
-            $latitude = $coordiantes['features'][0]['properties']['lat'];   
-            $longitude = $coordiantes['features'][0]['properties']['lon'];
+            $storeLatitude = $coordiantes['features'][0]['properties']['lat'];   
+            $storeLongitude = $coordiantes['features'][0]['properties']['lon'];
         }
+
+        // Calculate the distance between the user and each store
+        $distance = calculateDistance($userLatitude, $userLongitude, $storeLatitude, $storeLongitude);
+        //echo($distance);
     ?>
 
         <script>
+            <?php if ($distance <= 2.5) { // Only stores within 2.5km will appear ?>
             // CREATING MARKERS - These will be generated when we fetch the closest stores.
-            var marker = L.marker([<?php echo $latitude ?>, <?php echo $longitude ?>]).addTo(map); // Coordinates will be changed to the stores location
+            var marker = L.marker([<?php echo $storeLatitude ?>, <?php echo $storeLongitude ?>]).addTo(map); // Coordinates will be changed to the stores location
             marker.bindPopup("<img src='app/resources/metroTestImage.jpg' id='metroImg'> <br> <h5> <?php echo $store['store_name'] ?> </h5> <?php echo $store['address'] ?>").openPopup();
+            <?php }?>
         </script>
 
     <?php endforeach ?>
@@ -86,13 +126,13 @@
 
     <!-- EXTRA MAP FEATURE -->
     <script>
-        // CREATING CIRCLE (Can be a radius around the Users vicinity)
-        // var circle = L.circle([45.5019, -73.5674], {
-        //     color: 'red',
-        //     fillColor: '#f03',
-        //     fillOpacity: 0.5,
-        //     radius: 500
-        // }).addTo(map);
+        //CREATING CIRCLE (Can be a radius around the Users vicinity)
+        var circle = L.circle([<?php echo $userLatitude ?>, <?php echo $userLongitude ?>], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.2,
+            radius: 2500
+        }).addTo(map);
 
         // POLYGONS - not sure if well use this
         // var polygon = L.polygon([
@@ -111,6 +151,38 @@
         // Circle pop up:
         // circle.bindPopup("I am a circle.");
     </script>
+
+    <?php 
+
+    // Using Haversine's formula to calculate the distance between teh user and the locations
+    // We are doing this because we only want to show the stores within a 2.5km radius
+    function calculateDistance($lat1, $lon1,  $lat2, $lon2){
+
+        // Radius of the Earth in kilometers
+        $earthRadius = 6371;
+
+        // Convert latitude and longitude from degrees to radians
+        $latFrom = deg2rad($lat1);
+        $lonFrom = deg2rad($lon1);
+        $latTo = deg2rad($lat2);
+        $lonTo = deg2rad($lon2);
+
+        // Calculate the differences
+        $latDelta = $latTo - $latFrom;
+        $lonDelta = $lonTo - $lonFrom;
+
+        // Haversine formula
+        $distance = 2 * $earthRadius * asin(
+            sqrt(
+                pow(sin($latDelta / 2), 2) +
+                cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)
+            )
+        );
+
+        return $distance; // Distance in kilometers
+    }
+
+    ?>
 
 </body>
 

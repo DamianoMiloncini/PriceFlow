@@ -73,7 +73,7 @@ class User extends \app\core\Model {
         [
             'user_id'=> $user_id
         ]
-        );
+    );
     //return the data fetched
     $STMT -> setFetchMode(PDO::FETCH_CLASS, 'app\models\User');
     return $STMT->fetch();
