@@ -28,4 +28,23 @@ class Map extends \app\core\Model {
         return $STMT->fetch();
 
     }
+
+    function getAll(){
+
+        $stores = [];
+
+        $SQL = 'SELECT  * FROM Store';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute();
+
+        while ($row = $STMT->fetch(PDO::FETCH_ASSOC)) {
+            $stores[] = $row;
+        }
+
+        return $stores;
+
+    }
+
 }

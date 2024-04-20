@@ -69,7 +69,7 @@
             </div>
 
             <div class='cartButtons'>
-                <a id="viewFullCartButton" href="cart/<?php ?>">View Full Cart</a>
+                <a id="viewFullCartButton" href="cart">View Full Cart</a>
                 <br>
                 <a id="cartCheckoutButton" href="">Checkout</a>
             </div>

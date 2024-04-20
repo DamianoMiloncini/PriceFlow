@@ -21,3 +21,8 @@ Additionally, a completed ERD is required to present the full structure of the d
 ## User authentication
 - **Status:** User basic authentication(register,login,log out, update profile, view profile, setup2fa, check2fa) is complete.
 Left to do: Update user 2fa & save + update user's location
+
+## Map 
+- **Status:** Complete! (Hardcoded for now until web scraping is complete) 
+- Map API is functioning perfectly!
+- I had to use a second API in order to properly map every store to its exact location (comverting address string to coordinates) which works perfectly aswell.

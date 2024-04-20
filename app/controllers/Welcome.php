@@ -12,7 +12,7 @@ class Welcome extends \app\core\Controller {
     function map(){
         
         $store = new \app\models\Map();
-        $store = $store->getById(1);
+        $store = $store->getAll();
         
         $this->view('map', $store);
 

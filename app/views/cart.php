@@ -14,7 +14,11 @@
     </head>
 
     <body>
+
+    <div id = "cartTopBar">
         <?php include 'app/views/topBar.php'; ?>
+    </div>
+        
 
         
 

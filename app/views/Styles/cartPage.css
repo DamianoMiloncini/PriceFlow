@@ -1,5 +1,4 @@
 #cartWrapper{
-    margin-top: 3%;
     padding: 3%;
 }
 
@@ -8,3 +7,7 @@
     padding-right: 10%;
 }
 
+
+#cartTopBar{
+    margin-bottom: 2.5%;
+}
