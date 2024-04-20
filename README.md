@@ -24,5 +24,5 @@ Left to do: Update user 2fa & save + update user's location
 
 ## Map 
 - **Status:** Complete! (Hardcoded for now until web scraping is complete) 
-- Map API is functioning perfectly!
-- I had to use a second API in order to properly map every store to its exact location (comverting address string to coordinates) which works perfectly aswell.
+- Map API appears to be functioning perfectly!
+- I had to use a second API in order to properly map every store to its exact location (converting address string to coordinates) which works well aswell.
