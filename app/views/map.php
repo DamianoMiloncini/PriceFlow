@@ -36,7 +36,6 @@
 
 
 <body>
-    <?php include 'app/views/topBar.php'; ?>
 
     <!-- Display the map  -->
     <div id="map"></div>

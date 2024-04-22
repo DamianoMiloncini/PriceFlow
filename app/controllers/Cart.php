@@ -3,7 +3,8 @@
 namespace app\controllers;
 
 
-class Cart extends \app\core\Controller {
+class Cart extends \app\core\Controller
+{
 
     function loadData(){
 
@@ -48,5 +49,6 @@ class Cart extends \app\core\Controller {
         
         $this->view('cart', $data);
     }
+
 
 }
