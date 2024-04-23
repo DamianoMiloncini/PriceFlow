@@ -1,13 +1,88 @@
-#cartWrapper{
+#cartWrapper {
     padding: 3%;
 }
 
 #cartMap {
     padding-left: 10%;
     padding-right: 10%;
+    margin-bottom: 3%;
 }
 
-
-#cartTopBar{
+#cartTopBar {
     margin-bottom: 2.5%;
 }
+
+#cartItems {
+    padding-top: 3%;
+    padding-left: 18%;
+    padding-right: 18%;
+}
+
+.itemCard {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+    padding: 2%;
+    margin-bottom: 1.5%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+
+.itemImages {
+    width: 5%;
+    height: auto;
+    margin-left: 1%;
+    margin-right: 2%;
+}
+
+.bttns{
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #eff7ff;
+    font-size: 20px;
+    font-weight: 600;
+    color: #006eff;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 35px;
+    margin-right: 8px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+.bttns:hover { 
+    background-color: #d4e7ff; 
+    cursor: pointer;
+}
+
+#cartHeading {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+#cartHeading h3 {
+    margin-right: auto; /* Pushes the h3 to the left */
+}
+
+#checkoutButton {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #006eff;
+    font-size: 125%;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+#checkoutButton:hover { /*this is not working  -M*/
+    background-color: #0059c6; /* Change background color on hover */
+    cursor: pointer;
+}
+

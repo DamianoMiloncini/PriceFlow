@@ -2,7 +2,7 @@
 $this->addRoute('','Welcome,index');
 $this->addRoute('home','Welcome,index');
 $this->addRoute('map','Welcome,map');
-$this->addRoute('cart', 'Map,loadStores');
+$this->addRoute('cart','Cart,loadData');
 $this->addRoute('User/registration','User,register');
 $this->addRoute('User/login','User,login');
 $this->addRoute('User/logout' , 'User,logout');

@@ -36,20 +36,9 @@
 
 
 <body>
-    <?php include 'app/views/topBar.php'; ?>
 
     <!-- Display the map  -->
     <div id="map"></div>
-
-    <script>
-        // These coordinates will be changed depending on the users location - By default, it is set to Montreal
-        var map = L.map('map').setView([45.5019, -73.5674], 13); // 13 refers to the default zoom when loaded
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-    </script>
 
     <?php 
         // Getting user's location
@@ -59,7 +48,7 @@
         $userCity = $user->city;
         $userProvince = $user->province;
 
-        $userLocation = "$userAddress $userStreet, $userCity, $userProvince, $userPostalCode";
+        $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
         //echo($userLocation);
         $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
         // Fetching the data from the API
@@ -76,6 +65,17 @@
         }
 
     ?>
+
+        <!-- MAP API -->
+        <script>
+            // These coordinates will be changed depending on the users location - By default, it is set to Montreal
+            var map = L.map('map').setView([<?php echo $userLatitude ?>, <?php echo $userLongitude ?>], 13); // 13 refers to the default zoom when loaded
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+        </script>
 
         <script>
             // CREATING MARKERS - These will be generated when we fetch the closest stores.
