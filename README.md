@@ -26,3 +26,9 @@ Left to do: Update user 2fa & save + update user's location
 - **Status:** Complete! (Hardcoded for now until web scraping is complete) 
 - Map API appears to be functioning perfectly!
 - I had to use a second API in order to properly map every store to its exact location (converting address string to coordinates) which works well aswell.
+
+## 50% Features (Micka)
+- Updating 2FA is done
+- Save location to a user account is done
+- Update save location partially done(i have to fix a little bug)
+- Display Bookmark items is done 
