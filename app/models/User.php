@@ -93,11 +93,21 @@ class User extends \app\core\Model {
         'password_hash'=>$this->password_hash,
         'first_name'=>$this->first_name,
         'last_name'=>$this->last_name,
-        // 'address'=> null,
-        //     'street'=> null,
-        //     'city'=>null,
-        //     'province'=> null,
-        //     'postal_code'=> null,
+    ]);
+   }
+   function updateLocation() {
+    //SQL statement
+    $SQL = 'UPDATE user SET address = :address, street = :street, city = :city, province = :province, postal_code = :postal_code where user_id = :user_id ';
+    //prepare the statement
+    $STMT = self::$_conn->prepare($SQL);
+    //execute the statement
+    $STMT->execute([
+        'user_id'=> $this->user_id,
+        'address'=> $this->address,
+        'street'=> $this->street,
+        'city'=>   $this->city,
+        'province'=> $this->province,
+        'postal_code'=> $this->postal_code,
     ]);
    }
 
