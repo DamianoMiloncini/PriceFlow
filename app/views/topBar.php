@@ -39,8 +39,9 @@
 
                     //if the user has informations (which means they are logged in), display profile button & logoutbutton
                     if($user) {
-                        echo '<a id="Account" href="User/account">View Account</a> <br>';
-                        echo '<a id="logout" href="User/logout">Log Out</a>';
+                        echo '<a class="userBtn" href="User/account">View Account</a> <br>';
+                        echo '<a class="userBtn" href="User/logout">Log Out</a><br>';
+                        echo '<a class="userBtn" href="User/bookmark">Bookmarks</a>';
                         echo '<i id="cart" class="bi bi-cart4" onclick="toggleCart()"></i>';
                     }
                 }

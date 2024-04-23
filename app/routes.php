@@ -14,3 +14,4 @@ $this->addRoute('User/passwordCheck' , 'User,verifyPassword');
 $this->addRoute('User/update2fa' , 'User,update2fa');
 $this->addRoute('User/registerLocation' , 'User,registerLocation');
 $this->addRoute('User/updateLocation' , 'User,updateLocation');
+$this->addRoute('User/bookmark' , 'Bookmark,displayFavorites');

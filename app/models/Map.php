@@ -33,7 +33,7 @@ class Map extends \app\core\Model {
 
         $stores = [];
 
-        $SQL = 'SELECT  * FROM Store';
+        $SQL = 'SELECT  * FROM store';
 
         $STMT = self::$_conn->prepare($SQL);
 
