@@ -14,7 +14,6 @@
             var cartQuickView = document.getElementById("cartQuickView");
             if (cartQuickView.style.display === "none") {
             cartQuickView.style.display = "block";
-        // Fetch and populate cart items here if needed
         } else {
             cartQuickView.style.display = "none";
         }
