@@ -21,3 +21,5 @@ $this->addRoute('Recipe/displayAll', 'Recipe,displayAll');
 $this->addRoute('Recipe/displayPrivate', 'Recipe,displayPrivate');
 $this->addRoute('Recipe/displayUserRecipes', 'Recipe,displayUserRecipes');
 $this->addRoute('Recipe/recipeDetails/{recipe_id}', 'Recipe,recipeDetails');
+$this->addRoute('Item/search', 'ItemController,search');
+

@@ -10,10 +10,12 @@
     <ul>
         <?php foreach ($items as $item): ?>
             <li>
-                <strong>Name:</strong> <?php echo $item->name; ?><br>
+            <strong>Name:</strong> <?php echo $item->name; ?><br>
                 <strong>Price:</strong> <?php echo $item->price; ?><br>
+                <strong>Brand:</strong> <?php echo $item->brand; ?><br>
+                <strong>Quantity:</strong> <?php echo $item->quantity; ?><br>
                 <strong>Image:</strong> <img src="<?php echo $item->image; ?>" alt="<?php echo $item->name; ?>"><br>
-            </li>
+           </li>
         <?php endforeach; ?>
     </ul>
 </body>

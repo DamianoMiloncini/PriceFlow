@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Item;
+require("app/scraping/metro.php");
 
 class ItemController extends \app\core\Controller {
 
@@ -13,18 +14,11 @@ class ItemController extends \app\core\Controller {
         // Initialize an empty array to store Item objects
         $itemObjects = [];
     
-        print_r("BYE");
-        print_r($items);
-    
         // Instantiate Item objects for each scraped item
         foreach ($items as $item) {
             $itemObjects[] = new Item($item); // Assuming $item is an array containing item details
-            print_r($item);
         }
     
-        print_r("SUP");
-        print_r($itemObjects);
-
         // Pass the item objects to the view
         $this->view('Item/itemList', ['items' => $itemObjects]); // Change $items to $itemObjects
     }
