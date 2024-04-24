@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 07:13 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Apr 24, 2024 at 05:57 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,10 +18,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `projectdb`
+-- Database: `projectDB`
 --
-CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `projectDB`;
+
 -- --------------------------------------------------------
 
 --
@@ -64,16 +63,17 @@ CREATE TABLE `item` (
   `price` float NOT NULL,
   `image` varchar(150) NOT NULL,
   `quantity` varchar(5) NOT NULL,
-  `brand` varchar(35) NOT NULL
+  `brand` varchar(35) NOT NULL,
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`item_id`, `name`, `price`, `image`, `quantity`, `brand`) VALUES
-(1, '2% Milk, PurFiltre', 5.29, 'https://product-images.metro.ca/images/hb8/h1b/11354247757854.jpg', '2L', 'Lactancia'),
-(2, 'Large White Eggs', 4.09, 'https://product-images.metro.ca/images/h4e/h1d/11168817872926.jpg', '12', 'Selection');
+INSERT INTO `item` (`item_id`, `name`, `price`, `image`, `quantity`, `brand`, `description`) VALUES
+(1, '2% Milk, PurFiltre', 5.29, 'https://product-images.metro.ca/images/hb8/h1b/11354247757854.jpg', '2L', 'Lactancia', NULL),
+(2, 'Large White Eggs', 4.09, 'https://product-images.metro.ca/images/h4e/h1d/11168817872926.jpg', '12', 'Selection', NULL);
 
 -- --------------------------------------------------------
 
@@ -296,12 +296,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `recipe`
