@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2024 at 05:57 PM
+-- Generation Time: Apr 24, 2024 at 06:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,8 +20,10 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectDB`
 --
+
 CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `projectDB`;
+
 -- --------------------------------------------------------
 
 --
@@ -73,8 +75,8 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `name`, `price`, `image`, `quantity`, `brand`, `description`) VALUES
-(1, '2% Milk, PurFiltre', 5.29, 'https://product-images.metro.ca/images/hb8/h1b/11354247757854.jpg', '2L', 'Lactancia', NULL),
-(2, 'Large White Eggs', 4.09, 'https://product-images.metro.ca/images/h4e/h1d/11168817872926.jpg', '12', 'Selection', NULL);
+('1', '2% Milk, PurFiltre', 5.29, 'https://product-images.metro.ca/images/hb8/h1b/11354247757854.jpg', '2L', 'Lactancia', NULL),
+('2', 'Large White Eggs', 4.09, 'https://product-images.metro.ca/images/h4e/h1d/11168817872926.jpg', '12', 'Selection', NULL);
 
 -- --------------------------------------------------------
 
@@ -93,8 +95,8 @@ CREATE TABLE `items_in_cart` (
 --
 
 INSERT INTO `items_in_cart` (`cart_id`, `item_id`, `quantity_purchased`) VALUES
-(1, 1, 3),
-(1, 2, 3);
+(1, '1', 3),
+(1, '2', 3);
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ CREATE TABLE `items_in_recipe` (
 
 CREATE TABLE `item_from_search_query` (
   `item_id` varchar(50) NOT NULL,
-  `search_query` varchar(75) NOT NULL
+  `query` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -154,8 +156,15 @@ CREATE TABLE `recipe` (
 --
 
 CREATE TABLE `search_query` (
-  `search_query` varchar(75) NOT NULL
+  `query` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `search_query`
+--
+
+INSERT INTO `search_query` (`query`) VALUES
+('yogurt');
 
 -- --------------------------------------------------------
 
@@ -252,8 +261,8 @@ ALTER TABLE `items_in_recipe`
 -- Indexes for table `item_from_search_query`
 --
 ALTER TABLE `item_from_search_query`
-  ADD PRIMARY KEY (`item_id`,`search_query`),
-  ADD KEY `search_query_FOREIGN_KEY` (`search_query`);
+  ADD PRIMARY KEY (`item_id`,`query`),
+  ADD KEY `search_query_FOREIGN_KEY` (`query`);
 
 --
 -- Indexes for table `item_store_location`
@@ -273,7 +282,7 @@ ALTER TABLE `recipe`
 -- Indexes for table `search_query`
 --
 ALTER TABLE `search_query`
-  ADD PRIMARY KEY (`search_query`);
+  ADD PRIMARY KEY (`query`);
 
 --
 -- Indexes for table `store`
@@ -352,7 +361,7 @@ ALTER TABLE `items_in_recipe`
 --
 ALTER TABLE `item_from_search_query`
   ADD CONSTRAINT `item_id_FOREIGN_KEY` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `search_query_FOREIGN_KEY` FOREIGN KEY (`search_query`) REFERENCES `search_query` (`search_query`) ON DELETE CASCADE;
+  ADD CONSTRAINT `search_query_FOREIGN_KEY` FOREIGN KEY (`query`) REFERENCES `search_query` (`query`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `item_store_location`
