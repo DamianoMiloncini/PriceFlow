@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectDB`
 --
-
+CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `projectDB`;
 -- --------------------------------------------------------
 
 --
@@ -28,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bookmarked_item` (
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -58,7 +59,7 @@ INSERT INTO `cart` (`cart_id`, `user_id`, `cart_price`) VALUES
 --
 
 CREATE TABLE `item` (
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `name` varchar(35) NOT NULL,
   `price` float NOT NULL,
   `image` varchar(150) NOT NULL,
@@ -83,7 +84,7 @@ INSERT INTO `item` (`item_id`, `name`, `price`, `image`, `quantity`, `brand`, `d
 
 CREATE TABLE `items_in_cart` (
   `cart_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `quantity_purchased` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -103,7 +104,7 @@ INSERT INTO `items_in_cart` (`cart_id`, `item_id`, `quantity_purchased`) VALUES
 
 CREATE TABLE `items_in_recipe` (
   `recipe_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `quantity_needed` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -114,7 +115,7 @@ CREATE TABLE `items_in_recipe` (
 --
 
 CREATE TABLE `item_from_search_query` (
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `search_query` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,7 +126,7 @@ CREATE TABLE `item_from_search_query` (
 --
 
 CREATE TABLE `item_store_location` (
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
   `store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
