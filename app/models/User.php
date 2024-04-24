@@ -42,8 +42,22 @@ class User extends \app\core\Model {
         );
 
         $this->user_id = self::$_conn->lastInsertId();
+        
+
+        // CREATING THE USERS CART
+        $cartSQL = 'INSERT INTO cart (user_id, cart_price) VALUES (:user_id, 0)';
+        //prepare the statement
+        $cartSTMT = self::$_conn->prepare($cartSQL);
+        //execute the statement
+        $cartSTMT->execute(
+            [
+                'user_id'=> $this->user_id,
+            ]
+        );
+
         return $this->user_id;
-   }
+    }
+
 
    //search a user based on their username
    function getByUsername($username) {

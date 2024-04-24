@@ -34,11 +34,11 @@ class Cart extends \app\core\Controller
 
         // Getting user for their location
         $user = new \app\models\User();
-        $user = $user->getByID(4);
+        $user = $user->getByID($_SESSION['user_id']);
 
         // Getting all items in user's cart
         $itemsInCart = new \app\models\Cart();
-        $itemsInCart = $itemsInCart->getUserCartItems(4);
+        $itemsInCart = $itemsInCart->getUserCartItems($_SESSION['user_id']);
 
         $data = [
             'stores' => $store,

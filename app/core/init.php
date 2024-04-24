@@ -8,4 +8,4 @@ require('app/core/autoload.php');
 //require('app/scraping/metro.php');
 // require('app/scraping/superc.php');
 
-require_once('vendor/autoload.php');
+//require_once('vendor/autoload.php');

@@ -43,14 +43,18 @@
                         echo '<a class="userBtn" href="User/bookmark">Bookmarks</a>';
                         echo '<i id="cart" class="bi bi-cart4" onclick="toggleCart()"></i>';
                     }
-                }
-                else { //if the user is not logged in, show the register and login button
+                }else {
                     echo '<a id="login" href="User/login">Log In</a>'; 
                     echo '<a id="register" href="User/registration">Sign Up</a>';
-                 }
+                }
+                 
                 ?>
+
+
                 
             </nav>
+
+            
             
 
 
