@@ -9,15 +9,29 @@
         <link rel="stylesheet" href="app/views/Styles/quickCart.css"> 
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
+        <style>
+            #wrapper {  
+                display: none;
+                position: absolute;
+                top: 50px; 
+                right: 10px; 
+                width: 200px; 
+                background-color: #fff;
+                border: 1px solid #ccc;
+                padding: 10px;
+            }
+        </style>
 
+        
 
     </head>
 
     <body>
-        <div id = 'wrapper'>
 
-            
+        <div id = 'wrapper'>
+            Hello Cart!!
         </div>
 
     </body>
+
 </html>

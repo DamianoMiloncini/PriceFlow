@@ -1,7 +1,7 @@
 <?php
 namespace app\core;
 
-interface AccessFilter{
+interface AccessFilters{
 
 	public function redirected();
 

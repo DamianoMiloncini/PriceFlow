@@ -42,7 +42,6 @@ h1 {
     cursor: pointer;
     margin-left: auto; /* Align buttons to the right */
 }
-
 #register {
     display: inline-block;
     padding: 5px 20px;
@@ -57,7 +56,7 @@ h1 {
     transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
 }
 
-#register:hover { /*this is not working  -M*/
+#register:hover { 
     background-color: #0059c6; /* Change background color on hover */
     cursor: pointer;
 }
@@ -82,6 +81,76 @@ h1 {
     background-color: #d4e7ff; /* Change background color on hover */
     cursor: pointer;
 }
+
+#cartQuickView {  
+    display: none;
+    position: absolute;
+    top: 50px; 
+    right: 10px; 
+    width: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);    
+}
+
+ol {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li::after {
+    content: ""; 
+    height: 0.5px; 
+    background-color: rgba(0, 0, 0, 0.08); 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+}
+
+#cartText{
+    margin-bottom: 10px;
+}
+
+#viewFullCartButton{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 5px 20px;
+    background-color: #eff7ff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #006eff;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+#cartCheckoutButton{
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #006eff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 
 
 

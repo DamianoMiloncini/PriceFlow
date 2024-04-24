@@ -19,12 +19,6 @@ class User extends \app\core\Controller {
         $user->password_hash = password_hash($_POST['password_hash'],PASSWORD_DEFAULT);
         $user->first_name = $_POST['first_name'];
         $user->last_name = $_POST['last_name'];
-        $user->address = $_POST['address'];
-        $user->street = $_POST['street'];
-        $user->city =$_POST['city'];
-        $user->province = $_POST['province'];
-        $user->postal_code = $_POST['postal_code'];
-
         //insert the data in the DB
         $user->insert();
 
@@ -99,13 +93,6 @@ class User extends \app\core\Controller {
         $password = $_POST['password_hash'];
         $user->first_name = $_POST['first_name'];
         $user->last_name = $_POST['last_name'];
-
-        //This should be in the update location view (**TODO later)
-        // $user->address = $_POST['address'];
-        // $user->street = $_POST['street'];
-        // $user->city =$_POST['city'];
-        // $user->province = $_POST['province'];
-        // $user->postal_code = $_POST['postal_code'];
         //check if the user changed the password beforehand otherwise youll redo the hashing for no reason
         if(!empty($password)) {
             $user->password_hash = password_hash($password,PASSWORD_DEFAULT);
@@ -242,12 +229,82 @@ class User extends \app\core\Controller {
             else {
                 //try again
                 $msg = 'Wrong password, please try again';
-                var_dump($user);
                 $this->view('User/passwordCheck',$msg);
             }
         }
         else {
             $this->view('User/passwordCheck');
+        }
+    }
+
+    function registerLocation() {
+        //check if the user has send information via the form
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //get the user informations from the session
+            $user = new \app\models\User();
+            $user = $user->getByID($_SESSION['user_id']);
+            //get all the informations from the POST
+            $address = $_POST['address'];
+            $street = $_POST['street'];
+            $city =  $_POST['city'];
+            $province = $_POST['province'];
+            $postal_code = $_POST['postal_code'];
+            //make sure that the user entered all the required informations
+            if ($address != null && $street != null && $city != null && $province != null && $postal_code != null) {
+                $user->address = $address;
+                $user->street = $street;
+                $user->city = $city;
+                $user->province = $province;
+                $user->postal_code = $postal_code;
+                //update the user informations
+                $user->updateLocation(); 
+                
+                //redirect the user to their view account
+                echo 'You successfully registered your location to your account ! <br> You will be redirected to your account page in a few seconds...';
+                header('refresh:1; url = http://localhost/User/account');
+            }
+            else {
+                $msg = 'You did not fill the form completly. Please make to sure to fill all the boxes.';
+                $this->view('User/registerLocation',$msg);  
+            }
+        }
+        else {
+            $this->view('User/registerLocation');
+        }
+    }
+    function updateLocation() {
+        //get the user informations from the session
+        $user = new \app\models\User();
+        $user = $user->getByID($_SESSION['user_id']);
+        //check if the user has send information via the form
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //get all the informations from the POST
+            $address = $_POST['address'];
+            $street = $_POST['street'];
+            $city =  $_POST['city'];
+            $province = $_POST['province'];
+            $postal_code = $_POST['postal_code'];
+            //make sure that the user entered all the required informations
+            if ($address != null && $street != null && $city != null && $province != null && $postal_code != null) {
+                $user->address = $address;
+                $user->street = $street;
+                $user->city = $city;
+                $user->province = $province;
+                $user->postal_code = $postal_code;
+                //update the user informations
+                $user->updateLocation(); 
+                
+                //redirect the user to their view account
+                echo 'You successfully updated your location to your account ! <br> You will be redirected to your account page in a few seconds...';
+                header('refresh:1; url = http://localhost/User/account');
+            }
+            else {
+                $msg = 'You did not fill the form completly. Please make to sure to fill all the boxes.';
+                $this->view('User/updateLocation',$msg);  
+            }
+        }
+        else {
+            $this->view('User/updateLocation',$user);
         }
     }
 }
