@@ -2,12 +2,11 @@
 
 namespace app\models;
 
-
 use PDO;
 
-//CRUD implementation
+// CRUD implementation
 class Item extends \app\core\Model
-{ 
+{
     // Variables
     public $item_id;
     public $name;
@@ -17,7 +16,8 @@ class Item extends \app\core\Model
     public $brand;
     public $store;
     public $search_queries;
-   
+    public $link; // New property for the link attribute
+
     public function __construct($object = null)
     {
         if ($object != null) {
@@ -30,6 +30,7 @@ class Item extends \app\core\Model
                 $this->brand = $object->brand;
                 $this->store = $object->store;
                 $this->search_queries = $object->search_queries;
+                $this->link = $object->link ?? null; // Assigning the link property
             } elseif (is_array($object)) {
                 $this->item_id = $object['id'] ?? null;
                 $this->name = $object['name'] ?? null;
@@ -39,23 +40,89 @@ class Item extends \app\core\Model
                 $this->brand = $object['brand'] ?? null;
                 $this->store = $object['store'] ?? null;
                 $this->search_queries = $object['search_queries'] ?? null;
+                $this->link = $object['link'] ?? null; // Assigning the link property
             }
         }
     }
 
-    function getById($item_id) {
-        //sql statement
+    function getById($item_id)
+    {
+        // SQL statement
         $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
-        //prepare statement
+        // Prepare statement
         $STMT = self::$_conn->prepare($SQL);
-        //execute statement
+        // Execute statement
         $STMT->execute([
-            'item_id'=>$item_id,
+            'item_id' => $item_id,
         ]);
-        //fetch class statement
+        // Fetch class statement
         $item = $STMT->fetch(PDO::FETCH_ASSOC);
-        //return the fetched item
+        // Return the fetched item
         return $item;
     }
 
+    public static function doesQueryExist($query, $conn)
+    {
+        // SQL statement
+        $SQL = 'SELECT * FROM search_query WHERE query = :query'; // Corrected the column name
+        // Prepare the statement
+        $STMT = $conn->prepare($SQL); // Use the passed connection parameter
+        // Execute the statement
+        $STMT->execute([
+            'query' => $query
+        ]);
+        // Check if any rows were returned
+        $result = $STMT->fetch(PDO::FETCH_ASSOC);
+        // Return true if rows were returned, false otherwise
+        return $result ? true : false;
+    }
+
+    public static function saveQuery($query, $conn)
+    {
+        //SQL statement
+        $SQL = 'INSERT INTO search_query (query) VALUES (:query)'; // Corrected the column name
+        //prepare the statement
+        $STMT = $conn->prepare($SQL); // Use the passed connection parameter
+        //execute the statement
+        $STMT->execute(
+            [
+                'query' => $query
+            ]
+        );
+    }
+
+    public static function loadItems($query, $conn)
+    {
+        // SQL statement to fetch items based on the provided query
+        $SQL = '
+        SELECT item.*
+        FROM item
+        JOIN item_from_search_query ON item.item_id = item_from_search_query.item_id
+        JOIN search_query ON item_from_search_query.query = search_query.query
+        WHERE search_query.query = :query';
+
+        // Prepare the statement
+        $statement = $conn->prepare($SQL); // Use the passed connection parameter
+
+        // Bind the query parameter
+        $statement->bindParam(':query', $query, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        // Fetch all rows as associative arrays
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Initialize an array to store Item objects
+        $items = [];
+
+        // Create an Item object for each result and add it to the $items array
+        foreach ($results as $result) {
+            $item = new Item($result);
+            $items[] = $item;
+        }
+
+        // Return the array of Item objects
+        return $items;
+    }
 }

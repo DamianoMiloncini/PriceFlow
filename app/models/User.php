@@ -59,7 +59,8 @@ class User extends \app\core\Model {
     }
 
 
-   //search a user based on their username
+   
+    //search a user based on their username
    function getByUsername($username) {
     //sql statement
     $SQL = 'SELECT * FROM  user WHERE username = :username';
