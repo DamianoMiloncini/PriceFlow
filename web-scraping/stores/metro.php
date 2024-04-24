@@ -32,8 +32,6 @@ $products->each(function (Crawler $product, $i) {
     $link = $product->filter('a.product-details-link')->attr('href');
     $link = 'https://www.metro.ca' . $link;
 
-    // $new_item = new \app\models\Item();
-
 
     // Print or process the fetched attributes
     echo "ID: $id\n";
