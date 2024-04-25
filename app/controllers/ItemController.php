@@ -17,7 +17,6 @@ class ItemController extends \app\core\Controller
             print_r("\n\n\n\n\n\n\n QUERY EXIST");
             $itemObjects = Item::loadItems($query, $conn);
             $this->view('Item/itemList', ['items' => $itemObjects]); // Change $metroItems to $itemObjects
-
         } else {
             print_r("\n\n\n\n\n\n\QUERY don't EXIST");
             Item::saveQuery($query, $conn);
@@ -38,9 +37,9 @@ class ItemController extends \app\core\Controller
                 $itemObjects[] = $newItem;
 
                 // print_r($item);
-                print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+                // print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                print_r($newItem);
+                // print_r($newItem);
 
                 if ($newItem->doesItemExist() == true) {
                     print_r("\n\n\n\n\n\n\n ITEM EXISTS");

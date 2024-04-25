@@ -15,6 +15,7 @@
                     <strong>Price:</strong> <?php echo $item->price; ?><br>
                     <strong>Brand:</strong> <?php echo $item->brand; ?><br>
                     <strong>Quantity:</strong> <?php echo $item->quantity; ?><br>
+                    <strong>Store:</strong> <?php echo $item->store; ?><br>
                     <strong>Image:</strong> <img src="<?php echo $item->image; ?>" alt="<?php echo $item->name; ?>"><br>
                 </a>
            </li>
