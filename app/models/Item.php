@@ -30,7 +30,7 @@ class Item extends \app\core\Model
                 $this->brand = $object->brand;
                 $this->store = $object->store;
                 $this->description = $object->description;
-                $this->link = $object->link ?? null; // Assigning the link property
+                $this->link = $object->link; // Assigning the link property
             } elseif (is_array($object)) {
                 $this->item_id = $object['item_id'] ?? null;
                 $this->name = $object['name'] ?? null;
@@ -64,7 +64,7 @@ class Item extends \app\core\Model
     public function saveItem($query)
     {
         // SQL statement
-        $SQL = 'INSERT INTO item (item_id, name, price, image, quantity, brand, description) VALUES (:item_id, :name, :price, :image, :quantity, :brand, :description)';
+        $SQL = 'INSERT INTO item (item_id, name, price, image, quantity, brand, link, description) VALUES (:item_id, :name, :price, :image, :quantity, :brand, :link, :description)';
 
         // Prepare the statement
         $STMT = self::$_conn->prepare($SQL); // Use the instance property to access the connection
@@ -77,6 +77,7 @@ class Item extends \app\core\Model
             'image' => $this->image,
             'quantity' => $this->quantity,
             'brand' => $this->brand,
+            'link' => $this->link,
             'description' => $this->description
         ]);
 
