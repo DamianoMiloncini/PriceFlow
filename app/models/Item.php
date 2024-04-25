@@ -15,7 +15,7 @@ class Item extends \app\core\Model
     public $quantity;
     public $brand;
     public $store;
-    public $search_queries;
+    public $description;
     public $link; // New property for the link attribute
 
     public function __construct($object = null)
@@ -29,17 +29,17 @@ class Item extends \app\core\Model
                 $this->quantity = $object->quantity;
                 $this->brand = $object->brand;
                 $this->store = $object->store;
-                $this->search_queries = $object->search_queries;
+                $this->description = $object->description;
                 $this->link = $object->link ?? null; // Assigning the link property
             } elseif (is_array($object)) {
-                $this->item_id = $object['id'] ?? null;
+                $this->item_id = $object['item_id'] ?? null;
                 $this->name = $object['name'] ?? null;
                 $this->price = $object['price'] ?? null;
                 $this->image = $object['image'] ?? null;
                 $this->quantity = $object['quantity'] ?? null;
                 $this->brand = $object['brand'] ?? null;
                 $this->store = $object['store'] ?? null;
-                $this->search_queries = $object['search_queries'] ?? null;
+                $this->description = $object['description'] ?? null;
                 $this->link = $object['link'] ?? null; // Assigning the link property
             }
         }
@@ -59,6 +59,75 @@ class Item extends \app\core\Model
         $item = $STMT->fetch(PDO::FETCH_ASSOC);
         // Return the fetched item
         return $item;
+    }
+
+    public function saveItem($query)
+    {
+        // SQL statement
+        $SQL = 'INSERT INTO item (item_id, name, price, image, quantity, brand, description) VALUES (:item_id, :name, :price, :image, :quantity, :brand, :description)';
+
+        // Prepare the statement
+        $STMT = self::$_conn->prepare($SQL); // Use the instance property to access the connection
+
+        // Execute the statement
+        $STMT->execute([
+            'item_id' => $this->item_id,
+            'name' => $this->name,
+            'price' => str_replace('$', '', $this->price),
+            'image' => $this->image,
+            'quantity' => $this->quantity,
+            'brand' => $this->brand,
+            'description' => $this->description
+        ]);
+
+        $this->saveItemQueryCombination($query);
+    }
+
+    public function doesItemQueryCombinationExist($query)
+    {
+        // SQL statement
+        $SQL = 'SELECT * FROM item_from_search_query WHERE item_id = :item_id AND query = :query'; // Corrected the column name
+        // Prepare the statement
+        $STMT = self::$_conn->prepare($SQL); // Use the instance property to access the connection
+        // Execute the statement
+        $STMT->execute([
+            'item_id' => $this->item_id,
+            'query' => $query
+        ]);
+        // Check if any rows were returned
+        $result = $STMT->fetch(PDO::FETCH_ASSOC);
+        // Return true if rows were returned, false otherwise
+        return $result ? true : false;
+    }
+
+    function saveItemQueryCombination($query) {
+
+        $SQL = 'INSERT INTO item_from_search_query (item_id, query) VALUES (:item_id, :query)';
+
+        // Prepare the statement
+        $STMT = self::$_conn->prepare($SQL); // Use the instance property to access the connection
+
+        // Execute the statement
+        $STMT->execute([
+            'item_id' => $this->item_id,
+            'query' => $query,
+        ]);
+    }
+
+    public function doesItemExist()
+    {
+        // SQL statement
+        $SQL = 'SELECT * FROM item WHERE item_id = :item_id'; // Corrected the column name
+        // Prepare the statement
+        $STMT = self::$_conn->prepare($SQL); // Use the passed connection parameter
+        // Execute the statement
+        $STMT->execute([
+            'item_id' => $this->item_id
+        ]);
+        // Check if any rows were returned
+        $result = $STMT->fetch(PDO::FETCH_ASSOC);
+        // Return true if rows were returned, false otherwise
+        return $result ? true : false;
     }
 
     public static function doesQueryExist($query, $conn)
