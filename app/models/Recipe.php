@@ -59,6 +59,23 @@ class Recipe extends \app\core\Model
         return $success;
     }
 
+    public function getAllPublicRecipesWithImages(){
+
+        $SQL = 'SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
+        FROM recipe r join user u
+        ON r.user_id = u.user_id
+        WHERE r.privacy_status = "public"';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute();
+
+        $recipes = $STMT->fetchAll(PDO::FETCH_ASSOC);
+
+        return $recipes;
+
+    }
+
     // Function to delete a recipe from the database
     public function deleteRecipe($recipe_id)
     {
@@ -90,45 +107,48 @@ class Recipe extends \app\core\Model
         return $recipe;
     }
 
-    public function getAllRecipesWithImages()
-    {
-        // SQL statement for fetching all recipes with image paths from the database
-        $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe';
-        // Prepare the SQL statement
-        $stmt = self::$_conn->prepare($sql);
-        // Execute the statement
-        $stmt->execute();
-        // Fetch all recipes with image paths as associative array
-        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $recipes;
-    }
+    // public function getAllRecipesWithImages()
+    // {
+    //     // SQL statement for fetching all recipes with image paths from the database
+    //     $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe';
+    //     // Prepare the SQL statement
+    //     $stmt = self::$_conn->prepare($sql);
+    //     // Execute the statement
+    //     $stmt->execute();
+    //     // Fetch all recipes with image paths as associative array
+    //     $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $recipes;
+    // }
 
-    public function getAllPublicRecipesWithImages()
-    {
-        // SQL statement for fetching all public recipes with image paths from the database
-        $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe WHERE privacy_status = "public"';
-        // Prepare the SQL statement
-        $stmt = self::$_conn->prepare($sql);
-        // Execute the statement
-        $stmt->execute();
-        // Fetch all public recipes with image paths as associative array
-        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $recipes;
-    }
+    // public function getAllPublicRecipesWithImages()
+    // {
+    //     // SQL statement for fetching all public recipes with image paths from the database
+    //     $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe WHERE privacy_status = "public"';
+    //     // Prepare the SQL statement
+    //     $stmt = self::$_conn->prepare($sql);
+    //     // Execute the statement
+    //     $stmt->execute();
+    //     // Fetch all public recipes with image paths as associative array
+    //     $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $recipes;
+    // }
 
     public function getAllPrivateRecipesWithImages($user_id)
     {
-        // SQL statement for fetching all private recipes with image paths for the specified user from the database
-        $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe WHERE user_id = :user_id AND privacy_status = "private"';
-        // Prepare the SQL statement
-        $stmt = self::$_conn->prepare($sql);
-        // Bind parameters
-        $stmt->bindParam(':user_id', $user_id);
-        // Execute the statement
-        $stmt->execute();
-        // Fetch all private recipes with image paths as associative array
-        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $SQL = 'SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
+        FROM recipe r join user u
+        ON r.user_id = u.user_id
+        WHERE r.privacy_status = "private"';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute();
+
+        $recipes = $STMT->fetchAll(PDO::FETCH_ASSOC);
+
         return $recipes;
+
     }
 
     // Function to fetch all recipes created by a user

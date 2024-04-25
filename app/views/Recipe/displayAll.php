@@ -37,11 +37,11 @@
 <body>
     <h1>All Recipes</h1>
     <ul class="recipe-list">
-        <?php foreach ($recipes as $recipe): ?>
+        <?php foreach ($data as $recipe): ?>
             <li class="recipe-item">
                 <img src="/uploads/<?php echo basename($recipe['imagePath']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
                 <strong><?php echo $recipe['title']; ?></strong>
-                <p>Date Created: <?php echo $recipe['date_created']; ?> by <?php echo $recipe['username']; ?></p>
+                <p>Date Created: <?php echo $recipe['date_created']; ?> by <?php echo $recipe['username'] ?></p>
                 <div class="actions">
                     <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>">View Details</a>
                     <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] === $_SESSION['user_id']): ?>

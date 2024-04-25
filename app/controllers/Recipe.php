@@ -155,7 +155,6 @@ class Recipe extends \app\core\Controller
         $this->view('Recipe/deleteConfirmation', ['recipe' => $recipeData]);
     }
 
-
     public function displayAll()
     {
         // Instantiate the Recipe model
@@ -164,15 +163,8 @@ class Recipe extends \app\core\Controller
         // Get all public recipes with images
         $recipes = $recipeModel->getAllPublicRecipesWithImages();
 
-        // Fetch usernames for each recipe
-        $usernames = [];
-        foreach ($recipes as $recipe) {
-            $username = $recipeModel->getUsernameByUserId($recipe['user_id']);
-            $usernames[$recipe['user_id']] = $username;
-        }
-
         // Load the view with public recipes and usernames
-        $this->view('Recipe/displayAll', ['recipes' => $recipes, 'usernames' => $usernames]);
+        $this->view('Recipe/displayAll', $recipes);
     }
 
     // Display private recipes (for authenticated users)
