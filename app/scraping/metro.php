@@ -9,13 +9,16 @@ use Symfony\Component\DomCrawler\Crawler;
 function scrapeMetroItems($query)
 {
         $browser = new HttpBrowser(HttpClient::create());
-        $crawler = $browser->request('GET', 'https://www.metro.ca/en/online-grocery/search?filter=' . $query, [
+        $address = 'https://www.metro.ca/en/online-grocery/search?filter=' . $query;
+        // print_r($address);
+        $crawler = $browser->request('GET', $address, [
             'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+                'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 
+                'Referer'=>'https://www.metro.ca/',
             ],
         ]);
 
-        $crawler = new Crawler($crawler->html()); //
+        $crawler = new Crawler($crawler->html());
         $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCart');
 
         $items = [];
@@ -43,7 +46,10 @@ function scrapeMetroItems($query)
             $items[] = $item;
         });
 
+    // print_r($items);
     return $items;
 }
+
+// scrapeMetroItems("eggs");
 
 ?>

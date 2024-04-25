@@ -11,11 +11,17 @@ $browser = new HttpBrowser(HttpClient::create());
 $crawler = $browser->request('GET', 'https://www.metro.ca/en/online-grocery/search?filter=milk', [
     'headers' => [
         'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        "Referer"=>"https://www.metro.ca/",
     ],
 ]);
 
+var_dump($crawler);
+
 // Create a DomCrawler instance
 $crawler = new Crawler($crawler->html());
+
+var_dump($crawler);
+
 
 // Find all div elements with the specified class
 $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCart');
@@ -23,7 +29,7 @@ $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCa
 // Loop through each filtered product
 $products->each(function (Crawler $product, $i) {
     // Fetch attributes for each product
-    $id = $product->attr("data-product-code"); 
+    $item_id = $product->attr("data-product-code"); 
     $name = $product->filter('div.head__title')->text();
     $quantity = $product->filter('span.head__unit-details')->text();
     $brand = $product->filter('span.head__brand')->text();
@@ -34,12 +40,12 @@ $products->each(function (Crawler $product, $i) {
 
 
     // Print or process the fetched attributes
-    echo "ID: $id\n";
+    echo "item_id: $item_id\n";
     echo "Name: $name\n";
-    echo "Quantity: $quantity\n";
-    echo "Brand: $brand\n";
-    echo "Price: $price\n";
-    echo "Image: $image\n";
-    echo "Link: $link\n";
-    echo "-----------------------------\n";
+    // echo "Quantity: $quantity\n";
+    // echo "Brand: $brand\n";
+    // echo "Price: $price\n";
+    // echo "Image: $image\n";
+    // echo "Link: $link\n";
+    // echo "-----------------------------\n";
 });

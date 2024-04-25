@@ -28,7 +28,7 @@ class Item extends \app\core\Model
                 $this->image = $object->image;
                 $this->quantity = $object->quantity;
                 $this->brand = $object->brand;
-                $this->store = $object->store;
+                $this->store = preg_replace('/[^a-zA-Z]/', '', $object->item_id); // Extract only letters
                 $this->description = $object->description;
                 $this->link = $object->link; // Assigning the link property
             } elseif (is_array($object)) {
@@ -38,7 +38,7 @@ class Item extends \app\core\Model
                 $this->image = $object['image'] ?? null;
                 $this->quantity = $object['quantity'] ?? null;
                 $this->brand = $object['brand'] ?? null;
-                $this->store = $object['store'] ?? null;
+                $this->store = preg_replace('/[^a-zA-Z]/', '', $object['item_id'] ?? null); // Extract only letters
                 $this->description = $object['description'] ?? null;
                 $this->link = $object['link'] ?? null; // Assigning the link property
             }
@@ -133,19 +133,53 @@ class Item extends \app\core\Model
 
     public static function doesQueryExist($query, $conn)
     {
-        // SQL statement
-        $SQL = 'SELECT * FROM search_query WHERE query = :query'; // Corrected the column name
-        // Prepare the statement
-        $STMT = $conn->prepare($SQL); // Use the passed connection parameter
-        // Execute the statement
-        $STMT->execute([
-            'query' => $query
-        ]);
-        // Check if any rows were returned
-        $result = $STMT->fetch(PDO::FETCH_ASSOC);
-        // Return true if rows were returned, false otherwise
-        return $result ? true : false;
+        // Check if the query exists in the search_query table
+        $queryExistsSQL = 'SELECT * FROM search_query WHERE query = :query';
+        $queryExistsStmt = $conn->prepare($queryExistsSQL);
+        $queryExistsStmt->execute(['query' => $query]);
+        $queryExistsResult = $queryExistsStmt->fetch(PDO::FETCH_ASSOC);
+    
+        // If query exists in search_query table
+        if ($queryExistsResult) {
+            // Check if it has associated items in item_from_search_query table
+            $associatedItemsSQL = 'SELECT * FROM item_from_search_query WHERE query = :query';
+            $associatedItemsStmt = $conn->prepare($associatedItemsSQL);
+            $associatedItemsStmt->execute(['query' => $queryExistsResult['query']]);
+            $associatedItemsResult = $associatedItemsStmt->fetch(PDO::FETCH_ASSOC);
+    
+            // If no associated items found
+            if (!$associatedItemsResult) {
+                // Delete the query from search_query table
+                $deleteQuerySQL = 'DELETE FROM search_query WHERE query = :query';
+                $deleteQueryStmt = $conn->prepare($deleteQuerySQL);
+                $deleteQueryStmt->execute(['query' => $queryExistsResult['query']]);
+                // Return false
+                return false;
+            }
+        }
+    
+        // If query doesn't exist or has associated items, return true
+        return $queryExistsResult ? true : false;
     }
+    
+
+    //old code
+
+    // public static function doesQueryExist($query, $conn)
+    // {
+    //     // SQL statement
+    //     $SQL = 'SELECT * FROM search_query WHERE query = :query'; // Corrected the column name
+    //     // Prepare the statement
+    //     $STMT = $conn->prepare($SQL); // Use the passed connection parameter
+    //     // Execute the statement
+    //     $STMT->execute([
+    //         'query' => $query
+    //     ]);
+    //     // Check if any rows were returned
+    //     $result = $STMT->fetch(PDO::FETCH_ASSOC);
+    //     // Return true if rows were returned, false otherwise
+    //     return $result ? true : false;
+    // }
 
     public static function saveQuery($query, $conn)
     {
