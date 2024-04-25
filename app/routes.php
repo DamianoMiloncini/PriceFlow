@@ -16,10 +16,13 @@ $this->addRoute('User/registerLocation' , 'User,registerLocation');
 $this->addRoute('User/updateLocation' , 'User,updateLocation');
 $this->addRoute('User/bookmark' , 'Bookmark,displayFavorites');
 $this->addRoute('Recipe/create' , 'Recipe,create');
-$this->addRoute('Recipe/view' , 'Recipe,view');
 $this->addRoute('Recipe/displayAll', 'Recipe,displayAll');
 $this->addRoute('Recipe/displayPrivate', 'Recipe,displayPrivate');
 $this->addRoute('Recipe/displayUserRecipes', 'Recipe,displayUserRecipes');
 $this->addRoute('Recipe/recipeDetails/{recipe_id}', 'Recipe,recipeDetails');
+$this->addRoute('Recipe/edit/{recipe_id}', 'Recipe,edit');
+$this->addRoute('Recipe/update/{recipe_id}', 'Recipe,update');
+$this->addRoute('Recipe/delete/{recipe_id}', 'Recipe,delete');
+$this->addRoute('Recipe/deleteConfirmation/{recipe_id}', 'Recipe,deleteConfirmation');
 $this->addRoute('Item/search/{query}', 'ItemController,search');
 

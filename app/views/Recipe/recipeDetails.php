@@ -10,7 +10,7 @@
             height: auto;
             display: block;
             margin: 0 auto;
-            margin-bottom: 10px; /* Adjust as needed */
+            margin-bottom: 10px;
         }
         .recipe-details {
             max-width: 600px;
@@ -19,6 +19,21 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
+        }
+        .edit-button,
+        .delete-button,
+        .back-button {
+            display: block;
+            width: 100px;
+            margin: 10px auto;
+            padding: 8px 16px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -29,7 +44,11 @@
         <p>Content: <?php echo htmlspecialchars($recipe['content']); ?></p>
         <p>Duration: <?php echo htmlspecialchars($recipe['duration']); ?></p>
         <p>Date Created: <?php echo htmlspecialchars($recipe['date_created']); ?></p>
+        <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] === $_SESSION['user_id']): ?>
+            <a href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>" class="edit-button">Edit</a>
+            <a href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>" class="delete-button">Delete</a>
+        <?php endif; ?>
+        <a href="/Recipe/displayAll" class="back-button">Back to Recipes</a>
     </div>
 </body>
 </html>
-
