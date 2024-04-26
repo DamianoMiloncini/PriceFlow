@@ -64,7 +64,7 @@
                             <img src="app\resources\image3.jpg" id="image4" class='images'>
                             <img src="app\resources\image5.jpg" id="image5" class='images'>
                             <img src="app\resources\image6.jpg" id="image6" class='images'>
-                        
+
                         </div>
                     </div>
                 </div>
@@ -109,11 +109,30 @@
             </a>
             <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
 
+            <a id="searchButton" href="/localhost/Item/search/">
+                Search
+            </a>
+
             <a id="sortButton" href="">
                 <i class="bi bi-funnel"></i>
                 Sort
             </a>
         </div>
+
+        <script>
+            // Get references to the search textarea and the search button
+            const searchTextArea = document.getElementById('search');
+            const searchButton = document.getElementById('searchButton');
+
+            // Add an event listener to the search textarea
+            searchTextArea.addEventListener('input', function() {
+                // Get the value of the textarea
+                const searchText = searchTextArea.value.trim();
+
+                // Update the href attribute of the search button
+                searchButton.href = searchText ? '/Item/search/' + searchText : '';
+            });
+        </script>
 
         <div class="divider"></div>
 
@@ -121,7 +140,7 @@
 
         <div id="recipes">
             <?php foreach ($data as $recipe) : ?>
-                <a style="text-decoration:none; color:black;" href = 'Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
+                <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
                     <div class="recipe">
                         <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
                         <div id="recipeInformation">
