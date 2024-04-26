@@ -62,13 +62,12 @@
                             <img src="app\resources\image3.jpg" id="image4" class='images'>
                             <img src="app\resources\image5.jpg" id="image5" class='images'>
                             <img src="app\resources\image6.jpg" id="image6" class='images'>
+                        
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
 
     </div>
@@ -94,20 +93,20 @@
 
         <div id="recipes">
             <?php foreach ($data as $recipe) : ?>
-                <div class="recipe">
-                    <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
-                    <div id="recipeInformation">
-                        <div class="recipeHeading">
-                            <h5><?php echo $recipe['title']; ?></h5>
-                            <h6>By <?php echo $recipe['username']; ?></h6>
+                <a style="text-decoration:none; color:black;" href = 'Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
+                    <div class="recipe">
+                        <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
+                        <div id="recipeInformation">
+                            <div class="recipeHeading">
+                                <h5><?php echo $recipe['title']; ?></h5>
+                                <h6>By <?php echo $recipe['username']; ?></h6>
+                            </div>
+                            <h7><?php echo $recipe['date_created'] ?></h7>
                         </div>
-                        <h7><?php echo $recipe['date_created'] ?></h7>
                     </div>
-                </div>
+                </a>
             <?php endforeach ?>
         </div>
-
-
 
     </div>
 
