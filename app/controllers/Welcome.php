@@ -4,9 +4,11 @@ namespace app\controllers;
 class Welcome extends \app\core\Controller {
 
     function index(){
-        
-        $this->view('home');
+        $recipeModel = new \app\models\Recipe();
 
+        $recipes = $recipeModel->getAllPublicRecipesWithImages();
+
+        $this->view('home', $recipes);
     }
 
     function map(){

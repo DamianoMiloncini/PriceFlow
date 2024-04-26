@@ -24,9 +24,15 @@
 
     <body>
 
-        <div id = 'wrapper'>
-            
-            <h1>PriceWave</h1>
+            <div id = 'wrapper'>
+            <div id="logoSection">
+                <a href="home" style="text-decoration: none">
+                    <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
+                    <h1>PriceWave</h1>
+                    <!-- <img id="textLogo" src="app\resources\PriceWaveText.png"> -->
+                </a>
+            </div>
+        
 
             <nav class = 'buttons'>
                 <?php
@@ -39,8 +45,9 @@
                     //if the user has informations (which means they are logged in), display profile button & logoutbutton
                     if($user) {
                         echo '<a class="userBtn" href="User/account">View Account</a>';
-                        echo '<a class="userBtn" href="User/logout">Log Out</a>';
+                        echo '<a class="userBtn" href="Recipe/create">Recipe</a>';
                         echo '<a class="userBtn" href="User/bookmark">Bookmarks</a>';
+                        echo '<a class="userBtn" href="User/logout">Log Out</a>';
                         echo '<a id="cart" class="bi bi-cart4" onclick="toggleCart()"></i></a>';
                     }
                 }else {

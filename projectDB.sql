@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2024 at 04:31 PM
+-- Generation Time: Apr 26, 2024 at 06:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -22,7 +22,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `projectDB`;
-
 -- --------------------------------------------------------
 
 --
@@ -51,7 +50,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `cart_price`) VALUES
-(1, 4, 28.14);
+(1, 4, 28.14),
+(2, 5, 37.03);
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,8 @@ CREATE TABLE `items_in_cart` (
 
 INSERT INTO `items_in_cart` (`cart_id`, `item_id`, `quantity_purchased`) VALUES
 (1, '1', 3),
-(1, '2', 3);
+(1, '2', 3),
+(2, '1', 7);
 
 -- --------------------------------------------------------
 
@@ -143,11 +144,24 @@ CREATE TABLE `recipe` (
   `user_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `date_created` date NOT NULL,
-  `privacy_status` tinyint(1) NOT NULL DEFAULT 1,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `privacy_status` enum('public','private') NOT NULL DEFAULT 'public',
   `duration` varchar(10) NOT NULL,
   `image` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `recipe`
+--
+
+INSERT INTO `recipe` (`recipe_id`, `user_id`, `title`, `content`, `date_created`, `privacy_status`, `duration`, `image`) VALUES
+(2, 5, 'Sandwich', 'This sandwich is for those who like to dance', '2024-04-26 03:37:17', 'public', '25 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623230313863363462395f696d616765372e6a7067),
+(3, 5, 'Rice Recipe', 'This is the best rice recipe!!', '2024-04-26 04:01:23', 'public', '25 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623237313339313336365f696d616765352e6a7067),
+(4, 5, '10 Minute Pasta', 'The quickest pasta', '2024-04-26 04:02:06', 'public', '10 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623237336561383935335f696d61676531302e6a7067),
+(5, 5, 'Lasagna', 'new lasagna recipe', '2024-04-26 04:12:35', 'public', '50 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623239623337343039635f696d616765342e6a7067),
+(6, 5, 'Chicken Noodle Soup', 'very warm soup', '2024-04-26 04:13:16', 'public', '1 hour', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623239646363326133385f696d61676531322e6a7067),
+(7, 5, 'Chicken Alfredo', 'HHHHH', '2024-04-26 04:13:56', 'public', '35 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623261303462623835635f70697a7a612e6a7067),
+(8, 5, 'BLT Sandqhich', 'HHHHdfff', '2024-04-26 04:14:18', 'public', '35 minutes', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363632623261316135336263365f696d616765392e6a7067);
 
 -- --------------------------------------------------------
 
@@ -207,10 +221,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password_hash`, `first_name`, `last_name`, `address`, `street`, `postal_code`, `city`, `province`, `secret`) VALUES
-(1, 'Damiano', '$2y$10$JOy2v91Im0Y0/GEKEfJhluK5jleiySVOxlslagtJsxlo1Pj1I7jg2', 'Damiano', 'Miloncini', '3456', 'BumBum', 'H8W1J1', 'Montreal', 'Quebec', NULL),
+(1, 'Damiano', '$2y$10$JOy2v91Im0Y0/GEKEfJhluK5jleiySVOxlslagtJsxlo1Pj1I7jg2', 'Damiano', 'Miloncini', '3456', 'BumBum', 'H8W1J1', 'Montreal', 'Quebec', '5TNBLTGUKTVNODM4IRKIIZKTP4XNZSIK'),
 (2, 'Damiano33', '$2y$10$ajKGebUr6fqrsaQ5B8Eub.3CoV7olsJMYWbqmcnhcXj23ZiCJ8Rqa', 'Damiano', 'Miloncini', '', '', '', '', '', NULL),
 (3, 'Damiano!', '$2y$10$z6uprSPVwFL3cxGv.bJAEuxxTbyzHGdTDPvykgGBeFX88lwPqdI2C', 'Damiano', 'Miloncini', '', '', '', '', '', NULL),
-(4, 'Vanier', '$2y$10$5jaZmduRt9h6EzaA8vXeQeKPL8IV039Um8zElI0JkM1CvM36EkZ1G', 'Vanier', 'Location', '821', 'Sainte Croix Ave', 'H4L 3X9', 'Saint-Laurent', 'Quebec', NULL);
+(4, 'Vanier', '$2y$10$5jaZmduRt9h6EzaA8vXeQeKPL8IV039Um8zElI0JkM1CvM36EkZ1G', 'Vanier', 'Location', '821', 'Sainte Croix Ave', 'H4L 3X9', 'Saint-Laurent', 'Quebec', NULL),
+(5, 'Mano', '$2y$10$60dJHk..iWH5dHFKTve6LeOca5ducc9ydxtZpMQ.qDif41o7C7nBa', 'Damiano', 'Miloncini', NULL, NULL, NULL, NULL, NULL, 'J664KAHMVTGIMX4JKSMNDXZWO7QW3BN7');
 
 --
 -- Indexes for dumped tables
@@ -298,13 +313,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -316,7 +331,7 @@ ALTER TABLE `store`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
