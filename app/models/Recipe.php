@@ -233,4 +233,70 @@ class Recipe extends \app\core\Model
         $success = $stmt->execute();
         return $success;
     }
+
+    public function searchUserRecipes($user_id, $searchQuery)
+    {
+        // SQL statement to search user's recipes by title or content
+        $sql = 'SELECT * FROM recipe WHERE user_id = :user_id AND (title LIKE :searchQuery OR content LIKE :searchQuery)';
+        
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
+        
+        // Bind parameters
+        $searchParam = '%' . $searchQuery . '%';
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':searchQuery', $searchParam);
+        
+        // Execute the statement
+        $stmt->execute();
+        
+        // Fetch search results
+        $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $searchResults;
+    }
+
+    public function searchAllRecipes($searchQuery)
+{
+    // SQL statement to search all recipes by title or content
+    $sql = 'SELECT * FROM recipe WHERE title LIKE :searchQuery OR content LIKE :searchQuery';
+    
+    // Prepare the SQL statement
+    $stmt = self::$_conn->prepare($sql);
+    
+    // Bind parameters
+    $searchParam = '%' . $searchQuery . '%';
+    $stmt->bindParam(':searchQuery', $searchParam);
+    
+    // Execute the statement
+    $stmt->execute();
+    
+    // Fetch search results
+    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $searchResults;
+}
+
+public function searchPublicRecipes($searchQuery)
+{
+    // SQL statement to search public recipes by title or content
+    $sql = 'SELECT * FROM recipe WHERE privacy_status = "public" AND (title LIKE :searchQuery OR content LIKE :searchQuery)';
+    
+    // Prepare the SQL statement
+    $stmt = self::$_conn->prepare($sql);
+    
+    // Bind parameters
+    $searchParam = '%' . $searchQuery . '%';
+    $stmt->bindParam(':searchQuery', $searchParam);
+    
+    // Execute the statement
+    $stmt->execute();
+    
+    // Fetch search results
+    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $searchResults;
+}
+
+    
 }
