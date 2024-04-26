@@ -50,9 +50,9 @@
                         <!-- <div id ="itemInformation"> -->
                         <h5><?php echo $item['name'] ?></h5>
                         <h6 style="margin-left:2%;"><?php echo $item['brand'] ?></h6>
-                        <h6 style="margin-left:2%;"><?php echo $item['quantity'] ?></h6>
+                        <h6 id="quantity" style="margin-left:2%;"><?php echo $item['quantity'] ?></h6>
                         <h6 style="margin-left:2%;">Price: $<?php echo $item['price'] ?></h6>
-                        <h6 style="margin-left:2%;">In cart: <?php echo $item['quantity_purchased'] ?></h6>
+                        <h6 id="quantity_purchased" style="margin-left:2%;">In cart: <?php echo $item['quantity_purchased'] ?></h6>
                         <!-- </div> -->
                         <h5 style="margin-left:2%;">
                             <?php
@@ -63,11 +63,11 @@
                             ?>
                         </h5>
 
-                        <form id="cartForm" method='post' action=''>
-                            <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
-                            <input type="hidden" name="cart_id" value="<?php echo $item['cart_id'] ?>">
+                        <!-- <form id="cartForm" method='post' action=''> -->
+                            <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
+                            <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id'] ?>">
                             <div id="cartButtons">
-                                <input type="submit" name="minus1" value="-" class="bttns">
+                                <button name="minus1" class="bttns" onclick="removeOne()">-</button>
                                 <input type="submit" name="add1" value="+" class="bttns">
                                 <button type="submit" class="bttns" name="deleteButton">
                                     <i class="bi bi-trash3"></i>
@@ -75,7 +75,7 @@
 
                             </div>
 
-                        </form>
+                        <!-- </form> -->
 
                     </div>
                 <?php endforeach ?>
@@ -93,6 +93,46 @@
 <div id="cartMap"> 
 <?php include 'app/views/map.php'; ?>
 </div>
+
+<script>
+    function removeOne() {
+
+            var itemsDiv = document.getElementById("quantity_purchased").value;
+            var url = "/cart/" + itemsDiv;
+
+            var cartId = document.getElementById("cartId").value;
+            var itemId = document.getElementById("itemId").value;
+            console.log(cartId);
+            console.log(itemId);
+
+            <?php 
+                 $itemToBeUpdated = new \app\models\Cart();
+                 $itemToBeUpdated->subtractItemQuantityInCart("<script>document.write(cartId)</script>", "<script>document.write(itemId)</script>");
+
+                //  $itemsInCart = new \app\models\Cart();
+                //  $itemsInCart = $itemsInCart->getUserCartItems($_SESSION['user_id']);
+                //  log($itemsInCart);
+            ?>            
+
+            // Make the fetch request
+            fetch(url)
+                .then(response => {
+                    // Check if the response is successful
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .then(data => {
+                    // Replace the content of the lorem-ipsum div with the response text
+                    document.getElementById("quantity_purchased").innerHTML = <?php echo "" ?>;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch request:', error);
+                });
+        }
+</script>
 
 
 </body>

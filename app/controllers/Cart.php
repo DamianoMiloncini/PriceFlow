@@ -24,8 +24,7 @@ class Cart extends \app\core\Controller
 
                 $itemToBeUpdated->removeFromCart($_POST['cart_id'], $_POST['item_id']);
             }
-            header("location:/cart");
-            exit();
+            return;
         }
 
         // Getting all the stores
