@@ -98,8 +98,8 @@
 
             // Add an event listener to the search textarea
             searchTextArea.addEventListener('input', function() {
-                // Get the value of the textarea
-                const searchText = searchTextArea.value.trim();
+                // Get the value of the textarea and replace spaces with '+'
+                const searchText = searchTextArea.value.trim().replace(/ /g, '+');
 
                 // Update the href attribute of the search button
                 searchButton.href = searchText ? '/Item/search/' + searchText : '';
