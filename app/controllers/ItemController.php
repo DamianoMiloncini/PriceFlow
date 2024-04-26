@@ -23,7 +23,7 @@ class ItemController extends \app\core\Controller
             // Call the scraping function from metro.php to get the items
             $metroItems = scrapeMetroItems($query);
             print_r("\n\n\n\n\n\n\nnothing?");
-            // print_r($metroItems);
+            print_r($metroItems);
 
 
             // $supercItems = scrapeSupercItems($query);
@@ -36,10 +36,10 @@ class ItemController extends \app\core\Controller
                 $newItem = new Item($item); // Assuming $item is an array containing item details
                 $itemObjects[] = $newItem;
 
-                // print_r($item);
-                // print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+                print_r($item);
+                print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                // print_r($newItem);
+                print_r($newItem);
 
                 if ($newItem->doesItemExist() == true) {
                     print_r("\n\n\n\n\n\n\n ITEM EXISTS");

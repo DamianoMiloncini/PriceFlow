@@ -17,10 +17,12 @@
 <body>
     <?php include 'app/views/topBar.php'; ?>
 
-    <div id="container">
-        <div class="one">
-            <div class="two">
-                <div id="topLayer">
+    
+                <?php if (!isset($_SESSION['user_id'])) { ?>
+                    <div id="container">
+       
+                    <div class="two">
+                        <div id="topLayer">
 
                     <div class="leftSection">
 
@@ -48,7 +50,7 @@
 
                         <h4 class='subText'>A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another</h4>
                         <div class='buttonArea'>
-                            <a id="log" href="">Get Started</a>
+                            <a id="log" href="User/registration">Get Started</a>
                         </div>
 
                     </div>
@@ -62,11 +64,37 @@
                             <img src="app\resources\image3.jpg" id="image4" class='images'>
                             <img src="app\resources\image5.jpg" id="image5" class='images'>
                             <img src="app\resources\image6.jpg" id="image6" class='images'>
-                        
+
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+                     <?php } else { 
+                        
+                        $user = new \app\models\User();
+                        //get user's information
+                        $user = $user->getByID($_SESSION['user_id']); 
+                        ?>
+                        <div id="loggedInContainer">
+                            <div id ="loggedInTwo">
+                                <div id="loggedInTopLayer">
+                        <div id="loggedInMiddleHeading">
+
+                            <h4 class='loggedInLeading'>
+                                Welcome,
+                                <span style="color: #006eff;"><?php echo $user->username ?></span>
+
+                            </h4>
+
+                            <div class='buttonArea'>
+                            </div>
+
+                        </div>
+
+                     </div>
+
+                        <?php } ?>
+                </div>
         </div>
 
 
@@ -81,11 +109,30 @@
             </a>
             <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
 
+            <a id="searchButton" href="/localhost/Item/search/">
+                Search
+            </a>
+
             <a id="sortButton" href="">
                 <i class="bi bi-funnel"></i>
                 Sort
             </a>
         </div>
+
+        <script>
+            // Get references to the search textarea and the search button
+            const searchTextArea = document.getElementById('search');
+            const searchButton = document.getElementById('searchButton');
+
+            // Add an event listener to the search textarea
+            searchTextArea.addEventListener('input', function() {
+                // Get the value of the textarea
+                const searchText = searchTextArea.value.trim();
+
+                // Update the href attribute of the search button
+                searchButton.href = searchText ? '/Item/search/' + searchText : '';
+            });
+        </script>
 
         <div class="divider"></div>
 
@@ -93,7 +140,7 @@
 
         <div id="recipes">
             <?php foreach ($data as $recipe) : ?>
-                <a style="text-decoration:none; color:black;" href = 'Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
+                <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
                     <div class="recipe">
                         <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
                         <div id="recipeInformation">
