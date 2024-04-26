@@ -17,10 +17,12 @@
 <body>
     <?php include 'app/views/topBar.php'; ?>
 
-    <div id="container">
-        <div class="one">
-            <div class="two">
-                <div id="topLayer">
+    
+                <?php if (!isset($_SESSION['user_id'])) { ?>
+                    <div id="container">
+       
+                    <div class="two">
+                        <div id="topLayer">
 
                     <div class="leftSection">
 
@@ -48,7 +50,7 @@
 
                         <h4 class='subText'>A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another</h4>
                         <div class='buttonArea'>
-                            <a id="log" href="">Get Started</a>
+                            <a id="log" href="User/registration">Get Started</a>
                         </div>
 
                     </div>
@@ -66,7 +68,33 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+                     <?php } else { 
+                        
+                        $user = new \app\models\User();
+                        //get user's information
+                        $user = $user->getByID($_SESSION['user_id']); 
+                        ?>
+                        <div id="loggedInContainer">
+                            <div id ="loggedInTwo">
+                                <div id="loggedInTopLayer">
+                        <div id="loggedInMiddleHeading">
+
+                            <h4 class='loggedInLeading'>
+                                Welcome,
+                                <span style="color: #006eff;"><?php echo $user->username ?></span>
+
+                            </h4>
+
+                            <div class='buttonArea'>
+                            </div>
+
+                        </div>
+
+                     </div>
+
+                        <?php } ?>
+                </div>
         </div>
 
 

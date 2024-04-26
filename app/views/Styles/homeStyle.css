@@ -366,15 +366,43 @@ h5, h6 {
 }
 
 
+#loggedInTopLayer{
+    align-items: center;
+    display: flex;
+    gap: 105px;
+    margin-left: min(calc(-1*(1600px - 100vw) / 2), 0);
+    width: 1600px;
+}
+
+
+#loggedInTwo{
+    display: flex;
+    /* height: min(74vh, 50%); */
+    height: 55vh;
+    margin-top: -17%;
+    margin-left: 2%;
+    overflow: hidden;
+    /* position: relative; */
+}
+
+
+
+#loggedInMiddleHeading {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10%;
+}
 
 
 
 
-
-
-
-
-
-
-
-
+.loggedInLeading{
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-size: 90px; */
+    font-size: 355%;
+    font-weight: 600;
+    letter-spacing: -3px;
+}

@@ -24,5 +24,7 @@ $this->addRoute('Recipe/edit/{recipe_id}', 'Recipe,edit');
 $this->addRoute('Recipe/update/{recipe_id}', 'Recipe,update');
 $this->addRoute('Recipe/delete/{recipe_id}', 'Recipe,delete');
 $this->addRoute('Recipe/deleteConfirmation/{recipe_id}', 'Recipe,deleteConfirmation');
+$this->addRoute('Recipe/search', 'Recipe,search');
+$this->addRoute('Recipe/searchResults', 'Recipe,searchResults');
 $this->addRoute('Item/search/{query}', 'ItemController,search');
 
