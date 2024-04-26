@@ -15,12 +15,12 @@ $crawler = $browser->request('GET', 'https://www.metro.ca/en/online-grocery/sear
     ],
 ]);
 
-var_dump($crawler);
+// var_dump($crawler);
 
 // Create a DomCrawler instance
 $crawler = new Crawler($crawler->html());
 
-var_dump($crawler);
+// var_dump($crawler);
 
 
 // Find all div elements with the specified class
@@ -42,10 +42,10 @@ $products->each(function (Crawler $product, $i) {
     // Print or process the fetched attributes
     echo "item_id: $item_id\n";
     echo "Name: $name\n";
-    // echo "Quantity: $quantity\n";
-    // echo "Brand: $brand\n";
-    // echo "Price: $price\n";
-    // echo "Image: $image\n";
-    // echo "Link: $link\n";
-    // echo "-----------------------------\n";
+    echo "Quantity: $quantity\n";
+    echo "Brand: $brand\n";
+    echo "Price: $price\n";
+    echo "Image: $image\n";
+    echo "Link: $link\n";
+    echo "-----------------------------\n";
 });
