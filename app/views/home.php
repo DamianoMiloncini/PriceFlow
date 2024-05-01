@@ -75,10 +75,8 @@
                         //get user's information
                         $user = $user->getByID($_SESSION['user_id']); 
                         ?>
-                        <div id="loggedInContainer">
-                            <div id ="loggedInTwo">
-                                <div id="loggedInTopLayer">
-                        <div id="loggedInMiddleHeading">
+                        <div id="loggedInTopLayer">
+                            <div id="loggedInMiddleHeading">
 
                             <h4 class='loggedInLeading'>
                                 Welcome,
@@ -86,12 +84,9 @@
 
                             </h4>
 
-                            <div class='buttonArea'>
-                            </div>
+                            <!-- <div class='buttonArea'>
+                            </div> -->
 
-                        </div>
-
-                     </div>
 
                         <?php } ?>
                 </div>

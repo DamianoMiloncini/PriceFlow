@@ -5,18 +5,64 @@
     <title>Home</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="app\views\Styles\cartPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // This block handles the AJAX request
+        $cartId = $_POST['cartId'];
+        $itemId = $_POST['itemId'];
+        
+        // Here you can perform any processing with the received cartId and itemId values
+        // For example, update the quantity in the cart
+        $itemToBeUpdated = new \app\models\Cart();
+        $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
+
+        // You can echo a response back to JavaScript if needed
+        echo "Quantity updated successfully";
+        exit; // Exit to prevent further execution of the file
+    }
+    ?>
     <script>
-        function refreshItemInformation() {
-            console.log('hi');
-            $('#cartItemsContainer').load(location.href + ' #cartItemsContainer');
+        function removeOne() {
+            var cartId = document.getElementById("cartId").value;
+            var itemId = document.getElementById("itemId").value;
+
+
+            var url = "/cart.php"; // Get the current PHP script URL
+            console.log(url);
+            // Make the fetch request
+            fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'cartId=' + encodeURIComponent(cartId) + '&itemId=' + encodeURIComponent(itemId)
+                })
+                .then(response => {
+                    // Check if the response is successful
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .then(data => {
+                    // Replace the content of the quantity_purchased div with the response text
+                    document.getElementById("quantity_purchased").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch request:', error);
+                });
         }
     </script>
+
+
 
 
 
@@ -64,16 +110,17 @@
                         </h5>
 
                         <!-- <form id="cartForm" method='post' action=''> -->
-                            <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
-                            <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id'] ?>">
-                            <div id="cartButtons">
-                                <button name="minus1" class="bttns" onclick="removeOne()">-</button>
-                                <input type="submit" name="add1" value="+" class="bttns">
-                                <button type="submit" class="bttns" name="deleteButton">
-                                    <i class="bi bi-trash3"></i>
-                                </button>
+                        <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+                        <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
+                        <div id="cartButtons">
+                            <!-- <input type="submit" name="minus1" value="-"class="bttns"> -->
+                            <button name="add1" value="+" class="bttns" onclick="removeOne()">-</button>
+                            <input type="submit" name="add1" value="+" class="bttns">
+                            <button type="submit" class="bttns" name="deleteButton">
+                                <i class="bi bi-trash3"></i>
+                            </button>
 
-                            </div>
+                        </div>
 
                         <!-- </form> -->
 
@@ -84,55 +131,18 @@
 
     </div>
 
-    
+
 
     <!-- Button to show/hide map -->
-<!-- <button id="toggleMapButton" class="btn btn-primary" onclick="toggleMap()">Show Map</button> -->
+    <!-- <button id="toggleMapButton" class="btn btn-primary" onclick="toggleMap()">Show Map</button> -->
 
-<!-- Map container -->
-<div id="cartMap"> 
-<?php include 'app/views/map.php'; ?>
-</div>
+    <!-- Map container -->
+    <div id="cartMap">
+        <?php //include 'app/views/map.php'; 
+        ?>
+    </div>
 
-<script>
-    function removeOne() {
 
-            var itemsDiv = document.getElementById("quantity_purchased").value;
-            var url = "/cart/" + itemsDiv;
-
-            var cartId = document.getElementById("cartId").value;
-            var itemId = document.getElementById("itemId").value;
-            console.log(cartId);
-            console.log(itemId);
-
-            <?php 
-                 $itemToBeUpdated = new \app\models\Cart();
-                 $itemToBeUpdated->subtractItemQuantityInCart("<script>document.write(cartId)</script>", "<script>document.write(itemId)</script>");
-
-                //  $itemsInCart = new \app\models\Cart();
-                //  $itemsInCart = $itemsInCart->getUserCartItems($_SESSION['user_id']);
-                //  log($itemsInCart);
-            ?>            
-
-            // Make the fetch request
-            fetch(url)
-                .then(response => {
-                    // Check if the response is successful
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
-                })
-                .then(data => {
-                    // Replace the content of the lorem-ipsum div with the response text
-                    document.getElementById("quantity_purchased").innerHTML = <?php echo "" ?>;
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch request:', error);
-                });
-        }
-</script>
 
 
 </body>

@@ -365,27 +365,24 @@ h5, h6 {
     font-weight: 500;
 }
 
-
 #loggedInTopLayer{
     align-items: center;
     display: flex;
     gap: 105px;
     margin-left: min(calc(-1*(1600px - 100vw) / 2), 0);
-    width: 1600px;
+    /* width: 1600px; */
+    padding-top: 2%;
 }
-
 
 #loggedInTwo{
     display: flex;
     /* height: min(74vh, 50%); */
-    height: 55vh;
+    height: 54vh;
     margin-top: -17%;
     margin-left: 2%;
     overflow: hidden;
     /* position: relative; */
 }
-
-
 
 #loggedInMiddleHeading {
     display: flex;
@@ -393,11 +390,8 @@ h5, h6 {
     flex-shrink: 0;
     justify-content: center;
     text-align: center;
-    margin-top: 10%;
+    padding: 2.5%;
 }
-
-
-
 
 .loggedInLeading{
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;

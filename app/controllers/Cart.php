@@ -49,5 +49,25 @@ class Cart extends \app\core\Controller
         $this->view('cart', $data);
     }
 
+    function handler(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['minus1'])) {
+            $itemToBeUpdated = new \app\models\Cart();
+
+            $itemToBeUpdated->subtractItemQuantityInCart($_POST['cart_id'], $_POST['item_id']);
+            }
+            elseif (isset($_POST['add1'])) {
+                $itemToBeUpdated = new \app\models\Cart();
+
+                $itemToBeUpdated->addItemQuantityInCart($_POST['cart_id'], $_POST['item_id']);
+            }
+            elseif (isset($_POST['deleteButton'])) {
+                $itemToBeUpdated = new \app\models\Cart();
+
+                $itemToBeUpdated->removeFromCart($_POST['cart_id'], $_POST['item_id']);
+            }
+        }
+    }
+
 
 }
