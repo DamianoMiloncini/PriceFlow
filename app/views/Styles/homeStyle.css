@@ -9,7 +9,7 @@
 
 #container {
     padding-left: 5%;
-    padding-right: 5%; 
+    padding-right: 5%;
 }
 
 .two {
@@ -23,18 +23,18 @@
     /* position: relative; */
 }
 
-.content{
-    margin-top:-8%;
+.content {
+    margin-top: -8%;
 }
 
-.content::after{
-    content: ""; 
-    height: 0.5px; 
-    background-color: rgba(0, 0, 0, 0.8); 
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
+.content::after {
+    content: "";
+    height: 0.5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 
@@ -61,7 +61,7 @@
     margin-top: 10%;
 }
 
-.subText{
+.subText {
     color: #707070;
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* font-size: 22px; */
@@ -71,7 +71,7 @@
     max-width: 40vw;
 }
 
-.leading{
+.leading {
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* font-size: 90px; */
     font-size: 575%;
@@ -81,14 +81,14 @@
     max-width: 70vw;
 }
 
-.leftSection{
+.leftSection {
     align-items: center;
     display: flex;
     justify-content: center;
     margin-top: -100px;
 }
 
-.rightSection{
+.rightSection {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -101,11 +101,11 @@ h4 {
     font-weight: 400;
     margin: 2vw 0 3vw;
     max-width: 90vw;
-    letter-spacing: 0; 
+    letter-spacing: 0;
     width: 100%;
 }
 
-.buttonArea{
+.buttonArea {
     align-items: center;
     display: flex;
     gap: 10px;
@@ -129,8 +129,8 @@ h4 {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    height: 38vh; 
-    width: 18vw; 
+    height: 38vh;
+    width: 18vw;
 }
 
 
@@ -141,28 +141,28 @@ h4 {
     height: auto;
 }
 
-#image3{
+#image3 {
     grid-column: 7 / 11;
     grid-row: 10 / 13;
     width: 125%;
     height: auto;
 }
 
-#image4{
+#image4 {
     grid-column: 7 / 11;
     grid-row: 4 / 7;
     width: 102%;
     height: auto;
 }
 
-#image5{
+#image5 {
     grid-column: 2 / 5;
     grid-row: 13 / 15;
     width: 157%;
     height: auto;
 }
 
-#image6{
+#image6 {
     grid-column: 7 / 11;
     grid-row: 15 / 17;
     width: 100%;
@@ -170,7 +170,7 @@ h4 {
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-#image7{
+#image7 {
     grid-column: 3 / 6;
     grid-row: 16 / 18;
     width: 152%;
@@ -178,42 +178,42 @@ h4 {
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-#image8{
+#image8 {
     grid-column: 7 / 10;
     grid-row: 5 / 8;
     width: 130%;
     height: auto;
 }
 
-#image9{
+#image9 {
     grid-column: 7 / 10;
     grid-row: 9 / 11;
     width: 165%;
     height: auto;
 }
 
-#image10{
+#image10 {
     grid-column: 8 / 10;
     grid-row: 16 / 20;
     width: 165%;
     height: auto;
 }
 
-#image11{
+#image11 {
     grid-column: 3 / 6;
     grid-row: 11 / 15;
     width: 112%;
     height: auto;
 }
 
-#image12{
+#image12 {
     grid-column: 3 / 6;
     grid-row: 4 / 11;
     width: 112%;
     height: 88%;
 }
 
-.images{
+.images {
     border-radius: 10px;
     opacity: 0.7;
 }
@@ -231,8 +231,8 @@ h4 {
     cursor: pointer;
     letter-spacing: 0px;
     transition: background-color 0.3s ease;
-    text-align: center; 
-    line-height: 40px; 
+    text-align: center;
+    line-height: 40px;
 }
 
 
@@ -242,14 +242,14 @@ h4 {
 
 .divider {
     margin-top: 1%;
-    height: 1px; 
-    background-color: rgba(0, 0, 0, 0.08); 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.08);
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
-#filterButton{
+#filterButton {
     width: 5.5%;
     height: 4.5%;
     display: inline-block;
@@ -263,8 +263,8 @@ h4 {
     cursor: pointer;
     letter-spacing: 0px;
     transition: background-color 0.3s ease;
-    text-align: center; 
-    line-height: 40px; 
+    text-align: center;
+    line-height: 40px;
     margin-left: 2%;
 }
 
@@ -280,29 +280,29 @@ h4 {
     text-decoration: none;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 35px;
-    line-height: 30px; 
-    height: 40px; 
+    line-height: 30px;
+    height: 40px;
     padding-left: 20px;
-    width: 80%; 
+    width: 80%;
 }
 
-#search:hover{
+#search:hover {
     background-color: #ededed;
 }
 
-#search:focus{
+#search:focus {
     border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 
 .navBar {
     margin-top: 6%;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#sortButton{
+#sortButton {
     width: 6%;
     height: 4.5%;
     display: inline-block;
@@ -316,8 +316,8 @@ h4 {
     cursor: pointer;
     letter-spacing: 0px;
     transition: background-color 0.3s ease;
-    text-align: center; 
-    line-height: 45px; 
+    text-align: center;
+    line-height: 45px;
     margin-right: 2%;
 }
 
@@ -328,8 +328,9 @@ h4 {
 #recipes {
     margin: 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* This is for the grid layout so that the recipes load in a 3 column per row layout  */
-    gap: 20px; 
+    grid-template-columns: repeat(3, 1fr);
+    /* This is for the grid layout so that the recipes load in a 3 column per row layout  */
+    gap: 20px;
 }
 
 .recipe {
@@ -341,7 +342,7 @@ h4 {
 
 #recipeImage {
     width: 100%;
-    height: 150px; 
+    height: 150px;
     object-fit: cover;
     opacity: 0.9;
     /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
@@ -353,11 +354,12 @@ h4 {
     padding: 20px;
 }
 
-h5, h6 {
+h5,
+h6 {
     display: inline;
 }
 
-#recipeHeading{
+#recipeHeading {
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-top: 20px;
     padding-left: 20px;
@@ -365,7 +367,7 @@ h5, h6 {
     font-weight: 500;
 }
 
-#loggedInTopLayer{
+#loggedInTopLayer {
     align-items: center;
     display: flex;
     gap: 105px;
@@ -374,7 +376,7 @@ h5, h6 {
     padding-top: 2%;
 }
 
-#loggedInTwo{
+#loggedInTwo {
     display: flex;
     /* height: min(74vh, 50%); */
     height: 54vh;
@@ -393,10 +395,86 @@ h5, h6 {
     padding: 2.5%;
 }
 
-.loggedInLeading{
+.loggedInLeading {
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* font-size: 90px; */
     font-size: 355%;
     font-weight: 600;
     letter-spacing: -3px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#items {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    /* This is for the grid layout so that the recipes load in a 3 column per row layout  */
+    gap: 20px;
+}
+
+.item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#itemImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    opacity: 0.9;
+    /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+}
+
+
+#itemInformation {
+    padding: 20px;
+}
+
+#itemHeading {
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#contentHeading{
+    font-size: 25px;
+    margin-left: 8px;
+}
+
+#resultsNumber{
+    font-size: 15px;
+    margin-left: 8px;
 }
