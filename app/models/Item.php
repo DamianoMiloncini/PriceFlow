@@ -131,11 +131,11 @@ class Item extends \app\core\Model
         return $result ? true : false;
     }
 
-    public static function doesQueryExist($query, $conn)
+    public static function doesQueryExist($query, $_conn)
     {
         // Check if the query exists in the search_query table
         $queryExistsSQL = 'SELECT * FROM search_query WHERE query = :query';
-        $queryExistsStmt = $conn->prepare($queryExistsSQL);
+        $queryExistsStmt = $_conn->prepare($queryExistsSQL);
         $queryExistsStmt->execute(['query' => $query]);
         $queryExistsResult = $queryExistsStmt->fetch(PDO::FETCH_ASSOC);
     
@@ -143,7 +143,7 @@ class Item extends \app\core\Model
         if ($queryExistsResult) {
             // Check if it has associated items in item_from_search_query table
             $associatedItemsSQL = 'SELECT * FROM item_from_search_query WHERE query = :query';
-            $associatedItemsStmt = $conn->prepare($associatedItemsSQL);
+            $associatedItemsStmt = $_conn->prepare($associatedItemsSQL);
             $associatedItemsStmt->execute(['query' => $queryExistsResult['query']]);
             $associatedItemsResult = $associatedItemsStmt->fetch(PDO::FETCH_ASSOC);
     
@@ -151,7 +151,7 @@ class Item extends \app\core\Model
             if (!$associatedItemsResult) {
                 // Delete the query from search_query table
                 $deleteQuerySQL = 'DELETE FROM search_query WHERE query = :query';
-                $deleteQueryStmt = $conn->prepare($deleteQuerySQL);
+                $deleteQueryStmt = $_conn->prepare($deleteQuerySQL);
                 $deleteQueryStmt->execute(['query' => $queryExistsResult['query']]);
                 // Return false
                 return false;
@@ -165,12 +165,12 @@ class Item extends \app\core\Model
 
     //old code
 
-    // public static function doesQueryExist($query, $conn)
+    // public static function doesQueryExist($query, $_conn)
     // {
     //     // SQL statement
     //     $SQL = 'SELECT * FROM search_query WHERE query = :query'; // Corrected the column name
     //     // Prepare the statement
-    //     $STMT = $conn->prepare($SQL); // Use the passed connection parameter
+    //     $STMT = $_conn->prepare($SQL); // Use the passed connection parameter
     //     // Execute the statement
     //     $STMT->execute([
     //         'query' => $query
@@ -181,12 +181,12 @@ class Item extends \app\core\Model
     //     return $result ? true : false;
     // }
 
-    public static function saveQuery($query, $conn)
+    public static function saveQuery($query, $_conn)
     {
         //SQL statement
         $SQL = 'INSERT INTO search_query (query) VALUES (:query)'; // Corrected the column name
         //prepare the statement
-        $STMT = $conn->prepare($SQL); // Use the passed connection parameter
+        $STMT = $_conn->prepare($SQL); // Use the passed connection parameter
         //execute the statement
         $STMT->execute(
             [
@@ -195,7 +195,7 @@ class Item extends \app\core\Model
         );
     }
 
-    public static function loadItems($query, $conn)
+    public static function loadItems($query, $_conn)
     {
         // SQL statement to fetch items based on the provided query
         $SQL = '
@@ -206,7 +206,7 @@ class Item extends \app\core\Model
         WHERE search_query.query = :query';
 
         // Prepare the statement
-        $statement = $conn->prepare($SQL); // Use the passed connection parameter
+        $statement = $_conn->prepare($SQL); // Use the passed connection parameter
 
         // Bind the query parameter
         $statement->bindParam(':query', $query, PDO::PARAM_STR);

@@ -27,5 +27,6 @@ $this->addRoute('Recipe/deleteConfirmation/{recipe_id}', 'Recipe,deleteConfirmat
 $this->addRoute('Recipe/search', 'Recipe,search');
 $this->addRoute('Recipe/searchResults', 'Recipe,searchResults');
 $this->addRoute('Item/search/{query}', 'ItemController,search');
+$this->addRoute('Item/info/{item_id}', 'ItemController,showItem');
 $this->addRoute('searchLocation', 'searchLocation,search');
 
