@@ -27,12 +27,12 @@ class Model
 		}
 	}
 
-	public static function getConnection()
-	{
-		if (self::$_conn == null) {
-			// If connection is not established, create a new instance of Model
-			new Model();
-		}
-		return self::$_conn;
-	}
+	// public static function getConnection()
+	// {
+	// 	if (self::$_conn == null) {
+	// 		// If connection is not established, create a new instance of Model
+	// 		new Model();
+	// 	}
+	// 	return self::$_conn;
+	// }
 }

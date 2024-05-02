@@ -20,9 +20,16 @@ class searchLocation extends \app\core\Controller {
         $userPostalCode = $user->postal_code;
         $userCity = $user->city;
         $userProvince = $user->province;
+        //if the store is not already in the db, add it 
+        $storeDB = new \app\models\SearchStore();
 
+        $storeDB = $storeDB->getAll();
         //format the full user location
-        $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
+         $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
+          
+         
+
+
 
             //echo($userLocation);
             $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
@@ -47,7 +54,7 @@ class searchLocation extends \app\core\Controller {
         $apiKey = 'AIzaSyC7s5_jgqD1sKbMsREIn68_Rk_jNYnfvnQ';
 
         //put the user's postal_code
-        $postalCode = 'H3J 2A3';
+       // $postalCode = 'H3J 2A3';
 
         //Radius (in meters) for nearby search
         $radius = 5000;
@@ -109,21 +116,36 @@ class searchLocation extends \app\core\Controller {
         foreach ($results['places'] as $place) {
             if(str_contains($place['displayName']['text'], 'Metro')) { //TODO: base this constraint with the user filter
                 $stores[] = $place;
+                echo $place['formattedAddress'];
+                echo "<br>";
             }
 
         }
 
-        //return data to the store details
-        $this->storeDetails($stores);
+        echo "<br>";
+       foreach($storeDB as $storeExists) {
+        //convert the address in the db 
+         $storePostal_Code = "{$storeExists['postal_code']} ";
+         //check if the store is not already in the db
+         if ($storePostal_Code != $userLocation) {
+           //$storeDB->insert(); 
+         }
+       //   $storeExists->city $storeExists->province $storeExists->postal_code
+         echo $storePostal_Code;
+         echo "<br>";
+       }
+
+        // //return data to the store details
+        // $this->storeDetails($stores);
         //send the search result to the view
         $this->view('searchLocation',$stores);
 
     }
 
-        //call the view with the search results to display details
-        function storeDetails($searchResult) {
-            //call the method search to get what store
-            $this->view('storeDetails',$searchResult);
-         }
+        // //call the view with the search results to display details
+        // function storeDetails($searchResult) {
+        //     //call the method search to get what store
+        //     $this->view('storeDetails',$searchResult);
+        //  }
     }
 
