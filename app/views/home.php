@@ -129,9 +129,15 @@
             <h1 id="contentHeading">Recipes</h1>
             <h1 id="resultsNumber"></h1>
 
+            <script>
+                var num = 0;
+            </script>
 
-            <div id="recipes">
-                <?php foreach ($data as $recipe) : ?>
+            <div id="recipes" style="display: none;">
+                <?php foreach ($data['recipes'] as $recipe) : ?>
+                    <script>
+                        num++;
+                    </script>
                     <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
                         <div class="recipe">
                             <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
@@ -146,20 +152,22 @@
                     </a>
                 <?php endforeach ?>
             </div>
+
             
-            <script> var num = 0; </script>
             <div id="items">
-                <?php foreach ($data as $recipe) : ?>
-                    <script>num++;</script>
-                    <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
+                <?php foreach ($data['items'] as $item) : ?>
+                    <script>                        
+                        num++;
+                    </script>
+                    <a style="text-decoration:none; color:black;" href=''>
                         <div class="item">
-                            <img id="itemImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
+                            <img src="<?php echo $item['image']; ?>">
                             <div id="itemInformation">
                                 <div class="itemHeading">
-                                    <h5><?php echo $recipe['title']; ?></h5>
-                                    <h6>By <?php echo $recipe['username']; ?></h6>
+                                    <h5><?php echo $item['name']; ?></h5>
+                                    <h6>By <?php echo $item['brand']; ?></h6>
                                 </div>
-                                <h7><?php echo $recipe['date_created'] ?></h7>
+                                <h7><?php echo $item['price'] ?></h7>
                             </div>
                         </div>
                     </a>
@@ -197,7 +205,7 @@
                 });
                 document.getElementById("filterOptions").addEventListener("change", function() {
                     var selectedFilter = this.value;
-                    if (selectedFilter === "itemFilter") {
+                    if (selectedFilter === "itemFilter") {                        
                         document.getElementById("items").style.display = "grid";
                         document.getElementById("recipes").style.display = "none";
                         document.getElementById("contentHeading").textContent = "Items";
