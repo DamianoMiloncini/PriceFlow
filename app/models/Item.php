@@ -229,4 +229,20 @@ class Item extends \app\core\Model
         // Return the array of Item objects
         return $items;
     }
+
+    public function loadAllItems() {
+        // SQL statement to fetch items based on the provided query
+        $SQL = 'SELECT * FROM item';
+
+        $statement = self::$_conn->prepare($SQL);
+
+        $statement->execute();
+
+        // Fetch all rows as associative arrays
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the array of Item objects
+        return $results;
+    }
+    
 }

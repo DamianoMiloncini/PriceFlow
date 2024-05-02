@@ -32,3 +32,10 @@ Left to do: Update user 2fa & save + update user's location
 - Save location to a user account is done
 - Update save location partially done(i have to fix a little bug)
 - Display Bookmark items is done 
+
+# Search Engine 
+(Damiano)
+- Began working on the full functionalities and styling of the search engine.
+- So far, the filtering works perfectly as I am able to switch between item and recipe search freely.
+- The sorting works as well!
+There are some bugs to be fixed of course, but these will be addressed shortly. 

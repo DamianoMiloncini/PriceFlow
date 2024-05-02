@@ -17,12 +17,12 @@
 <body>
     <?php include 'app/views/topBar.php'; ?>
 
-    
-                <?php if (!isset($_SESSION['user_id'])) { ?>
-                    <div id="container">
-       
-                    <div class="two">
-                        <div id="topLayer">
+
+    <?php if (!isset($_SESSION['user_id'])) { ?>
+        <div id="container">
+
+            <div class="two">
+                <div id="topLayer">
 
                     <div class="leftSection">
 
@@ -68,94 +68,174 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        <?php } else {
+
+        $user = new \app\models\User();
+        //get user's information
+        $user = $user->getByID($_SESSION['user_id']);
+        ?>
+            <div id="loggedInTopLayer">
+                <div id="loggedInMiddleHeading">
+
+                    <h4 class='loggedInLeading'>
+                        Welcome,
+                        <span style="color: #006eff;"><?php echo $user->username ?></span>
+
+                    </h4>
+
+                    <!-- <div class='buttonArea'>
+                            </div> -->
+
+
+                <?php } ?>
                 </div>
-                     <?php } else { 
-                        
-                        $user = new \app\models\User();
-                        //get user's information
-                        $user = $user->getByID($_SESSION['user_id']); 
-                        ?>
-                        <div id="loggedInContainer">
-                            <div id ="loggedInTwo">
-                                <div id="loggedInTopLayer">
-                        <div id="loggedInMiddleHeading">
+            </div>
 
-                            <h4 class='loggedInLeading'>
-                                Welcome,
-                                <span style="color: #006eff;"><?php echo $user->username ?></span>
 
-                            </h4>
-
-                            <div class='buttonArea'>
-                            </div>
-
-                        </div>
-
-                     </div>
-
-                        <?php } ?>
-                </div>
         </div>
 
+        <div class="content">
 
-    </div>
+            <div class='navBar'>
+                <!-- <a id='filterButton' href="">
+                    <i class="bi bi-funnel"></i>
+                    Filter
+                </a> -->
+                <div id="filterButton">
+                    <select id="filterOptions" name="filterOptions">
+                        <option value="" disabled selected><i class="bi bi-funnel"></i>Filter</option>
+                        <option value="itemFilter">Item</option>
+                        <option value="recipeFilter">Recipe</option>
+                    </select>
+                </div>
+                <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
 
-    <div class="content">
-
-        <div class='navBar'>
-            <a id='filterButton' href="">
-                <i class="bi bi-funnel"></i>
-                Filter
-            </a>
-            <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
-
-            <a id="searchButton" href="/localhost/Item/search/">
-                Search
-            </a>
-
-            <a id="sortButton" href="">
-                <i class="bi bi-funnel"></i>
-                Sort
-            </a>
-        </div>
-
-        <script>
-            // Get references to the search textarea and the search button
-            const searchTextArea = document.getElementById('search');
-            const searchButton = document.getElementById('searchButton');
-
-            // Add an event listener to the search textarea
-            searchTextArea.addEventListener('input', function() {
-                // Get the value of the textarea and replace spaces with '+'
-                const searchText = searchTextArea.value.trim().replace(/ /g, '+');
-
-                // Update the href attribute of the search button
-                searchButton.href = searchText ? '/Item/search/' + searchText : '';
-            });
-        </script>
-
-        <div class="divider"></div>
-
-        <h1 id="recipeHeading">Recipes</h1>
-
-        <div id="recipes">
-            <?php foreach ($data as $recipe) : ?>
-                <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
-                    <div class="recipe">
-                        <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
-                        <div id="recipeInformation">
-                            <div class="recipeHeading">
-                                <h5><?php echo $recipe['title']; ?></h5>
-                                <h6>By <?php echo $recipe['username']; ?></h6>
-                            </div>
-                            <h7><?php echo $recipe['date_created'] ?></h7>
-                        </div>
-                    </div>
+                <a id="searchButton" href="/localhost/Item/search/">
+                    Search
                 </a>
-            <?php endforeach ?>
-        </div>
 
-    </div>
+                <div id="sortButton">
+                    <select id="sortOptions" name="sortOptions">
+                        <option value="" disabled selected><i class="bi bi-funnel"></i>Sort</option>
+                        <option value="dateCreated">Date created</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <h1 id="contentHeading">Recipes</h1>
+            <h1 id="resultsNumber"></h1>
+
+            <script>
+                var num = 0;
+            </script>
+
+            <div id="recipes" style="display: <?php echo isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
+                <?php foreach ($data['recipes'] as $recipe) : ?>
+                    <script>
+                        num++;
+                    </script>
+                    <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
+                        <div class="recipe">
+                            <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
+                            <div id="recipeInformation">
+                                <div class="recipeHeading">
+                                    <h5><?php echo $recipe['title']; ?></h5>
+                                    <h6>By <?php echo $recipe['username']; ?></h6>
+                                </div>
+                                <h7><?php echo $recipe['date_created'] ?></h7>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach ?>
+            </div>
+
+            
+            <div id="items" style="display: <?php echo !isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
+                <?php foreach ($data['items'] as $item) : ?>
+                    <script>                        
+                        num++;
+                    </script>
+                    <a style="text-decoration:none; color:black;" href=''>
+                        <div class="item">
+                            <img id="itemImage" src="<?php echo $item['image']; ?>">
+                            <div id="itemInformation">
+                                <div class="itemHeading">
+                                    <h5><?php echo $item['name']; ?></h5><br>
+                                    <h6>By <?php echo $item['brand']; ?></h6>
+                                </div>
+                                <h7>$<?php echo $item['price'] ?></h7>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach ?>
+            </div>
+
+            <script>
+                document.getElementById("sortOptions").addEventListener("change", function() {
+                    var sortBy = this.value;
+                    if (sortBy === "dateCreated") {
+                        sortRecipesByDateCreated();
+                    }
+                });
+
+                function sortRecipesByDateCreated() {
+                    var recipesContainer = document.getElementById("recipes");
+                    var recipes = Array.from(recipesContainer.children);
+
+                    recipes.sort(function(a, b) {
+                        var dateA = new Date(a.querySelector("h7").textContent);
+                        var dateB = new Date(b.querySelector("h7").textContent);
+                        return dateB - dateA;
+                    });
+
+                    recipes.forEach(function(recipe) {
+                        recipesContainer.appendChild(recipe);
+                    });
+                }
+            </script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.getElementById("items").style.display = "grid"; // Show items
+                    document.getElementById("contentHeading").textContent = "Items"; // Update heading
+                });
+                document.getElementById("filterOptions").addEventListener("change", function() {
+                    var selectedFilter = this.value;
+                    if (selectedFilter === "itemFilter") {                        
+                        document.getElementById("items").style.display = "grid";
+                        document.getElementById("recipes").style.display = "none";
+                        document.getElementById("contentHeading").textContent = "Items";
+                        var output = num + " Results found";
+                        document.getElementById("resultsNumber").textContent = output;
+                    } else if (selectedFilter === "recipeFilter") {
+                        document.getElementById("items").style.display = "none";
+                        document.getElementById("recipes").style.display = "grid";
+                        document.getElementById("contentHeading").textContent = "Recipes";
+                    }
+                });
+            </script>
+
+
+            <script>
+                // Get references to the search textarea and the search button
+                const searchTextArea = document.getElementById('search');
+                const searchButton = document.getElementById('searchButton');
+
+                // Add an event listener to the search textarea
+                searchTextArea.addEventListener('input', function() {
+                    // Get the value of the textarea and replace spaces with '+'
+                    const searchText = searchTextArea.value.trim().replace(/ /g, '+');
+
+                    // Update the href attribute of the search button
+                    searchButton.href = searchText ? '/Item/search/' + searchText : '';
+                });
+            </script>
+
+        </div>
 
 </body>
 
