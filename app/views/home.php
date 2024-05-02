@@ -133,7 +133,7 @@
                 var num = 0;
             </script>
 
-            <div id="recipes" style="display: none;">
+            <div id="recipes" style="display: <?php echo isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
                 <?php foreach ($data['recipes'] as $recipe) : ?>
                     <script>
                         num++;
@@ -154,20 +154,20 @@
             </div>
 
             
-            <div id="items">
+            <div id="items" style="display: <?php echo !isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
                 <?php foreach ($data['items'] as $item) : ?>
                     <script>                        
                         num++;
                     </script>
                     <a style="text-decoration:none; color:black;" href=''>
                         <div class="item">
-                            <img src="<?php echo $item['image']; ?>">
+                            <img id="itemImage" src="<?php echo $item['image']; ?>">
                             <div id="itemInformation">
                                 <div class="itemHeading">
-                                    <h5><?php echo $item['name']; ?></h5>
+                                    <h5><?php echo $item['name']; ?></h5><br>
                                     <h6>By <?php echo $item['brand']; ?></h6>
                                 </div>
-                                <h7><?php echo $item['price'] ?></h7>
+                                <h7>$<?php echo $item['price'] ?></h7>
                             </div>
                         </div>
                     </a>
