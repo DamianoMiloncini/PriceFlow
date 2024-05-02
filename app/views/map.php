@@ -49,28 +49,28 @@
         $userProvince = $user->province;
 
         $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
-        if (!trim($userLocation) === '') {
-        $flag = 0;
-        //echo($userLocation);
-        $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
-        // Fetching the data from the API
-        $response = file_get_contents($api_url);
-
-        // Decoding JSON response that is generated
-        $coordiantes = json_decode($response, true);
-
-        // Check if the response is successful
-        if ($coordiantes && isset($coordiantes['features'][0])) {
-            // Gettting the latitude and longitude!!
-            $userLatitude = $coordiantes['features'][0]['properties']['lat'];   
-            $userLongitude = $coordiantes['features'][0]['properties']['lon'];
-        }
-        } else {
-            $flag = 1;
-            $userLatitude = 45.5019;   
-            $userLongitude = -73.5674;
-        }
-
+        //check if the user has a registered location
+        if ($userAddress != null) {
+            $flag = 0;
+            //echo($userLocation);
+            $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
+            // Fetching the data from the API
+            $response = file_get_contents($api_url);
+    
+            // Decoding JSON response that is generated
+            $coordiantes = json_decode($response, true);
+    
+            // Check if the response is successful
+            if ($coordiantes && isset($coordiantes['features'][0])) {
+                // Gettting the latitude and longitude!!
+                $userLatitude = $coordiantes['features'][0]['properties']['lat'];   
+                $userLongitude = $coordiantes['features'][0]['properties']['lon'];
+            }
+            } else {
+                $flag = 1;
+                $userLatitude = 45.5019;   
+                $userLongitude = -73.5674;
+            }
     ?>
 
         <!-- MAP API -->
