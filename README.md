@@ -39,3 +39,7 @@ Left to do: Update user 2fa & save + update user's location
 - So far, the filtering works perfectly as I am able to switch between item and recipe search freely.
 - The sorting works as well!
 There are some bugs to be fixed of course, but these will be addressed shortly. 
+
+# Search by Location
+- Search by location works well with the google API ! I need to wait for the webscraping and the filters to merge everything together.
+- Search details is almost figured out ! :)
