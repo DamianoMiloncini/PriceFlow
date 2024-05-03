@@ -58,13 +58,13 @@
             $response = file_get_contents($api_url);
     
             // Decoding JSON response that is generated
-            $coordiantes = json_decode($response, true);
+            $coordinates = json_decode($response, true);
     
             // Check if the response is successful
-            if ($coordiantes && isset($coordiantes['features'][0])) {
+            if ($coordinates && isset($coordinates['features'][0])) {
                 // Gettting the latitude and longitude!!
-                $userLatitude = $coordiantes['features'][0]['properties']['lat'];   
-                $userLongitude = $coordiantes['features'][0]['properties']['lon'];
+                $userLatitude = $coordinates['features'][0]['properties']['lat'];   
+                $userLongitude = $coordinates['features'][0]['properties']['lon'];
             }
             } else {
                 $flag = 1;
@@ -106,13 +106,13 @@
         $response = file_get_contents($api_url);
 
         // Decoding JSON response that is generated
-        $coordiantes = json_decode($response, true);
+        $coordinates = json_decode($response, true);
 
         // Check if the response is successful
-        if ($coordiantes && isset($coordiantes['features'][0])) {
+        if ($coordinates && isset($coordinates['features'][0])) {
             // Gettting the latitude and longitude!!
-            $storeLatitude = $coordiantes['features'][0]['properties']['lat'];   
-            $storeLongitude = $coordiantes['features'][0]['properties']['lon'];
+            $storeLatitude = $coordinates['features'][0]['properties']['lat'];   
+            $storeLongitude = $coordinates['features'][0]['properties']['lon'];
         }
 
         // Calculate the distance between the user and each store
