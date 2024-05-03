@@ -27,11 +27,6 @@ class searchLocation extends \app\core\Controller {
         //format the full user location
          $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
           
-         
-
-
-
-            //echo($userLocation);
             $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
             // Fetching the data from the API
             $response = file_get_contents($api_url);
@@ -114,38 +109,58 @@ class searchLocation extends \app\core\Controller {
 
         // Extract and display the store names and addresses based on the user filter
         foreach ($results['places'] as $place) {
-            if(str_contains($place['displayName']['text'], 'Metro')) { //TODO: base this constraint with the user filter
+            if(str_contains($place['displayName']['text'], 'Metro')) { // Check if the place is a Metro store
+                //bool to check if the store exists in the db already
+                $storeExists = false;
+                //add the api places in an array to send in the view later
                 $stores[] = $place;
-                echo $place['formattedAddress'];
-                echo "<br>";
+                //Extract the postal code from the formatted address
+                $regexPattern = '/[A-Z]\d[A-Z] ?\d[A-Z]\d/'; //the way i DID NOT want to use regex is crazy
+                if (preg_match($regexPattern, $place['formattedAddress'], $matches)) {
+                    $postal_code = $matches[0];
+                    
+                    //Check if the store already exists in the db
+                    foreach ($storeDB as $store) {
+                        if ($store['postal_code'] == $postal_code) {
+                            $storeExists = true;
+                            break;
+                        }
+                    }
+        
+                    //If the store doesn't exist in the dB, insert it
+                    if (!$storeExists) {
+                        //store the informations in variables
+                        $addressParts = explode(',', $place['formattedAddress']);
+                        $address = trim($addressParts[0]);
+                        $cityParts = explode(' ', trim($addressParts[1]));
+                        $city = $cityParts[0];
+                        $province = 'Quebec'; //remember to hardcode quebec for the user location too
+        
+                        //Insert the store into the db
+                        $newStore = new \app\models\SearchStore();
+                        $newStore->store_name = $place['displayName']['text'];
+                        $newStore->address = $address;
+                        $newStore->postal_code = $postal_code;
+                        $newStore->city = $city;
+                        $newStore->province = $province;
+                        $newStore->insert();
+                    }
+                }
             }
-
         }
-
-        echo "<br>";
-       foreach($storeDB as $storeExists) {
-        //convert the address in the db 
-         $storePostal_Code = "{$storeExists['postal_code']} ";
-         //check if the store is not already in the db
-         if ($storePostal_Code != $userLocation) {
-           //$storeDB->insert(); 
-         }
-       //   $storeExists->city $storeExists->province $storeExists->postal_code
-         echo $storePostal_Code;
-         echo "<br>";
-       }
-
-        // //return data to the store details
-        // $this->storeDetails($stores);
+        
         //send the search result to the view
         $this->view('searchLocation',$stores);
 
     }
+        //urldecode changed my life for the better
+        public function storeDetails() {
+            // Retrieve the store information from the URL parameter & decode the json data
+            $storeInfo = isset($_GET['store']) ? json_decode(urldecode($_GET['store']), true) : null;
 
-        // //call the view with the search results to display details
-        // function storeDetails($searchResult) {
-        //     //call the method search to get what store
-        //     $this->view('storeDetails',$searchResult);
-        //  }
+            // Pass the store information to the view
+            $this->view('storeDetails', $storeInfo);
+        }
+
     }
 

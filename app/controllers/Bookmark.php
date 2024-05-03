@@ -26,4 +26,13 @@ class Bookmark extends \app\core\Controller {
        //send the data to the view
        $this->view('User/Bookmarks',$array);
     }
+
+    function delete($item_id) {
+        //Instantiate the Bookmark model class
+        $bookmark = new \app\models\Bookmark;
+        //Call the delete method with the item ID
+        $bookmark->delete($item_id);
+        //Redirect back to the favorites page (kind of a refresh)
+        header("Location: /User/bookmark");
+    }
 }

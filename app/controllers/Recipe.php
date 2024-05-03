@@ -17,25 +17,25 @@ class Recipe extends \app\core\Controller
             $image = $_FILES['image'];
             // Get the privacy status
             $privacy_status = $_POST['privacy_status'];
-    
+
             // Get the current image path from the database
             $currentImage = null;
-    
+
             // Handle image upload
             $imagePath = $this->handleImageUpload($image, $currentImage);
-    
+
             if (!$imagePath) {
                 header('Location: /Recipe/create');
             }
-    
+
             // Get user ID from session
             $user_id = $_SESSION['user_id'];
-    
+
             // Instantiate Recipe model
             $recipe = new \app\models\Recipe();
-    
+
             // Create the recipe
-            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status, 0);
+            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status);
     
             if ($success) {
                 // Redirect to recipe listing
@@ -47,7 +47,7 @@ class Recipe extends \app\core\Controller
             $this->view('Recipe/create');
         }
     }
-    
+
 
     #[\app\accessFilters\Login]
     public function edit($recipe_id)
@@ -86,7 +86,7 @@ class Recipe extends \app\core\Controller
             $current_image = $_POST['current_image'];
             $new_image = $_FILES['image'];
             $privacy_status = $_POST['privacy_status'];
-    
+
             // Check if a new image was uploaded
             if ($new_image['error'] === UPLOAD_ERR_OK) {
                 // Handle image upload
@@ -99,13 +99,13 @@ class Recipe extends \app\core\Controller
                 // No new image was uploaded
                 $imagePath = $current_image;
             }
-    
+
             // Instantiate Recipe model
             $recipe = new \app\models\Recipe();
-    
+
             // Update the recipe
             $success = $recipe->updateRecipe($recipe_id, $title, $content, $duration, $imagePath, $privacy_status);
-    
+
             if ($success) {
                 // Check if privacy status has changed
                 if ($privacy_status === 'private') {
@@ -125,7 +125,7 @@ class Recipe extends \app\core\Controller
             // Show update form with recipe data
             $this->view('Recipe/update', $recipeData);
         }
-    }    
+    }
 
 
     #[\app\accessFilters\Login]
@@ -190,38 +190,38 @@ class Recipe extends \app\core\Controller
     {
         // Define the upload directory path
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
-    
+
         // Ensure that the uploads directory exists
         if (!file_exists($uploadDir) && !mkdir($uploadDir, 0777, true)) {
             return null;
         }
-    
+
         // Check if the file was uploaded without errors
         if (!isset($image['error']) || $image['error'] !== UPLOAD_ERR_OK) {
             return null;
         }
-    
+
         // Delete the old image file
         if ($currentImage && file_exists($currentImage)) {
             unlink($currentImage);
         }
-    
+
         // Generate a unique name for the uploaded file to prevent overwriting
         $uniqueFilename = uniqid() . '_' . basename($image['name']);
-    
+
         // Combine the upload directory and the unique filename to create the full path
         $filePath = $uploadDir . '/' . $uniqueFilename;
-    
+
         // Move the uploaded file to the specified directory
         if (!move_uploaded_file($image['tmp_name'], $filePath)) {
             return null;
         }
-    
+
         // Return the path to the uploaded file
         return $filePath;
     }
-    
-    
+
+
 
     // Display recipes created by the signed-in user
     #[\app\accessFilters\Login]
@@ -253,7 +253,7 @@ class Recipe extends \app\core\Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {
             // Get the search query from the URL
             $searchQuery = $_GET['query'];
-            
+
             // Check if the user is logged in
             if (isset($_SESSION['user_id'])) {
                 // Check if the search is performed from the displayPrivate page
@@ -271,13 +271,27 @@ class Recipe extends \app\core\Controller
                 $recipeModel = new \app\models\Recipe();
                 $searchResults = $recipeModel->searchPublicRecipes($searchQuery);
             }
-            
+
             // Display search results
             $this->view('Recipe/searchResults', ['recipes' => $searchResults]);
         } else {
             // Redirect to displayAll if no search query is provided
             header('Location: /Recipe/displayAll');
         }
-    }       
-    
+    }
+
+    public function filterByPrice()
+    {
+        // Get the sorting order from the form
+        $sortOrder = $_GET['sort_order'];
+
+        // Instantiate the Recipe model
+        $recipeModel = new \app\models\Recipe();
+
+        // Fetch recipes sorted by total price based on the selected order
+        $recipes = $recipeModel->getRecipesSortedByPrice($sortOrder);
+
+        // Load the view with the filtered recipes
+        $this->view('Recipe/displayAll', $recipes);
+    }
 }

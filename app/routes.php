@@ -27,7 +27,10 @@ $this->addRoute('Recipe/delete/{recipe_id}', 'Recipe,delete');
 $this->addRoute('Recipe/deleteConfirmation/{recipe_id}', 'Recipe,deleteConfirmation');
 $this->addRoute('Recipe/search', 'Recipe,search');
 $this->addRoute('Recipe/searchResults', 'Recipe,searchResults');
+$this->addRoute('Recipe/filterByPrice', 'Recipe,filterByPrice');
 $this->addRoute('Item/search/{query}', 'ItemController,search');
 $this->addRoute('Item/info/{item_id}', 'ItemController,showItem');
 $this->addRoute('searchLocation', 'searchLocation,search');
-
+$this->addRoute('storeDetails', 'searchLocation,storeDetails');
+$this->addRoute('bookmark/delete/{item_id}', 'bookmark,delete');
+$this->addRoute('searchLocation', 'searchLocation,search');

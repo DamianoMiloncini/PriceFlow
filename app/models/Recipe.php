@@ -60,7 +60,8 @@ class Recipe extends \app\core\Model
         return $success;
     }
 
-    public function getAllPublicRecipesWithImages(){
+    public function getAllPublicRecipesWithImages()
+    {
 
         $SQL = 'SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
         FROM recipe r join user u
@@ -74,7 +75,6 @@ class Recipe extends \app\core\Model
         $recipes = $STMT->fetchAll(PDO::FETCH_ASSOC);
 
         return $recipes;
-
     }
 
     // Function to delete a recipe from the database
@@ -149,7 +149,6 @@ class Recipe extends \app\core\Model
         $recipes = $STMT->fetchAll(PDO::FETCH_ASSOC);
 
         return $recipes;
-
     }
 
     // Function to fetch all recipes created by a user
@@ -239,65 +238,84 @@ class Recipe extends \app\core\Model
     {
         // SQL statement to search user's recipes by title or content
         $sql = 'SELECT * FROM recipe WHERE user_id = :user_id AND (title LIKE :searchQuery OR content LIKE :searchQuery)';
-        
+
         // Prepare the SQL statement
         $stmt = self::$_conn->prepare($sql);
-        
+
         // Bind parameters
         $searchParam = '%' . $searchQuery . '%';
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':searchQuery', $searchParam);
-        
+
         // Execute the statement
         $stmt->execute();
-        
+
         // Fetch search results
         $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         return $searchResults;
     }
 
     public function searchAllRecipes($searchQuery)
-{
-    // SQL statement to search all recipes by title or content
-    $sql = 'SELECT * FROM recipe WHERE title LIKE :searchQuery OR content LIKE :searchQuery';
-    
-    // Prepare the SQL statement
-    $stmt = self::$_conn->prepare($sql);
-    
-    // Bind parameters
-    $searchParam = '%' . $searchQuery . '%';
-    $stmt->bindParam(':searchQuery', $searchParam);
-    
-    // Execute the statement
-    $stmt->execute();
-    
-    // Fetch search results
-    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    return $searchResults;
-}
+    {
+        // SQL statement to search all recipes by title or content
+        $sql = 'SELECT * FROM recipe WHERE title LIKE :searchQuery OR content LIKE :searchQuery';
 
-public function searchPublicRecipes($searchQuery)
-{
-    // SQL statement to search public recipes by title or content
-    $sql = 'SELECT * FROM recipe WHERE privacy_status = "public" AND (title LIKE :searchQuery OR content LIKE :searchQuery)';
-    
-    // Prepare the SQL statement
-    $stmt = self::$_conn->prepare($sql);
-    
-    // Bind parameters
-    $searchParam = '%' . $searchQuery . '%';
-    $stmt->bindParam(':searchQuery', $searchParam);
-    
-    // Execute the statement
-    $stmt->execute();
-    
-    // Fetch search results
-    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    return $searchResults;
-}
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
 
-    
+        // Bind parameters
+        $searchParam = '%' . $searchQuery . '%';
+        $stmt->bindParam(':searchQuery', $searchParam);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch search results
+        $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $searchResults;
+    }
+
+    public function searchPublicRecipes($searchQuery)
+    {
+        // SQL statement to search public recipes by title or content
+        $sql = 'SELECT * FROM recipe WHERE privacy_status = "public" AND (title LIKE :searchQuery OR content LIKE :searchQuery)';
+
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
+
+        // Bind parameters
+        $searchParam = '%' . $searchQuery . '%';
+        $stmt->bindParam(':searchQuery', $searchParam);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch search results
+        $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $searchResults;
+    }
+
+    public function getRecipesSortedByPrice($sortOrder)
+    {
+        // SQL statement to fetch recipes sorted by total price based on the selected order
+        $sql = 'SELECT r.*, CONCAT("uploads/", r.image) AS imagePath, u.username
+            FROM recipe r
+            JOIN user u ON r.user_id = u.user_id
+            WHERE r.privacy_status = "public"
+            ORDER BY r.total_price ' . ($sortOrder === 'asc' ? 'ASC' : 'DESC');
+
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the recipes
+        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $recipes;
+    }
 }
