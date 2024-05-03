@@ -279,17 +279,7 @@
     </div>
 
     <div id='cartQuickView'>
-        <label id='cartText'>[User's] cart</label>
-
-        <div id="cartItems">
-            <ol>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
-            </ol>
-        </div>
-
+        
         <div class='cartButtons'>
             <a id="viewFullCartButton" href="/cart">View Full Cart</a>
             <br>
