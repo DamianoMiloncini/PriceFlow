@@ -43,3 +43,9 @@ There are some bugs to be fixed of course, but these will be addressed shortly.
 # Search by Location
 - Search by location works well with the google API ! I need to wait for the webscraping and the filters to merge everything together.
 - Search details is almost figured out ! :)
+
+# Micka's progress
+- Search by user location & See Store Details is done 
+- Search by user location & Store details need to be merged with the rest of the code 
+- Delete Bookmark is done
+- Internalization will be done today in class (Fri. May 3rd)
