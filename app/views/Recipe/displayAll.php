@@ -54,8 +54,19 @@
             <option value="asc">Lowest to Highest</option>
             <option value="desc">Highest to Lowest</option>
         </select>
-        <button type="submit">Filter</button>
+        <button type="submit">Sort</button>
     </form>
+
+    <form action="/Recipe/filterByPriceRange" method="GET">
+    <label for="min_price">Minimum Price:</label>
+    <input type="number" id="min_price" name="min_price" placeholder="Enter minimum price...">
+    
+    <label for="max_price">Maximum Price:</label>
+    <input type="number" id="max_price" name="max_price" placeholder="Enter maximum price...">
+    
+    <button type="submit">Filter</button>
+</form>
+
 
     <ul class="recipe-list">
         <?php if (!empty($data)) : ?>
