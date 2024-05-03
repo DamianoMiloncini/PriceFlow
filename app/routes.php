@@ -29,4 +29,7 @@ $this->addRoute('Recipe/searchResults', 'Recipe,searchResults');
 $this->addRoute('Item/search/{query}', 'ItemController,search');
 $this->addRoute('Item/info/{item_id}', 'ItemController,showItem');
 $this->addRoute('searchLocation', 'searchLocation,search');
+$this->addRoute('storeDetails', 'searchLocation,storeDetails');
+$this->addRoute('bookmark/delete/{item_id}', 'bookmark,delete');
+
 

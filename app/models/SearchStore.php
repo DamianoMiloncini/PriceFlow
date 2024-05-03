@@ -16,7 +16,7 @@ class SearchStore extends \app\core\Model {
 //insert into db
 function insert() {
     //sql statement
-    $SQL = 'INSERT INTO store (store_name,address,postal_code,city,province) VALUES (:store_name,:address,postal_code,city,province)';
+    $SQL = 'INSERT INTO store (store_name,address,postal_code,city,province) VALUES (:store_name,:address,:postal_code,:city,:province)';
     //prepare statement
     $STMT = self::$_conn->prepare($SQL);
     //execute statement

@@ -39,6 +39,17 @@ function getAll($user) {
     return $favItems;
 }
 
+function delete($item_id) {
+    //statement
+    $SQL = 'DELETE FROM bookmarked_item WHERE item_id = :item_id';
+    //prepare statement
+    $STMT = self::$_conn->prepare($SQL);
+    //execute statement
+    $STMT->execute([
+         'item_id'=> $item_id
+    ]);
+}
+
 
 }
 

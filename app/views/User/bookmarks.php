@@ -23,6 +23,9 @@
                 <h5>{$item['name']}</h5>
                 <h6 style="margin-left:2%;">{$item['brand']}</h6>
                  <h6 style="margin-left:2%;">Price: {$item['price']} </h6>
+                 <form action="/bookmark/delete/{$item['item_id']}" method="post">
+                    <button type="submit" name="delete_item">Delete</button>
+                </form>
             HTML;
         }
         ?>
