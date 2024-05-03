@@ -1,5 +1,5 @@
 <?php
-$this->addRoute('','Home,index');
+$this->addRoute('','Home,authenticatedHome');
 $this->addRoute('welcome','Home,index');
 $this->addRoute('home','Home,authenticatedHome');
 $this->addRoute('map','Welcome,map');
@@ -37,3 +37,5 @@ $this->addRoute('storeDetails', 'searchLocation,storeDetails');
 $this->addRoute('bookmark/delete/{item_id}', 'bookmark,delete');
 $this->addRoute('bookmark/add/{item_id}', 'bookmark,add');
 $this->addRoute('searchLocation', 'searchLocation,search');
+$this->addRoute('Recipe/addItemToRecipe', 'Recipe,addItemToRecipe');
+$this->addRoute('Recipe/items/{searchTerm}', 'Recipe,items');
