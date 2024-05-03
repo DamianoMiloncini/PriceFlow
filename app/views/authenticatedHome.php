@@ -79,8 +79,8 @@
                         <select id="sortOptions" name="sortOptions">
                             <option value="" disabled selected><i class="bi bi-funnel"></i>Sort</option>
                             <option value="dateCreated">Date created</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                            <option value="option2">Lowest to Highest</option>
+                            <option value="option3">Highest to Lowest</option>
                         </select>
                     </div>
                     
@@ -119,7 +119,7 @@
                     <script>                        
                         num++;
                     </script>
-                    <a style="text-decoration:none; color:black;" href=''>
+                    <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
                         <div class="item">
                             <img id="itemImage" src="<?php echo $item['image']; ?>">
                             <div id="itemInformation">

@@ -21,6 +21,43 @@ class Cart extends \app\core\Model {
     public $store;
     public $search_queries;
 
+    public function addToCart($user_id, $item_id){
+        // Check if the item already exists in the cart
+        $SQL = 'SELECT * FROM items_in_cart WHERE cart_id IN (SELECT cart_id FROM cart WHERE user_id = :user_id) AND item_id = :item_id';
+    
+        $STMT = self::$_conn->prepare($SQL);
+        
+        $STMT->execute(
+            [
+                'user_id' => $user_id,
+                'item_id' => $item_id
+            ]
+        );
+    
+        $existingItem = $STMT->fetch(PDO::FETCH_ASSOC);
+    
+        if(!$existingItem) {
+            // If the item doesn't exist, insert it into the cart
+            $SQL = 'INSERT INTO items_in_cart (cart_id, item_id, quantity_purchased) 
+                    VALUES ((SELECT cart_id FROM cart WHERE user_id = :user_id), :item_id, :quantity)';
+    
+            $STMT = self::$_conn->prepare($SQL);
+            
+            $STMT->execute(
+                [
+                    'user_id' => $user_id,
+                    'item_id' => $item_id,
+                    'quantity' => 1
+                ]
+            );
+            
+            // Update the total cart price
+            $userCart = $this->getUserCartItems($user_id);
+            $cart_id = $userCart[0]['cart_id']; // Assuming there's only one cart per user
+            $this->updateTotalCartPrice($cart_id);
+        }
+    }
+    
 
     public function getUserCartItems($id){
         // Getting users cart 
