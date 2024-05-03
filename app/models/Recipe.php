@@ -318,4 +318,28 @@ class Recipe extends \app\core\Model
 
         return $recipes;
     }
+
+    public function getRecipesInPriceRange($minPrice, $maxPrice)
+    {
+        // SQL statement to fetch recipes within the specified price range
+        $sql = 'SELECT r.*, CONCAT("uploads/", r.image) AS imagePath, u.username
+                FROM recipe r
+                JOIN user u ON r.user_id = u.user_id
+                WHERE r.privacy_status = "public" AND r.total_price BETWEEN :min_price AND :max_price';
+
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
+        
+        // Bind parameters
+        $stmt->bindParam(':min_price', $minPrice, PDO::PARAM_INT);
+        $stmt->bindParam(':max_price', $maxPrice, PDO::PARAM_INT);
+        
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the recipes
+        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $recipes;
+    }
 }

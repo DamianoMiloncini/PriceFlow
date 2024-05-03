@@ -294,4 +294,20 @@ class Recipe extends \app\core\Controller
         // Load the view with the filtered recipes
         $this->view('Recipe/displayAll', $recipes);
     }
+
+    public function filterByPriceRange()
+    {
+        // Get the minimum and maximum prices from the form
+        $minPrice = $_GET['min_price'];
+        $maxPrice = $_GET['max_price'];
+
+        // Instantiate the Recipe model
+        $recipeModel = new \app\models\Recipe();
+
+        // Fetch recipes within the specified price range
+        $recipes = $recipeModel->getRecipesInPriceRange($minPrice, $maxPrice);
+
+        // Load the view with the filtered recipes
+        $this->view('Recipe/displayAll', ['data' => $recipes]);
+    }
 }
