@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-class Welcome extends \app\core\Controller {
+class Home extends \app\core\Controller {
 
     function index(){
         //Recipes
@@ -18,6 +18,23 @@ class Welcome extends \app\core\Controller {
         ];
 
         $this->view('home', $data);
+    }
+
+    function authenticatedHome(){
+        //Recipes
+        $recipeModel = new \app\models\Recipe();
+        $recipes = $recipeModel->getAllPublicRecipesWithImages();
+
+        //Items
+        $itemsModel = new \app\models\Item();
+        $items = $itemsModel->loadAllItems();
+
+        $data = [
+            'recipes' => $recipes,
+            'items' => $items,
+        ];
+
+        $this->view('authenticatedHome', $data);
     }
 
     function map(){

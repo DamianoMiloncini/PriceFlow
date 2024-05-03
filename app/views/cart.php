@@ -12,21 +12,21 @@
     <link rel="stylesheet" href="app\views\Styles\cartPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // This block handles the AJAX request
-        $cartId = $_POST['cartId'];
-        $itemId = $_POST['itemId'];
+    <!-- <?php
+    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //     // This block handles the AJAX request
+    //     $cartId = $_POST['cartId'];
+    //     $itemId = $_POST['itemId'];
         
-        // Here you can perform any processing with the received cartId and itemId values
-        // For example, update the quantity in the cart
-        $itemToBeUpdated = new \app\models\Cart();
-        $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
+    //     // Here you can perform any processing with the received cartId and itemId values
+    //     // For example, update the quantity in the cart
+    //     $itemToBeUpdated = new \app\models\Cart();
+    //     $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
 
-        // You can echo a response back to JavaScript if needed
-        echo "Quantity updated successfully";
-        exit; // Exit to prevent further execution of the file
-    }
+    //     // You can echo a response back to JavaScript if needed
+    //     echo "Quantity updated successfully";
+    //     exit; // Exit to prevent further execution of the file
+    // }
     ?>
     <script>
         function removeOne() {
@@ -60,7 +60,7 @@
                     console.error('There was a problem with the fetch request:', error);
                 });
         }
-    </script>
+    </script> -->
 
 
 
@@ -93,6 +93,7 @@
 
                         <img class="itemImages" src=<?php echo $item['image'] ?>>
 
+                        
                         <!-- <div id ="itemInformation"> -->
                         <h5><?php echo $item['name'] ?></h5>
                         <h6 style="margin-left:2%;"><?php echo $item['brand'] ?></h6>
@@ -109,21 +110,20 @@
                             ?>
                         </h5>
 
-                        <!-- <form id="cartForm" method='post' action=''> -->
-                        <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
-                        <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
-                        <div id="cartButtons">
-                            <!-- <input type="submit" name="minus1" value="-"class="bttns"> -->
-                            <button name="add1" value="+" class="bttns" onclick="removeOne()">-</button>
-                            <input type="submit" name="add1" value="+" class="bttns">
-                            <button type="submit" class="bttns" name="deleteButton">
-                                <i class="bi bi-trash3"></i>
-                            </button>
+                        <iframe name="formFrame" id="formFrane" style="display: none;"></iframe>
 
-                        </div>
-
-                        <!-- </form> -->
-
+                        <form id="cartForm" method='post' action='' target="formFrame">
+                            <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+                            <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
+                            <div id="cartButtons">
+                                <input type="submit" name="minus1" value="-"class="bttns">
+                                <!-- <button name="add1" value="+" class="bttns" onclick="removeOne()">-</button> -->
+                                <input type="submit" name="add1" value="+" class="bttns">
+                                <button type="submit" class="bttns" name="deleteButton">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 <?php endforeach ?>
             </div>
@@ -138,7 +138,7 @@
 
     <!-- Map container -->
     <div id="cartMap">
-        <?php //include 'app/views/map.php'; 
+        <?php include 'app/views/map.php'; 
         ?>
     </div>
 

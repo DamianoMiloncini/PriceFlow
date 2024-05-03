@@ -1,6 +1,7 @@
 <?php
 $this->addRoute('','Welcome,index');
-$this->addRoute('home','Welcome,index');
+$this->addRoute('welcome','Home,index');
+$this->addRoute('home','Home,authenticatedHome');
 $this->addRoute('map','Welcome,map');
 $this->addRoute('cart','Cart,loadData');
 $this->addRoute('User/registration','User,register');

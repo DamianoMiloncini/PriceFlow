@@ -25,9 +25,8 @@ class Cart extends \app\core\Controller
                 $itemToBeUpdated->removeFromCart($_POST['cart_id'], $_POST['item_id']);
             }
             return;
-        }
-
-        // Getting all the stores
+        }else{
+            // Getting all the stores
         $store = new \app\models\Map();
         $store = $store->getAll();
 
@@ -47,6 +46,9 @@ class Cart extends \app\core\Controller
 
         
         $this->view('cart', $data);
+        }
+
+        
     }
 
     function handler(){

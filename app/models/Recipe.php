@@ -7,7 +7,7 @@ use PDO;
 class Recipe extends \app\core\Model
 {
     // Function to create a new recipe
-    public function createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status)
+    public function createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status, $total_price)
     {
         // Check if image path is provided
         if (!$imagePath) {
@@ -15,7 +15,7 @@ class Recipe extends \app\core\Model
         }
 
         // SQL statement for inserting recipe into the database
-        $sql = 'INSERT INTO recipe (user_id, title, content, duration, image, date_created, privacy_status) VALUES (:user_id, :title, :content, :duration, :image, NOW(), :privacy_status)';
+        $sql = 'INSERT INTO recipe (user_id, title, content, duration, image, date_created, privacy_status, total_price) VALUES (:user_id, :title, :content, :duration, :image, NOW(), :privacy_status, :total_price)';
 
         // Prepare the SQL statement
         $stmt = self::$_conn->prepare($sql);
@@ -27,6 +27,7 @@ class Recipe extends \app\core\Model
         $stmt->bindParam(':duration', $duration);
         $stmt->bindParam(':image', $imagePath);
         $stmt->bindParam(':privacy_status', $privacy_status);
+        $stmt->bindParam(':total_price', $total_price);
 
         // Execute the statement
         $success = $stmt->execute();

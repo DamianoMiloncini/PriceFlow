@@ -35,7 +35,7 @@ class Recipe extends \app\core\Controller
             $recipe = new \app\models\Recipe();
     
             // Create the recipe
-            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status);
+            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status, 0);
     
             if ($success) {
                 // Redirect to recipe listing
