@@ -5,106 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .zone {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .zone img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            /* Adjust image size to grow */
-            height: auto;
-            /* Adjust image size to grow */
-        }
-
-        .item-info {
-            font-size: 35px;
-            margin-top: 20px;
-            text-align: left;
-            /* Align item info as a column */
-        }
-
-        .brand {
-            font-size: 20px;
-        }
-
-        .item-name {
-            font-size: 40px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
-        .item-quantity {
-            font-size: 20px;
-            margin-top: 5px;
-        }
-
-        .price {
-            font-size: 30px;
-            margin-top: 20px;
-        }
-
-        .buttons {
-            margin-top: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 20px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <div class="zone" id="zoneA">
+<body class="bg-gray-100">
+    <div class="container mx-auto flex h-screen items-center">
+        <div class="zone flex-1 flex justify-center" id="zoneA">
             <?php if ($item) : ?>
-                <img src="<?php echo $item['image']; ?>" alt="Item Image">
+                <img src="<?php echo $item['image']; ?>" alt="Item Image" class="max-w-full max-h-full w-auto h-auto">
             <?php else : ?>
                 <p>Item not found.</p>
             <?php endif; ?>
         </div>
-        <div class="zone" id="zoneB">
+        <div class="zone flex-1 flex flex-col items-center justify-center" id="zoneB">
             <?php if ($item) : ?>
-                <div class="item-info">
-                    <div class="brand"><?php echo $item['brand']; ?></div>
-                    <div class="item-name"><?php echo $item['name']; ?></div>
-                    <div class="item-quantity">Quantity: <?php echo $item['quantity']; ?></div>
-                    <div class="price">Price: <?php echo $item['price']; ?></div>
-                    <div class="buttons">
+                <div class="item-info text-left">
+                    <div class="brand text-lg"><?php echo $item['brand']; ?></div>
+                    <div class="item-name text-2xl font-bold mt-2"><?php echo $item['name']; ?></div>
+                    <div class="item-quantity text-lg mt-2">Quantity: <?php echo $item['quantity']; ?></div>
+                    <div class="price text-lg mt-4">Price: <?php echo $item['price']; ?></div>
+                    <div class="buttons mt-4">
                         <form action="/bookmark/add/<?php echo $item['item_id']?>" method="post">
-                            <button class="button" type="submit" name="add_item">Bookmark</button>
+                            <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_item">Bookmark</button>
                         </form>
                         <form action="/cart/add/<?php echo $item['item_id']?>" method="post">
-                            <button class="button" type="submit" name="add_item">Add to Cart</button>
+                            <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" type="submit" name="add_item">Add to Cart</button>
                         </form>
                     </div>
                 </div>

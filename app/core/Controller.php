@@ -8,6 +8,7 @@ class Controller{
 		if(is_array($data) && !array_is_list($data)){
 			extract($data);
 		}
+		include('app/views/topBar.php');
 		include('app/views/' . $name . '.php');
 	}
 }

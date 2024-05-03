@@ -119,7 +119,7 @@
                     <script>                        
                         num++;
                     </script>
-                    <a style="text-decoration:none; color:black;" href=''>
+                    <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
                         <div class="item">
                             <img id="itemImage" src="<?php echo $item['image']; ?>">
                             <div id="itemInformation">
