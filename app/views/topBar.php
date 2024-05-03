@@ -12,7 +12,8 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            z-index: 1000; /* Ensure the top bar stays on top of other content */
+            z-index: 1000;
+            /* Ensure the top bar stays on top of other content */
         }
 
         #wrapper::after {
@@ -220,17 +221,6 @@
     <link rel="stylesheet" href="app/views/Styles/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
-    <script>
-        function toggleCart() {
-            var cartQuickView = document.getElementById("cartQuickView");
-            if (cartQuickView.style.display === "none") {
-                cartQuickView.style.display = "block";
-            } else {
-                cartQuickView.style.display = "none";
-            }
-        }
-    </script>
-
 </head>
 
 <body>
@@ -259,7 +249,7 @@
                     echo '<a class="userBtn" href="/Recipe/create">Recipe</a>';
                     echo '<a class="userBtn" href="/User/bookmark">Bookmarks</a>';
                     echo '<a class="userBtn" href="/User/logout">Log Out</a>';
-                    echo '<a id="cart" class="bi bi-cart4" onclick="toggleCart()"></i></a>';
+                    echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
                 }
             } else {
                 echo '<a id="login" href="/User/login">Log In</a>';
@@ -267,25 +257,7 @@
             }
 
             ?>
-
-
-
         </nav>
-
-
-
-
-
-    </div>
-
-    <div id='cartQuickView'>
-        
-        <div class='cartButtons'>
-            <a id="viewFullCartButton" href="/cart">View Full Cart</a>
-            <br>
-            <a id="cartCheckoutButton" href="/">Checkout</a>
-        </div>
-
     </div>
 
 </body>
