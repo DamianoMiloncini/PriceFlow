@@ -72,5 +72,3 @@ function scrapeMetroItems($query)
         return [];
     }
 }
-
-scrapeMetroItems("eggs");
