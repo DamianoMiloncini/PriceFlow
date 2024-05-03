@@ -1,5 +1,5 @@
 <?php
-$this->addRoute('','Welcome,index');
+$this->addRoute('','Home,index');
 $this->addRoute('welcome','Home,index');
 $this->addRoute('home','Home,authenticatedHome');
 $this->addRoute('map','Welcome,map');
