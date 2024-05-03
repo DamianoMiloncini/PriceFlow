@@ -4,6 +4,7 @@ $this->addRoute('welcome','Home,index');
 $this->addRoute('home','Home,authenticatedHome');
 $this->addRoute('map','Welcome,map');
 $this->addRoute('cart','Cart,loadData');
+$this->addRoute('cart/add/{item_id}', 'Cart,add');
 $this->addRoute('User/registration','User,register');
 $this->addRoute('User/login','User,login');
 $this->addRoute('User/logout' , 'User,logout');

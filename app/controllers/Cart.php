@@ -6,6 +6,7 @@ namespace app\controllers;
 class Cart extends \app\core\Controller
 {
 
+    
     function loadData(){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,5 +72,12 @@ class Cart extends \app\core\Controller
         }
     }
 
+    function add($item_id)
+    {
+        $user_id = $_SESSION['user_id']; // Get user id from session
+        $cart = new \app\models\Cart();
+        $cart -> addToCart($user_id, $item_id);
+        header("Location: /cart");
+    }
 
 }

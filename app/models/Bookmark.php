@@ -10,19 +10,30 @@ class Bookmark extends \app\core\Model
     public $item_id;
     public $user_id;
 
-
     //insert into db
     function add($user_id, $item_id)
     {
-        // SQL statement
-        $SQL = 'INSERT INTO bookmarked_item (item_id, user_id) VALUES (:item_id, :user_id)';
-        // Prepare statement
+        // Check if the item is already bookmarked
+        $SQL = 'SELECT * FROM bookmarked_item WHERE item_id = :item_id AND user_id = :user_id';
         $STMT = self::$_conn->prepare($SQL);
-        // Execute statement
         $STMT->execute([
             'item_id' => $item_id,
             'user_id' => $user_id,
         ]);
+        $existingBookmark = $STMT->fetch(PDO::FETCH_ASSOC);
+
+        // If the item is not already bookmarked, add it
+        if (!$existingBookmark) {
+            // SQL statement
+            $SQL = 'INSERT INTO bookmarked_item (item_id, user_id) VALUES (:item_id, :user_id)';
+            // Prepare statement
+            $STMT = self::$_conn->prepare($SQL);
+            // Execute statement
+            $STMT->execute([
+                'item_id' => $item_id,
+                'user_id' => $user_id,
+            ]);
+        }
     }
 
     //getAll bookmark_item from a specific user

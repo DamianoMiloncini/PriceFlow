@@ -101,9 +101,11 @@
                     <div class="price">Price: <?php echo $item['price']; ?></div>
                     <div class="buttons">
                         <form action="/bookmark/add/<?php echo $item['item_id']?>" method="post">
-                            <button type="submit" name="add_item">Bookmark</button>
+                            <button class="button" type="submit" name="add_item">Bookmark</button>
                         </form>
-                        <button class="button">Add to Cart</button>
+                        <form action="/cart/add/<?php echo $item['item_id']?>" method="post">
+                            <button class="button" type="submit" name="add_item">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             <?php else : ?>
