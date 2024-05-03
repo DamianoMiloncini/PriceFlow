@@ -1,6 +1,8 @@
 <?php
 
 namespace app\controllers;
+use app\models\Item;
+
 
 class Recipe extends \app\core\Controller
 {
@@ -17,25 +19,25 @@ class Recipe extends \app\core\Controller
             $image = $_FILES['image'];
             // Get the privacy status
             $privacy_status = $_POST['privacy_status'];
-
+    
             // Get the current image path from the database
             $currentImage = null;
-
+    
             // Handle image upload
             $imagePath = $this->handleImageUpload($image, $currentImage);
-
+    
             if (!$imagePath) {
                 header('Location: /Recipe/create');
             }
-
+    
             // Get user ID from session
             $user_id = $_SESSION['user_id'];
-
+    
             // Instantiate Recipe model
             $recipe = new \app\models\Recipe();
-
+    
             // Create the recipe
-            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status, 0);
+            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status);
     
             if ($success) {
                 // Redirect to recipe listing
@@ -44,9 +46,39 @@ class Recipe extends \app\core\Controller
                 echo "There was an error creating the recipe. Please try again";
             }
         } else {
-            $this->view('Recipe/create');
+            $recipeModel = new \app\models\Recipe();
+        $recipes = $recipeModel->getAllPublicRecipesWithImages();
+
+        //Items
+        $itemsModel = new \app\models\Item();
+        $items = $itemsModel->loadAllItems();
+
+        $data = [
+            'recipes' => $recipes,
+            'items' => $items,
+        ];
+
+            $this->view('Recipe/create', $data);
         }
     }
+
+
+
+    #[\app\accessFilters\Login]
+    public function items($searchTerm)
+    {
+        $_conn = \app\core\Model::getConnection();
+        $itemObjects = Item::loadItems($searchTerm, $_conn);
+
+        $data = [
+            'items' => $itemObjects
+        ];
+
+        $this->view('Recipe/items', $data);
+
+    }
+    
+
 
 
     #[\app\accessFilters\Login]

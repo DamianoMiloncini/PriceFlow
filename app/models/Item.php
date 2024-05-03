@@ -20,6 +20,7 @@ class Item extends \app\core\Model
 
     public function __construct($object = null)
     {
+        parent::__construct();
         if ($object != null) {
             if (is_object($object)) {
                 $this->item_id = $object->item_id;
