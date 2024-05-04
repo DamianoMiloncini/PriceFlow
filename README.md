@@ -49,3 +49,11 @@ There are some bugs to be fixed of course, but these will be addressed shortly.
 - Search by user location & Store details need to be merged with the rest of the code 
 - Delete Bookmark is done
 - Internalization will be done today in class (Fri. May 3rd)
+
+# Micka's progress (May 3rd)
+- Search by user location & See Store Details is merged with Santiago's code 
+- I need to do some CSS (View account, 2FA,..)
+- Internalization has been started (might lose my mind on it but hopefully get it done this weekend)
+- Link my Search by user location with the filter by store as well
+- Add all error handling
+- Codeception to test all my features
