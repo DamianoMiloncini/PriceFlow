@@ -28,9 +28,30 @@
                         <form action="/bookmark/add/<?php echo $item['item_id']?>" method="post">
                             <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_item">Bookmark</button>
                         </form>
+                        <br>
                         <form action="/cart/add/<?php echo $item['item_id']?>" method="post">
                             <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" type="submit" name="add_item">Add to Cart</button>
                         </form>
+
+                        <?php
+                        if ($stores != null) {
+                            echo "<details>";
+                            echo "<summary>Stores near you</summary><br>"; 
+                            foreach($stores as $place) {
+                            //a safe of sending data through the URL (a life saver frl frl)
+                            $storeParam = urlencode(json_encode($place));
+                            //make this clickable and sent data about a specific store to the store details view
+                            echo <<<HTML
+                                <li><a href = "/storeDetails?store=$storeParam">{$place['displayName']['text']}, {$place['formattedAddress']}  </a></li>
+                                <br>
+                            HTML;
+                         }   
+                            echo "</details>";
+                        }
+                        else {
+                            echo 'No stores within 5km from your location';
+                        }
+                         ?>
                     </div>
                 </div>
             <?php else : ?>
