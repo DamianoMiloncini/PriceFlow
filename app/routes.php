@@ -37,5 +37,7 @@ $this->addRoute('storeDetails', 'searchLocation,storeDetails');
 $this->addRoute('bookmark/delete/{item_id}', 'bookmark,delete');
 $this->addRoute('bookmark/add/{item_id}', 'bookmark,add');
 $this->addRoute('searchLocation', 'searchLocation,search');
-$this->addRoute('Recipe/addItemToRecipe', 'Recipe,addItemToRecipe');
+$this->addRoute('Recipe/addItemToRecipe/{recipe_id}', 'Recipe,addItemToRecipe');
 $this->addRoute('Recipe/items/{searchTerm}', 'Recipe,items');
+$this->addRoute('Recipe/insertTest/{item_id}', 'Recipe,insertTest');
+$this->addRoute('Cart/items/{cart_id}/{item_id}/{method}', 'Cart,why');

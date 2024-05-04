@@ -11,37 +11,42 @@ class Recipe extends \app\core\Controller
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $recipe = new \app\models\Recipe();
+
+
             // Get form data
-            $title = $_POST['title'];
-            $content = $_POST['content'];
-            $duration = $_POST['duration'];
+            $recipe->title = $_POST['title'];
+            $recipe->content = $_POST['content'];
+            $recipe->duration = $_POST['duration'];
             // Get the image file information
             $image = $_FILES['image'];
             // Get the privacy status
-            $privacy_status = $_POST['privacy_status'];
+            $recipe->privacy_status = $_POST['privacy_status'];
     
             // Get the current image path from the database
             $currentImage = null;
     
             // Handle image upload
-            $imagePath = $this->handleImageUpload($image, $currentImage);
+            $recipe->imagePath = $this->handleImageUpload($image, $currentImage);
     
-            if (!$imagePath) {
+            if (!$recipe->imagePath) {
                 header('Location: /Recipe/create');
             }
+
+            $recipe->total_price = 0;
     
             // Get user ID from session
-            $user_id = $_SESSION['user_id'];
-    
-            // Instantiate Recipe model
-            $recipe = new \app\models\Recipe();
+            // $user_id = $_SESSION['user_id'];
+            $recipe->user_id = $_SESSION['user_id'];
     
             // Create the recipe
-            $success = $recipe->createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status);
+            $success = $recipe->createRecipe();
     
             if ($success) {
+                $recipe_id = $recipe->recipe_id;
                 // Redirect to recipe listing
-                header('Location: /Recipe/displayAll');
+                header('Location: /Recipe/addItemToRecipe/' . $recipe_id);
+                //header('Location: /home');
             } else {
                 echo "There was an error creating the recipe. Please try again";
             }
@@ -62,11 +67,37 @@ class Recipe extends \app\core\Controller
         }
     }
 
+    public function addItemToRecipe($recipe_id){
+
+        $recipe = new \app\models\Recipe();
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $item_id = $_POST['item_id'];
+            $recipe->insertItemInRecipe($recipe_id, $item_id); 
+        }
+        
+        $recipe = $recipe->getRecipeByID($recipe_id);
+        //Items
+        $itemsModel = new \app\models\Item();
+        $items = $itemsModel->loadAllItems();
+
+        $data = [
+            'recipes' => $recipe,
+            'items' => $items,
+        ];
+    
+        $this->view('Recipe/addItemToRecipe', $data);
+    }
+
 
 
     #[\app\accessFilters\Login]
     public function items($searchTerm)
     {
+        $recipe = new \app\models\Recipe();
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $item_id = $_POST['item_id'];
+            $recipe->insertItemInRecipe($recipe_id, $item_id); 
+        }
         $_conn = \app\core\Model::getConnection();
         $itemObjects = Item::loadItems($searchTerm, $_conn);
 
@@ -276,8 +307,15 @@ class Recipe extends \app\core\Controller
         $recipeModel = new \app\models\Recipe();
         $recipeData = $recipeModel->getRecipeByID($recipe_id);
 
+        $itemsInRecipe = $recipeModel->getItemsInRecipe($recipe_id);
+
+        $data = [
+            'recipeData' => $recipeData,
+            'itemsInRecipe' => $itemsInRecipe
+        ];
+
         // Display recipe details
-        $this->view('Recipe/recipeDetails', ['recipe' => $recipeData]);
+        $this->view('Recipe/recipeDetails', $data);
     }
 
     public function search()

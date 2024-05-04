@@ -12,11 +12,10 @@
 </head>
 <body>
     <div id="wrapper">
-        <form action="Recipe/itemToRecipe" method="post" enctype="multipart/form-data">
+        <div id="itemBoxWrapper">
             <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
-            <a id="searchButton" href="/localhost/Item/search/">Search</a>    
-        </form>
-            <div class="divider"></div>
+            <button onclick="fetchData()">Search</button>    
+
             <div id="items">
                 <?php foreach ($data['items'] as $item) : ?>
                     <script>                        
@@ -30,11 +29,12 @@
                                     <h6>By <?php echo $item['brand']; ?></h6>
                                 </div>
                                 <h7>$<?php echo $item['price'] ?></h7>
-                                <button type="submit" id="addButton">Add</button>
+                                <button type="button" id="addButton" onclick="addItemToRecipe(<?php echo $item['item_id']; ?>);">Add</button>
                             </div>
                         </div>
                 <?php endforeach ?>
             </div>
+        </div>
     </div>
 </body>
 </html>

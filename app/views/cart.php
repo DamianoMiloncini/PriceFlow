@@ -13,21 +13,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
     <!-- <?php
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     // This block handles the AJAX request
-    //     $cartId = $_POST['cartId'];
-    //     $itemId = $_POST['itemId'];
-        
-    //     // Here you can perform any processing with the received cartId and itemId values
-    //     // For example, update the quantity in the cart
-    //     $itemToBeUpdated = new \app\models\Cart();
-    //     $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
+            // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            //     // This block handles the AJAX request
+            //     $cartId = $_POST['cartId'];
+            //     $itemId = $_POST['itemId'];
 
-    //     // You can echo a response back to JavaScript if needed
-    //     echo "Quantity updated successfully";
-    //     exit; // Exit to prevent further execution of the file
-    // }
-    ?>
+            //     // Here you can perform any processing with the received cartId and itemId values
+            //     // For example, update the quantity in the cart
+            //     $itemToBeUpdated = new \app\models\Cart();
+            //     $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
+
+            //     // You can echo a response back to JavaScript if needed
+            //     echo "Quantity updated successfully";
+            //     exit; // Exit to prevent further execution of the file
+            // }
+            ?>
     <script>
         function removeOne() {
             var cartId = document.getElementById("cartId").value;
@@ -93,7 +93,7 @@
 
                         <img class="itemImages" src=<?php echo $item['image'] ?>>
 
-                        
+
                         <!-- <div id ="itemInformation"> -->
                         <h5><?php echo $item['name'] ?></h5>
                         <h6 style="margin-left:2%;"><?php echo $item['brand'] ?></h6>
@@ -110,24 +110,85 @@
                             ?>
                         </h5>
 
-                        <iframe name="formFrame" id="formFrane" style="display: none;"></iframe>
-
-                        <form id="cartForm" method='post' action='' target="formFrame">
-                            <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
-                            <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
-                            <div id="cartButtons">
-                                <input type="submit" name="minus1" value="-"class="bttns">
-                                <!-- <button name="add1" value="+" class="bttns" onclick="removeOne()">-</button> -->
-                                <input type="submit" name="add1" value="+" class="bttns">
-                                <button type="submit" class="bttns" name="deleteButton">
-                                    <i class="bi bi-trash3"></i>
-                                </button>
-                            </div>
-                        </form>
+                        <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+                        <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
+                        <div id="cartButtons">
+                            <button type="submit" id="minusBtn" name="minus1" class="bttns" onClick="minus1('<?php echo $item['item_id']; ?>');">-</button>
+                            <button type="submit" id="addBtn" name="add1" class="bttns" onClick="add1('<?php echo $item['item_id']; ?>');">+</button>
+                            <button type="submit" class="bttns" name="deleteButton" onClick="deleteItem('<?php echo $item['item_id']; ?>');"><i class="bi bi-trash3"></i></button>
+                        </div>
                     </div>
                 <?php endforeach ?>
             </div>
         </div>
+
+        <script>
+            function minus1(item_id) {
+                var cart_id = document.getElementById("cartId").value;
+                var url = "/Cart/items/" + cart_id + "/" + item_id + '/' + 'minus';
+                // Make the fetch request
+                fetch(url)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .then(data => {
+                        // Replace the content of the lorem-ipsum div with the response text
+                        document.getElementById("cartItems").innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch request:', error);
+                    });
+            }
+
+            function add1(item_id) {
+                var cart_id = document.getElementById("cartId").value;
+                var url = "/Cart/items/" + cart_id + "/" + item_id + '/' + 'add';
+                // Make the fetch request
+                fetch(url)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .then(data => {
+                        // Replace the content of the lorem-ipsum div with the response text
+                        document.getElementById("cartItems").innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch request:', error);
+                    });
+            }
+
+            function deleteItem(item_id){
+                var cart_id = document.getElementById("cartId").value;
+                var url = "/Cart/items/" + cart_id + "/" + item_id + '/' + 'delete';
+                // Make the fetch request
+                fetch(url)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .then(data => {
+                        // Replace the content of the lorem-ipsum div with the response text
+                        document.getElementById("cartItems").innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch request:', error);
+                    });
+            }
+        </script>
 
     </div>
 
@@ -138,7 +199,7 @@
 
     <!-- Map container -->
     <div id="cartMap">
-        <?php include 'app/views/map.php'; 
+        <?php include 'app/views/map.php';
         ?>
     </div>
 

@@ -80,4 +80,26 @@ class Cart extends \app\core\Controller
         header("Location: /cart");
     }
 
+    function why($cart_id, $item_id, $method){
+
+        if($method === 'minus'){
+            $itemToBeUpdated = new \app\models\Cart();
+            $itemToBeUpdated->subtractItemQuantityInCart($cart_id, $item_id);
+        }
+        if($method === 'add'){
+            $itemToBeUpdated = new \app\models\Cart();
+            $itemToBeUpdated->addItemQuantityInCart($cart_id, $item_id);
+        }
+        if($method === 'delete'){
+            $itemToBeUpdated = new \app\models\Cart();
+            $itemToBeUpdated->removeFromCart($cart_id, $item_id);
+        }
+        
+        
+        $itemsInCart = new \app\models\Cart();
+        $itemsInCart = $itemsInCart->getUserCartItems($_SESSION['user_id']);
+
+        $this->view('cartItems', $itemsInCart);
+    }
+
 }

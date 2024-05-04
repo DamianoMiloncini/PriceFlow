@@ -6,11 +6,19 @@ use PDO;
 
 class Recipe extends \app\core\Model
 {
+    public $recipe_id;
+    public $user_id;
+    public $title;
+    public $content;
+    public $duration;
+    public $imagePath;
+    public $privacy_status;
+    public $total_price;
     // Function to create a new recipe
-    public function createRecipe($user_id, $title, $content, $duration, $imagePath, $privacy_status, $total_price)
+    public function createRecipe()
     {
         // Check if image path is provided
-        if (!$imagePath) {
+        if (!$this->imagePath) {
             return false;
         }
 
@@ -21,21 +29,52 @@ class Recipe extends \app\core\Model
         $stmt = self::$_conn->prepare($sql);
 
         // Bind parameters
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':duration', $duration);
-        $stmt->bindParam(':image', $imagePath);
-        $stmt->bindParam(':privacy_status', $privacy_status);
-        $stmt->bindParam(':total_price', $total_price);
+        // $stmt->bindParam(':user_id', $user_id);
+        // $stmt->bindParam(':title', $title);
+        // $stmt->bindParam(':content', $content);
+        // $stmt->bindParam(':duration', $duration);
+        // $stmt->bindParam(':image', $imagePath);
+        // $stmt->bindParam(':privacy_status', $privacy_status);
+        // $stmt->bindParam(':total_price', $total_price);
 
         // Execute the statement
-        $success = $stmt->execute();
+        $success = $stmt->execute(
+            [
+                'user_id' => $this->user_id,
+                'title' => $this->title,
+                'content' => $this->content,
+                'duration' => $this->duration,
+                'image' => $this->imagePath,
+                'privacy_status' => $this->privacy_status,
+                'total_price' => $this->total_price,
+            ]
+        );
+
+        $this->recipe_id = self::$_conn->lastInsertId();
 
         // Return the result of the execution
         return $success;
     }
 
+    public function insertItemInRecipe($recipe_id, $item_id)
+    {
+        $sql = 'INSERT INTO items_in_recipe (recipe_id, item_id, quantity_needed) VALUES (:recipe_id, :item_id, :quantity_needed)';
+
+        // Prepare the SQL statement
+        $stmt = self::$_conn->prepare($sql);
+
+        // Execute the statement
+        $success = $stmt->execute(
+            [
+                'recipe_id' => $recipe_id,
+                'item_id' => $item_id,
+                'quantity_needed' => 0,
+            ]
+        );
+
+        // Return the result of the execution
+        return $success;
+    }
 
     // Function to update an existing recipe
     public function updateRecipe($recipe_id, $title, $content, $duration, $imagePath, $privacy_status)
@@ -95,17 +134,107 @@ class Recipe extends \app\core\Model
     // Function to fetch a recipe by its ID from the database
     public function getRecipeByID($recipe_id)
     {
-        // SQL statement for fetching a recipe by its ID from the database
+
+        // Getting recipe info
         $sql = 'SELECT * FROM recipe WHERE recipe_id = :recipe_id';
-        // Prepare the SQL statement
+
         $stmt = self::$_conn->prepare($sql);
-        // Bind parameters
-        $stmt->bindParam(':recipe_id', $recipe_id);
-        // Execute the statement
-        $stmt->execute();
-        // Fetch the recipe
+
+        $stmt->execute([
+            'recipe_id' => $recipe_id
+        ]);
+
         $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
+
         return $recipe;
+    }
+
+    public function getItemsInRecipe($recipe_id)
+    {
+        $allInformation = [];
+
+        $sql = 'SELECT * FROM items_in_recipe WHERE recipe_id = :recipe_id';
+
+        $stmt = self::$_conn->prepare($sql);
+
+        $stmt->execute([
+            'recipe_id' => $recipe_id
+        ]);
+
+        $itemsInRecipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Getting the items information
+        foreach($itemsInRecipe as $item):
+            $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
+
+            $STMT = self::$_conn->prepare($SQL);
+            
+            $STMT->execute(
+                [
+                    'item_id' => $item['item_id']
+                ]
+            );
+
+            $itemInfo = $STMT->fetch(PDO::FETCH_ASSOC);
+
+            $allInformation[] = array_merge($item, $itemInfo);
+
+        endforeach;
+
+        return $allInformation;
+    }
+
+    public function getUserCartItems($id)
+    {
+        // Getting users cart 
+        $SQL = 'SELECT * FROM cart WHERE user_id = :user_id';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute(
+            [
+                'user_id' => $id
+            ]
+        );
+
+        $cart = $STMT->fetch(PDO::FETCH_ASSOC);
+        $cart_id = $cart['cart_id'];
+
+
+        $allInformation = [];
+
+        // Getting users cart items
+        $SQL = 'SELECT * FROM items_in_cart WHERE cart_id = :cart_id';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute(
+            [
+                'cart_id' => $cart_id
+            ]
+        );
+
+        $itemsInCart = $STMT->fetchAll(PDO::FETCH_ASSOC);
+
+        // Getting the items information
+        foreach ($itemsInCart as $item) :
+            $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
+
+            $STMT = self::$_conn->prepare($SQL);
+
+            $STMT->execute(
+                [
+                    'item_id' => $item['item_id']
+                ]
+            );
+
+            $itemInfo = $STMT->fetch(PDO::FETCH_ASSOC);
+
+            $allInformation[] = array_merge($item, $itemInfo, $cart);
+
+        endforeach;
+
+        return $allInformation;
     }
 
     // public function getAllRecipesWithImages()
@@ -329,11 +458,11 @@ class Recipe extends \app\core\Model
 
         // Prepare the SQL statement
         $stmt = self::$_conn->prepare($sql);
-        
+
         // Bind parameters
         $stmt->bindParam(':min_price', $minPrice, PDO::PARAM_INT);
         $stmt->bindParam(':max_price', $maxPrice, PDO::PARAM_INT);
-        
+
         // Execute the statement
         $stmt->execute();
 

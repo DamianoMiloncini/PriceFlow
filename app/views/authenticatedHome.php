@@ -1,3 +1,8 @@
+<?php 
+$user = new \app\models\User();
+//get user's information
+$user = $user->getByID($_SESSION['user_id']);
+if ($user) { ?>
 <html>
 
 <head>
@@ -18,8 +23,6 @@
         <div id="container">
 
         <?php
-
-        $user = new \app\models\User();
         //get user's information
         $user = $user->getByID($_SESSION['user_id']);
         ?>
@@ -201,3 +204,10 @@
 </body>
 
 </html>
+
+<?php }
+else{
+    header('location:/welcome');
+}
+
+?>

@@ -83,10 +83,10 @@
             transition: background-color 0.3s ease; 
         }
 
-#addButton:hover { 
-    background-color: #d4e7ff; 
-    cursor: pointer;
-}
+        #addButton:hover { 
+            background-color: #d4e7ff; 
+            cursor: pointer;
+        }
 </style>
 </head>
 <body>
@@ -108,37 +108,6 @@
         <div id="itemsInRecipe">
             
         </div>
-
-        <details>
-            <summary>Add item</summary>
-            <div id="itemBoxWrapper">
-            <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
-            <button onclick="fetchData()">Search</button>    
-
-
-            <div class="divider"></div>
-            <div id="items">
-//this is where
-
-                <?php foreach ($data['items'] as $item) : ?>
-                    <script>                        
-                        num++;
-                    </script>
-                        <div class="item">
-                            <img id="itemImage" src="<?php echo $item['image']; ?>">
-                            <div id="itemInformation">
-                                <div class="itemHeading">
-                                    <h5><?php echo $item['name']; ?></h5>
-                                    <h6>By <?php echo $item['brand']; ?></h6>
-                                </div>
-                                <h7>$<?php echo $item['price'] ?></h7>
-                                <button type="button" id="addButton" onclick="addItemToRecipe(<?php echo $item['item_id']; ?>);">Add</button>
-                            </div>
-                        </div>
-                <?php endforeach ?>
-            </div>
-                </div>
-        </details>
         
         <label for="privacy_status">Privacy:</label><br>
         <select id="privacy_status" name="privacy_status">
@@ -146,36 +115,10 @@
             <option value="private">Private</option>
         </select><br><br>
         
-        <button type="submit">Create Recipe</button>
+        <button type="submit">Continue</button>
     </form>
     </script>
 </body>
-<script>
-function fetchData() {
-    var inputText = document.getElementById("search").value;
-    if (inputText == '') return;
-    var url = "/Recipe/items/" + inputText;
-    // Make the fetch request
-    fetch(url)
-        .then(response => {
-            // Check if the response is successful
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(data => {
-            // Replace the content of the lorem-ipsum div with the response text
-            document.getElementById("items").innerHTML = data;
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch request:', error);
-        });
-}
-</script>
-
-
 
 
 </html>
