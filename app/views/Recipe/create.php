@@ -1,123 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Recipe</title>
 
     <style>
-        #itemBoxWrapper{
-            padding: 10px;
-            margin: 5px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
-            width: 50%;
+        #wrapper {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: whitesmoke;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 100%;
         }
 
-        #search{
-            resize: none;
+        #continueBtn {
+            width: 125px;
+            height: 50%;
+            display: inline;
+            background-color: #fbfdff;
             font-size: 15px;
             font-weight: 600;
             color: #000000;
             text-decoration: none;
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 35px;
+            cursor: pointer;
+            letter-spacing: 0px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        #continueBtn:hover {
+            background-color: #ededed;
+        }
+
+        #titleBar {
+            resize: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 5px;
             line-height: 30px;
             height: 40px;
             padding-left: 20px;
-            width: 75%;
+            width: 55%;
         }
 
-        #items {
-            margin: 20px;
-            margin: 20px;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            /* This is for the grid layout so that the recipes load in a 3 column per row layout  */
-            gap: 20px;
-        }
-
-        .item {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        #itemImage {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            opacity: 0.9;
-            /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
-        }
-
-
-        #itemInformation {
-            padding: 20px;
-        }
-
-        #itemHeading {
-            font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            padding-top: 20px;
-            padding-left: 20px;
-            font-size: 25px;
-            font-weight: 500;
-        }
-
-        #addButton{
-            display: inline-block;
-            padding: 5px 20px;
-            background-color: #eff7ff;
+        #content {
+            resize: none;
             font-size: 15px;
             font-weight: 600;
-            color: #006eff;
+            color: #000000;
             text-decoration: none;
             border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 35px;
-            margin-right: 8px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease; 
+            border-radius: 5px;
+            line-height: 30px;
+            height: 55%;
+            padding-left: 20px;
+            width: 55%;
         }
 
-        #addButton:hover { 
-            background-color: #d4e7ff; 
-            cursor: pointer;
+        #duration {
+            resize: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 5px;
+            line-height: 30px;
+            height: 40px;
+            padding-left: 20px;
+            width: 55%;
         }
-</style>
+
+    </style>
+
 </head>
+
 <body>
+    <div id="wrapper">
 
-    <h1>Create Recipe</h1>
-    <form action="/Recipe/create" method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
-        
-        <label for="content">Content:</label><br>
-        <textarea id="content" name="content" rows="4" required></textarea><br><br>
-        
-        <label for="duration">Duration:</label><br>
-        <input type="text" id="duration" name="duration" required><br><br>
-        
-        <label for="image">Image:</label><br>
-        <input type="file" id="image" name="image" required><br><br>
 
-        <div id="itemsInRecipe">
-            
-        </div>
-        
-        <label for="privacy_status">Privacy:</label><br>
-        <select id="privacy_status" name="privacy_status">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-        </select><br><br>
-        
-        <button type="submit">Continue</button>
-    </form>
-    </script>
+
+        <h2 style="font-size: 45px; font-weight:300;">Recipe Details</h2>
+
+        <div class="divider"></div>
+
+        <form action="/Recipe/create" method="post" enctype="multipart/form-data">
+            <!-- <label style="" for="title">Title:</label><br> -->
+            <input id="titleBar" type="text" id="title" name="title" placeholder="Title" require><br><br>
+
+            <!-- <label for="content">Content:</label><br> -->
+            <textarea id="content" name="content" rows="6" placeholder="Describe this recipe..." required></textarea><br><br>
+
+            <label style="padding-bottom: 10%;" for="duration">Duration (minutes):</label><br>
+            <input type="number" id="duration" name="duration" required><br><br>
+
+
+            <label for="image">Image:<br>
+            <input type="file" id="image" name="image" required><br><br>
+            </label>
+
+
+            <label for="privacy_status">Privacy:</label><br>
+            <select id="privacy_status" name="privacy_status">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select><br><br>
+
+            <button id="continueBtn" type="submit">Continue</button>
+        </form>
+    </div>
 </body>
 
 

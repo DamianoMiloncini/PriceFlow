@@ -80,14 +80,40 @@ class Recipe extends \app\core\Controller
         $itemsModel = new \app\models\Item();
         $items = $itemsModel->loadAllItems();
 
+        //Items in recipe
+        $recipeModel = new \app\models\Recipe();
+        $itemsInRecipe = $recipeModel->getItemsInRecipe($recipe_id);
+
         $data = [
             'recipes' => $recipe,
             'items' => $items,
+            'itemsInRecipe' => $itemsInRecipe
         ];
     
         $this->view('Recipe/addItemToRecipe', $data);
     }
 
+    function itemsInRecipeUpdate($recipe_id, $item_id, $method){
+
+        if($method === 'minus'){
+            $itemToBeUpdated = new \app\models\Recipe();
+            $itemToBeUpdated->subtractItemQuantityInRecipe($recipe_id, $item_id);
+        }
+        if($method === 'add'){
+            $itemToBeUpdated = new \app\models\Recipe();
+            $itemToBeUpdated->addItemQuantityInRecipe($recipe_id, $item_id);
+        }
+        if($method === 'delete'){
+            $itemToBeUpdated = new \app\models\Recipe();
+            $itemToBeUpdated->removeFromRecipe($recipe_id, $item_id);
+        }
+        
+        
+        $recipeModel = new \app\models\Recipe();
+        $itemsInRecipe = $recipeModel->getItemsInRecipe($recipe_id);
+
+        $this->view('Recipe/itemsInRecipe', $itemsInRecipe);
+    }
 
 
     #[\app\accessFilters\Login]

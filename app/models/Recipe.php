@@ -149,6 +149,55 @@ class Recipe extends \app\core\Model
         return $recipe;
     }
 
+    public function subtractItemQuantityInRecipe($recipe_id, $item_id) {
+        $SQL = 'UPDATE items_in_recipe
+        SET quantity_needed = CASE 
+                                    WHEN quantity_needed > 1 THEN quantity_needed - 1 
+                                    ELSE 1 
+                                 END
+        WHERE recipe_id = :recipe_id AND item_id = :item_id;';
+
+        //prepare statement
+        $STATEMENT = self::$_conn->prepare($SQL);
+        $data = [
+            'recipe_id'=>$recipe_id,
+            'item_id'=>$item_id
+        ];
+
+        $STATEMENT->execute($data);
+    }
+
+    public function addItemQuantityInRecipe($recipe_id, $item_id){
+        $SQL = 'UPDATE items_in_recipe
+        SET quantity_needed = quantity_needed + 1 
+        WHERE recipe_id = :recipe_id AND item_id = :item_id;';
+
+        //prepare statement
+        $STATEMENT = self::$_conn->prepare($SQL);
+        $data = [
+            'recipe_id'=>$recipe_id,
+            'item_id'=>$item_id
+        ];
+
+        $STATEMENT->execute($data);
+        // $this->updateTotalCartPrice($cart_id);
+    }
+
+    public function removeFromRecipe($recipe_id, $item_id){
+        $SQL = 'DELETE FROM items_in_recipe 
+        WHERE recipe_id = :recipe_id AND item_id=:item_id';
+
+        $STATEMENT = self::$_conn->prepare($SQL);
+
+        $data = [
+            'recipe_id'=>$recipe_id,
+            'item_id'=>$item_id
+        ];
+
+        $STATEMENT->execute($data);
+        // $this->updateTotalCartPrice($cart_id);
+    }
+
     public function getItemsInRecipe($recipe_id)
     {
         $allInformation = [];
