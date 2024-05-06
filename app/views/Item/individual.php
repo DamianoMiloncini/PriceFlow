@@ -50,6 +50,7 @@
                             echo "</details>";
                         } else {
                             echo 'No stores within 5km from your location';
+                            //echo a button to allw
                         }
                         ?>
                     </div>
