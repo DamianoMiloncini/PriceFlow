@@ -171,9 +171,6 @@ class ItemController extends \app\core\Controller
        $results = json_decode($response, true);
 
        //Check if there are any results found
-       if (!isset($results['places'])) {
-           die('Error: No nearby stores found');
-       }
        //search store name
        if (str_contains($item_id, 'metro')) {
            $storeName = 'Metro';
@@ -183,7 +180,7 @@ class ItemController extends \app\core\Controller
            $storeName = null; //some error handling in case 
        }
        // Extract and display the store names and addresses based on the user filter
-       if ($storeName != null) {
+       if ($storeName != null && isset($results['places'])) {
            foreach ($results['places'] as $place) {
                if (str_contains($place['displayName']['text'], $storeName)) { // Check if the place is a Metro store
                    //bool to check if the store exists in the db already

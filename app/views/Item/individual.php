@@ -49,8 +49,11 @@
                             }
                             echo "</details>";
                         } else {
-                            echo 'No stores within 5km from your location';
-                            //echo a button to allw
+                            echo 'No stores within 5km from your location <br><br>';
+                            echo '<a class="userBtn" href="/User/registerLocation">Register a Location here</a><br><br>';
+                            //need a filter to check if the user already has a location saved
+                            echo '<a class="userBtn" href="/User/updateLocation">Update your location here</a>';
+
                         }
                         ?>
                     </div>

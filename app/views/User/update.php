@@ -10,7 +10,7 @@
 				<label>Username:<input type="text" class="form-control" name="username"  value='<?= $data->username ?>' /></label>
 			</div>
 			<div class="form-group">
-				<label>Password:<input type="text" class="form-control" name="password_hash"  value='<?= $data->password_hash ?>' /></label>
+				<label>Password:<input type="text" class="form-control" name="password_hash"  value='' /></label>
 			</div>
             <div class="form-group">
 				<label>First name:<input type="text" class="form-control" name="first_name"  value='<?= $data->first_name ?>' /></label>

@@ -144,6 +144,7 @@ class User extends \app\core\Controller {
 			$this->view('User/setup2fa',['QRCode'=>$QRCode]);
 		}
 	}
+    //
     function check2fa(){
         if($_SERVER['REQUEST_METHOD']==='POST'){
             $options = new AuthenticatorOptions();
@@ -221,9 +222,13 @@ class User extends \app\core\Controller {
             $user = new \app\models\User();
             $user = $user->getByID($_SESSION['user_id']);
             $password = $_POST['password'];
+            // $options = new AuthenticatorOptions();
+            // $authenticator = new Authenticator($options);
+            // $authenticator->setSecret($_SESSION[$user->secret]);
             //check if the password matches the user account password
             if ($user && password_verify($password,$user->password_hash)) {
                 //redirect the user to update2fa to scan the QR code again
+                unset($_SESSION['secret']);
                 header('location:/User/update2fa');
             }
             else {
