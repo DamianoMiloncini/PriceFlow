@@ -25,10 +25,14 @@
 </head>
 
 <body class="bg-gray-100">
-    <h1 class="text-2xl font-bold text-center my-8">Item List</h1>
+    <?php include 'app/views/Item/searchBar.php'; ?>
 
-    <!-- Filter button -->
-    <button onclick="togglePopup('filterPopup')" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Filter</button>
+    <div class="flex flex-row mt-4 justify-center gap-4">
+        <!-- Filter button -->
+        <button onclick="togglePopup('filterPopup')" class="w-20 bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Filter</button>
+        <!-- Sort button -->
+        <button onclick="togglePopup('sortPopup')" class="w-32 bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Sort by Price</button>
+    </div>
 
     <!-- Filter popup -->
     <div id="filterPopup" class="popup">
@@ -38,9 +42,6 @@
         <input type="number" id="maxPrice" min="0" step="0.01">
         <button onclick="applyFilter()" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Apply</button>
     </div>
-
-    <!-- Sort button -->
-    <button onclick="togglePopup('sortPopup')" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Sort by Price</button>
 
     <!-- Sort popup -->
     <div id="sortPopup" class="popup">
@@ -69,7 +70,7 @@
         // Function to toggle popup visibility
         function togglePopup(popupId) {
             var popup = document.getElementById(popupId);
-            popup.style.display = (popup.style.display === "none") ? "block" : "none";
+            popup.style.display = (popup.style.display === "block") ? "none" : "block";
         }
 
         // Function to apply price filter

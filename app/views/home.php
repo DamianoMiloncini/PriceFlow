@@ -102,17 +102,12 @@
                 <!-- <a id='filterButton' href="">
                     <i class="bi bi-funnel"></i>
                     Filter
-                </a> -->
-                
+                </a> -->  
                     <textarea id="search" name="searchBar" placeholder='Search recipes'></textarea></textarea>
 
                     <a id="searchButton" href="/localhost/Item/search/">
                         Search
-                    </a>
-                
-                
-
-                
+                    </a>      
             </div>
 
             <div class="divider"></div>

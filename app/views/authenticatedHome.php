@@ -1,31 +1,31 @@
-<?php 
+<?php
 $user = new \app\models\User();
 //get user's information
 $user = $user->getByID($_SESSION['user_id']);
 if ($user) { ?>
-<html>
+    <html>
 
-<head>
+    <head>
 
-    <title>Home</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="app\views\Styles\homeStyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+        <title>Home</title>
 
-</head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="app\views\Styles\homeStyle.css">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
-<body>
-    <?php include 'app/views/topBar.php'; ?>
+    </head>
+
+    <body>
+        <?php include 'app/views/topBar.php'; ?>
 
         <div id="container">
 
-        <?php
-        //get user's information
-        $user = $user->getByID($_SESSION['user_id']);
-        ?>
+            <?php
+            //get user's information
+            $user = $user->getByID($_SESSION['user_id']);
+            ?>
             <div id="loggedInTopLayer">
                 <div id="loggedInMiddleHeading">
 
@@ -46,20 +46,7 @@ if ($user) { ?>
 
         <div class="content">
 
-            <div class='navBar'>
-                <!-- <a id='filterButton' href="">
-                    <i class="bi bi-funnel"></i>
-                    Filter
-                </a> -->
-                
-                <textarea id="search" name="searchBar" placeholder='Search products and recipes'></textarea></textarea>
-
-                <a id="searchButton" href="/localhost/Item/search/">
-                    Search
-                </a>
-
-                
-            </div>
+            <?php include 'app/views/Item/searchBar.php'; ?>
 
             <div class="divider"></div>
 
@@ -86,11 +73,11 @@ if ($user) { ?>
                             <option value="option3">Highest to Lowest</option>
                         </select>
                     </div>
-                    
+
                 </div>
-            
+
             </div>
-            
+
 
             <script>
                 var num = 0;
@@ -116,10 +103,10 @@ if ($user) { ?>
                 <?php endforeach ?>
             </div>
 
-            
+
             <div id="items" style="display: <?php echo !isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
                 <?php foreach ($data['items'] as $item) : ?>
-                    <script>                        
+                    <script>
                         num++;
                     </script>
                     <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
@@ -169,7 +156,7 @@ if ($user) { ?>
                 });
                 document.getElementById("filterOptions").addEventListener("change", function() {
                     var selectedFilter = this.value;
-                    if (selectedFilter === "itemFilter") {                        
+                    if (selectedFilter === "itemFilter") {
                         document.getElementById("items").style.display = "grid";
                         document.getElementById("recipes").style.display = "none";
                         document.getElementById("contentHeading").textContent = "Items";
@@ -183,30 +170,13 @@ if ($user) { ?>
                 });
             </script>
 
-
-            <script>
-                // Get references to the search textarea and the search button
-                const searchTextArea = document.getElementById('search');
-                const searchButton = document.getElementById('searchButton');
-
-                // Add an event listener to the search textarea
-                searchTextArea.addEventListener('input', function() {
-                    // Get the value of the textarea and replace spaces with '+'
-                    const searchText = searchTextArea.value.trim().replace(/ /g, '+');
-
-                    // Update the href attribute of the search button
-                    searchButton.href = searchText ? '/Item/search/' + searchText : '';
-                });
-            </script>
-
         </div>
 
-</body>
+    </body>
 
-</html>
+    </html>
 
-<?php }
-else{
+<?php } else {
     header('location:/welcome');
 }
 
