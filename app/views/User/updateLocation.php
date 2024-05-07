@@ -32,26 +32,35 @@
 </head>
 
     <body>
-        <form id = "locationInfo" method = "POST" action="">
-            <h3>Enter your location details</h3>
-            <label>Address</label>
-            <input type="number" name="address" value = '<?= $data->address ?>' ><br>
-            <label>Street</label>
-            <input type="text" name="street" value = '<?= $data->street ?>'><br>
-            <label>City</label>
-            <select id= "city" name="city">
-                <!-- is going to be populated by JS -->
-                <option value = '<?= $data->city ?>'><?= $data->city ?></option>
-            </select><br>
-            <label>Province</label>
-            <select id = "province" onchange="populateCities()" name = "province" value = '<?= $data->province ?>'>
-                <option value="Ontario" <?=  ($data->province == 'Ontario') ? 'selected' : '' ?>>Ontario</option>
-                <option value="Quebec" <?=  ($data->province == 'Quebec') ? 'selected' : '' ?>>Quebec</option>
-            </select><br>
-            <label>Postal Code</label>
-            <input type="text" name="postal_code" value = '<?= $data->postal_code ?>'><br>
-            <input type="submit" name="button" value="Save Location"><br>
-        </form>
-
+    <div class='container'>
+    <form id="locationInfo" method="POST" action="">
+        <h3>Enter your location details</h3>
+        <div class="form-group">
+            <label>Address<input type="number" class="form-control" name="address" value="<?= $data->address ?>"></label>
+        </div>
+        <div class="form-group">
+            <label>Street<input type="text" class="form-control" name="street" value="<?= $data->street ?>"></label>
+        </div>
+        <div class="form-group">
+            <label>City<select id="city" class="form-control" name="city">
+                    <!-- is going to be populated by JS -->
+                    <option value="<?= $data->city ?>"><?= $data->city ?></option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Province<select id="province" class="form-control" onchange="populateCities()" name="province">
+                    <option value="Ontario" <?= ($data->province == 'Ontario') ? 'selected' : '' ?>>Ontario</option>
+                    <option value="Quebec" <?= ($data->province == 'Quebec') ? 'selected' : '' ?>>Quebec</option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Postal Code<input type="text" class="form-control" name="postal_code" value="<?= $data->postal_code ?>"></label>
+        </div>
+        <br>
+        <input type="submit" class="userBtn" name="button" value="Save Location">
+    </form>
+    </div>
     </body>
 </html>

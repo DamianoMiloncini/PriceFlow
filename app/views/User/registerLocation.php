@@ -30,25 +30,34 @@
 </head>
 
     <body>
-        <form id = "locationInfo" method = "POST" action="">
-            <h3>Enter your location details</h3>
-            <label>Address</label>
-            <input type="number" name="address" placeholder="821"><br>
-            <label>Street</label>
-            <input type="text" name="street" placeholder="Sainte Croix Ave"><br>
-            <label>City</label>
-            <select id= "city" name="city">
-                <!-- is going to be populated by JS -->
-            </select><br>
-            <label>Province</label>
-            <select id = "province" onchange="populateCities()" name = "province">
-                <option value="Ontario">Ontario</option>
-                <option value="Quebec">Quebec</option>
-            </select><br>
-            <label>Postal Code</label>
-            <input type="text" name="postal_code" placeholder="H4L 3X9"><br>
-            <input type="submit" name="button" value="Save Location"><br>
-        </form>
+    <div class='container'>
+    <form id="locationInfo" method="POST" action="">
+        <h3>Enter your location details</h3>
+        <div class="form-group">
+            <label>Address<input type="number" class="form-control" name="address" placeholder="821"></label>
+        </div>
+        <div class="form-group">
+            <label>Street<input type="text" class="form-control" name="street" placeholder="Sainte Croix Ave"></label>
+        </div>
+        <div class="form-group">
+            <label>City<select id="city" class="form-control" name="city">
+                    <!-- is going to be populated by JS -->
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Province<select id="province" class="form-control" onchange="populateCities()" name="province">
+                    <option value="Ontario">Ontario</option>
+                    <option value="Quebec">Quebec</option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Postal Code<input type="text" class="form-control" name="postal_code" placeholder="H4L 3X9"></label>
+        </div>
+        <input type="submit" class="userBtn" name="button" value="Save Location">
+    </form>
+    </div>
 
     </body>
 </html>

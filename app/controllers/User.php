@@ -81,7 +81,6 @@ class User extends \app\core\Controller {
     }
 
     //update user account informations
-    //#[\app\accessFilters\Login] // make sure that the user is logged in before modifying
     function updateUser() {
         $user = new \app\models\User();
         //get the user by id from Session
@@ -162,9 +161,8 @@ class User extends \app\core\Controller {
         }
     }
 
-
+    #[\app\accessFilters\Login]
     function viewAccount() {
-        if(isset($_SESSION['user_id'])) {
             $user = new \app\models\User();
             //get user's information
             $user = $user->getByID($_SESSION['user_id']);
@@ -176,7 +174,7 @@ class User extends \app\core\Controller {
             else { //if the user is not logged in, show the register and login button
                echo 'Not able to retrieve user informations.';
             }
-        }
+ 
     }
 
     function update2FA() {
@@ -222,18 +220,18 @@ class User extends \app\core\Controller {
             $user = new \app\models\User();
             $user = $user->getByID($_SESSION['user_id']);
             $password = $_POST['password'];
-            // $options = new AuthenticatorOptions();
-            // $authenticator = new Authenticator($options);
-            // $authenticator->setSecret($_SESSION[$user->secret]);
+            $options = new AuthenticatorOptions();
+            $authenticator = new Authenticator($options);
+            $authenticator->setSecret($_SESSION['secret_setup']);
             //check if the password matches the user account password
-            if ($user && password_verify($password,$user->password_hash)) {
+            if ($user && password_verify($password,$user->password_hash) && $authenticator->verify($_POST['totp'])) {
                 //redirect the user to update2fa to scan the QR code again
                 unset($_SESSION['secret']);
                 header('location:/User/update2fa');
             }
             else {
                 //try again
-                $msg = 'Wrong password, please try again';
+                $msg = 'Wrong password or Wrong secret, please try again';
                 $this->view('User/passwordCheck',$msg);
             }
         }
@@ -241,7 +239,7 @@ class User extends \app\core\Controller {
             $this->view('User/passwordCheck');
         }
     }
-
+    #[\app\accessFilters\Login]
     function registerLocation() {
         //check if the user has send information via the form
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -277,6 +275,7 @@ class User extends \app\core\Controller {
             $this->view('User/registerLocation');
         }
     }
+    #[\app\accessFilters\Login]
     function updateLocation() {
         //get the user informations from the session
         $user = new \app\models\User();
