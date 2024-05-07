@@ -1,6 +1,6 @@
 <html>
 
-    <head>
+<head>
     <title>User's profile </title>
     <style>
         .address-table {
@@ -19,28 +19,29 @@
     </style>
 
 </head>
-    <body>
-    <div id = 'profileContainer'> 
+
+<body>
+    <div id='profileContainer'>
         <!-- display user's information -->
         <div class='container'>
-        <table class="address-table">
-            <tr>
-               <td><label>Username</label></td> 
-                <td><input type="text" name="username" value = '<?= $data->username ?>' readonly = "readonly"/></td><br>
-            </tr>
-            <tr>
-                <td><label>First Name</label></td>
-                <td><input type="text" name="first_name" value = '<?= $data->first_name ?>' readonly = "readonly"/></td><br>
-            </tr>
+            <table class="address-table">
+                <tr>
+                    <td><label>Username</label></td>
+                    <td><input type="text" name="username" value='<?= $data->username ?>' readonly="readonly" /></td><br>
+                </tr>
+                <tr>
+                    <td><label>First Name</label></td>
+                    <td><input type="text" name="first_name" value='<?= $data->first_name ?>' readonly="readonly" /></td><br>
+                </tr>
 
-            <tr>
-                <td><label>Last Name</label></td>
-                <td><input type="text" name="last_name" value = '<?= $data->last_name ?>' readonly = "readonly"/></td><br>
-            </tr>
+                <tr>
+                    <td><label>Last Name</label></td>
+                    <td><input type="text" name="last_name" value='<?= $data->last_name ?>' readonly="readonly" /></td><br>
+                </tr>
 
 
-            <!-- check if the user has a registered a location, else don't show the rest of the html -->
-            <?php
+                <!-- check if the user has a registered a location, else don't show the rest of the html -->
+                <?php
                 $user = new \app\models\User();
                 $user = $user->getByID($_SESSION['user_id']);
 
@@ -72,18 +73,21 @@
                     <br>
                     <a class="userBtn" href="/User/updateLocation">Update Location</a>
                     HTML;
-                    
-                    
-                }
-            ?>
-             <a class="userBtn" href="/User/updateAccount">Update Profile</a>
-             <a class="userBtn" href="/User/passwordCheck">Update 2FA secret</a>
-             <a class="userBtn" href="/User/registerLocation">Register a favorite Location</a>
-             
-             <a class="userBtn" href="/home">Home</a>
-    </div>
 
-    </body>
+
+                }
+                ?>
+                <a class="userBtn" href="/User/updateAccount">Update Profile</a>
+                <a class="userBtn" href="/User/passwordCheck">Update 2FA secret</a>
+                <a class="userBtn" href="/User/registerLocation">Register a favorite Location</a>
+
+                <a class="userBtn" href="/Recipe/displayPrivate">Private Recipes</a>
+                <a class="userBtn" href="/Recipe/displayAll">All Recipes</a>
+
+                <a class="userBtn" href="/home">Home</a>
+        </div>
+
+</body>
 
 
 <html>
