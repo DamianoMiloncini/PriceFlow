@@ -29,6 +29,8 @@
         //invoke the populateCities function when the page loads to get the previously selected data from the user
         populateCities(); //to change
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="\app\views\Styles\styles.css">
 </head>
 
     <body>

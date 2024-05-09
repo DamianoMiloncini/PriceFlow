@@ -12,60 +12,6 @@
     <link rel="stylesheet" href="app\views\Styles\cartPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
-    <!-- <?php
-            // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //     // This block handles the AJAX request
-            //     $cartId = $_POST['cartId'];
-            //     $itemId = $_POST['itemId'];
-
-            //     // Here you can perform any processing with the received cartId and itemId values
-            //     // For example, update the quantity in the cart
-            //     $itemToBeUpdated = new \app\models\Cart();
-            //     $itemToBeUpdated->subtractItemQuantityInCart($cartId, $itemId);
-
-            //     // You can echo a response back to JavaScript if needed
-            //     echo "Quantity updated successfully";
-            //     exit; // Exit to prevent further execution of the file
-            // }
-            ?>
-    <script>
-        function removeOne() {
-            var cartId = document.getElementById("cartId").value;
-            var itemId = document.getElementById("itemId").value;
-
-
-            var url = "/cart.php"; // Get the current PHP script URL
-            console.log(url);
-            // Make the fetch request
-            fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'cartId=' + encodeURIComponent(cartId) + '&itemId=' + encodeURIComponent(itemId)
-                })
-                .then(response => {
-                    // Check if the response is successful
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
-                })
-                .then(data => {
-                    // Replace the content of the quantity_purchased div with the response text
-                    document.getElementById("quantity_purchased").innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch request:', error);
-                });
-        }
-    </script> -->
-
-
-
-
-
 </head>
 
 <body>

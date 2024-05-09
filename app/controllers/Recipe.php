@@ -67,6 +67,17 @@ class Recipe extends \app\core\Controller
         }
     }
 
+    public function homePageView($searchTerm){
+        $recipe = new \app\models\Recipe();
+        $recipeObjects = $recipe->loadRecipes($searchTerm);
+
+        $data = [
+            'recipes' => $recipeObjects
+        ];
+
+        $this->view('Recipe/recipeHomePage', $data);
+    }
+
     public function addItemToRecipe($recipe_id){
 
         $recipe = new \app\models\Recipe();
