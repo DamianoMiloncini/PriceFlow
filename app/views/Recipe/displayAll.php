@@ -67,20 +67,21 @@
     <button type="submit">Filter</button>
 </form>
 
-
     <ul class="recipe-list">
         <?php if (!empty($data)) : ?>
             <?php foreach ($data as $recipe) : ?>
+                
                 <li class="recipe-item">
                     <img src="/uploads/<?php echo basename($recipe['imagePath']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
                     <strong><?php echo $recipe['title']; ?></strong>
                     <p>Date Created: <?php echo $recipe['date_created']; ?> by <?php echo $recipe['username'] ?></p>
                     <div class="actions">
                         <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>">View Details</a>
-                        <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] === $_SESSION['user_id']) : ?>
+                        
+                        <?php if ($recipe['user_id'] == $_SESSION['user_id']) {?>
                             <a class="edit-btn" href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>">Edit</a>
                             <a class="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>">Delete</a>
-                        <?php endif; ?>
+                        <?php }; ?>
                     </div>
                 </li>
             <?php endforeach; ?>

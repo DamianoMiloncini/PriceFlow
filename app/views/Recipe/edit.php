@@ -82,6 +82,8 @@
         <label for="image">Choose a different image:</label><br>
         <input type="file" id="image" name="image"><br>
 
+        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>">Udate ingredients</a>
+
         <img src="/uploads/<?php echo basename($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
         <input type="hidden" name="current_image" value="<?php echo $recipe['image']; ?>">
 
@@ -100,60 +102,12 @@
             <h5 id="addingHeading">Edit items to recipe <?php echo $recipe['title']; ?></h5>
         <?php endforeach; ?>
     <?php else : ?>
-        <h5 id="addingHeading">Edit items to recipe</h5>
+        
     <?php endif; ?>
 
     <div class="divider"></div>
-    <h5>Items in recipe</h5>
 
-    <div id="itemsInRecipeList">
-        <?php if (isset($data['itemsInRecipe']) && is_array($data['itemsInRecipe'])) {
-            foreach ($data['itemsInRecipe'] as $item) { ?>
-                <div class="itemCard">
-                    <img class="itemImages" src="<?php echo $item['image']; ?>">
-                    <h5><?php echo $item['name']; ?></h5>
-                    <h6 style="margin-left:2%;"><?php echo $item['brand']; ?></h6>
-                    <h6 id="quantity" style="margin-left:2%;"><?php echo $item['quantity']; ?></h6>
-                    <h6 style="margin-left:2%;">Price: $<?php echo $item['price']; ?></h6>
-                    <h6 id="quantity_purchased" style="margin-left:2%;">Quantity needed: <?php echo $item['quantity_needed']; ?></h6>
-                    <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
-                    <input id="recipeId" type="hidden" name="cart_id" value="<?php echo $item['recipe_id']; ?>">
-                    <div id="cartButtons">
-                        <button type="button" id="minusBtn" name="minus1" class="bttns" onClick="minus1('<?php echo $item['item_id']; ?>');">-</button>
-                        <button type="button" id="addBtn" name="add1" class="bttns" onClick="add1('<?php echo $item['item_id']; ?>');">+</button>
-                        <button type="button" class="bttns" name="deleteButton" onClick="deleteItem('<?php echo $item['item_id']; ?>');"><i class="bi bi-trash3"></i></button>
-                    </div>
-                </div>
-        <?php }
-        } else {
-            echo "<h4>Empty</h4>";
-        } ?>
-    </div>
-
-    <a href="/Recipe/displayAll">Done</a>
-
-    <form id="addItemForm" method="POST">
-        <div id="items">
-            <?php if (isset($data['items']) && is_array($data['items'])) {
-                foreach ($data['items'] as $item) : ?>
-                    <form action="/Recipe/addItemToRecipe/<?php echo $item['item_id']; ?>" method="POST">
-                        <div class="item">
-                            <img id="itemImage" src="<?php echo $item['image']; ?>">
-                            <div id="itemInformation">
-                                <div class="itemHeading">
-                                    <h5><?php echo $item['name']; ?></h5>
-                                    <h6>By <?php echo $item['brand']; ?></h6>
-                                </div>
-                                <h7>$<?php echo $item['price'] ?></h7>
-                                <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
-                                <input type="hidden" name="recipe_id" value="<?php echo $recipe['recipe_id'] ?>">
-                            </div>
-                        </div>
-                    </form>
-            <?php endforeach;
-            } ?>
-        </div>
-    </form>
+    
 </div>
 
     <script>

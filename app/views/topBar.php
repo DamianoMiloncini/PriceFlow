@@ -26,7 +26,7 @@
             width: 100%;
         }
 
-        h1 {
+        #logoText {
             color: #191919;
             font-family: 'Nunito Sans', sans-serif;
             font-size: 18px;
@@ -229,7 +229,7 @@
         <div id="logoSection">
             <a href="/home" style="text-decoration: none">
                 <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
-                <h1>PriceWave</h1>
+                <h1 id="logoText">PriceWave</h1>
                 <!-- <img id="textLogo" src="app\resources\PriceWaveText.png"> -->
             </a>
         </div>

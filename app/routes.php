@@ -40,3 +40,4 @@ $this->addRoute('Recipe/items/{searchTerm}', 'Recipe,items');
 $this->addRoute('Recipe/insertTest/{item_id}', 'Recipe,insertTest');
 $this->addRoute('Cart/items/{cart_id}/{item_id}/{method}', 'Cart,why');
 $this->addRoute('Recipe/itemsInRecipe/{recipe_id}/{item_id}/{method}', 'Recipe,itemsInRecipeUpdate');
+$this->addRoute('Recipe/recipeHomePage/{searchTerm}', 'Recipe,homePageView');
