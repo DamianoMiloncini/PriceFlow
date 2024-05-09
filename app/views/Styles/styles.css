@@ -201,6 +201,20 @@ li::after {
     background-color: #0059c6; /* Change background color on hover */
     cursor: pointer;
 }
+/* test */
+.address-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.address-table td {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.address-table label {
+    font-weight: bold;
+}
 
 
 
