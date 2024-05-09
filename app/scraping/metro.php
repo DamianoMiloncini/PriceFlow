@@ -1,74 +1,59 @@
 <?php
-require 'vendor/autoload.php';
 
+use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 function scrapeMetroItems($query)
 {
-    // Create an HttpClient instance
-    $client = HttpClient::create();
-
-    // Define the URL
+    $browser = new HttpBrowser(HttpClient::create());
     $address = 'https://www.metro.ca/en/online-grocery/search?filter=' . $query;
+    $crawler = $browser->request('GET', $address, [
+        'headers' => [
+            'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        ],
+    ]);
 
-    try {
-        // Send a GET request
-        $response = $client->request('GET', $address, [
-            'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-                'Referer' => 'https://www.metro.ca/',
-            ],
-        ]);
+    $crawler = new Crawler($crawler->html());
+    $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCart');
 
-        // Get the status code directly from the response
-        $statusCode = $response->getStatusCode();
-        echo "Response Status Code: " . $statusCode . "\n";
-
-        // Check if the request was successful (status code 200)
-        if ($statusCode === 200) {
-            $content = $response->getContent();
-
-            // Parse the HTML content
-            $crawler = new Crawler($content);
-            $products = $crawler->filter('div.default-product-tile.tile-product.item-addToCart');
-
-            $items = [];
-            $products->each(function (Crawler $product) use (&$items) {
-                $item_id = $product->attr("data-product-code");
-                $name = $product->filter('div.head__title')->text();
-                $quantity = $product->filter('span.head__unit-details')->text();
-                $brand = $product->filter('span.head__brand')->text();
-                $price = $product->filter('span.price-update')->text();
-                $image = $product->filter('img[data-default="/images/shared/placeholders/icon-no-picture.svg"]')->attr('src');
-                $link = $product->filter('a.product-details-link')->attr('href');
-                $link = 'https://www.metro.ca' . $link;
-    
-                $item = [
-                    'item_id' => 'metro' . $item_id,
-                    'name' => $name,
-                    'quantity' => $quantity,
-                    'brand' => $brand,
-                    'price' => $price,
-                    'image' => $image,
-                    'link' => $link,
-                    'store' => "metro"
-                ];
-    
-                $items[] = $item;
-            });
-
-            print_r($items);
-            return $items;
-        } else {
-            echo "Error: Request failed with status code " . $statusCode . "\n";
-            return [];
-        }
-    } catch (TransportExceptionInterface $e) {
-        echo "Error: " . $e->getMessage() . "\n";
+    if ($products->count() === 0) {
+        // Handle the case where no products were found
         return [];
     }
+
+    $items = [];
+    $products->each(function (Crawler $product) use (&$items) {
+        $item_id = $product->attr("data-product-code") ?? null;
+        $name = $product->filter('div.head__title')->count() > 0 ? $product->filter('div.head__title')->text() : null;
+        $quantity = $product->filter('span.head__unit-details')->count() > 0 ? $product->filter('span.head__unit-details')->text() : null;
+        $brand = $product->filter('span.head__brand')->count() > 0 ? $product->filter('span.head__brand')->text() : null;
+        $price = $product->filter('span.price-update')->count() > 0 ? $product->filter('span.price-update')->text() : null;
+        $image = $product->filter('img[data-default="/images/shared/placeholders/icon-no-picture.svg"]')->count() > 0 ? $product->filter('img[data-default="/images/shared/placeholders/icon-no-picture.svg"]')->attr('src') : null;
+        $link = $product->filter('a.product-details-link')->count() > 0 ? $product->filter('a.product-details-link')->attr('href') : null;
+        $link = 'https://www.metro.ca' . $link;
+
+        // Check if any attribute is null, if so, skip this item
+        if (is_null($item_id) || is_null($name) || is_null($quantity) || is_null($brand) || is_null($price) || is_null($image) || is_null($link)) {
+            return; // Skip this item
+        }
+
+        $item = [
+            'item_id' => 'metro' . $item_id,
+            'name' => $name,
+            'quantity' => $quantity,
+            'brand' => $brand,
+            'price' => $price,
+            'image' => $image,
+            'link' => $link,
+            'store' => "metro"
+        ];
+
+        $items[] = $item;
+    });
+
+
+
+    print_r($items);
+    return $items;
 }

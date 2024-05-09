@@ -65,7 +65,7 @@ class Item extends \app\core\Model
     public function saveItem($query)
     {
         // SQL statement
-        $SQL = 'INSERT INTO item (item_id, name, price, image, quantity, brand, link, description) VALUES (:item_id, :name, :price, :image, :quantity, :brand, :link, :description)';
+        $SQL = 'INSERT INTO item (item_id, name, price, image, quantity, brand, link, description, store) VALUES (:item_id, :name, :price, :image, :quantity, :brand, :link, :description, :store)';
 
         // Prepare the statement
         $STMT = self::$_conn->prepare($SQL); // Use the instance property to access the connection
@@ -79,7 +79,8 @@ class Item extends \app\core\Model
             'quantity' => $this->quantity,
             'brand' => $this->brand,
             'link' => $this->link,
-            'description' => $this->description
+            'description' => $this->description,
+            'store' => $this->store
         ]);
 
         $this->saveItemQueryCombination($query);
