@@ -8,9 +8,9 @@
     <body>
     <div>
         <form method="POST" action="">
-            <label>Username</label>
+            <label><?= __('Username') ?></label>
             <input type="text" name="username" placeholder="micka"><br>
-            <label>Password</label>
+            <label><?= __('Password') ?></label>
             <input type="text" name="password_hash" placeholder="1234!"><br>
             <input type="submit" name="button" value="Submit"><br>
         </form>
