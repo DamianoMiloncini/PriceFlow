@@ -16,21 +16,21 @@ class ItemController extends \app\core\Controller
         $_conn = \app\core\Model::getConnection(); // Assuming you have a method to get the connection in Model class
 
         if (Item::doesQueryExist($query, $_conn) == true) {
-            print_r("QUERY EXISTS");
+            //print_r("QUERY EXISTS");
             $itemObjects = Item::loadItems($query, $_conn);
             $this->view('Item/itemList', ['items' => $itemObjects]); // Change $metroItems to $itemObjects
         } else {
-            print_r("QUERY DOESN'T EXIST");
+            //print_r("QUERY DOESN'T EXIST");
             Item::saveQuery($query, $_conn);
             // Call the scraping function from metro.php to get the items
 
             $supercItems = scrapeSuperCItems($query);
-            print_r("super C nothing?");
-            print_r($supercItems);
+            //print_r("super C nothing?");
+            //print_r($supercItems);
 
             $metroItems = scrapeMetroItems($query);
-            print_r("metro nothing?");
-            print_r($metroItems);            
+            //print_r("metro nothing?");
+            //print_r($metroItems);            
 
             // Initialize an empty array to store Item objects
             $itemObjects = [];
@@ -39,19 +39,19 @@ class ItemController extends \app\core\Controller
                 $newItem = new Item($item); // Assuming $item is an array containing item details
                 $itemObjects[] = $newItem;
 
-                print_r($item);
-                print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+                //print_r($item);
+                //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                print_r($newItem);
+                //print_r($newItem);
 
                 if ($newItem->doesItemExist() == true) {
-                    print_r(" ITEM EXISTS");
+                    //print_r(" ITEM EXISTS");
 
                     if ($newItem->doesItemQueryCombinationExist($query) == false) {
                         $newItem->saveItemQueryCombination($query);
                     }
                 } else {
-                    print_r(" ITEM DOES NOT EXIST");
+                    //print_r(" ITEM DOES NOT EXIST");
                     $newItem->saveItem($query);
                 }
             }
@@ -60,19 +60,19 @@ class ItemController extends \app\core\Controller
                 $newItem = new Item($item); // Assuming $item is an array containing item details
                 $itemObjects[] = $newItem;
 
-                print_r($item);
-                print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+                //print_r($item);
+                //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                print_r($newItem);
+                //print_r($newItem);
 
                 if ($newItem->doesItemExist() == true) {
-                    print_r(" ITEM EXISTS");
+                    //print_r(" ITEM EXISTS");
 
                     if ($newItem->doesItemQueryCombinationExist($query) == false) {
                         $newItem->saveItemQueryCombination($query);
                     }
                 } else {
-                    print_r(" ITEM DOES NOT EXIST");
+                    //print_r(" ITEM DOES NOT EXIST");
                     $newItem->saveItem($query);
                 }
             }
@@ -140,8 +140,8 @@ class ItemController extends \app\core\Controller
        //Radius (in meters) for nearby search
        $radius = 5000;
 
-       print_r($userLatitude);
-       print_r($userLongitude);
+       //print_r($userLatitude);
+       //print_r($userLongitude);
 
        //Construct the request payload as a JSON object
        $payload = json_encode(array(

@@ -18,7 +18,7 @@ if ($user) { ?>
     </head>
 
     <body>
-        <?php include 'app/views/topBar.php'; ?>
+        <?php // include 'app/views/topBar.php'; ?>
 
         <div id="container">
 
