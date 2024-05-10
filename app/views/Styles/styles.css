@@ -1,79 +1,58 @@
 #wrapper {
-    background-color: #fffbfb; 
-    color: #333; 
-    padding: 0.3%; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    position: fixed; 
-    top: 0; 
+    background-color: #fffbfb;
+    color: #333;
+    padding: 0.3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
 }
 
 #wrapper::after {
-    content: ""; 
-    height: 0.5px; 
-    background-color: rgba(0, 0, 0, 0.08); 
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
+    content: "";
+    height: 0.5px;
+    background-color: rgba(0, 0, 0, 0.08);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
-h1 {
-    color: #191919;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 18px;
-    line-height: 1.3;
-    font-weight:  700;
-    padding-left: 15px;
-    padding-top: 8px;
+#logoSection {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically */
 }
 
-#textLogo{
-    height: auto;
-    width: 3%;
-}
-
-#iconLogo{
-    height: auto;
-    width: 35px;
-    margin-left: 15px;
+#logoText {
+    margin: 0; /* Remove default margin */
 }
 
 .buttons {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 15px;
-    font-weight: 300;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: auto; /* Align buttons to the right */
-}
-#register {
-    display: inline-block;
-    padding: 5px 20px;
-    background-color: #006eff;
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 35px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically */
 }
 
-#register:hover { 
-    background-color: #0059c6; /* Change background color on hover */
-    cursor: pointer;
+
+#search {
+    resize: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 35px;
+    line-height: 30px;
+    height: 40px;
+    padding-left: 20px;
+    width: 750px !important; /* Adjust the width as needed */
+    margin-right: 65px; /* Add space between search bar and buttons */
 }
+
 
 .userBtn {
-    display: inline-block;
     padding: 5px 20px;
     background-color: #eff7ff;
     font-size: 15px;
@@ -82,110 +61,33 @@ h1 {
     text-decoration: none;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 35px;
-    margin-right: 8px;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-.userBtn:hover{
-    background-color: #d4e7ff; 
-    cursor: pointer;
-}
-
-#login {
-    display: inline-block;
-    padding: 5px 20px;
-    background-color: #eff7ff;
-    font-size: 15px;
-    font-weight: 600;
-    color: #006eff;
-    text-decoration: none;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 35px;
-    margin-right: 8px;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-#login:hover { 
-    background-color: #d4e7ff; 
-    cursor: pointer;
-}
-
-#cartQuickView {  
-    display: none;
-    position: absolute;
-    top: 50px; 
-    right: 10px; 
-    width: auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);    
-}
-
-ol {
-    list-style-type: none;
-    padding: 5px;
-    margin: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-li::after {
-    content: ""; 
-    height: 0.5px; 
-    background-color: rgba(0, 0, 0, 0.08); 
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-}
-
-#cartText{
-    margin-bottom: 10px;
-}
-
-#viewFullCartButton{
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding: 5px 20px;
-    background-color: #eff7ff;
-    font-size: 15px;
-    font-weight: 600;
-    color: #006eff;
-    text-decoration: none;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 15px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-#cartCheckoutButton{
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    padding: 5px 20px;
-    background-color: #006eff;
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
+.userBtn:hover {
+    background-color: #d4e7ff;
+}
+
+#login {
+    padding: 5px 20px;
+    background-color: #eff7ff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #006eff;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login:hover {
+    background-color: #d4e7ff;
+}
+
 #cart {
     font-size: 18px;
-    display: inline-block;
     padding: 6px 10px;
     background-color: #006eff;
     font-size: 15px;
@@ -193,32 +95,9 @@ li::after {
     text-decoration: none;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 35px;
-    margin-right: 8px;
-    margin-left: 5px;
-}
-
-#cart:hover{
-    background-color: #0059c6; /* Change background color on hover */
     cursor: pointer;
 }
-/* test */
-.address-table {
-    width: 100%;
-    border-collapse: collapse;
+
+#cart:hover {
+    background-color: #0059c6;
 }
-
-.address-table td {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-}
-
-.address-table label {
-    font-weight: bold;
-}
-
-
-
-
-
-
-

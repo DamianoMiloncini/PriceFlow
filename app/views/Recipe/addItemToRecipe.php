@@ -45,7 +45,7 @@
             margin: 20px;
             margin: 20px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             /* This is for the grid layout so that the recipes load in a 3 column per row layout  */
             gap: 20px;
         }

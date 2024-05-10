@@ -21,6 +21,7 @@
     justify-content: center;
     overflow: hidden;
     /* position: relative; */
+    margin-bottom: 20px;
 }
 
 .content {
@@ -29,15 +30,6 @@
     padding-right: 20%;
 }
 
-.content::after {
-    content: "";
-    height: 0.5px;
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
 
 
 /* .rightGrid::after {
@@ -285,7 +277,7 @@ h4 {
     line-height: 30px;
     height: 40px;
     padding-left: 20px;
-    width: 90%;
+    width: 100%;
 }
 
 #searchButton{

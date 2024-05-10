@@ -46,7 +46,7 @@ if ($user) { ?>
 
         <div class="content">
 
-            <?php include 'app/views/Item/searchBar.php'; ?>
+            <?php //include 'app/views/Item/searchBar.php'; ?>
 
             <div class="divider"></div>
 

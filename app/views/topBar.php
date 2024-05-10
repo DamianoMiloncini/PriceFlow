@@ -245,10 +245,11 @@
 
                 //if the user has informations (which means they are logged in), display profile button & logoutbutton
                 if ($user) {
-                    echo '<a class="userBtn" href="/User/account">View Account</a>';
+                    echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
+                    echo '<a class="userBtn" href="/User/account">Account</a>';
                     echo '<a class="userBtn" href="/Recipe/create">Recipe</a>';
                     echo '<a class="userBtn" href="/User/bookmark">Bookmarks</a>';
-                    echo '<a class="userBtn" href="/User/logout">Log Out</a>';
+                    echo '<a class="userBtn" href="/User/logout">Signout</a>';
                     echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
                 }
             } else {
@@ -259,6 +260,18 @@
             ?>
         </nav>
     </div>
+
+    <script>
+        // Add event listener for Enter key press on search input
+        document.getElementById('search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                var inputText = document.getElementById("search").value;
+                
+                window.location.href = 'Item/search/' + inputText;
+                e.preventDefault(); // Prevent form submission if needed :)))
+            }
+        });
+    </script>
 
 </body>
 

@@ -95,9 +95,7 @@
         <div class="content">
 
             <div class='navBar'>
-                    <textarea id="search" name="searchBar" placeholder='Search recipes'></textarea></textarea>
-
-                    <button id="searchButton" onClick="fetchData();">Search</button>      
+                <textarea id="search" name="searchBar" placeholder='Search recipes'></textarea></textarea>
             </div>
 
             <div class="divider"></div>
@@ -117,11 +115,11 @@
                             <option value="option3">Option 3</option>
                         </select>
                     </div>
-                    
+
                 </div>
-            
+
             </div>
-            
+
 
             <script>
                 var num = 0;
@@ -148,10 +146,24 @@
             </div>
 
             <script>
+                const searchInput = document.getElementById('search');
+
+                // Add event listener for keyup event
+                searchInput.addEventListener('keyup', function() {
+                    // Call your JavaScript function here
+                    fetchData();
+                });
+
                 function fetchData() {
-                    var inputText = document.getElementById("search").value;              
-                    if (inputText == '') return;              
-                    var url = "/Recipe/recipeHomePage/" + inputText;
+                    var inputText = document.getElementById("search").value;
+                    if (inputText === "") {
+                        // If the search input is empty, fetch all recipes
+                        url = "/Recipe/recipeHomePage/0";
+                    } else {
+                        // Otherwise, fetch recipes based on the search input
+                        url = "/Recipe/recipeHomePage/" + inputText;
+                    }
+
                     // Make the fetch request
                     fetch(url)
                         .then(response => {
