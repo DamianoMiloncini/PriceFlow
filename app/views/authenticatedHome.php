@@ -7,7 +7,7 @@ if ($user) { ?>
 
     <head>
 
-        <title>Home</title>
+        <title><?= __('Home') ?></title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@ if ($user) { ?>
                 <div id="loggedInMiddleHeading">
 
                     <h4 class='loggedInLeading'>
-                        Welcome,
+                    <?= __('Welcome') ?>,
                         <span style="color: #006eff;"><?php echo $user->username ?></span>
 
                     </h4>
@@ -59,18 +59,18 @@ if ($user) { ?>
 
                     <div id="filterButton">
                         <select id="filterOptions" name="filterOptions">
-                            <option value="" disabled selected><i class="bi bi-funnel"></i>Filter</option>
-                            <option value="itemFilter">Item</option>
-                            <option value="recipeFilter">Recipe</option>
+                            <option value="" disabled selected><i class="bi bi-funnel"></i><?= __('Filter') ?></option>
+                            <option value="itemFilter"><?= __('Item') ?></option>
+                            <option value="recipeFilter"><?= __('Recipe') ?></option>
                         </select>
                     </div>
 
                     <div id="sortButton">
                         <select id="sortOptions" name="sortOptions">
                             <option value="" disabled selected><i class="bi bi-funnel"></i>Sort</option>
-                            <option value="dateCreated">Date created</option>
-                            <option value="option2">Lowest to Highest</option>
-                            <option value="option3">Highest to Lowest</option>
+                            <option value="dateCreated"><?= __('Date created') ?></option>
+                            <option value="option2"><?= __('Lowest to Highest') ?></option>
+                            <option value="option3"><?= __('Highest to Lowest') ?></option>
                         </select>
                     </div>
 
@@ -93,8 +93,8 @@ if ($user) { ?>
                             <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
                             <div id="recipeInformation">
                                 <div class="recipeHeading">
-                                    <h5><?php echo $recipe['title']; ?></h5>
-                                    <h6>By <?php echo $recipe['username']; ?></h6>
+                                <h5><?= __('Recipe Title: ') . $recipe['title']; ?></h5>  <!-- to try if it works -->
+                                    <h6><?= __('By') . $recipe['username']; ?></h6>
                                 </div>
                                 <h7><?php echo $recipe['date_created'] ?></h7>
                             </div>
@@ -115,7 +115,7 @@ if ($user) { ?>
                             <div id="itemInformation">
                                 <div class="itemHeading" style="margin-bottom: 25px;">
                                     <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
-                                    <h5 style="font-size:18px;"><?php echo $item['name']; ?></h5><br>
+                                    <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
                                     <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
                                 </div>
                                 <h7>$<?php echo $item['price'] ?></h7>
@@ -177,7 +177,7 @@ if ($user) { ?>
     </html>
 
 <?php } else {
-    header('location:/welcome');
+     header('location:/welcome');
 }
 
 ?>

@@ -1,0 +1,107 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# root <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-10 04:01+0000\n"
+"PO-Revision-Date: 2024-05-10 04:03+0000\n"
+"Last-Translator: root <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/views/authenticatedHome.php:10
+msgid "Home"
+msgstr "Home"
+
+#: app/views/authenticatedHome.php:33
+msgid "Welcome"
+msgstr "Welcome"
+
+#: app/views/authenticatedHome.php:62
+msgid "Filter"
+msgstr "Filter"
+
+#: app/views/authenticatedHome.php:63
+msgid "Item"
+msgstr "Item"
+
+#: app/views/authenticatedHome.php:64
+msgid "Recipe"
+msgstr "Recipe"
+
+#: app/views/authenticatedHome.php:71
+msgid "Date created"
+msgstr "Date created"
+
+#: app/views/authenticatedHome.php:72
+msgid "Lowest to Highest"
+msgstr "Lowest to Highest"
+
+#: app/views/authenticatedHome.php:73
+msgid "Highest to Lowest"
+msgstr "Highest to Lowest"
+
+#: app/views/authenticatedHome.php:96
+msgid "Recipe Title: "
+msgstr "Recipe Title: "
+
+#: app/views/authenticatedHome.php:97
+msgid "By"
+msgstr "By"
+
+#: app/views/User/account.php:28 app/views/User/login.php:11
+#: app/views/User/registration.php:11
+msgid "Username"
+msgstr "Username"
+
+#: app/views/User/account.php:32 app/views/User/registration.php:15
+msgid "First Name"
+msgstr "First Name"
+
+#: app/views/User/account.php:37 app/views/User/registration.php:17
+msgid "Last Name"
+msgstr "Last Name"
+
+#: app/views/User/account.php:42
+msgid "Address"
+msgstr "Address"
+
+#: app/views/User/account.php:46
+msgid "Street"
+msgstr "Street"
+
+#: app/views/User/account.php:50
+msgid "City"
+msgstr "City"
+
+#: app/views/User/account.php:54
+msgid "Province"
+msgstr "Province"
+
+#: app/views/User/account.php:58
+msgid "Postal Code"
+msgstr "Postal Code"
+
+#: app/views/User/account.php:63
+msgid "Update Location"
+msgstr "Update Location"
+
+#: app/views/User/login.php:13 app/views/User/registration.php:13
+msgid "Password"
+msgstr "Password"
+
+#: app/views/User/registration.php:4
+msgid "User registration"
+msgstr "User registration"
+
+#: app/views/User/registration.php:19
+msgid "Submit"
+msgstr "Submit"
