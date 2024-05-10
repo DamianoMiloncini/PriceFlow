@@ -12,9 +12,9 @@
         
         <form method="POST" action="">
         <div class="form-group">
-            <label>Username<input type="text" name="username" placeholder="micka"/></label>
+            <label><?= __('Username') ?><input type="text" name="username" placeholder="micka"/></label>
         </div>
-            <label>Password</label>
+            <label><?= __('Password') ?></label>
             <input type="password" name="password_hash" placeholder="1234!"><br>
             <label><?= __('First Name') ?></label>
             <input type="text" name="first_name" placeholder="Michaella"><br>
