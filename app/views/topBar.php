@@ -267,7 +267,7 @@
             if (e.key === 'Enter') {
                 var inputText = document.getElementById("search").value;
                 
-                window.location.href = 'Item/search/' + inputText;
+                window.location.href = '/Item/search/' + inputText;
                 e.preventDefault(); // Prevent form submission if needed :)))
             }
         });

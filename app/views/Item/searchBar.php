@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="\app\views\Styles\homeStyle.css">
+<!-- <link rel="stylesheet" href="\app\views\Styles\homeStyle.css">
 
 <div class='navBar'>
     <!-- <a id='filterButton' href="">
@@ -24,4 +24,4 @@
         // Update the href attribute of the search button
         searchButton.href = searchText ? '/Item/search/' + searchText : '';
     });
-</script>
+</script> -->

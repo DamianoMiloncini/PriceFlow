@@ -36,11 +36,10 @@
 
     <!-- Filter popup -->
     <div id="filterPopup" class="popup">
-        <button onclick="togglePopup('filterPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
         <label for="minPrice">Min Price:</label>
-        <input type="number" id="minPrice" min="0" value="0" step="0.01">
+        <input type="number" id="minPrice" min="0" step="0.01">
         <label for="maxPrice">Max Price:</label>
-        <input type="number" id="maxPrice" min="0" value="1000" step="0.01">
+        <input type="number" id="maxPrice" min="0" step="0.01">
         <label for="storeFilter">Store:</label>
         <select id="storeFilter">
             <option value="">All</option>
@@ -52,7 +51,6 @@
 
     <!-- Sort popup -->
     <div id="sortPopup" class="popup">
-        <button onclick="togglePopup('sortPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
         <button onclick="sortItems('asc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Low to High</button>
         <button onclick="sortItems('desc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">High to Low</button>
     </div>
@@ -73,15 +71,9 @@
     </div>
 
     <script>
-        // Function to toggle popup visibility and close other popups
+        // Function to toggle popup visibility
         function togglePopup(popupId) {
             var popup = document.getElementById(popupId);
-            var popups = document.querySelectorAll('.popup');
-            for (var i = 0; i < popups.length; i++) {
-                if (popups[i].id !== popupId) {
-                    popups[i].style.display = "none";
-                }
-            }
             popup.style.display = (popup.style.display === "block") ? "none" : "block";
         }
 
