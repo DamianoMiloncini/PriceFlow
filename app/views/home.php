@@ -95,7 +95,7 @@
         <div class="content">
 
             <div class='navBar'>
-                <textarea id="search" name="searchBar" placeholder='Search recipes'></textarea></textarea>
+                <textarea id="searchHome" name="searchBar" placeholder='Search recipes'></textarea></textarea>
             </div>
 
             <div class="divider"></div>
@@ -146,7 +146,7 @@
             </div>
 
             <script>
-                const searchInput = document.getElementById('search');
+                const searchInput = document.getElementById('searchHome');
 
                 // Add event listener for keyup event
                 searchInput.addEventListener('keyup', function() {
@@ -155,7 +155,7 @@
                 });
 
                 function fetchData() {
-                    var inputText = document.getElementById("search").value;
+                    var inputText = document.getElementById("searchHome").value;
                     if (inputText === "") {
                         // If the search input is empty, fetch all recipes
                         url = "/Recipe/recipeHomePage/0";
