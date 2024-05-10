@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Item;
 
 require("app/scraping/metro.php");
+require("app/scraping/superc.php");
+
 
 class ItemController extends \app\core\Controller
 {
@@ -21,18 +23,19 @@ class ItemController extends \app\core\Controller
             print_r("QUERY DOESN'T EXIST");
             Item::saveQuery($query, $_conn);
             // Call the scraping function from metro.php to get the items
+
+            $supercItems = scrapeSuperCItems($query);
+            print_r("super C nothing?");
+            print_r($supercItems);
+
             $metroItems = scrapeMetroItems($query);
-            print_r("nothing?");
-            print_r($metroItems);
-
-
-            // $supercItems = scrapeSupercItems($query);
+            print_r("metro nothing?");
+            print_r($metroItems);            
 
             // Initialize an empty array to store Item objects
             $itemObjects = [];
 
-            // Instantiate Item objects for each scraped item
-            foreach ($metroItems as $item) {
+            foreach ($supercItems as $item) {
                 $newItem = new Item($item); // Assuming $item is an array containing item details
                 $itemObjects[] = $newItem;
 
@@ -53,9 +56,26 @@ class ItemController extends \app\core\Controller
                 }
             }
 
-            // foreach ($supercItems as $item) {
-            //     $itemObjects[] = new Item($item); // Assuming $item is an array containing item details
-            // }
+            foreach ($metroItems as $item) {
+                $newItem = new Item($item); // Assuming $item is an array containing item details
+                $itemObjects[] = $newItem;
+
+                print_r($item);
+                print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+
+                print_r($newItem);
+
+                if ($newItem->doesItemExist() == true) {
+                    print_r(" ITEM EXISTS");
+
+                    if ($newItem->doesItemQueryCombinationExist($query) == false) {
+                        $newItem->saveItemQueryCombination($query);
+                    }
+                } else {
+                    print_r(" ITEM DOES NOT EXIST");
+                    $newItem->saveItem($query);
+                }
+            }
 
             // Pass the item objects to the view
             $this->view('Item/itemList', ['items' => $itemObjects]); // Change $metroItems to $itemObjects

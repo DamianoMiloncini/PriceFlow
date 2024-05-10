@@ -1,7 +1,9 @@
 <html>
 
-    <head>
+<head>
     <title>User's profile </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="\app\views\Styles\styles.css">
     <style>
         .address-table {
             width: 100%;
@@ -19,8 +21,9 @@
     </style>
 
 </head>
-    <body>
-    <div id = 'profileContainer'> 
+
+<body>
+    <div id='profileContainer'>
         <!-- display user's information -->
         <div class='container'>
         <table class="address-table">
@@ -94,8 +97,8 @@
                     <br>
                     <a class="userBtn" href="/User/updateLocation"><?= __('Update Location') ?></a>
                     HTML;
-                    
-                    
+
+
                 }
             ?> -->
              <a class="userBtn" href="/User/updateAccount"><?= __('Update Profile') ?></a>
@@ -105,7 +108,7 @@
              <a class="userBtn" href="/home"><?= __('Home') ?></a>
     </div>
 
-    </body>
+</body>
 
 
 <html>

@@ -1,19 +1,17 @@
 <?php
 
-require 'vendor/autoload.php';
-
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\DomCrawler\Crawler;
 
-function scrapeMetroItems($query="bread")
+function scrapeMetroItems()
 {
     // Check if the cache file exists and is not older than 1 hour
 
     $browser = new HttpBrowser(HttpClient::create());
-    $crawler = $browser->request('GET', 'https://www.metro.ca/en/online-grocery/search?filter=' . $query, [
+    $crawler = $browser->request('GET', 'https://www.superc.ca/en/search?filter=' . $query, [
         'headers' => [
-            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+            'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
         ],
     ]);
 

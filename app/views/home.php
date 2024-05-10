@@ -84,10 +84,6 @@
 
                     </h4>
 
-                    <!-- <div class='buttonArea'>
-                            </div> -->
-
-
                 <?php } ?>
                 </div>
             </div>
@@ -99,15 +95,9 @@
         <div class="content">
 
             <div class='navBar'>
-                <!-- <a id='filterButton' href="">
-                    <i class="bi bi-funnel"></i>
-                    Filter
-                </a> -->  
                     <textarea id="search" name="searchBar" placeholder='Search recipes'></textarea></textarea>
 
-                    <a id="searchButton" href="/localhost/Item/search/">
-                        Search
-                    </a>      
+                    <button id="searchButton" onClick="fetchData();">Search</button>      
             </div>
 
             <div class="divider"></div>
@@ -118,14 +108,6 @@
                     <h1 id="resultsNumber"></h1>
                 </div>
                 <div id="searchButtons">
-
-                    <!-- <div id="filterButton">
-                        <select id="filterOptions" name="filterOptions">
-                            <option value="" disabled selected><i class="bi bi-funnel"></i>Filter</option>
-                            <option value="itemFilter">Item</option>
-                            <option value="recipeFilter">Recipe</option>
-                        </select>
-                    </div> -->
 
                     <div id="sortButton">
                         <select id="sortOptions" name="sortOptions">
@@ -165,29 +147,30 @@
                 <?php endforeach ?>
             </div>
 
-            
-            <!-- <div id="items" style="display: <?php // echo !isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
-                <?php //foreach ($data['items'] as $item) : ?>
-                    <script>                        
-                        num++;
-                    </script>
-                    <a style="text-decoration:none; color:black;" href=''>
-                        <div class="item">
-                            <img id="itemImage" src="<?php // echo $item['image']; ?>">
-                            <div id="itemInformation">
-                                <div class="itemHeading" style="margin-bottom: 25px;">
-                                    <h6 style="font-size:15px; font-weight:400"><?php //echo $item['brand']; ?></h6><br>
-                                    <h5 style="font-size:18px;"><?php //echo $item['name']; ?></h5><br>
-                                    <h6 style="font-size:15px; font-weight:400;"><?php //echo $item['quantity']; ?></h6><br>
-                                </div>
-                                <h7>$<?php //echo $item['price'] ?></h7>
-                            </div>
-                        </div>
-                    </a>
-                <?php //endforeach ?>
-            </div> -->
-
             <script>
+                function fetchData() {
+                    var inputText = document.getElementById("search").value;              
+                    if (inputText == '') return;              
+                    var url = "/Recipe/recipeHomePage/" + inputText;
+                    // Make the fetch request
+                    fetch(url)
+                        .then(response => {
+                            // Check if the response is successful
+                            if (response.ok) {
+                                return response.text();
+                            } else {
+                                throw new Error('Network response was not ok');
+                            }
+                        })
+                        .then(data => {
+                            // Replace the content of the lorem-ipsum div with the response text
+                            document.getElementById("recipes").innerHTML = data;
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch request:', error);
+                        });
+                }
+
                 document.getElementById("sortOptions").addEventListener("change", function() {
                     var sortBy = this.value;
                     if (sortBy === "dateCreated") {
@@ -209,23 +192,6 @@
                         recipesContainer.appendChild(recipe);
                     });
                 }
-            </script>
-
-            <script>
-                document.getElementById("filterOptions").addEventListener("change", function() {
-                    var selectedFilter = this.value;
-                    if (selectedFilter === "itemFilter") {                        
-                        document.getElementById("items").style.display = "grid";
-                        document.getElementById("recipes").style.display = "none";
-                        document.getElementById("contentHeading").textContent = "Items";
-                        var output = num + " Results found";
-                        document.getElementById("resultsNumber").textContent = output;
-                    } else if (selectedFilter === "recipeFilter") {
-                        document.getElementById("items").style.display = "none";
-                        document.getElementById("recipes").style.display = "grid";
-                        document.getElementById("contentHeading").textContent = "Recipes";
-                    }
-                });
             </script>
 
 

@@ -8,7 +8,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 $browser = new HttpBrowser(HttpClient::create());
 
-$crawler = $browser->request('GET', 'https://www.superc.ca/en/search?filter=milk', [
+$crawler = $browser->request('GET', 'https://www.superc.ca/en/search?filter=bread', [
     'headers' => [
         'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
     ],

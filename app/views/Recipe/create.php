@@ -7,78 +7,86 @@
     <title>Create Recipe</title>
 
     <style>
-        #wrapper {
+        body {
             font-family: 'Nunito Sans', sans-serif;
-            background-color: whitesmoke;
-            margin-left: 30%;
-            margin-right: 30%;
-            text-align: center;
-            padding-top: 2%;
-            padding-bottom: 100%;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        #continueBtn {
-            width: 125px;
-            height: 50%;
-            display: inline;
-            background-color: #fbfdff;
-            font-size: 15px;
-            font-weight: 600;
-            color: #000000;
-            text-decoration: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 35px;
+        #wrapper {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #495057;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-top: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            appearance: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            letter-spacing: 0px;
+            font-size: 16px;
+            font-weight: 500;
             transition: background-color 0.3s ease;
-            text-align: center;
-            line-height: 40px;
         }
 
-        #continueBtn:hover {
-            background-color: #ededed;
-        }
-
-        #titleBar {
-            resize: none;
-            font-size: 15px;
-            font-weight: 600;
-            color: #000000;
-            text-decoration: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 5px;
-            line-height: 30px;
-            height: 40px;
-            padding-left: 20px;
-            width: 55%;
-        }
-
-        #content {
-            resize: none;
-            font-size: 15px;
-            font-weight: 600;
-            color: #000000;
-            text-decoration: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 5px;
-            line-height: 30px;
-            height: 55%;
-            padding-left: 20px;
-            width: 55%;
-        }
-
-        #duration {
-            resize: none;
-            font-size: 15px;
-            font-weight: 600;
-            color: #000000;
-            text-decoration: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 5px;
-            line-height: 30px;
-            height: 40px;
-            padding-left: 20px;
-            width: 55%;
+        button[type="submit"]:hover {
+            background-color: #0056b3;
         }
 
     </style>
@@ -87,39 +95,32 @@
 
 <body>
     <div id="wrapper">
-
-
-
-        <h2 style="font-size: 45px; font-weight:300;">Recipe Details</h2>
-
-        <div class="divider"></div>
+        <h2>Create Recipe</h2>
 
         <form action="/Recipe/create" method="post" enctype="multipart/form-data">
-            <!-- <label style="" for="title">Title:</label><br> -->
-            <input id="titleBar" type="text" id="title" name="title" placeholder="Title" require><br><br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="Title" required>
 
-            <!-- <label for="content">Content:</label><br> -->
-            <textarea id="content" name="content" rows="6" placeholder="Describe this recipe..." required></textarea><br><br>
+            <label for="content">Content:</label>
+            <textarea name="content" rows="6" placeholder="Describe this recipe..." required></textarea>
 
-            <label style="padding-bottom: 10%;" for="duration">Duration (minutes):</label><br>
-            <input type="number" id="duration" name="duration" required><br><br>
+            <label for="duration">Duration (minutes):</label>
+            <div style="display: flex;">
+                <input type="number" id="duration" name="duration" required>
+            </div>
 
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
 
-            <label for="image">Image:<br>
-            <input type="file" id="image" name="image" required><br><br>
-            </label>
-
-
-            <label for="privacy_status">Privacy:</label><br>
+            <label for="privacy_status">Privacy:</label>
             <select id="privacy_status" name="privacy_status">
                 <option value="public">Public</option>
                 <option value="private">Private</option>
-            </select><br><br>
+            </select>
 
-            <button id="continueBtn" type="submit">Continue</button>
+            <button type="submit">Continue</button>
         </form>
     </div>
 </body>
-
 
 </html>

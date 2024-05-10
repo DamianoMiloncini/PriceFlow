@@ -76,6 +76,8 @@ class Recipe extends \app\core\Model
         return $success;
     }
 
+    
+
     // Function to update an existing recipe
     public function updateRecipe($recipe_id, $title, $content, $duration, $imagePath, $privacy_status)
     {
@@ -520,4 +522,28 @@ class Recipe extends \app\core\Model
 
         return $recipes;
     }
+
+    public function loadRecipes($query){
+        // SQL statement to fetch items based on the provided query
+        $SQL ='SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
+        FROM recipe r join user u
+        ON r.user_id = u.user_id
+        WHERE r.privacy_status = "public"
+        AND r.title LIKE :query';
+
+
+        // Prepare the statement
+        $statement = self::$_conn->prepare($SQL); // Use the passed connection parameter
+
+        // Execute the statement
+        $statement->execute([
+            'query' => "$query%",
+        ]);
+
+        // Fetch all rows as associative arrays
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
+
 }

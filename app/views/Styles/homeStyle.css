@@ -285,7 +285,25 @@ h4 {
     line-height: 30px;
     height: 40px;
     padding-left: 20px;
-    width: 75%;
+    width: 90%;
+}
+
+#searchButton{
+    width: 8%;
+    height: 45px;
+    display: inline-block;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 35px;
+    cursor: pointer;
+    letter-spacing: 0px;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: center;
+    line-height: 40px;
 }
 
 

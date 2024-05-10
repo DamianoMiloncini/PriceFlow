@@ -44,6 +44,27 @@
             border-radius: 3px;
             cursor: pointer;
         }
+        #items {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .item {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .item h4 {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +82,8 @@
         <label for="image">Choose a different image:</label><br>
         <input type="file" id="image" name="image"><br>
 
+        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>">Udate ingredients</a>
+
         <img src="/uploads/<?php echo basename($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
         <input type="hidden" name="current_image" value="<?php echo $recipe['image']; ?>">
 
@@ -72,5 +95,98 @@
 
         <input type="submit" value="Save Changes">
     </form>
+
+    <div id="wrapper">
+    <?php if (isset($data['recipes']) && is_array($data['recipes'])) : ?>
+        <?php foreach ($data['recipes'] as $recipe) : ?>
+            <h5 id="addingHeading">Edit items to recipe <?php echo $recipe['title']; ?></h5>
+        <?php endforeach; ?>
+    <?php else : ?>
+        
+    <?php endif; ?>
+
+    <div class="divider"></div>
+
+    
+</div>
+
+    <script>
+    function fetchData() {
+        var inputText = document.getElementById("search").value;
+        if (inputText == '') return;
+        var url = "/Recipe/items/" + inputText;
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                document.getElementById("items").innerHTML = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch request:', error);
+            });
+    }
+
+    function minus1(item_id) {
+        var recipe_id = document.getElementById("recipeId").value;
+        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'minus';
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                document.getElementById("itemsInRecipeList").innerHTML = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch request:', error);
+            });
+    }
+
+    function add1(item_id) {
+        var recipe_id = document.getElementById("recipeId").value;
+        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'add';
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                document.getElementById("itemsInRecipeList").innerHTML = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch request:', error);
+            });
+    }
+
+    function deleteItem(item_id) {
+        var recipe_id = document.getElementById("recipeId").value;
+        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'delete';
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                document.getElementById("itemsInRecipeList").innerHTML = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch request:', error);
+            });
+    }
+</script>
 </body>
 </html>
