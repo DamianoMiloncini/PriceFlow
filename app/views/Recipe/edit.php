@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Recipe</title>
     <style>
-        img {
-            max-width: 25%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
         }
         .edit-form {
             max-width: 600px;
@@ -18,175 +21,108 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .edit-form label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
         }
         .edit-form input[type="text"],
-        .edit-form textarea {
-            width: 100%;
+        .edit-form textarea,
+        .edit-form select {
+            width: calc(100% - 20px);
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 3px;
             box-sizing: border-box;
-        }
-        .edit-form input[type="file"] {
-            margin-bottom: 10px;
+            font-size: 16px;
         }
         .edit-form input[type="submit"] {
-            background-color: #4CAF50;
+            width: 100%;
+            background-color: blue;
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
-        #items {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+        .edit-form input[type="submit"]:hover {
+            background-color: #45a049;
         }
-        .item {
-            width: 30%;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
+        .edit-form textarea {
+            height: 120px;
         }
-        .item img {
-            width: 100%;
-            border-radius: 5px;
+        .edit-form select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
         }
-        .item h4 {
+        .edit-form input[type="file"] {
             margin-top: 10px;
+        }
+        .edit-form img {
+            max-width: 30%;
+            display: block;
+            margin: 10px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .edit-form a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        #wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
     <h1>Edit Recipe</h1>
     <form action="/Recipe/update/<?php echo $recipe['recipe_id']; ?>" method="post" enctype="multipart/form-data" class="edit-form">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($recipe['title']); ?>"><br>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($recipe['title']); ?>">
         
-        <label for="content">Content:</label><br>
-        <textarea id="content" name="content"><?php echo htmlspecialchars($recipe['content']); ?></textarea><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content"><?php echo htmlspecialchars($recipe['content']); ?></textarea>
         
-        <label for="duration">Duration:</label><br>
-        <input type="text" id="duration" name="duration" value="<?php echo htmlspecialchars($recipe['duration']); ?>"><br>
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" value="<?php echo htmlspecialchars($recipe['duration']); ?>">
         
-        <label for="image">Choose a different image:</label><br>
-        <input type="file" id="image" name="image"><br>
+        <label for="image">Choose a different image:</label>
+        <input type="file" id="image" name="image">
 
-        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>">Udate ingredients</a>
+        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>">Update ingredients</a>
 
         <img src="/uploads/<?php echo basename($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
         <input type="hidden" name="current_image" value="<?php echo $recipe['image']; ?>">
 
-        <label for="privacy_status">Privacy:</label><br>
+        <label for="privacy_status">Privacy:</label>
         <select id="privacy_status" name="privacy_status">
             <option value="public" <?php if ($recipe['privacy_status'] === 'public') echo 'selected'; ?>>Public</option>
             <option value="private" <?php if ($recipe['privacy_status'] === 'private') echo 'selected'; ?>>Private</option>
-        </select><br><br>
+        </select>
 
         <input type="submit" value="Save Changes">
     </form>
-
-    <div id="wrapper">
-    <?php if (isset($data['recipes']) && is_array($data['recipes'])) : ?>
-        <?php foreach ($data['recipes'] as $recipe) : ?>
-            <h5 id="addingHeading">Edit items to recipe <?php echo $recipe['title']; ?></h5>
-        <?php endforeach; ?>
-    <?php else : ?>
-        
-    <?php endif; ?>
-
-    <div class="divider"></div>
-
-    
-</div>
-
-    <script>
-    function fetchData() {
-        var inputText = document.getElementById("search").value;
-        if (inputText == '') return;
-        var url = "/Recipe/items/" + inputText;
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then(data => {
-                document.getElementById("items").innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch request:', error);
-            });
-    }
-
-    function minus1(item_id) {
-        var recipe_id = document.getElementById("recipeId").value;
-        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'minus';
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then(data => {
-                document.getElementById("itemsInRecipeList").innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch request:', error);
-            });
-    }
-
-    function add1(item_id) {
-        var recipe_id = document.getElementById("recipeId").value;
-        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'add';
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then(data => {
-                document.getElementById("itemsInRecipeList").innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch request:', error);
-            });
-    }
-
-    function deleteItem(item_id) {
-        var recipe_id = document.getElementById("recipeId").value;
-        var url = "/Recipe/itemsInRecipe/" + recipe_id + "/" + item_id + '/' + 'delete';
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then(data => {
-                document.getElementById("itemsInRecipeList").innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch request:', error);
-            });
-    }
-</script>
 </body>
 </html>
+

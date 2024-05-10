@@ -17,19 +17,72 @@
             color: #ffffff;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
 
         header h1 {
             margin: 0;
+            margin-bottom: 10px; /* Add margin below h1 */
         }
 
-        header form {
-            margin-top: 10px;
+        .create-recipe-btn {
+            background-color: black;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove default link underline */
+            position: absolute;
+            top: 20px;
+            right: 20px; /* Positioning to the right */
+        }
+
+        .create-recipe-btn:hover {
+            background-color: #218838;
+        }
+
+        .search-container {
+            text-align: center; /* Center align the search container */
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-right: 10px;
+        }
+
+        .search-container button[type="submit"] {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button[type="submit"]:hover {
+            background-color: #0056b3;
         }
 
         .filters {
             background-color: #f8f9fa;
             padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filters .sort-filter,
+        .filters .price-range-filter {
+            display: flex;
+            align-items: center;
+        }
+
+        .filters .price-range-filter {
+            margin-left: 20px;
         }
 
         .filters form {
@@ -119,30 +172,38 @@
 </head>
 
 <body>
+
+<?php include 'app/views/topBar.php'; ?>
     <header>
         <h1>All Recipes</h1>
-        <form action="/Recipe/search" method="GET">
-            <input type="text" id="search" name="query" placeholder="Search Recipes...">
-            <button type="submit">Search</button>
-        </form>
+        <div class="search-container">
+            <form action="/Recipe/search" method="GET">
+                <input type="text" id="search" name="query" placeholder="Search Recipes...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <a href="/Recipe/create" class="create-recipe-btn">Create Recipe</a>
     </header>
 
     <div class="filters">
-        <form action="/Recipe/filterByPrice" method="GET">
-            <label for="sort_order">Sort by Total Price:</label>
-            <select name="sort_order" id="sort_order">
-                <option value="asc">Lowest to Highest</option>
-                <option value="desc">Highest to Lowest</option>
-            </select>
-            <button type="submit">Sort</button>
-        </form>
-
-        <form action="/Recipe/filterByPriceRange" method="GET">
-            <label for="min_price">Price Range:</label>
-            <input type="number" id="min_price" name="min_price" placeholder="Minimum Price">
-            <input type="number" id="max_price" name="max_price" placeholder="Maximum Price">
-            <button type="submit">Apply</button>
-        </form>
+        <div class="sort-filter">
+            <form action="/Recipe/filterByPrice" method="GET">
+                <label for="sort_order">Sort by Total Price:</label>
+                <select name="sort_order" id="sort_order">
+                    <option value="asc">Lowest to Highest</option>
+                    <option value="desc">Highest to Lowest</option>
+                </select>
+                <button type="submit">Sort</button>
+            </form>
+        </div>
+        <div class="price-range-filter">
+            <form action="/Recipe/filterByPriceRange" method="GET">
+                <label for="min_price">Price Range:</label>
+                <input type="number" id="min_price" name="min_price" placeholder="Minimum Price">
+                <input type="number" id="max_price" name="max_price" placeholder="Maximum Price">
+                <button type="submit">Apply</button>
+            </form>
+        </div>
     </div>
 
     <main>
@@ -159,7 +220,7 @@
                         </div>
                         <div class="actions">
                             <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>">View Details</a>
-                            <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] === $_SESSION['user_id']) : ?>
+                            <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) : ?>
                                 <a class="edit-btn" href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>">Edit</a>
                                 <a class="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>">Delete</a>
                             <?php endif; ?>

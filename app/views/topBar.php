@@ -247,7 +247,7 @@
                 if ($user) {
                     echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
                     echo '<a class="userBtn" href="/User/account">Account</a>';
-                    echo '<a class="userBtn" href="/Recipe/create">Recipe</a>';
+                    echo '<a class="userBtn" href="/Recipe/displayAll">Recipe</a>';
                     echo '<a class="userBtn" href="/User/bookmark">Bookmarks</a>';
                     echo '<a class="userBtn" href="/User/logout">Signout</a>';
                     echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
