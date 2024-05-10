@@ -39,7 +39,7 @@
                             echo "<details>";
                             echo "<summary>Stores near you</summary><br>";
                             foreach ($stores as $place) {
-                                //a safe of sending data through the URL (a life saver frl frl)
+                                //a safe way of sending data through the URL (a life saver frl frl)
                                 $storeParam = urlencode(json_encode($place));
                                 //make this clickable and sent data about a specific store to the store details view
                                 echo <<<HTML

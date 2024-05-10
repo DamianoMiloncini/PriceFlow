@@ -7,4 +7,4 @@ Scenario: User updates 2 factor Authentication
    And I input the current TOTP code
    Then the system verifies the TOTP code
    And updates the my user account two-factor authentication settings
-   I should see a "Update succesfull" message
+   And I should see a "Update succesfull" message

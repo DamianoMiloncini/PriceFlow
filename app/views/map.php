@@ -19,7 +19,8 @@
         }
 
         #metroImg{
-            width: 100%;
+            width: 50%;
+            height: auto;
             border-radius: 5px;
             margin-bottom: 5px;
         }
@@ -40,38 +41,7 @@
     <!-- Display the map  -->
     <div id="map"></div>
 
-    <?php 
-        // Getting user's location
-        $userAddress = $user->address;
-        $userStreet = $user->street;
-        $userPostalCode = $user->postal_code;
-        $userCity = $user->city;
-        $userProvince = $user->province;
-
-        $userLocation = "$userAddress $userStreet $userCity $userProvince $userPostalCode";
-        //check if the user has a registered location
-        if ($userAddress != null) {
-            $flag = 0;
-            //echo($userLocation);
-            $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($userLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
-            // Fetching the data from the API
-            $response = file_get_contents($api_url);
     
-            // Decoding JSON response that is generated
-            $coordinates = json_decode($response, true);
-    
-            // Check if the response is successful
-            if ($coordinates && isset($coordinates['features'][0])) {
-                // Gettting the latitude and longitude!!
-                $userLatitude = $coordinates['features'][0]['properties']['lat'];   
-                $userLongitude = $coordinates['features'][0]['properties']['lon'];
-            }
-            } else {
-                $flag = 1;
-                $userLatitude = 45.5019;   
-                $userLongitude = -73.5674;
-            }
-    ?>
 
         <!-- MAP API -->
         <script>
@@ -86,21 +56,21 @@
 
         <script>
             // CREATING MARKERS - These will be generated when we fetch the closest stores.
-            var marker = L.marker([<?php echo $userLatitude ?>, <?php echo $userLongitude ?>]).addTo(map); // Coordinates will be changed to the stores location
-            marker.bindPopup("This is you!").openPopup();
+            var marker = L.marker([<?php echo $data['userLatitude'] ?>, <?php echo $data['userLongitude'] ?>]).addTo(map); // Coordinates will be changed to the stores location
+            
         </script>
 
     <?php foreach ($data['stores'] as $store) :
 
-        $address = $store['address'];
-        $city = $store['city'];
-        $province = $store['province'];
-        $postalCode = $store['postal_code'];
+        // $name = $
+        // $address = $store['formattedAddress'];
+        // $province = $store['province'];
+        // $postalCode = $store['postal_code'];
         
-        $location = "$address $city $province $postalCode";
-        //echo($location);
+        $storeLocation = $store['formattedAddress'];
+        // //echo($location);
 
-        $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($location) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
+        $api_url = "https://api.geoapify.com/v1/geocode/search?text=" . urlencode($storeLocation) . "&apiKey=f9b7061858b746fc84136bc23dfef6b0";
 
         // Fetching the data from the API
         $response = file_get_contents($api_url);
@@ -115,17 +85,16 @@
             $storeLongitude = $coordinates['features'][0]['properties']['lon'];
         }
 
-        // Calculate the distance between the user and each store
-        $distance = calculateDistance($userLatitude, $userLongitude, $storeLatitude, $storeLongitude);
-        //echo($distance);
+        // // Calculate the distance between the user and each store
+        // $distance = calculateDistance($userLatitude, $userLongitude, $storeLatitude, $storeLongitude);
+        // //echo($distance);
     ?>
 
         <script>
-            <?php if ($distance <= 2.5) { // Only stores within 2.5km will appear ?>
             // CREATING MARKERS - These will be generated when we fetch the closest stores.
             var marker = L.marker([<?php echo $storeLatitude ?>, <?php echo $storeLongitude ?>]).addTo(map); // Coordinates will be changed to the stores location
-            marker.bindPopup("<img src='app/resources/metroTestImage.jpg' id='metroImg'> <br> <h5> <?php echo $store['store_name'] ?> </h5> <?php echo $store['address'] ?>").openPopup();
-            <?php }?>
+            marker.bindPopup("<img src='app/resources/metroLogo.jpg' id='metroImg'> <br> <h5> <?php echo $store['displayName']['text'] ?> </h5> <?php echo $store['formattedAddress'] ?>").openPopup();
+
         </script>
 
     <?php endforeach ?>
@@ -138,7 +107,7 @@
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.2,
-            radius: 2500
+            radius: 5000
         }).addTo(map);
 
         // POLYGONS - not sure if well use this
