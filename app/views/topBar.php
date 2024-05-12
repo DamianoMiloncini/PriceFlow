@@ -13,7 +13,7 @@
             align-items: center;
             width: 100%;
             z-index: 1000;
-            /* Ensure the top bar stays on top of other content */
+            margin-bottom: 100px;
         }
 
         #wrapper::after {
@@ -81,7 +81,7 @@
             cursor: pointer;
         }
 
-        .userBtn {
+        .topbarBtns {
             display: inline-block;
             padding: 5px 20px;
             background-color: #eff7ff;
@@ -97,7 +97,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .userBtn:hover {
+        .topbarBtns:hover {
             background-color: #d4e7ff;
             cursor: pointer;
         }
@@ -246,10 +246,10 @@
                 //if the user has informations (which means they are logged in), display profile button & logoutbutton
                 if ($user) {
                     echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
-                    echo '<a class="userBtn" href="/User/account">Account</a>';
-                    echo '<a class="userBtn" href="/Recipe/displayAll">Recipe</a>';
-                    echo '<a class="userBtn" href="/User/bookmark">Bookmarks</a>';
-                    echo '<a class="userBtn" href="/User/logout">Signout</a>';
+                    echo '<a class="topbarBtns" href="/User/account">Account</a>';
+                    echo '<a class="topbarBtns" href="/Recipe/displayAll">Recipe</a>';
+                    echo '<a class="topbarBtns" href="/User/bookmark">Bookmarks</a>';
+                    echo '<a class="topbarBtns" href="/User/logout">Signout</a>';
                     echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
                 }
             } else {

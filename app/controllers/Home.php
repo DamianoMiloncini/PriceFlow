@@ -3,6 +3,7 @@ namespace app\controllers;
 
 class Home extends \app\core\Controller {
 
+    
     function index(){
         //Recipes
         $recipeModel = new \app\models\Recipe();
@@ -20,6 +21,7 @@ class Home extends \app\core\Controller {
         $this->view('home', $data);
     }
 
+    #[\app\accessFilters\Home]
     function authenticatedHome(){
         //Recipes
         $recipeModel = new \app\models\Recipe();

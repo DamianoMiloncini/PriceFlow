@@ -60,7 +60,10 @@
             
         </script>
 
-    <?php foreach ($data['stores'] as $store) :
+
+    <?php 
+    if ($data['stores'] != null) {
+    foreach ($data['stores'] as $store) {
 
         // $name = $
         // $address = $store['formattedAddress'];
@@ -97,7 +100,7 @@
 
         </script>
 
-    <?php endforeach ?>
+    <?php } } ?>
 
 
     <!-- EXTRA MAP FEATURE -->
