@@ -10,12 +10,25 @@ class User extends \app\core\Controller {
 
     //user registration
     function register() {
+        //variable
+        $msg = '';
+        //get all the users from the DB
+        $dbUsers =new \app\models\User();
+        $dbUsers = $dbUsers->getAll();
        //check if the user submitted the form
        if($_SERVER['REQUEST_METHOD'] === 'POST') {
         //instantiate the User model class
         $user = new \app\models\User();
         //get the data inputted from the user
-        $user->username = $_POST['username'];
+        $username = strtolower($_POST['username']);
+        foreach($dbUsers as $dbUser) {
+            if ($dbUser->username == $username) {
+                $_SESSION['error_message'] = 'Username already exists. Please choose a different one.';
+                header('location:/User/registration');
+                exit;
+            }
+        }
+        $user->username = $username;
         $user->password_hash = password_hash($_POST['password_hash'],PASSWORD_DEFAULT);
         $user->first_name = $_POST['first_name'];
         $user->last_name = $_POST['last_name'];
@@ -26,11 +39,11 @@ class User extends \app\core\Controller {
 
 
         //redirect the user to another page
-        header('location:/User/setup2fa' );
+        header('location:/User/setup2fa');
        }
        //else show the register view again
        else {
-        $this->view('User/registration');
+        $this->view('User/registration',['alertMsg' => $msg]);
        }
     }
     //user login

@@ -134,4 +134,14 @@ class User extends \app\core\Model {
                     'secret'=>$this->secret]);
 }
 
+public function getAll(){
+    //change anything but the PK
+    $SQL = 'SELECT * FROM user';
+    $STMT = self::$_conn->prepare($SQL);
+    $STMT->execute();
+        //return the data fetched
+        $STMT -> setFetchMode(PDO::FETCH_CLASS, 'app\models\User');
+        return $STMT->fetchAll();
+}
+
 }
