@@ -122,38 +122,46 @@ msgid "Continue"
 msgstr ""
 
 #: app/views/User/account.php:31 app/views/User/login.php:11
-#: app/views/User/registration.php:64
+#: app/views/User/registration.php:64 app/views/User/update.php:11
 msgid "Username"
 msgstr ""
 
-#: app/views/User/account.php:35 app/views/User/registration.php:68
+#: app/views/User/account.php:35 app/views/User/registration.php:19
+#: app/views/User/update.php:17
 msgid "First Name"
 msgstr ""
 
-#: app/views/User/account.php:40 app/views/User/registration.php:70
+#: app/views/User/account.php:40 app/views/User/registration.php:21
+#: app/views/User/update.php:20
 msgid "Last Name"
 msgstr ""
 
-#: app/views/User/account.php:45
+#: app/views/User/account.php:45 app/views/User/registerLocation.php:41
+#: app/views/User/updateLocation.php:41
 msgid "Address"
 msgstr ""
 
-#: app/views/User/account.php:49
+#: app/views/User/account.php:49 app/views/User/registerLocation.php:44
+#: app/views/User/updateLocation.php:44
 msgid "Street"
 msgstr ""
 
-#: app/views/User/account.php:53
+#: app/views/User/account.php:53 app/views/User/registerLocation.php:47
+#: app/views/User/updateLocation.php:47
 msgid "City"
 msgstr ""
 
-#: app/views/User/account.php:57
+#: app/views/User/account.php:57 app/views/User/registerLocation.php:53
+#: app/views/User/updateLocation.php:54
 msgid "Province"
 msgstr ""
 
-#: app/views/User/account.php:61
+#: app/views/User/account.php:61 app/views/User/registerLocation.php:60
+#: app/views/User/updateLocation.php:61
 msgid "Postal Code"
 msgstr ""
 
+#: app/views/User/account.php:66
 #: app/views/User/account.php:66
 msgid "Update Location"
 msgstr ""
@@ -170,14 +178,72 @@ msgstr ""
 msgid "Register a favorite Location"
 msgstr ""
 
-#: app/views/User/login.php:13 app/views/User/registration.php:66
+#: app/views/User/bookmarks.php:54
+msgid "Delete"
+msgstr ""
+
+#: app/views/User/bookmarks.php:61
+msgid "No favorites saved"
+msgstr ""
+
+#: app/views/User/check2fa.php:6
+msgid "Submit the 6-digit code for this site from your Authenticator app."
+msgstr ""
+
+#: app/views/User/check2fa.php:8 app/views/User/setup2fa.php:10
+msgid "Current code"
+msgstr ""
+
+#: app/views/User/check2fa.php:10 app/views/User/passwordCheck.php:39
+#: app/views/User/setup2fa.php:12
+msgid "Verify code"
+msgstr ""
+
+#: app/views/User/login.php:13 app/views/User/passwordCheck.php:28
+#: app/views/User/registration.php:17 app/views/User/update.php:14
 msgid "Password"
+msgstr ""
+
+#: app/views/User/login.php:15 app/views/User/registration.php:23
+msgid "Submit"
+msgstr ""
+
+#: app/views/User/passwordCheck.php:3
+msgid "Security Check"
+msgstr ""
+
+#: app/views/User/passwordCheck.php:18
+msgid "Authentication check"
+msgstr ""
+
+#: app/views/User/passwordCheck.php:34
+msgid "Submit the 6-digit code for this site from your Authenticator app"
+msgstr ""
+
+#: app/views/User/registerLocation.php:39
+msgid "Enter your location details"
+msgstr ""
+
+#: app/views/User/registerLocation.php:62 app/views/User/updateLocation.php:64
+msgid "Save Location"
 msgstr ""
 
 #: app/views/User/registration.php:4
 msgid "User registration"
 msgstr ""
 
-#: app/views/User/registration.php:72
-msgid "Submit"
+#: app/views/User/setup2fa.php:7
+msgid ""
+"Scan the above QR-code with your mobile Authenticator app, such as Google "
+"Authenticator. The authenticator app will generate codes that are valid for "
+"30 seconds only. Enter such a code and submit it while it is \r\n"
+"still valid to apply the 2-factor authentication protection to your account."
+msgstr ""
+
+#: app/views/User/update.php:24
+msgid "Update my account"
+msgstr ""
+
+#: app/views/User/update.php:25
+msgid "Cancel"
 msgstr ""

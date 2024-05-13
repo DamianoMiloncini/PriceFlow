@@ -12,6 +12,16 @@
     padding-right: 5%;
 }
 
+#authenticatedContainer{
+    margin-top: 75px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .two {
     align-items: center;
     display: flex;
@@ -30,15 +40,32 @@
     padding-right: 20%;
 }
 
+.authenticatedContent{
+    font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.itemLabels{
+    padding-left: 22px;
+    font-style: italic;
+    font-weight: bold;
+}
+
 #poster1{
     margin-right: 50%;
     margin-left: 25%;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     width: 50%;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
-
+#poster2{
+    margin-bottom: 5%;
+    width: 100%;
+    border-radius: 10px;
+}
 
 /* .rightGrid::after {
     content: '';
@@ -387,7 +414,7 @@ h6 {
 .loggedInLeading {
     font-family: "acumin-pro-wide", "Acumin Pro Wide", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* font-size: 90px; */
-    font-size: 355%;
+    font-size: 235%;
     font-weight: 600;
     letter-spacing: -3px;
 }

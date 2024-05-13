@@ -43,23 +43,22 @@
         //for each item, display it in a list
         if($data != null) {
             foreach($data as $item) {
-                echo <<<HTML
-                <div class='container'>
-                    <img class="itemImages" src = "{$item['image']}">
+                echo '
+                <div class="container">
+                    <img class="itemImages" src="' . $item['image'] . '">
                     <div class="itemInfo">
-                    <h5>{$item['name']}</h5>
-                    <h6 style="margin-left:2%;">{$item['brand']}</h6>
-                     <h6 style="margin-left:2%;">Price: {$item['price']} </h6>
-                     <form action="/bookmark/delete/{$item['item_id']}" method="post">
-                        <button type="submit" class = "userBtn" name="delete_item">Delete</button>
-                    </form>
+                        <h5>' . $item['name'] . '</h5>
+                        <h6 style="margin-left:2%;">' . $item['brand'] . '</h6>
+                        <h6 style="margin-left:2%;">Price: ' . $item['price'] . '</h6>
+                        <form action="/bookmark/delete/' . $item['item_id'] . '" method="post">
+                            <button type="submit" class="userBtn" name="delete_item">' . __('Delete') . '</button>
+                        </form>
                     </div>
-                     </div>
-                HTML;
+                </div>';
             }
         }
         else {
-            echo '<label id="errorBtn">No favorites saved</label>';
+            echo '<label id="errorBtn">'. __('No favorites saved') . '</label>';
         }
 
         ?>
