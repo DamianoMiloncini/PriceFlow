@@ -81,9 +81,7 @@
 
         </div>
 
-        <img id="poster1" src="app/resources/flyer2.png">
-
-        <h4 class="itemLabels">Most Recent Recipes</h4>
+        <h4 class="itemLabels" style="margin-top: 5%;">Most Recent Recipes</h4>
         <div id="recipes">
         <?php
             $counter = 0;
@@ -106,6 +104,10 @@
                 </a>
             <?php } ?>
         </div>
+
+        <img id="poster1" src="app/resources/flyer2.png">
+
+        
 
         <h4 class="itemLabels">Protein Shakes</h4>
         <div id="items">

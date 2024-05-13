@@ -106,7 +106,7 @@
 
             <label for="duration"><?= __('Duration (minutes):') ?></label>
             <div style="display: flex;">
-                <input type="number" id="duration" name=<?= __("duration") ?> required>
+                <input type="number" id="duration" name=<?= __('duration') ?> required>
             </div>
 
             <label for="image"><?= __('Image:') ?></label>
