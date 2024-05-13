@@ -12,7 +12,7 @@
             <input type="text" name="username" placeholder="micka"><br>
             <label><?= __('Password') ?></label>
             <input type="text" name="password_hash" placeholder="1234!"><br>
-            <input type="submit" name="button" value="Submit"><br>
+            <input type="submit" name="button" value="<?= __('Submit') ?>"><br>
         </form>
     </div>
 

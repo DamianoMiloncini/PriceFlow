@@ -3,11 +3,11 @@
 <title>2fa set up</title>
 </head>
 <body>
-<p>Submit the 6-digit code for this site from your Authenticator app.</p>
+<p><?= __('Submit the 6-digit code for this site from your Authenticator app') ?></p>
 <form method="post" action="">
-<label>Current code:<input type="text" name="totp" 
+<label><?= __('Current code')?> :<input type="text" name="totp" 
 /></label>
-<input type="submit" name="action" value="Verify code" />
+<input type="submit" name="action" value="<?= __('Verify code') ?>" />
 </form>
 </body>
 </html>

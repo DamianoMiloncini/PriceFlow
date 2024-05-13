@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Security Check</title>
+<title><?= __('Security Check') ?></title>
 <style>
         h3 {
             text-align: center;
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="\app\views\Styles\styles.css">
 </head>
 <body>
-<h3>Authentication check</h3>
+<h3><?= __('Authentication check')?></h3>
 <div class='container'>
 <form method="post" action="">
     <?php 
@@ -25,18 +25,18 @@
     ?> 
     <div class="form-group">
     <label>
-        Password:<input type="text" class="form-control" name="password"  value='' />
+        <?= __('Password')?>:<input type="text" class="form-control" name="password"  value='' />
     </label>
 
             </div>
             <div class="form-group">
            <label>
-            Submit the 6-digit code for this site from your Authenticator app<input type="text" class="form-control" name="totp"/>
+            <?= __('Submit the 6-digit code for this site from your Authenticator app') ?><input type="text" class="form-control" name="totp"/>
             </label>
    
             </div>
     <br>
-    <input class = "userBtn" type="submit" name="action" value="Verify code">
+    <input class = "userBtn" type="submit" name="action" value="<?= __('Verify code') ?>">
     
 </form>
 </div>
