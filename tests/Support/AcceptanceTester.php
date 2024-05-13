@@ -97,11 +97,11 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
-     * @Given I am logged in
+     * @Given I login
      */
     public function iLogin()
     {
-        $this->amOnPage('http://localhost/User/login'); //test to see if the user can access an authenticated page
+        $this->amOnPage('http://localhost/User/login'); 
         $this->fillField("username", "user1");
         $this->fillField("password_hash", "1234");
         $this->click("Submit");

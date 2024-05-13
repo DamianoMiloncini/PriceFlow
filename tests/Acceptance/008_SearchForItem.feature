@@ -12,7 +12,7 @@ Feature: SearchForItem
         And I see an array of "item" whose attribute "name" contains "milk"
 
   Scenario: try SearchForItem "nckaj"
-        Given I am login
+        Given I login
         And I am on "http://localhost/home"
         When I enter "nckaj" in the search bar
         And I click "Search"
