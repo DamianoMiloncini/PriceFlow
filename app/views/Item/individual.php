@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="\app\views\Styles\styles.css">
 </head>
 
 <body class="bg-gray-100">
@@ -50,10 +51,10 @@
                             }
                             echo "</details>";
                         } else {
-                            echo 'No stores within 5km from your location <br><br>';
-                            echo '<a class="userBtn" href="/User/registerLocation">Register a Location here</a><br><br>';
+                            echo '<br><br>No stores within 5km from your location <br><br>';
+                            echo '<a class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="/User/registerLocation">Register a Location here</a><br><br>';
                             //need a filter to check if the user already has a location saved
-                            echo '<a class="userBtn" href="/User/updateLocation">Update your location here</a>';
+                            echo '<a class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="/User/updateLocation">Update your location here</a>';
 
                         }
                         ?>
