@@ -48,6 +48,12 @@
     </head>
 
     <body>
+        <?php 
+        if (isset($_SESSION['error_message'])) {
+            echo "<script>alert('{$_SESSION['error_message']}')</script>";
+            unset($_SESSION['error_message']);
+        }
+        ?>
     <div class="login-form">
     <h3><?= __('Log In')?></h3>
         <form method="POST" action="">

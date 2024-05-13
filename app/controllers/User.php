@@ -75,6 +75,7 @@ class User extends \app\core\Controller {
             //header('location:/home');
         }
         else {
+            $_SESSION['error_message'] = 'Wrong password or username, please retry';
             header('location:/User/login');
         }
         }
