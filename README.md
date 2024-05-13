@@ -57,3 +57,23 @@ There are some bugs to be fixed of course, but these will be addressed shortly.
 - Link my Search by user location with the filter by store as well
 - Add all error handling
 - Codeception to test all my features
+
+# Damiano notes
+- Almost finished my internationalization
+- 99% complete the cart page (fix the checkout price update)
+- Completed all of my recipe functions
+- Fix authenticated home
+
+# Internalization
+Current progress: 40% complete
+- Cart page (completed)
+
+# Internalization (Micka's pages)
+- My views & translations are done
+
+# What is left (Micka)
+- Some styling for my views
+- Some errors handling
+- Test my features with codeception
+
+

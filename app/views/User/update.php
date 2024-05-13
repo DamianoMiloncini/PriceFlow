@@ -8,21 +8,21 @@
 	<div class='container'>
 		<form method='post' action=''>
 		<div class="form-group">
-				<label>Username:<input type="text" class="form-control" name="username"  value='<?= $data->username ?>' /></label>
+				<label><?= __('Username') ?>:<input type="text" class="form-control" name="username"  value='<?= $data->username ?>' /></label>
 			</div>
 			<div class="form-group">
-				<label>Password:<input type="text" class="form-control" name="password_hash"  value='' /></label>
+				<label><?= __('Password') ?>:<input type="text" class="form-control" name="password_hash"  value='' /></label>
 			</div>
             <div class="form-group">
-				<label>First name:<input type="text" class="form-control" name="first_name"  value='<?= $data->first_name ?>' /></label>
+				<label><?= __('First Name') ?>:<input type="text" class="form-control" name="first_name"  value='<?= $data->first_name ?>' /></label>
 			</div>
 			<div class="form-group">
-				<label>Last name:<input type="text" class="form-control" name="last_name"  value='<?= $data->last_name ?>' /></label>
+				<label><?= __('Last Name') ?>:<input type="text" class="form-control" name="last_name"  value='<?= $data->last_name ?>' /></label>
 			</div>
 			<div class="form-group">
 				<br>
-				<input type="submit" class = "userBtn" name="action" value="Update my account" /> 
-				<a class = "userBtn" href='/home'>Cancel</a>
+				<input type="submit" class = "userBtn" name="action" value="<?= __('Update my account') ?>" /> 
+				<a class = "userBtn" href='/home'><?= __('Cancel') ?></a>
 			</div>
 		</form>
 	</div>
