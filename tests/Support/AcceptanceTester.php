@@ -97,7 +97,7 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
      /**
-     * @Given I am logged in
+     * @Given I login
      */
     public function iLogin()
     {
