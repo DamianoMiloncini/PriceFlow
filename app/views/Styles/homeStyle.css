@@ -30,6 +30,14 @@
     padding-right: 20%;
 }
 
+#poster1{
+    margin-right: 50%;
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 50%;
+    border-radius: 15px;
+}
+
 
 
 /* .rightGrid::after {

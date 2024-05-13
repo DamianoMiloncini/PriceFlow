@@ -95,30 +95,30 @@
 
 <body>
     <div id="wrapper">
-        <h2>Create Recipe</h2>
+        <h2><?= __('Create Recipe') ?></h2>
 
         <form action="/Recipe/create" method="post" enctype="multipart/form-data">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="Title" required>
+            <label for="title"><?= __('Title:') ?></label>
+            <input type="text" id="title" name="title" placeholder=<?= __("Title") ?> required>
 
-            <label for="content">Content:</label>
-            <textarea name="content" rows="6" placeholder="Describe this recipe..." required></textarea>
+            <label for="content"><?= __('Content:') ?></label>
+            <textarea name="content" rows="6" placeholder=<?= __("Describe this recipe...") ?> required></textarea>
 
-            <label for="duration">Duration (minutes):</label>
+            <label for="duration"><?= __('Duration (minutes):') ?></label>
             <div style="display: flex;">
-                <input type="number" id="duration" name="duration" required>
+                <input type="number" id="duration" name=<?= __("duration") ?> required>
             </div>
 
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" required>
+            <label for="image"><?= __('Image:') ?></label>
+            <input type="file" id="image" name=<?= __("image") ?> required>
 
-            <label for="privacy_status">Privacy:</label>
+            <label for="privacy_status"><?= __('Privacy:') ?></label>
             <select id="privacy_status" name="privacy_status">
-                <option value="public">Public</option>
-                <option value="private">Private</option>
+                <option value="public"><?= __('Public') ?></option>
+                <option value="private"><?= __('Private') ?></option>
             </select>
 
-            <button type="submit">Continue</button>
+            <button type="submit"><?= __('Continue') ?></button>
         </form>
     </div>
 </body>

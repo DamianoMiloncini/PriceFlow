@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 04:31+0000\n"
+"POT-Creation-Date: 2024-05-12 04:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,112 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/views/authenticatedHome.php:10 app/views/User/account.php:72
+#: app/views/authenticatedHome.php:5 app/views/User/account.php:72
 msgid "Home"
 msgstr ""
 
-#: app/views/authenticatedHome.php:33
+#: app/views/authenticatedHome.php:29
 msgid "Welcome"
 msgstr ""
 
-#: app/views/authenticatedHome.php:62
+#: app/views/authenticatedHome.php:61
 msgid "Filter"
 msgstr ""
 
-#: app/views/authenticatedHome.php:63
+#: app/views/authenticatedHome.php:62
 msgid "Item"
 msgstr ""
 
-#: app/views/authenticatedHome.php:64
+#: app/views/authenticatedHome.php:63
 msgid "Recipe"
 msgstr ""
 
-#: app/views/authenticatedHome.php:71
+#: app/views/authenticatedHome.php:70
 msgid "Date created"
 msgstr ""
 
-#: app/views/authenticatedHome.php:72
+#: app/views/authenticatedHome.php:71
 msgid "Lowest to Highest"
 msgstr ""
 
-#: app/views/authenticatedHome.php:73
+#: app/views/authenticatedHome.php:72
 msgid "Highest to Lowest"
 msgstr ""
 
-#: app/views/authenticatedHome.php:96
+#: app/views/authenticatedHome.php:95
 msgid "Recipe Title: "
 msgstr ""
 
-#: app/views/authenticatedHome.php:97
+#: app/views/authenticatedHome.php:96
 msgid "By"
 msgstr ""
 
+#: app/views/cart.php:25
+msgid "Your Cart"
+msgstr ""
+
+#: app/views/cart.php:26
+msgid "Checkout:"
+msgstr ""
+
+#: app/views/cart.php:30
+msgid "Thank you for choosing PriceWave!"
+msgstr ""
+
+#: app/views/Recipe/create.php:98
+msgid "Create Recipe"
+msgstr ""
+
+#: app/views/Recipe/create.php:101
+msgid "Title:"
+msgstr ""
+
+#: app/views/Recipe/create.php:102
+msgid "Title"
+msgstr ""
+
+#: app/views/Recipe/create.php:104
+msgid "Content:"
+msgstr ""
+
+#: app/views/Recipe/create.php:105
+msgid "Describe this recipe..."
+msgstr ""
+
+#: app/views/Recipe/create.php:107
+msgid "Duration (minutes):"
+msgstr ""
+
+#: app/views/Recipe/create.php:109
+msgid "duration"
+msgstr ""
+
+#: app/views/Recipe/create.php:112
+msgid "Image:"
+msgstr ""
+
+#: app/views/Recipe/create.php:113
+msgid "image"
+msgstr ""
+
+#: app/views/Recipe/create.php:115
+msgid "Privacy:"
+msgstr ""
+
+#: app/views/Recipe/create.php:117
+msgid "Public"
+msgstr ""
+
+#: app/views/Recipe/create.php:118
+msgid "Private"
+msgstr ""
+
+#: app/views/Recipe/create.php:121
+msgid "Continue"
+msgstr ""
+
 #: app/views/User/account.php:31 app/views/User/login.php:11
-#: app/views/User/registration.php:15 app/views/User/update.php:11
+#: app/views/User/registration.php:64 app/views/User/update.php:11
 msgid "Username"
 msgstr ""
 
@@ -97,6 +161,7 @@ msgstr ""
 msgid "Postal Code"
 msgstr ""
 
+#: app/views/User/account.php:66
 #: app/views/User/account.php:66
 msgid "Update Location"
 msgstr ""

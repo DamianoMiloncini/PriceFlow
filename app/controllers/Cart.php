@@ -80,6 +80,10 @@ class Cart extends \app\core\Controller
                $userLongitude = $coordinates['features'][0]['properties']['lon'];
            }
        }
+       else{
+            $userLatitude = 45.5019;
+            $userLongitude = -73.5674;
+       }
         
        //Google Places API endpoint
        $apiEndpoint = 'https://places.googleapis.com/v1/places:searchNearby';

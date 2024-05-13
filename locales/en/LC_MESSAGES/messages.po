@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-10 04:01+0000\n"
-"PO-Revision-Date: 2024-05-10 04:03+0000\n"
+"POT-Creation-Date: 2024-05-12 04:36+0000\n"
+"PO-Revision-Date: 2024-05-12 04:36+0000\n"
 "Last-Translator: root <EMAIL@ADDRESS>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -17,84 +17,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/views/authenticatedHome.php:10
+#: app/views/authenticatedHome.php:5 app/views/User/account.php:72
 msgid "Home"
 msgstr "Home"
 
-#: app/views/authenticatedHome.php:33
+#: app/views/authenticatedHome.php:29
 msgid "Welcome"
 msgstr "Welcome"
 
-#: app/views/authenticatedHome.php:62
+#: app/views/authenticatedHome.php:61
 msgid "Filter"
 msgstr "Filter"
 
-#: app/views/authenticatedHome.php:63
+#: app/views/authenticatedHome.php:62
 msgid "Item"
 msgstr "Item"
 
-#: app/views/authenticatedHome.php:64
+#: app/views/authenticatedHome.php:63
 msgid "Recipe"
 msgstr "Recipe"
 
-#: app/views/authenticatedHome.php:71
+#: app/views/authenticatedHome.php:70
 msgid "Date created"
 msgstr "Date created"
 
-#: app/views/authenticatedHome.php:72
+#: app/views/authenticatedHome.php:71
 msgid "Lowest to Highest"
 msgstr "Lowest to Highest"
 
-#: app/views/authenticatedHome.php:73
+#: app/views/authenticatedHome.php:72
 msgid "Highest to Lowest"
 msgstr "Highest to Lowest"
 
-#: app/views/authenticatedHome.php:96
+#: app/views/authenticatedHome.php:95
 msgid "Recipe Title: "
 msgstr "Recipe Title: "
 
-#: app/views/authenticatedHome.php:97
+#: app/views/authenticatedHome.php:96
 msgid "By"
 msgstr "By"
 
-#: app/views/User/account.php:28 app/views/User/login.php:11
-#: app/views/User/registration.php:11
+#: app/views/cart.php:25
+msgid "Your Cart"
+msgstr "Your Cart"
+
+#: app/views/cart.php:26
+msgid "Checkout:"
+msgstr "Checkout:"
+
+#: app/views/cart.php:30
+msgid "Thank you for choosing PriceWave!"
+msgstr "Thank you for choosing PriceWave!"
+
+#: app/views/Recipe/create.php:98
+msgid "Create Recipe"
+msgstr "Create Recipe"
+
+#: app/views/Recipe/create.php:101
+msgid "Title:"
+msgstr "Title:"
+
+#: app/views/Recipe/create.php:102
+msgid "Title"
+msgstr "Title"
+
+#: app/views/Recipe/create.php:104
+msgid "Content:"
+msgstr "Content:"
+
+#: app/views/Recipe/create.php:105
+msgid "Describe this recipe..."
+msgstr "Describe this recipe..."
+
+#: app/views/Recipe/create.php:107
+msgid "Duration (minutes):"
+msgstr "Duration (minutes):"
+
+#: app/views/Recipe/create.php:109
+msgid "duration"
+msgstr "duration"
+
+#: app/views/Recipe/create.php:112
+msgid "Image:"
+msgstr "Image:"
+
+#: app/views/Recipe/create.php:113
+msgid "image"
+msgstr "image"
+
+#: app/views/Recipe/create.php:115
+msgid "Privacy:"
+msgstr "Privacy:"
+
+#: app/views/Recipe/create.php:117
+msgid "Public"
+msgstr "Public"
+
+#: app/views/Recipe/create.php:118
+msgid "Private"
+msgstr "Private"
+
+#: app/views/Recipe/create.php:121
+msgid "Continue"
+msgstr "Continue"
+
+#: app/views/User/account.php:31 app/views/User/login.php:11
+#: app/views/User/registration.php:64
 msgid "Username"
 msgstr "Username"
 
-#: app/views/User/account.php:32 app/views/User/registration.php:15
+#: app/views/User/account.php:35 app/views/User/registration.php:68
 msgid "First Name"
 msgstr "First Name"
 
-#: app/views/User/account.php:37 app/views/User/registration.php:17
+#: app/views/User/account.php:40 app/views/User/registration.php:70
 msgid "Last Name"
 msgstr "Last Name"
 
-#: app/views/User/account.php:42
+#: app/views/User/account.php:45
 msgid "Address"
 msgstr "Address"
 
-#: app/views/User/account.php:46
+#: app/views/User/account.php:49
 msgid "Street"
 msgstr "Street"
 
-#: app/views/User/account.php:50
+#: app/views/User/account.php:53
 msgid "City"
 msgstr "City"
 
-#: app/views/User/account.php:54
+#: app/views/User/account.php:57
 msgid "Province"
 msgstr "Province"
 
-#: app/views/User/account.php:58
+#: app/views/User/account.php:61
 msgid "Postal Code"
 msgstr "Postal Code"
 
-#: app/views/User/account.php:63
+#: app/views/User/account.php:66
 msgid "Update Location"
 msgstr "Update Location"
 
-#: app/views/User/login.php:13 app/views/User/registration.php:13
+#: app/views/User/account.php:68
+msgid "Update Profile"
+msgstr "Update Profile"
+
+#: app/views/User/account.php:69
+msgid "Update 2FA secret"
+msgstr "Update 2FA secret"
+
+#: app/views/User/account.php:70
+msgid "Register a favorite Location"
+msgstr "Register a favorite Location"
+
+#: app/views/User/login.php:13 app/views/User/registration.php:66
 msgid "Password"
 msgstr "Password"
 
@@ -102,6 +178,6 @@ msgstr "Password"
 msgid "User registration"
 msgstr "User registration"
 
-#: app/views/User/registration.php:19
+#: app/views/User/registration.php:72
 msgid "Submit"
 msgstr "Submit"

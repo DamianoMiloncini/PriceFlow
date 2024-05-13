@@ -167,6 +167,7 @@ class Recipe extends \app\core\Model
         ];
 
         $STATEMENT->execute($data);
+        $this->updateTotalRecipePrice($recipe_id);
     }
 
     public function addItemQuantityInRecipe($recipe_id, $item_id){
@@ -182,7 +183,8 @@ class Recipe extends \app\core\Model
         ];
 
         $STATEMENT->execute($data);
-        // $this->updateTotalCartPrice($cart_id);
+        $this->updateTotalRecipePrice($recipe_id);
+
     }
 
     public function removeFromRecipe($recipe_id, $item_id){
@@ -197,7 +199,57 @@ class Recipe extends \app\core\Model
         ];
 
         $STATEMENT->execute($data);
-        // $this->updateTotalCartPrice($cart_id);
+        $this->updateTotalRecipePrice($recipe_id);
+    }
+
+    public function updateTotalRecipePrice($recipe_id){
+        $totalPrice = 0;
+        $allInformation = [];
+
+        // Getting users cart items
+        $SQL = 'SELECT * FROM items_in_recipe WHERE recipe_id = :recipe_id';
+
+        $STMT = self::$_conn->prepare($SQL);
+
+        $STMT->execute(
+            [
+                'recipe_id' => $recipe_id
+            ]
+        );
+
+        $itemsInRecipe = $STMT->fetchAll(PDO::FETCH_ASSOC);
+
+
+        // Getting the items information
+        foreach($itemsInRecipe as $item):
+            $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
+
+            $STMT = self::$_conn->prepare($SQL);
+            
+            $STMT->execute(
+                [
+                    'item_id' => $item['item_id']
+                ]
+            );
+
+            $itemInfo = $STMT->fetch(PDO::FETCH_ASSOC);
+
+            $totalPrice += ($itemInfo['price'] * $item['quantity_needed']);
+
+        endforeach;
+        
+        $SQL = 'UPDATE recipe
+        SET total_price = :total_price
+        WHERE recipe_id = :recipe_id';
+
+        //prepare statement
+        $STATEMENT = self::$_conn->prepare($SQL);
+        $data = [
+            'recipe_id'=>$recipe_id,
+            'total_price'=>$totalPrice
+        ];
+
+        $STATEMENT->execute($data);
     }
 
     public function getItemsInRecipe($recipe_id)

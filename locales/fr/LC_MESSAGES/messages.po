@@ -88,6 +88,71 @@ msgstr "Rue"
 msgid "City"
 msgstr "Ville"
 
+#: app/views/cart.php:28
+msgid "Your Cart"
+msgstr "Votre Panier"
+
+#: app/views/cart.php:26
+msgid "Checkout:"
+msgstr "Payer:"
+
+#: app/views/cart.php:34
+msgid "Thank you for choosing PriceWave!"
+msgstr "Merci d'avoir choisi PriceWave!"
+
+#: app/views/Recipe/create.php:98
+msgid "Create Recipe"
+msgstr "Creer Recette"
+
+#: app/views/Recipe/create.php:101
+msgid "Title:"
+msgstr "Titre: "
+
+#: app/views/Recipe/create.php:102
+msgid "Title"
+msgstr "Titre"
+
+#: app/views/Recipe/create.php:104
+msgid "Content:"
+msgstr "Contenu:"
+
+#: app/views/Recipe/create.php:105
+msgid "Describe this recipe..."
+msgstr "Decrivez cette recette..."
+
+#: app/views/Recipe/create.php:107
+msgid "Duration (minutes):"
+msgstr "Duree (minutes):"
+
+#: app/views/Recipe/create.php:109
+msgid "duration"
+msgstr "duree"
+
+#: app/views/Recipe/create.php:112
+msgid "Image:"
+msgstr "Image:"
+
+#: app/views/Recipe/create.php:113
+msgid "image"
+msgstr "image"
+
+#: app/views/Recipe/create.php:115
+msgid "Privacy:"
+msgstr "Confidentialite"
+
+#: app/views/Recipe/create.php:117
+msgid "Public"
+msgstr "Publique"
+
+#: app/views/Recipe/create.php:118
+msgid "Private"
+msgstr "Prive"
+
+#: app/views/Recipe/create.php:121
+msgid "Continue"
+msgstr "Continuer"
+
+
 #: app/views/User/account.php:57 app/views/User/registerLocation.php:53
 #: app/views/User/updateLocation.php:54
 msgid "Province"

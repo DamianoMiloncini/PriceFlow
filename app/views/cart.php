@@ -20,17 +20,14 @@
         <?php include 'app/views/topBar.php'; ?>
     </div>
 
-
-
-
     <div id="cartWrapper">
         <div id="cartHeading">
-            <h3>Your Cart</h3>
-            <button type="text" id="checkoutButton"><i class="bi bi-cart-check-fill"></i> Checkout: $<?php echo isset($data['itemsInCart'][0]['cart_price']) ? $data['itemsInCart'][0]['cart_price'] : '0'; ?>
+            <h3><?= __('Your Cart') ?></h3>
+            <button type="text" id="checkoutButton"><i class="bi bi-cart-check-fill"></i> <?= __('Checkout:') ?> $<?php echo isset($data['itemsInCart'][0]['cart_price']) ? $data['itemsInCart'][0]['cart_price'] : '0'; ?>
 
             </button>
         </div>
-        <h6>Thank you for choosing PriceWave!</h6>
+        <h6><?= __('Thank you for choosing PriceWave!') ?></h6>
 
         <div id="cartItemsContainer">
             <div id="cartItems">
