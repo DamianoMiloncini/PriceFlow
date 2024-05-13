@@ -226,39 +226,42 @@
 <body>
 
     <div id='wrapper'>
-        <div id="logoSection">
-            <a href="/home" style="text-decoration: none">
-                <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
-                <h1 id="logoText">PriceWave</h1>
-                <!-- <img id="textLogo" src="app\resources\PriceWaveText.png"> -->
-            </a>
-        </div>
+        <form>
+            <div id="logoSection">
+                <a href="/home" style="text-decoration: none">
+                    <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
+                    <h1 id="logoText">PriceWave</h1>
+                    <!-- <img id="textLogo" src="app\resources\PriceWaveText.png"> -->
+                </a>
+            </div>
 
 
-        <nav class='buttons'>
-            <?php
-            //if the user is logged in, have a view profile button and a logout button
-            if (isset($_SESSION['user_id'])) {
-                $user = new \app\models\User();
-                //get user's information
-                $user = $user->getByID($_SESSION['user_id']);
+            <nav class='buttons'>
+                <?php
+                //if the user is logged in, have a view profile button and a logout button
+                if (isset($_SESSION['user_id'])) {
+                    $user = new \app\models\User();
+                    //get user's information
+                    $user = $user->getByID($_SESSION['user_id']);
 
-                //if the user has informations (which means they are logged in), display profile button & logoutbutton
-                if ($user) {
-                    echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
-                    echo '<a class="topbarBtns" href="/User/account">Account</a>';
-                    echo '<a class="topbarBtns" href="/Recipe/displayAll">Recipe</a>';
-                    echo '<a class="topbarBtns" href="/User/bookmark">Bookmarks</a>';
-                    echo '<a class="topbarBtns" href="/User/logout">Signout</a>';
-                    echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
+                    //if the user has informations (which means they are logged in), display profile button & logoutbutton
+                    if ($user) {
+                        echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
+                        echo '<button id="searchButton" name="searchButton" class="topbarBtns">Search</button>';
+                        echo '<a class="topbarBtns" href="/User/account">Account</a>';
+                        echo '<a class="topbarBtns" href="/Recipe/displayAll">Recipe</a>';
+                        echo '<a class="topbarBtns" href="/User/bookmark">Bookmarks</a>';
+                        echo '<a class="topbarBtns" href="/User/logout">Signout</a>';
+                        echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
+                    }
+                } else {
+                    echo '<a id="login" href="/User/login">Log In</a>';
+                    echo '<a id="register" href="/User/registration">Sign Up</a>';
                 }
-            } else {
-                echo '<a id="login" href="/User/login">Log In</a>';
-                echo '<a id="register" href="/User/registration">Sign Up</a>';
-            }
 
-            ?>
-        </nav>
+                ?>
+            </nav>
+        </form>
     </div>
 
     <script>
@@ -266,10 +269,17 @@
         document.getElementById('search').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 var inputText = document.getElementById("search").value;
-                
+
                 window.location.href = '/Item/search/' + inputText;
                 e.preventDefault(); // Prevent form submission if needed :)))
             }
+        });
+
+        // Add event listener for click on search button
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var inputText = document.getElementById("search").value;
+            window.location.href = '/Item/search/' + inputText;
+            e.preventDefault(); // Prevent form submission if needed :)))
         });
     </script>
 

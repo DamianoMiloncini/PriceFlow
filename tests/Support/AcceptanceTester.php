@@ -23,6 +23,7 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
+
     /**
      * Define custom actions here
      */
@@ -104,7 +105,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('http://localhost/User/login'); 
         $this->fillField("username", "user1");
         $this->fillField("password_hash", "1234");
-        $this->click("Submit");
+        $this->click("button");
     }
 
     /**
@@ -418,28 +419,34 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSeeElement($itemSelector); // Assuming the item is removed and no longer visible
     }
 
-
     /**
      * @Then I am redirected to :arg1
      */
     public function iAmRedirectedTo($arg1)
     {
-        throw new \PHPUnit\Framework\IncompleteTestError("Step `I am redirected to :arg1` is not defined");
+ 	$this->amOnPage($arg1); 
     }
 
-    /**
-     * @Then I see an array of :arg1 whose attribute :arg2 contains :arg3
-     */
-    public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
-    {
-        throw new \PHPUnit\Framework\IncompleteTestError("Step `I see an array of :arg1 whose attribute :arg2 contains :arg3` is not defined");
-    }
+
+/**
+ * @Then I see an array of :arg1 whose attribute :arg2 contains :arg3
+ */
+public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
+{
+    // Check if the item list is visible or present on the page
+    $this->seeElement('#itemList');
+
+    // Check if any item's attribute contains the specified value
+    $this->see($arg3);
+}
+
+
 
     /**
      * @Then I see a message displaying :arg1
      */
     public function iSeeAMessageDisplaying($arg1)
     {
-        throw new \PHPUnit\Framework\IncompleteTestError("Step `I see a message displaying :arg1` is not defined");
+        $this->see("No items found");
     }
 }

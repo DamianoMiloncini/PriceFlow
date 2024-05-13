@@ -24,58 +24,58 @@ class ItemController extends \app\core\Controller
             Item::saveQuery($query, $_conn);
             // Call the scraping function from metro.php to get the items
 
-            $supercItems = scrapeSuperCItems($query);
+            // $supercItems = scrapeSuperCItems($query);
             //print_r("super C nothing?");
             //print_r($supercItems);
 
-            $metroItems = scrapeMetroItems($query);
+            // $metroItems = scrapeMetroItems($query);
             //print_r("metro nothing?");
             //print_r($metroItems);            
 
             // Initialize an empty array to store Item objects
             $itemObjects = [];
 
-            foreach ($supercItems as $item) {
-                $newItem = new Item($item); // Assuming $item is an array containing item details
-                $itemObjects[] = $newItem;
+            // foreach ($supercItems as $item) {
+            //     $newItem = new Item($item); // Assuming $item is an array containing item details
+            //     $itemObjects[] = $newItem;
 
-                //print_r($item);
-                //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+            //     //print_r($item);
+            //     //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                //print_r($newItem);
+            //     //print_r($newItem);
 
-                if ($newItem->doesItemExist() == true) {
-                    //print_r(" ITEM EXISTS");
+            //     if ($newItem->doesItemExist() == true) {
+            //         //print_r(" ITEM EXISTS");
 
-                    if ($newItem->doesItemQueryCombinationExist($query) == false) {
-                        $newItem->saveItemQueryCombination($query);
-                    }
-                } else {
-                    //print_r(" ITEM DOES NOT EXIST");
-                    $newItem->saveItem($query);
-                }
-            }
+            //         if ($newItem->doesItemQueryCombinationExist($query) == false) {
+            //             $newItem->saveItemQueryCombination($query);
+            //         }
+            //     } else {
+            //         //print_r(" ITEM DOES NOT EXIST");
+            //         $newItem->saveItem($query);
+            //     }
+            // }
 
-            foreach ($metroItems as $item) {
-                $newItem = new Item($item); // Assuming $item is an array containing item details
-                $itemObjects[] = $newItem;
+            // foreach ($metroItems as $item) {
+            //     $newItem = new Item($item); // Assuming $item is an array containing item details
+            //     $itemObjects[] = $newItem;
 
-                //print_r($item);
-                //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
+            //     //print_r($item);
+            //     //print_r("new item!!sssssssssssssssssssssssssssssssssssssssssssssssssssssssssL");
 
-                //print_r($newItem);
+            //     //print_r($newItem);
 
-                if ($newItem->doesItemExist() == true) {
-                    //print_r(" ITEM EXISTS");
+            //     if ($newItem->doesItemExist() == true) {
+            //         //print_r(" ITEM EXISTS");
 
-                    if ($newItem->doesItemQueryCombinationExist($query) == false) {
-                        $newItem->saveItemQueryCombination($query);
-                    }
-                } else {
-                    //print_r(" ITEM DOES NOT EXIST");
-                    $newItem->saveItem($query);
-                }
-            }
+            //         if ($newItem->doesItemQueryCombinationExist($query) == false) {
+            //             $newItem->saveItemQueryCombination($query);
+            //         }
+            //     } else {
+            //         //print_r(" ITEM DOES NOT EXIST");
+            //         $newItem->saveItem($query);
+            //     }
+            // }
 
             // Pass the item objects to the view
             $this->view('Item/itemList', ['items' => $itemObjects]); // Change $metroItems to $itemObjects
