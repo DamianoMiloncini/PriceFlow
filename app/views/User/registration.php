@@ -17,6 +17,12 @@
         .container {
             width: 300px;
             padding: 20px;
+            width: 300px;
+            height: 550px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         }
 
         .form-group {
@@ -44,8 +50,11 @@
             border: none;
             border-radius: 5px;
             background-color: #007bff;
-            color: #fff;
+            color: white;
             cursor: pointer;
+            display: block;
+            text-align: center; 
+            text-decoration: none;
         }
 
         .userBtn:hover {
@@ -55,10 +64,15 @@
 </head>
 
 <body>
-<?php // include 'app/views/topBar.php'; ?>
-
+<?php 
+if (isset($_SESSION['error_message'])) {
+    echo "<script>alert('{$_SESSION['error_message']}')</script>";
+    unset($_SESSION['error_message']);
+}
+?>
+    
     <div class='container'>
-
+    <h3><?= __('Create your account')?></h3>
         <form method="POST" action="">
             <div class="form-group">
                 <label><?= __('Username') ?><input type="text" name="username" placeholder="micka" /></label>
@@ -70,6 +84,7 @@
             <label><?= __('Last Name') ?></label>
             <input type="text" name="last_name" placeholder="Bob"><br>
             <input class="userBtn" type="submit" name="button" value="<?= __('Submit') ?>"><br>
+            <a class="userBtn" href="/home"><?= __('Home') ?></a>
         </form>
     </div>
 

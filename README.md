@@ -67,3 +67,13 @@ There are some bugs to be fixed of course, but these will be addressed shortly.
 # Internalization
 Current progress: 40% complete
 - Cart page (completed)
+
+# Internalization (Micka's pages)
+- My views & translations are done
+
+# What is left (Micka)
+- Some styling for my views
+- Some errors handling
+- Test my features with codeception
+
+

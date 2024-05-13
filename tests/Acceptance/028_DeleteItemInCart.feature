@@ -1,6 +1,11 @@
 Feature: Delete item from user's cart
+  In order to delete an item from my cart
+  As an authenticated user
+  I want to be able to click a delete button
 
-  Scenario: User deletes "Rice" from their cart
-  Given I am on "http://localhost/cart/{id1}"
-  When I click the "Remove" button for the "Rice" item
-  Then "Rice" will be removed from my cart
+  Scenario: Delete item from cart
+    Given I am logged in
+    And I complete two-factor authentication
+    And I am on "http://localhost/cart"
+    Then I see deleteCartItem
+

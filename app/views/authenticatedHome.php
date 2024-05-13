@@ -13,10 +13,10 @@
 </head>
 
 <body>
-    <?php include 'app/views/topBar.php'; 
+    <?php include 'app/views/topBar.php';
     ?>
 
-    <div id="container">
+    <div id="authenticatedContainer">
 
         <?php
         //get user's information
@@ -38,55 +38,58 @@
 
 
     </div>
-    <br>
+    <div class="authenticatedContent">
 
-    <div class="content">
 
-    <!-- <img id ="poster1" src="app/resources/poster1.png"> -->
 
         <?php //include 'app/views/Item/searchBar.php'; 
         ?>
 
-        <div class="divider"></div>
+        <!-- <div class="divider"></div> -->
 
-        <div id="searchInfoBar">
-            <div id="textInformation">
-                <h1 id="contentHeading"></h1>
-                <h1 id="resultsNumber"></h1>
-            </div>
-            <div id="searchButtons">
+        <img id="poster2" src="app/resources/flyer3.png">
 
-                <div id="filterButton">
-                    <select id="filterOptions" name="filterOptions">
-                        <option value="" disabled selected><i class="bi bi-funnel"></i><?= __('Filter') ?></option>
-                        <option value="itemFilter"><?= __('Item') ?></option>
-                        <option value="recipeFilter"><?= __('Recipe') ?></option>
-                    </select>
-                </div>
-
-                <div id="sortButton">
-                    <select id="sortOptions" name="sortOptions">
-                        <option value="" disabled selected><i class="bi bi-funnel"></i>Sort</option>
-                        <option value="dateCreated"><?= __('Date created') ?></option>
-                        <option value="option2"><?= __('Lowest to Highest') ?></option>
-                        <option value="option3"><?= __('Highest to Lowest') ?></option>
-                    </select>
-                </div>
-
-            </div>
+        <h4 class="itemLabels">Alcohol, Seltzers...</h4>
+        <div id="items">
+            <?php
+            $counter = 0;
+            foreach ($data['items'] as $item) {
+                if ($counter >= 5) {
+                    break; // Stop iterating once four items have been loaded
+                }
+                if (stripos($item['name'], 'beverage') !== false) {
+            ?>
+                    <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
+                        <div class="item">
+                            <img id="itemImage" src="<?php echo $item['image']; ?>">
+                            <div id="itemInformation">
+                                <div class="itemHeading" style="margin-bottom: 25px;">
+                                    <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
+                                    <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
+                                    <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
+                                </div>
+                                <h7>$<?php echo $item['price'] ?></h7><br>
+                                <h7><?php echo $item['store'] ?></h7>
+                            </div>
+                        </div>
+                    </a>
+            <?php
+                    $counter++;
+                }
+            }
+            ?>
 
         </div>
 
-
-        <script>
-            var num = 0;
-        </script>
-
-        <div id="recipes" style="display: <?php echo isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
-            <?php foreach ($data['recipes'] as $recipe) : ?>
-                <script>
-                    num++;
-                </script>
+        <h4 class="itemLabels" style="margin-top: 5%;">Most Recent Recipes</h4>
+        <div id="recipes">
+        <?php
+            $counter = 0;
+            foreach ($data['recipes'] as $recipe) {
+                if ($counter >= 5) {
+                    break; // Stop iterating once four items have been loaded
+                }
+            ?>
                 <a style="text-decoration:none; color:black;" href='Recipe/recipeDetails/<?php echo $recipe['recipe_id'] ?>'>
                     <div class="recipe">
                         <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
@@ -99,76 +102,80 @@
                         </div>
                     </div>
                 </a>
-            <?php endforeach ?>
+            <?php } ?>
         </div>
 
+        <img id="poster1" src="app/resources/flyer2.png">
 
-        <div id="items" style="display: <?php echo !isset($_SESSION['user_id']) ? 'none' : 'grid'; ?>">
-            <?php foreach ($data['items'] as $item) : ?>
-                <script>
-                    num++;
-                </script>
-                <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
-                    <div class="item">
-                        <img id="itemImage" src="<?php echo $item['image']; ?>">
-                        <div id="itemInformation">
-                            <div class="itemHeading" style="margin-bottom: 25px;">
-                                <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
-                                <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
-                                <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
+        
+
+        <h4 class="itemLabels">Protein Shakes</h4>
+        <div id="items">
+            <?php
+            $counter = 0;
+            foreach ($data['items'] as $item) {
+                if ($counter >= 5) {
+                    break; // Stop iterating once four items have been loaded
+                }
+                if (stripos($item['name'], 'milkshake') !== false) {
+            ?>
+                    <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
+                        <div class="item">
+                            <img id="itemImage" src="<?php echo $item['image']; ?>">
+                            <div id="itemInformation">
+                                <div class="itemHeading" style="margin-bottom: 25px;">
+                                    <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
+                                    <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
+                                    <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
+                                </div>
+                                <h7>$<?php echo $item['price'] ?></h7><br>
+                                <h7><?php echo $item['store'] ?></h7>
                             </div>
-                            <h7>$<?php echo $item['price'] ?></h7><br>
-                            <h7><?php echo $item['store'] ?></h7>
                         </div>
-                    </div>
-                </a>
-            <?php endforeach ?>
+                    </a>
+            <?php
+                    $counter++;
+                }
+            }
+            ?>
+
         </div>
 
-        <script>
-            document.getElementById("sortOptions").addEventListener("change", function() {
-                var sortBy = this.value;
-                if (sortBy === "dateCreated") {
-                    sortRecipesByDateCreated();
+        <h4 class="itemLabels">Chips</h4>
+        <div id="items">
+            <?php
+            $counter = 0;
+            foreach ($data['items'] as $item) {
+                if ($counter >= 5) {
+                    break; // Stop iterating once four items have been loaded
                 }
-            });
-
-            function sortRecipesByDateCreated() {
-                var recipesContainer = document.getElementById("recipes");
-                var recipes = Array.from(recipesContainer.children);
-
-                recipes.sort(function(a, b) {
-                    var dateA = new Date(a.querySelector("h7").textContent);
-                    var dateB = new Date(b.querySelector("h7").textContent);
-                    return dateB - dateA;
-                });
-
-                recipes.forEach(function(recipe) {
-                    recipesContainer.appendChild(recipe);
-                });
+                if (stripos($item['name'], 'chips') !== false) {
+            ?>
+                    <a style="text-decoration:none; color:black;" href="/Item/info/<?php echo $item['item_id']; ?>">
+                        <div class="item">
+                            <img id="itemImage" src="<?php echo $item['image']; ?>">
+                            <div id="itemInformation">
+                                <div class="itemHeading" style="margin-bottom: 25px;">
+                                    <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
+                                    <h5 style="font-size:18px;"><?php echo $item['name'] ?></h5><br>
+                                    <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
+                                </div>
+                                <h7>$<?php echo $item['price'] ?></h7><br>
+                                <h7><?php echo $item['store'] ?></h7>
+                            </div>
+                        </div>
+                    </a>
+            <?php
+                    $counter++;
+                }
             }
-        </script>
+            ?>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.getElementById("items").style.display = "grid"; // Show items
-                document.getElementById("contentHeading").textContent = "Items"; // Update heading
-            });
-            document.getElementById("filterOptions").addEventListener("change", function() {
-                var selectedFilter = this.value;
-                if (selectedFilter === "itemFilter") {
-                    document.getElementById("items").style.display = "grid";
-                    document.getElementById("recipes").style.display = "none";
-                    document.getElementById("contentHeading").textContent = "Items";
-                    var output = num + " Results found";
-                    document.getElementById("resultsNumber").textContent = output;
-                } else if (selectedFilter === "recipeFilter") {
-                    document.getElementById("items").style.display = "none";
-                    document.getElementById("recipes").style.display = "grid";
-                    document.getElementById("contentHeading").textContent = "Recipes";
-                }
-            });
-        </script>
+        </div>
+
+
+        </div>
+
 
     </div>
 

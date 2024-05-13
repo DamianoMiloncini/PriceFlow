@@ -1,6 +1,11 @@
-Feature: Interactive map to display the location of item's associate with the user's cart
+Feature: Interactive map
+  In order to view the map of stores
+  As an authenticated user
+  I want to be able to see the stores around my location
 
-  Scenario: User views the locations of the items in their cart
-  Given I am on "http://localhost/cart/{id1}"
-  When I click the "Rice" item in my cart
-  Then I will see the store location of the "Rice" item in my cart
+  Scenario: User views the map
+    Given I am logged in
+    And I complete two-factor authentication
+    And I am on "http://localhost/cart"
+    Then I see a map
+
