@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -159,11 +159,9 @@
 
 <body>
     <div id="wrapper">
-        <?php //var_dump($data); 
-        ?>
-        <h5 id="addingHeading">Add item to recipe <?php echo $data['recipes']['title'] ?></h5>
+        <?= __('Add item to recipe') ?> <?php echo $data['recipes']['title'] ?>
         <div class="divider"></div>
-        <h5>Items in recipe</h5>
+        <?= __('Items in recipe') ?>
 
         <!-- I am displaying the items that the user is adding to the recipe -->
         <div id="itemsInRecipeList">
@@ -183,8 +181,8 @@
                         <h5><?php echo $item['name'] ?></h5>
                         <h6 style="margin-left:2%;"><?php echo $item['brand'] ?></h6>
                         <h6 id="quantity" style="margin-left:2%;"><?php echo $item['quantity'] ?></h6>
-                        <h6 style="margin-left:2%;">Price: $<?php echo $item['price'] ?></h6>
-                        <h6 id="quantity_purchased" style="margin-left:2%;">Quantity needed: <?php echo $item['quantity_needed'] ?></h6>
+                        <h6 style="margin-left:2%;"><?= __('Price') ?>: $<?php echo $item['price'] ?></h6>
+                        <h6 id="quantity_purchased" style="margin-left:2%;"><?= __('Quantity needed') ?>: <?php echo $item['quantity_needed'] ?></h6>
                         <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
                         <input id="recipeId" type="hidden" name="cart_id" value="<?php echo $item['recipe_id']; ?>">
                         <div id="cartButtons">
@@ -199,14 +197,14 @@
 
             <?php }
             } else {
-                echo "<h4>Empty</h4>";
+                echo "<h4><?=__('Empty')?></h4>";
             } ?>
 
         </div>
 
-        <textarea id="search" name="searchBar" placeholder='Search'></textarea></textarea>
-        <button onclick="fetchData()">Search</button>
-        <a href="/home">Done</a>
+        <textarea id="search" name="searchBar" placeholder='<?= __('Search') ?>'></textarea>
+        <button onclick="fetchData()"><?= __('Search') ?></button>
+        <a href="/home"><?= __('Done') ?></a>
 
         <div id="items">
             <?php foreach ($data['items'] as $item) : ?>
@@ -216,11 +214,11 @@
                         <div id="itemInformation">
                             <div class="itemHeading">
                                 <h5><?php echo $item['name']; ?></h5>
-                                <h6>By <?php echo $item['brand']; ?></h6>
+                                <h6><?= __('By') ?> <?php echo $item['brand']; ?></h6>
                             </div>
                             <h7>$<?php echo $item['price'] ?></h7>
                             <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
-                            <button type="submit" id="addButton">Add</button>
+                            <button type="submit" id="addButton"><?= __('Add') ?></button>
                         </div>
                     </div>
                 </form>
