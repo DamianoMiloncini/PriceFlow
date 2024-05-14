@@ -3,7 +3,7 @@
 
 <head>
 
-    <style>
+<style>
         #wrapper {
             background-color: #fffbfb;
             color: #333;
