@@ -61,7 +61,7 @@
             <input class = "input" type="text" name="username" placeholder="micka"><br>
             <label><?= __('Password') ?></label>
             <input class = "input" type="text" name="password_hash" placeholder="1234!"><br><br>
-            <input class = "userBtn" type="submit" name="button" value="<?= __('Submit') ?>"><br>
+            <input class = "userBtn" type="submit" name="Login" value="<?= __('Submit') ?>"><br>
             <a class="userBtn" href="/home"><?= __('Home') ?></a>
         </form>
     </div>

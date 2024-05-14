@@ -251,7 +251,7 @@
                         echo '<a class="topbarBtns" href="/User/account">Account</a>';
                         echo '<a class="topbarBtns" href="/Recipe/displayAll">Recipe</a>';
                         echo '<a class="topbarBtns" href="/User/bookmark">Bookmarks</a>';
-                        echo '<a class="topbarBtns" href="/User/logout">Signout</a>';
+                        echo '<a name="logout" class="topbarBtns" href="/User/logout">Signout</a>';
                         echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
                     }
                 } else {
