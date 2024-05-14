@@ -83,7 +83,7 @@ if (isset($_SESSION['error_message'])) {
             <input type="text" name="first_name" placeholder="Michaella"><br>
             <label><?= __('Last Name') ?></label>
             <input type="text" name="last_name" placeholder="Bob"><br>
-            <input class="userBtn" type="submit" name="button" value="<?= __('Submit') ?>"><br>
+            <input class="userBtn" type="submit" name="create" value="<?= __('Submit') ?>"><br>
             <a class="userBtn" href="/home"><?= __('Home') ?></a>
         </form>
     </div>

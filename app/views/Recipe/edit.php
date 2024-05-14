@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Recipe</title>
+    <title><?=__('Edit Recipe')?></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -96,32 +96,32 @@
     </style>
 </head>
 <body>
-    <h1>Edit Recipe</h1>
+    <h1><?=__('Edit Recipe')?></h1>
     <form action="/Recipe/update/<?php echo $recipe['recipe_id']; ?>" method="post" enctype="multipart/form-data" class="edit-form">
-        <label for="title">Title:</label>
+        <label for="title"><?=__('Title')?>:</label>
         <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($recipe['title']); ?>">
         
-        <label for="content">Content:</label>
+        <label for="content"><?=__('Content')?>:</label>
         <textarea id="content" name="content"><?php echo htmlspecialchars($recipe['content']); ?></textarea>
         
-        <label for="duration">Duration:</label>
+        <label for="duration"><?=__('Duration')?>:</label>
         <input type="text" id="duration" name="duration" value="<?php echo htmlspecialchars($recipe['duration']); ?>">
         
-        <label for="image">Choose a different image:</label>
+        <label for="image"><?=__('Choose a different image')?>:</label>
         <input type="file" id="image" name="image">
 
-        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>">Update ingredients</a>
+        <a href="/Recipe/addItemToRecipe/<?php echo $recipe['recipe_id']; ?>"><?=__('Update ingredients')?></a>
 
         <img src="/uploads/<?php echo basename($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
         <input type="hidden" name="current_image" value="<?php echo $recipe['image']; ?>">
 
-        <label for="privacy_status">Privacy:</label>
+        <label for="privacy_status"><?=__('Privacy')?>:</label>
         <select id="privacy_status" name="privacy_status">
-            <option value="public" <?php if ($recipe['privacy_status'] === 'public') echo 'selected'; ?>>Public</option>
-            <option value="private" <?php if ($recipe['privacy_status'] === 'private') echo 'selected'; ?>>Private</option>
+            <option value="public" <?php if ($recipe['privacy_status'] === 'public') echo 'selected'; ?>><?=__('Public')?></option>
+            <option value="private" <?php if ($recipe['privacy_status'] === 'private') echo 'selected'; ?>><?=__('Private')?></option>
         </select>
 
-        <input type="submit" value="Save Changes">
+        <input type="submit" value="<?=__('Save Changes')?>">
     </form>
 </body>
 </html>
