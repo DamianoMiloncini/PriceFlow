@@ -76,4 +76,8 @@ Current progress: 40% complete
 - Some errors handling
 - Test my features with codeception
 
+# Codeception question to teacher (Micka)
+-The file "013_authentication.feature" works completely, just make sure for the user creates account successfully to change the username to something unique based on what's in the db.
+- Most of the methods for this feature in the AcceptanceTester.php starts at line 498.
+- The file "021_displayBookmark.feature" needs to be fixed because the 2fa authentication method makes it fail (just have to slightly change the logic of the method or called the method for the display bookmark).
 
