@@ -5,7 +5,7 @@ Feature: Interactive map
 
   Scenario: User views the map
     Given I am logged in
-    And I complete two-factor authentication
-    And I am on "http://localhost/cart"
+    And I complete two-factor authentication with my "901279"
+    And I am on "http://localhost/cart?lang=en"
     Then I see a map
 

@@ -221,7 +221,7 @@ class Cart extends \app\core\Controller
         header("Location: /cart");
     }
     #[\app\accessFilters\Login]
-    function why($cart_id, $item_id, $method){
+    function loadItems($cart_id, $item_id, $method){
 
         if($method === 'minus'){
             $itemToBeUpdated = new \app\models\Cart();
@@ -241,6 +241,14 @@ class Cart extends \app\core\Controller
         $itemsInCart = $itemsInCart->getUserCartItems($_SESSION['user_id']);
 
         $this->view('cartItems', $itemsInCart);
+    }
+
+    function checkoutButton(){
+
+        $itemsInCart = new \app\models\Cart();
+        $data = $itemsInCart->getUserCartItems($_SESSION['user_id']);
+
+        $this->view('checkoutButton', $data);
     }
 
 }
