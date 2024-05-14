@@ -146,8 +146,8 @@ class User extends \app\core\Controller {
                 header('location:/home');
 
 			}else{
-				//if wrong code, show the same view
-                $this->view('User/setup2fa');
+				//if wrong code, redirect to the setup2fa
+                header('location:/User/setup2fa');
 			}
 		}else{
 			$_SESSION['secret_setup'] = $authenticator->createSecret();
