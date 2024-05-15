@@ -9,5 +9,5 @@ Feature: Delete item from user's cart
     And I am on "http://localhost/cart?lang=en"
     Then I see "Milk"
     When I click element "button[name='deleteButton']"
-    Then I don't see "Milk"
+    Then "Milk" gets deleted
 
