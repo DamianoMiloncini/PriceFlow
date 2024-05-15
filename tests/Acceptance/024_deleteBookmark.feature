@@ -1,6 +1,8 @@
 Feature: Delete a user's bookmark item
 
 Scenario: Delete a user's bookmark item
-Given I am on "http://localhost/User/bookmark"
-When I click "delete" button on "item1"
-Then I should not see "item1" saved anymore
+Given I am logged in as "micka" and "1234" 
+And I complete two-factor authentication with my "924748"
+When I go on "/User/bookmark"
+And I click "delete_item" button on bookmark item "/bookmark/delete/1" 
+Then I should not see "milk" 

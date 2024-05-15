@@ -536,7 +536,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iGoOn($arg1)
     {
-        $this->amOnUrl('http://localhost/User/bookmark');
+        $this->amOnPage($arg1);
     }
 
     /**
@@ -764,4 +764,49 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
             
      }
 
+         /**
+     * @When click on the :arg1 link in my account page
+     */
+    public function clickOnTheLinkInMyAccountPage($arg1)
+    {
+        $this->amOnPage("/User/account");
+        // $this->click(".$arg1");
+        $this->click("//a[@class='userBtn' and contains(text(), '$arg1')]");
+
+    }
+
+     /**
+     * @Then I should enter my password :arg1 and my secret :arg2
+     */
+    public function iShouldEnterMyPasswordAndMySecret($password, $secret)
+    {
+        $this->fillField('password', $password);
+        $this->fillField('totp',$secret);
+        $this->click('input[type=submit][name=action]');
+    }
+
+        /**
+     * @Then I should be redirected to the :arg1 page
+     */
+    public function iShouldBeRedirectedToThePage($arg1)
+    {
+        $this->seeInCurrentUrl($arg1);
+    }
+
+   /**
+     * @Then I should not see :arg1
+     */
+    public function iShouldNotSee($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+        /**
+     * @When I click :arg1 button on bookmark item :arg2
+     */
+    public function iClickButtonOnBookmarkItem($button, $arg2)
+    {
+        $this->click($button);
+
+    }
 }

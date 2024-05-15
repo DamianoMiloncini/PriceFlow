@@ -236,7 +236,7 @@ class User extends \app\core\Controller {
             $password = $_POST['password'];
             $options = new AuthenticatorOptions();
             $authenticator = new Authenticator($options);
-            $authenticator->setSecret($_SESSION['secret_setup']);
+            $authenticator->setSecret($user->secret);
             //check if the password matches the user account password
             if ($user && password_verify($password,$user->password_hash) && $authenticator->verify($_POST['totp'])) {
                 //redirect the user to update2fa to scan the QR code again
