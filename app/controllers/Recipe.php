@@ -7,7 +7,7 @@ use app\models\Item;
 class Recipe extends \app\core\Controller
 {
 
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -137,7 +137,7 @@ class Recipe extends \app\core\Controller
     }
 
 
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function items($searchTerm)
     {
         $recipe = new \app\models\Recipe();
@@ -159,7 +159,7 @@ class Recipe extends \app\core\Controller
 
 
 
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function edit($recipe_id)
     {
         // Instantiate Recipe model
@@ -185,7 +185,7 @@ class Recipe extends \app\core\Controller
 
 
 
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function update($recipe_id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -238,7 +238,7 @@ class Recipe extends \app\core\Controller
     }
 
 
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function delete($recipe_id)
     {
         // Instantiate Recipe model
@@ -283,7 +283,7 @@ class Recipe extends \app\core\Controller
     }
 
     // Display private recipes (for authenticated users)
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     public function displayPrivate()
     {
         // Instantiate Recipe model
@@ -334,7 +334,7 @@ class Recipe extends \app\core\Controller
 
 
     // Display recipes created by the signed-in user
-    // #[\app\accessFilters\Login]
+    #[\app\accessFilters\Login]
     function displayUserRecipes()
     {
         // Instantiate Recipe model

@@ -847,6 +847,14 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     {
         $this->selectOption('storeFilter', $arg1);
     }
+
+    /**
+     * @When I set the :arg1 attribute of the recipe to :arg2
+     */
+    public function iSetTheAttributeOfTheRecipeTo($arg1, $arg2)
+    {
+        $this->selectOption($arg1, $arg2);
+    }
 }
 
 
