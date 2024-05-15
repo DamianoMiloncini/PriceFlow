@@ -237,8 +237,8 @@
                 </a>
 
                 <!-- Might do this -->
-                <a id="language" href="?lang=en">EN</a>
-                <a id="languageFrench" href="?lang=fr">FR</a>
+                <a class="language" href="?lang=en">EN</a>
+                <a class="language" href="?lang=fr">FR</a>
 
             </div>
 
