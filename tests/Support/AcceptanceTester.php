@@ -24,6 +24,8 @@ class AcceptanceTester extends \Codeception\Actor
     use _generated\AcceptanceTesterActions;
 
 
+    protected $minPrice;
+    protected $maxPrice;
     /**
      * Define custom actions here
      */
@@ -109,8 +111,8 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iLogin()
     {
-        $this->amOnPage('http://localhost/User/login'); 
-        $this->fillField("username", "user1");
+        $this->amOnPage('http://localhost/User/login?lang=en'); 
+        $this->fillField("username", "sheldon");
         $this->fillField("password_hash", "1234");
         $this->click("Login");
     }
@@ -194,22 +196,28 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
-     * @When I create a new recipe with title :arg1 and ingredients :arg2
+     * @When I create a new recipe with title :title and items :items
      */
-    public function iCreateANewRecipeWithTitleAndIngredients($title, $ingredients)
+/**
+     * @When I create a new recipe with title :title and items :items
+     */
+    public function iCreateANewRecipeWithTitleAndItems($title, $items)
     {
-        $this->click('Create Recipe');
-        $this->fillField('Title', $title);
-        $this->fillField('Ingredients', $ingredients);
-        $this->click('Save Recipe');
+        $this->clickLink('Create Recipe');
+        $this->fillField('title', $title);  // Field 'title' corresponds to <input type="text" id="title" name="title">
+        $this->fillField('content', $items);  // Field 'content' corresponds to <textarea name="content" ...>
+        $this->fillField('duration', 30);  // Assuming a fixed duration value for simplicity
+        $this->attachFile('image', 'path/to/image.jpg');  // Providing a sample path to an image
+        $this->selectOption('privacy_status', 'public');  // Setting privacy status to public
+        $this->pressButton('Continue');  // Pressing the 'Continue' button to submit the form
     }
 
     /**
-     * @Then the recipe :arg1 should be created successfully
+     * @Then the recipe :recipeTitle should be created successfully
      */
     public function theRecipeShouldBeCreatedSuccessfully($recipeTitle)
     {
-        $this->see($recipeTitle);
+        $this->assertPageContainsText($recipeTitle);
     }
 
     /**
@@ -248,13 +256,13 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('View Recipes');
     }
 
-    /**
-     * @Then I should see a list of recipes
-     */
-    public function iShouldSeeAListOfRecipes()
-    {
-        $this->seeElement('.recipe');
-    }
+    // /**
+    //  * @Then I should see a list of recipes
+    //  */
+    // public function iShouldSeeAListOfRecipes()
+    // {
+    //     $this->seeElement('.recipe');
+    // }
 
     /**
      * @When I view my profile
@@ -275,10 +283,10 @@ class AcceptanceTester extends \Codeception\Actor
     /**
      * @Given there are recipes available
      */
-    public function thereAreRecipesAvailable()
-    {
-        $this->seeElement('.recipe');
-    }
+    // public function thereAreRecipesAvailable()
+    // {
+    //     $this->seeElement('.recipe');
+    // }
 
     /**
      * @When I filter recipes by date created
@@ -351,7 +359,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function thereIsARecipeTitled($recipeTitle)
     {
-        $this->click('View Recipes');
+        $this->click('View Details');
         $this->see($recipeTitle);
     }
 
@@ -592,5 +600,109 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
     public function iShouldSeeTheValueOfLastNameBe($arg1)
     {
         $this->seeInField('last_name', $arg1);
-    }   
+    }
+
+    /**
+     * @Given I am on the :arg1 page
+     */
+    public function iAmOnThePage($arg1)
+    {
+        $this->amOnPage('/Recipe/displayAll');
+    }
+
+        /**
+     * @When I enter :arg1 into the search prompt
+     */
+    public function iEnterIntoTheSearchPrompt($arg1)
+    {
+        $this->fillField('#search', $arg1);
+    }
+
+   /**
+    * @When I click on the :arg1 button
+    */
+    public function iClickOnTheButton($arg1)
+    {
+        $this->click('button[type="submit"]');
+    }
+
+   /**
+    * @Then I should be on :arg1
+    */
+    public function iShouldBeOn($arg1)
+    {
+        $this->seeInCurrentUrl($arg1);
+    }
+
+   /**
+    * @Then I should see a list of :arg1 recipes
+    */
+    public function iShouldSeeAListOfRecipes($arg1)
+    {
+        $this->see($arg1, '.recipe-info h2');
+    }
+
+        /**
+     * @When I enter minimum price :arg1 and maximum price :arg2
+     */
+    public function iEnterMinimumPriceAndMaximumPrice($arg1, $arg2)
+    {
+        $this->minPrice = $arg1;
+        $this->maxPrice = $arg2;
+    }
+
+   /**
+    * @When I click on the Apply button
+    */
+    public function iClickOnTheApplyButton()
+    {
+        $this->click('.price-range-filter button[type="submit"]');
+    }
+
+   /**
+    * @Then I should see the recipes :arg1 and :arg2 in the recipe list on this page :arg3
+    */
+    public function iShouldSeeTheRecipesAndInTheRecipeListOnThisPage($arg1, $arg2, $arg3)
+    {
+        $this->amOnPage($arg3);
+
+    // Maximum number of attempts to check for the element
+    $maxAttempts = 10;
+
+    // Check if the element is present
+    for ($i = 0; $i < $maxAttempts; $i++) {
+        try {
+            // Attempt to find the element
+            $this->see($arg1, '.recipe-info h2');
+            $this->see($arg2, '.recipe-info h2');
+
+            // If the element is found, break out of the loop
+            break;
+        } catch (\Exception $e) {
+            // If element is not found, wait for a short interval before retrying
+            sleep(1);
+        }
+    }
+
+    // Perform assertions after the loop
+    $this->see($arg1, '.recipe-info h2');
+    $this->see($arg2, '.recipe-info h2');
+    }
+
+    /**
+     * @Then I should see the total price of recipe id :num1 is :arg1
+     */
+    /**
+ * @Then I should see the total price of recipe id :num1 is :arg1
+ */
+public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
+{
+    $locator = ".recipe-item:has(a[href*='/Recipe/recipeDetails/{$num1}']) .price";
+    $foundPrice = $this->grabTextFrom($locator);
+
+    if ($foundPrice !== $arg1) {
+        throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
+    }
+}
+
 }

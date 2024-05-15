@@ -190,10 +190,7 @@
     <?php include 'app/views/topBar.php'; ?>
     <header>
         <h1><?=__('All Recipes')?></h1>
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="/Recipe/displayUserRecipes" class="your-recipe-history-btn"><?=__('Your Recipe History')?></a>
-            <a href="/Recipe/create" class="create-recipe-btn"><?=__('Create Recipe')?></a>
-        <?php endif; ?>
+        <a href="/Recipe/displayUserRecipes" class="your-recipe-history-btn"><?=__('Your Recipe History')?></a>
         <a href="/home" class="home-btn"><?=__('Home')?></a>
         <div class="search-container">
             <form action="/Recipe/search" method="GET">
@@ -201,6 +198,7 @@
                 <button type="submit"><?=__('Search')?></button>
             </form>
         </div>
+        <a href="/Recipe/create" class="create-recipe-btn"><?=__('Create Recipe')?></a>
     </header>
 
     <div class="filters">
@@ -235,6 +233,7 @@
                         <div class="recipe-info">
                             <h2><?php echo $recipe['title']; ?></h2>
                             <p><?=__('Date Created:')?> <?php echo $recipe['date_created']; ?> <?=__('by')?> <?php echo $recipe['username'] ?></p>
+                            <p class="price">Price: <?php echo $recipe['total_price']; ?></p>
                         </div>
                         <div class="actions">
                             <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>"><?=__('View Details')?></a>

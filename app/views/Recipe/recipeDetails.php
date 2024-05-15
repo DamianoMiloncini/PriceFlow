@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            /* background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); */
             margin: 0;
             padding: 0;
             color: #333;
@@ -155,6 +155,7 @@
             <p><strong><?=__('Content')?>:</strong> <?php echo $recipeData['content']; ?></p>
             <p><strong><?=__('Duration')?>:</strong> <?php echo $recipeData['duration']; ?></p>
             <p><strong><?=__('Date Created')?>:</strong> <?php echo $recipeData['date_created']; ?></p>
+            <p><strong><?=__('Total Price')?>:</strong> <?php echo $recipeData['total_price']; ?></p>
         </div>
         <div class="recipe-items">
             <?php foreach ($data['itemsInRecipe'] as $item) { ?>

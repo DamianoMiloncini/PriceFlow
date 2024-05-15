@@ -1,10 +1,10 @@
-Feature: Search Recipe
-  In order to find specific recipes
+Feature: Search for recipe
+  In order to find a specific recipe
   As a user
-  I want to be able to search for recipes
-  
+  I want to search for a recipe using a keyword
+
   Scenario: Search for recipe
-    Given I am on "http://localhost/home"
-    When I enter "lasagna" into the search prompt
+    Given I am on the "/Recipe/displayAll" page
+    When I enter "rice" into the search prompt
     And I click on the "Search" button
-    Then I should a list of "lasagna" recipes
+    And I should see a list of "rice" recipes
