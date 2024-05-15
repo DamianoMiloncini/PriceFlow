@@ -842,4 +842,20 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->fillField($arg1, $arg2);
     }
+
+    /**
+     * @When I set the store filter to :arg1
+     */
+    public function iSetTheStoreFilterTo($arg1)
+    {
+        $this->selectOption('storeFilter', $arg1);
+    }
+
+    /**
+     * @When I set the :arg1 attribute of the recipe to :arg2
+     */
+    public function iSetTheAttributeOfTheRecipeTo($arg1, $arg2)
+    {
+        $this->selectOption($arg1, $arg2);
+    }
 }

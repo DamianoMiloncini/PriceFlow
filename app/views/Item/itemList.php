@@ -7,6 +7,7 @@
     <title>Item List</title>
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="\app\views\Styles\styles.css">
     <style>
         /* Additional styles for filter and sort popups */
         .popup {
@@ -24,8 +25,9 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <?php include 'app/views/Item/searchBar.php'; ?>
+<body class="bg-gray-100 mt-32">
+    
+    <?php include('app/views/topBar.php');?>
 
     <div class="flex flex-row mt-4 justify-center gap-4">
         <!-- Filter button -->
@@ -42,7 +44,7 @@
         <label for="maxPrice">Max Price:</label>
         <input name="maxPrice" type="number" id="maxPrice" min="0" value="1000" step="0.01">
         <label for="storeFilter">Store:</label>
-        <select id="storeFilter">
+        <select name="storeFilter" id="storeFilter">
             <option value="">All</option>
             <option value="metro">Metro</option>
             <option value="superc">Super C</option>
@@ -51,11 +53,11 @@
     </form>
 
     <!-- Sort popup -->
-    <div id="sortPopup" class="popup">
+    <form id="sortPopup" class="popup">
         <button onclick="togglePopup('sortPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
         <button onclick="sortItems('asc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Low to High</button>
         <button onclick="sortItems('desc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">High to Low</button>
-    </div>
+    </form>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-60" id="itemList">
         <?php if (empty($items)) : ?>
@@ -130,6 +132,7 @@
 
         // Function to sort items by price
         function sortItems(order) {
+            event.preventDefault();
             var minPrice = parseFloat(document.getElementById("minPrice").value);
             var maxPrice = parseFloat(document.getElementById("maxPrice").value);
             var selectedStore = document.getElementById("storeFilter").value.toLowerCase(); // Get selected store
