@@ -3,7 +3,7 @@
 
 <head>
 
-    <style>
+<style>
         #wrapper {
             background-color: #fffbfb;
             color: #333;
@@ -225,8 +225,9 @@
 
 <body>
 
+    <form>
     <div id='wrapper'>
-        <form>
+    
             <div id="logoSection">
                 <a href="/home" style="text-decoration: none">
                     <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
@@ -261,8 +262,11 @@
 
                 ?>
             </nav>
-        </form>
+            
+        
     </div>
+    </form>
+  
 
     <script>
         // Add event listener for Enter key press on search input

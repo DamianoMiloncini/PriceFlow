@@ -1,4 +1,4 @@
-# French translations for PACKAGE package.
+# English translations for PACKAGE package.
 # Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # root <EMAIL@ADDRESS>, 2024.
@@ -7,108 +7,117 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 04:31+0000\n"
-"PO-Revision-Date: 2024-05-12 04:31+0000\n"
+"POT-Creation-Date: 2024-05-14 00:29+0000\n"
+"PO-Revision-Date: 2024-05-14 02:18+0000\n"
 "Last-Translator: root <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/views/authenticatedHome.php:10
+#: app/views/authenticatedHome copy.php:5 app/views/authenticatedHome.php:5
+#: app/views/Recipe/displayAll.php:197 app/views/Recipe/displayPrivate.php:127
+#: app/views/Recipe/displayUserRecipes.php:127 app/views/User/account.php:72
+#: app/views/User/login.php:65 app/views/User/registration.php:87
 msgid "Home"
 msgstr "Acceuil"
 
-#: app/views/authenticatedHome.php:33
+#: app/views/authenticatedHome copy.php:29 app/views/authenticatedHome.php:29
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: app/views/authenticatedHome.php:62
+#: app/views/authenticatedHome copy.php:61
 msgid "Filter"
-msgstr "Filtre"
+msgstr "Filtrer"
 
-#: app/views/authenticatedHome.php:63
+#: app/views/authenticatedHome copy.php:62
 msgid "Item"
-msgstr "Item"
+msgstr "Article"
 
-#: app/views/authenticatedHome.php:64
+#: app/views/authenticatedHome copy.php:63
 msgid "Recipe"
 msgstr "Recette"
 
-#: app/views/authenticatedHome.php:71
+#: app/views/authenticatedHome copy.php:70
 msgid "Date created"
 msgstr "Date de creation"
 
-#: app/views/authenticatedHome.php:72
+#: app/views/authenticatedHome copy.php:71 app/views/Recipe/displayAll.php:211
 msgid "Lowest to Highest"
 msgstr "Plus petit au Plus grand"
 
-
-#: app/views/authenticatedHome.php:73
+#: app/views/authenticatedHome copy.php:72 app/views/Recipe/displayAll.php:212
 msgid "Highest to Lowest"
 msgstr "Plus grand au Plus petit"
 
-#: app/views/authenticatedHome.php:96
+#: app/views/authenticatedHome copy.php:95 app/views/authenticatedHome.php:98
 msgid "Recipe Title: "
-msgstr "Tire de la recette"
+msgstr "Titre de la recette: "
 
-#: app/views/authenticatedHome.php:97
+#: app/views/authenticatedHome copy.php:96 app/views/authenticatedHome.php:99
+#: app/views/Recipe/addItemToRecipe.php:217
 msgid "By"
 msgstr "De"
 
-#: app/views/User/account.php:31 app/views/User/login.php:11
-#: app/views/User/registration.php:15 app/views/User/update.php:11
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: app/views/User/account.php:35 app/views/User/registration.php:19
-#: app/views/User/update.php:17
-msgid "First Name"
-msgstr "Prenom"
-
-#: app/views/User/account.php:40 app/views/User/registration.php:21
-#: app/views/User/update.php:20
-msgid "Last Name"
-msgstr "Nom"
-
-#: app/views/User/account.php:45 app/views/User/registerLocation.php:41
-#: app/views/User/updateLocation.php:41
-msgid "Address"
-msgstr "Addresse"
-
-#: app/views/User/account.php:49 app/views/User/registerLocation.php:44
-#: app/views/User/updateLocation.php:44
-msgid "Street"
-msgstr "Rue"
-
-#: app/views/User/account.php:53 app/views/User/registerLocation.php:47
-#: app/views/User/updateLocation.php:47
-msgid "City"
-msgstr "Ville"
-
-#: app/views/cart.php:28
+#: app/views/cart.php:25
 msgid "Your Cart"
-msgstr "Votre Panier"
+msgstr "Votre panier"
 
 #: app/views/cart.php:26
 msgid "Checkout:"
 msgstr "Payer:"
 
-#: app/views/cart.php:34
+#: app/views/cart.php:30
 msgid "Thank you for choosing PriceWave!"
 msgstr "Merci d'avoir choisi PriceWave!"
 
-#: app/views/Recipe/create.php:98
+#: app/views/Recipe/addItemToRecipe.php:162
+msgid "Add item to recipe"
+msgstr "Ajouter un article a la recette"
+
+#: app/views/Recipe/addItemToRecipe.php:164
+msgid "Items in recipe"
+msgstr "Articles dans la recette"
+
+#: app/views/Recipe/addItemToRecipe.php:184
+#: app/views/Recipe/recipeDetails.php:167
+msgid "Price"
+msgstr "Prix"
+
+#: app/views/Recipe/addItemToRecipe.php:185
+msgid "Quantity needed"
+msgstr "Quantite requise"
+
+#: app/views/Recipe/addItemToRecipe.php:205
+#: app/views/Recipe/addItemToRecipe.php:206 app/views/Recipe/displayAll.php:201
+#: app/views/Recipe/displayPrivate.php:133
+#: app/views/Recipe/displayUserRecipes.php:133
+#: app/views/Recipe/searchResults.php:140
+msgid "Search"
+msgstr "Recherche"
+
+#: app/views/Recipe/addItemToRecipe.php:207
+msgid "Done"
+msgstr "Terminer"
+
+#: app/views/Recipe/addItemToRecipe.php:221
+msgid "Add"
+msgstr "Ajouter"
+
+#: app/views/Recipe/create.php:7 app/views/Recipe/create.php:98
+#: app/views/Recipe/displayAll.php:195 app/views/Recipe/displayPrivate.php:135
+#: app/views/Recipe/displayUserRecipes.php:135
+#: app/views/Recipe/searchResults.php:143
 msgid "Create Recipe"
 msgstr "Creer Recette"
 
 #: app/views/Recipe/create.php:101
 msgid "Title:"
-msgstr "Titre: "
+msgstr "Titre:"
 
-#: app/views/Recipe/create.php:102
+#: app/views/Recipe/create.php:102 app/views/Recipe/edit.php:101
 msgid "Title"
 msgstr "Titre"
 
@@ -138,13 +147,13 @@ msgstr "image"
 
 #: app/views/Recipe/create.php:115
 msgid "Privacy:"
-msgstr "Confidentialite"
+msgstr "Confidentialite:"
 
-#: app/views/Recipe/create.php:117
+#: app/views/Recipe/create.php:117 app/views/Recipe/edit.php:120
 msgid "Public"
 msgstr "Publique"
 
-#: app/views/Recipe/create.php:118
+#: app/views/Recipe/create.php:118 app/views/Recipe/edit.php:121
 msgid "Private"
 msgstr "Prive"
 
@@ -152,6 +161,207 @@ msgstr "Prive"
 msgid "Continue"
 msgstr "Continuer"
 
+#: app/views/Recipe/deleteConfirmation.php:6
+#: app/views/Recipe/deleteConfirmation.php:27
+msgid "Delete Confirmation"
+msgstr "Confirmation de Supprimer"
+
+#: app/views/Recipe/deleteConfirmation.php:28
+msgid "Are you sure you want to delete the recipe"
+msgstr "Etes-vous sur de vouloir supprimer cette recette"
+
+#: app/views/Recipe/deleteConfirmation.php:30
+msgid "Yes"
+msgstr "Oui"
+
+#: app/views/Recipe/deleteConfirmation.php:33 app/views/User/update.php:25
+msgid "Cancel"
+msgstr "Annuler"
+
+#: app/views/Recipe/displayAll.php:7 app/views/Recipe/displayAll.php:192
+msgid "All Recipes"
+msgstr "Toutes les recettes"
+
+#: app/views/Recipe/displayAll.php:194
+msgid "Your Recipe History"
+msgstr "L'historique de vos recettes"
+
+#: app/views/Recipe/displayAll.php:200 app/views/Recipe/searchResults.php:139
+msgid "Search Recipes..."
+msgstr "Rechercher des recettes..."
+
+#: app/views/Recipe/displayAll.php:209
+msgid "Sort by Total Price:"
+msgstr "Classer par Prix Total:"
+
+#: app/views/Recipe/displayAll.php:214
+msgid "Sort"
+msgstr "Classer"
+
+#: app/views/Recipe/displayAll.php:219
+msgid "Price Range:"
+msgstr "Echelle des Prix:"
+
+#: app/views/Recipe/displayAll.php:220
+msgid "Minimum Price"
+msgstr "Prix Minimum"
+
+#: app/views/Recipe/displayAll.php:221
+msgid "Maximum Price"
+msgstr "Prix Maximum"
+
+#: app/views/Recipe/displayAll.php:222
+msgid "Apply"
+msgstr "Appliquer"
+
+#: app/views/Recipe/displayAll.php:237 app/views/Recipe/displayPrivate.php:148
+#: app/views/Recipe/displayUserRecipes.php:148
+msgid "Date Created:"
+msgstr "Date de creation:"
+
+#: app/views/Recipe/displayAll.php:237
+msgid "by"
+msgstr "De"
+
+#: app/views/Recipe/displayAll.php:240 app/views/Recipe/displayPrivate.php:150
+#: app/views/Recipe/displayUserRecipes.php:150
+#: app/views/Recipe/searchResults.php:157
+msgid "View Details"
+msgstr "Voir les details"
+
+#: app/views/Recipe/displayAll.php:242 app/views/Recipe/displayPrivate.php:152
+#: app/views/Recipe/displayUserRecipes.php:152
+#: app/views/Recipe/recipeDetails.php:175
+#: app/views/Recipe/searchResults.php:159
+msgid "Edit"
+msgstr "Modifier"
+
+#: app/views/Recipe/displayAll.php:243 app/views/Recipe/displayPrivate.php:153
+#: app/views/Recipe/displayUserRecipes.php:153
+#: app/views/Recipe/recipeDetails.php:176
+#: app/views/Recipe/searchResults.php:160 app/views/User/bookmarks.php:54
+msgid "Delete"
+msgstr "Supprimer"
+
+#: app/views/Recipe/displayAll.php:249
+msgid "No recipes found."
+msgstr "Aucune recette trouvee."
+
+#: app/views/Recipe/displayPrivate.php:6
+#: app/views/Recipe/displayPrivate.php:126
+msgid "Private Recipes"
+msgstr "Recettes privees"
+
+#: app/views/Recipe/displayPrivate.php:131
+#: app/views/Recipe/displayUserRecipes.php:131
+msgid "Search Recipes:"
+msgstr "Rechercher des recettes:"
+
+#: app/views/Recipe/displayPrivate.php:132
+#: app/views/Recipe/displayUserRecipes.php:132
+msgid "Enter keywords..."
+msgstr "Entrer des mots..."
+
+#: app/views/Recipe/displayPrivate.php:147
+#: app/views/Recipe/displayUserRecipes.php:147
+msgid "Duration:"
+msgstr "Duree:"
+
+#: app/views/Recipe/displayPrivate.php:161
+#: app/views/Recipe/displayUserRecipes.php:161
+msgid "No private recipes found."
+msgstr "Aucune recette privee trouvee."
+
+#: app/views/Recipe/displayUserRecipes.php:6
+#: app/views/Recipe/displayUserRecipes.php:126
+msgid "Your Recipes"
+msgstr "Vos recettes"
+
+#: app/views/Recipe/edit.php:6 app/views/Recipe/edit.php:99
+msgid "Edit Recipe"
+msgstr "Modifier la recette"
+
+#: app/views/Recipe/edit.php:104 app/views/Recipe/recipeDetails.php:155
+msgid "Content"
+msgstr "Contenu"
+
+#: app/views/Recipe/edit.php:107 app/views/Recipe/recipeDetails.php:156
+msgid "Duration"
+msgstr "Duree"
+
+#: app/views/Recipe/edit.php:110
+msgid "Choose a different image"
+msgstr "Choisissez une autre image"
+
+#: app/views/Recipe/edit.php:113
+msgid "Update ingredients"
+msgstr "Mettre a jour les ingredients"
+
+#: app/views/Recipe/edit.php:118
+msgid "Privacy"
+msgstr "Confidentialite"
+
+#: app/views/Recipe/edit.php:124
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+#: app/views/Recipe/recipeDetails.php:7
+msgid "Recipe Details"
+msgstr "Details de la recette"
+
+#: app/views/Recipe/recipeDetails.php:157
+msgid "Date Created"
+msgstr "Date de creation"
+
+#: app/views/Recipe/recipeDetails.php:165
+msgid "Brand"
+msgstr "Marque"
+
+#: app/views/Recipe/recipeDetails.php:166
+msgid "Quantity"
+msgstr "Quantite"
+
+#: app/views/Recipe/recipeDetails.php:168
+msgid "Quantity Needed"
+msgstr "Quantite requise"
+
+#: app/views/Recipe/recipeDetails.php:178
+msgid "Back to Recipes"
+msgstr "Retour aux recettes"
+
+#: app/views/Recipe/searchResults.php:7 app/views/Recipe/searchResults.php:136
+msgid "Search Results"
+msgstr "Resultats de recherche"
+
+#: app/views/User/account.php:31 app/views/User/login.php:60
+#: app/views/User/registration.php:78 app/views/User/update.php:11
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: app/views/User/account.php:35 app/views/User/registration.php:82
+#: app/views/User/update.php:17
+msgid "First Name"
+msgstr "Prenom"
+
+#: app/views/User/account.php:40 app/views/User/registration.php:84
+#: app/views/User/update.php:20
+msgid "Last Name"
+msgstr "Nom de Famille"
+
+#: app/views/User/account.php:45 app/views/User/registerLocation.php:41
+#: app/views/User/updateLocation.php:41
+msgid "Address"
+msgstr "Adresse"
+
+#: app/views/User/account.php:49 app/views/User/registerLocation.php:44
+#: app/views/User/updateLocation.php:44
+msgid "Street"
+msgstr "Rue"
+
+#: app/views/User/account.php:53 app/views/User/registerLocation.php:47
+#: app/views/User/updateLocation.php:47
+msgid "City"
+msgstr "Ville"
 
 #: app/views/User/account.php:57 app/views/User/registerLocation.php:53
 #: app/views/User/updateLocation.php:54
@@ -165,11 +375,11 @@ msgstr "Code Postal"
 
 #: app/views/User/account.php:66
 msgid "Update Location"
-msgstr "Mettre a jour la location"
+msgstr "Mettre a jour localisation"
 
 #: app/views/User/account.php:68
 msgid "Update Profile"
-msgstr "Mettre a jour le profile"
+msgstr "Mettre a jour le profil"
 
 #: app/views/User/account.php:69
 msgid "Update 2FA secret"
@@ -179,18 +389,35 @@ msgstr "Mettre a jour 2FA secret"
 msgid "Register a favorite Location"
 msgstr "Enregistrer un lieu favori"
 
-#: app/views/User/bookmarks.php:54
-msgid "Delete"
-msgstr "Supprimer"
-
 #: app/views/User/bookmarks.php:61
 msgid "No favorites saved"
 msgstr "Aucun favori enregistre"
 
-#: app/views/User/login.php:13 app/views/User/passwordCheck.php:28
-#: app/views/User/registration.php:17 app/views/User/update.php:14
+#: app/views/User/check2fa.php:6 app/views/User/passwordCheck.php:34
+msgid "Submit the 6-digit code for this site from your Authenticator app"
+msgstr "Soumettez le code a 6 chiffres pour ce site depuis votre application Authenticator"
+
+#: app/views/User/check2fa.php:8 app/views/User/setup2fa.php:10
+msgid "Current code"
+msgstr "Code actuel"
+
+#: app/views/User/check2fa.php:10 app/views/User/passwordCheck.php:39
+#: app/views/User/setup2fa.php:12
+msgid "Verify code"
+msgstr "Verification du code"
+
+#: app/views/User/login.php:58
+msgid "Log In"
+msgstr "Connexion"
+
+#: app/views/User/login.php:62 app/views/User/passwordCheck.php:28
+#: app/views/User/registration.php:80 app/views/User/update.php:14
 msgid "Password"
 msgstr "Mot de passe"
+
+#: app/views/User/login.php:64 app/views/User/registration.php:86
+msgid "Submit"
+msgstr "Envoyer"
 
 #: app/views/User/passwordCheck.php:3
 msgid "Security Check"
@@ -199,10 +426,6 @@ msgstr "Verification de securite"
 #: app/views/User/passwordCheck.php:18
 msgid "Authentication check"
 msgstr "Verification d'authentification"
-
-#: app/views/User/passwordCheck.php:34 app/views/User/check2fa.php:6
-msgid "Submit the 6-digit code for this site from your Authenticator app"
-msgstr "Soumettez le code a 6 chiffres pour ce site depuis votre application Authenticator"
 
 #: app/views/User/registerLocation.php:39
 msgid "Enter your location details"
@@ -215,6 +438,10 @@ msgstr "Enregsiter votre location"
 #: app/views/User/registration.php:4
 msgid "User registration"
 msgstr "Inscription utilisateur"
+
+#: app/views/User/registration.php:75
+msgid "Create your account"
+msgstr "Creer votre compte"
 
 #: app/views/User/setup2fa.php:7
 msgid ""
@@ -231,21 +458,3 @@ msgstr ""
 #: app/views/User/update.php:24
 msgid "Update my account"
 msgstr "Mettre a jour mon compte"
-
-#: app/views/User/update.php:25
-msgid "Cancel"
-msgstr "Annuler"
-
-#: app/views/User/setup2fa.php:10 app/views/User/check2fa.php:8
-msgid "Current code"
-msgstr "Code actuel"
-
-#: app/views/User/setup2fa.php:12 app/views/User/passwordCheck.php:39 
-#: app/views/User/check2fa.php:10
-msgid "Verify code"
-msgstr "Verification du code"
-
-#: app/views/User/registration.php:23 app/views/User/login.php:15 
-msgid "Submit"
-msgstr "Envoyer"
-

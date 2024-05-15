@@ -1,128 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Details</title>
+    <title><?=__('Recipe Details')?></title>
     <style>
-        img {
-            max-width: 25%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 10px;
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
 
-        .recipe-details {
-            max-width: 600px;
-            margin: 0 auto;
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
-        .edit-button,
-        .delete-button,
-        .back-button {
-            display: block;
-            width: 100px;
-            margin: 10px auto;
-            padding: 8px 16px;
+        .recipe-header {
             text-align: center;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
+            margin-bottom: 30px;
         }
 
-        #recipeItems {
-            padding-top: 3%;
-            padding-left: 18%;
-            padding-right: 18%;
-        }
-
-        .itemCard {
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
-            padding: 2%;
-            margin-bottom: 1.5%;
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .itemImages {
-            width: 5%;
+        .recipe-header img {
+            max-width: 120px;
             height: auto;
-            margin-left: 1%;
-            margin-right: 2%;
+            border-radius: 50%;
+            border: 4px solid #eee;
+            margin-bottom: 20px;
         }
 
-        .bttns {
+        .recipe-header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #2575fc;
+        }
+
+        .recipe-content {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .recipe-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .recipe-content p strong {
+            color: #333;
+        }
+
+        .recipe-items {
+            margin-bottom: 30px;
+        }
+
+        .item-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .item-card div {
+            flex-grow: 1;
+        }
+
+        .item-card h5 {
+            margin: 0 0 5px;
+            font-size: 1.2em;
+            color: #2575fc;
+        }
+
+        .item-card h6 {
+            margin: 0;
+            font-size: 1em;
+            color: #777;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-group a {
             display: inline-block;
-            padding: 5px 20px;
-            background-color: #eff7ff;
-            font-size: 20px;
-            font-weight: 600;
-            color: #006eff;
+            padding: 12px 24px;
+            margin: 5px 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #6a11cb;
+            border-radius: 5px;
             text-decoration: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 35px;
-            margin-right: 8px;
-            margin-left: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .bttns:hover {
-            background-color: #d4e7ff;
-            cursor: pointer;
+        .button-group a:hover {
+            background-color: #5a0fb5;
+            transform: translateY(-2px);
         }
-        
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .item-card {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: center;
+            }
+
+            .item-card img {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <img src="/uploads/<?php echo basename($recipeData['image']); ?>" alt="<?php echo $recipeData['title']; ?>">
-    <div class="recipe-details">
-        <h1><?php echo $recipeData['title']; ?></h1>
-        <p>Content: <?php echo $recipeData['content']; ?></p>
-        <p>Duration: <?php echo $recipeData['duration']; ?></p>
-        <p>Date Created: <?php echo $recipeData['date_created']; ?></p>
-
-        <div id="recipeItems">
+    <div class="container">
+        <div class="recipe-header">
+            <img src="/uploads/<?php echo basename($recipeData['image']); ?>" alt="<?php echo $recipeData['title']; ?>">
+            <h1><?php echo $recipeData['title']; ?></h1>
+        </div>
+        <div class="recipe-content">
+            <p><strong><?=__('Content')?>:</strong> <?php echo $recipeData['content']; ?></p>
+            <p><strong><?=__('Duration')?>:</strong> <?php echo $recipeData['duration']; ?></p>
+            <p><strong><?=__('Date Created')?>:</strong> <?php echo $recipeData['date_created']; ?></p>
+        </div>
+        <div class="recipe-items">
             <?php foreach ($data['itemsInRecipe'] as $item) { ?>
-
-                <div class="itemCard">
-
-                    <img class="itemImages" src=<?php echo $item['image'] ?>>
-
-
-                    <!-- <div id ="itemInformation"> -->
-                    <h5><?php echo $item['name'] ?></h5>
-                    <h6 style="margin-left:2%;"><?php echo $item['brand'] ?></h6>
-                    <h6 id="quantity" style="margin-left:2%;"><?php echo $item['quantity'] ?></h6>
-                    <h6 style="margin-left:2%;">Price: $<?php echo $item['price'] ?></h6>
-                    <h6 id="quantity_purchased" style="margin-left:2%;">Quantity needed: <?php echo $item['quantity_needed'] ?></h6>
-                    <!-- </div> -->
-                    <h5 style="margin-left:2%;">
-                    </h5>
+                <div class="item-card">
+                    <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
+                    <div>
+                        <h5><?php echo $item['name']; ?></h5>
+                        <h6><?=__('Brand')?>: <?php echo $item['brand']; ?></h6>
+                        <h6><?=__('Quantity')?>: <?php echo $item['quantity']; ?></h6>
+                        <h6><?=__('Price')?>: $<?php echo $item['price']; ?></h6>
+                        <h6><?=__('Quantity Needed')?>: <?php echo $item['quantity_needed']; ?></h6>
+                    </div>
                 </div>
-
             <?php } ?>
         </div>
-
-
-        <?php if (isset($_SESSION['user_id']) && $recipeData['user_id'] === $_SESSION['user_id']) : ?>
-            <a href="/Recipe/edit/<?php echo $recipeData['recipe_id']; ?>" class="edit-button">Edit</a>
-            <a href="/Recipe/deleteConfirmation/<?php echo $recipeData['recipe_id']; ?>" class="delete-button">Delete</a>
-        <?php endif; ?>
-        <a href="/Recipe/displayAll" class="back-button">Back to Recipes</a>
+        <div class="button-group">
+            <?php if (isset($_SESSION['user_id']) && $recipeData['user_id'] === $_SESSION['user_id']) : ?>
+                <a href="/Recipe/edit/<?php echo $recipeData['recipe_id']; ?>" class="edit-button"><?=__('Edit')?></a>
+                <a href="/Recipe/deleteConfirmation/<?php echo $recipeData['recipe_id']; ?>" class="delete-button"><?=__('Delete')?></a>
+            <?php endif; ?>
+            <a href="/Recipe/displayAll" class="back-button"><?=__('Back to Recipes')?></a>
+        </div>
     </div>
 </body>
 

@@ -76,7 +76,7 @@ class Recipe extends \app\core\Model
         return $success;
     }
 
-    
+
 
     // Function to update an existing recipe
     public function updateRecipe($recipe_id, $title, $content, $duration, $imagePath, $privacy_status)
@@ -151,7 +151,8 @@ class Recipe extends \app\core\Model
         return $recipe;
     }
 
-    public function subtractItemQuantityInRecipe($recipe_id, $item_id) {
+    public function subtractItemQuantityInRecipe($recipe_id, $item_id)
+    {
         $SQL = 'UPDATE items_in_recipe
         SET quantity_needed = CASE 
                                     WHEN quantity_needed > 1 THEN quantity_needed - 1 
@@ -162,15 +163,16 @@ class Recipe extends \app\core\Model
         //prepare statement
         $STATEMENT = self::$_conn->prepare($SQL);
         $data = [
-            'recipe_id'=>$recipe_id,
-            'item_id'=>$item_id
+            'recipe_id' => $recipe_id,
+            'item_id' => $item_id
         ];
 
         $STATEMENT->execute($data);
         $this->updateTotalRecipePrice($recipe_id);
     }
 
-    public function addItemQuantityInRecipe($recipe_id, $item_id){
+    public function addItemQuantityInRecipe($recipe_id, $item_id)
+    {
         $SQL = 'UPDATE items_in_recipe
         SET quantity_needed = quantity_needed + 1 
         WHERE recipe_id = :recipe_id AND item_id = :item_id;';
@@ -178,31 +180,32 @@ class Recipe extends \app\core\Model
         //prepare statement
         $STATEMENT = self::$_conn->prepare($SQL);
         $data = [
-            'recipe_id'=>$recipe_id,
-            'item_id'=>$item_id
+            'recipe_id' => $recipe_id,
+            'item_id' => $item_id
         ];
 
         $STATEMENT->execute($data);
         $this->updateTotalRecipePrice($recipe_id);
-
     }
 
-    public function removeFromRecipe($recipe_id, $item_id){
+    public function removeFromRecipe($recipe_id, $item_id)
+    {
         $SQL = 'DELETE FROM items_in_recipe 
         WHERE recipe_id = :recipe_id AND item_id=:item_id';
 
         $STATEMENT = self::$_conn->prepare($SQL);
 
         $data = [
-            'recipe_id'=>$recipe_id,
-            'item_id'=>$item_id
+            'recipe_id' => $recipe_id,
+            'item_id' => $item_id
         ];
 
         $STATEMENT->execute($data);
         $this->updateTotalRecipePrice($recipe_id);
     }
 
-    public function updateTotalRecipePrice($recipe_id){
+    public function updateTotalRecipePrice($recipe_id)
+    {
         $totalPrice = 0;
         $allInformation = [];
 
@@ -221,11 +224,11 @@ class Recipe extends \app\core\Model
 
 
         // Getting the items information
-        foreach($itemsInRecipe as $item):
+        foreach ($itemsInRecipe as $item) :
             $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
 
             $STMT = self::$_conn->prepare($SQL);
-            
+
             $STMT->execute(
                 [
                     'item_id' => $item['item_id']
@@ -237,7 +240,7 @@ class Recipe extends \app\core\Model
             $totalPrice += ($itemInfo['price'] * $item['quantity_needed']);
 
         endforeach;
-        
+
         $SQL = 'UPDATE recipe
         SET total_price = :total_price
         WHERE recipe_id = :recipe_id';
@@ -245,8 +248,8 @@ class Recipe extends \app\core\Model
         //prepare statement
         $STATEMENT = self::$_conn->prepare($SQL);
         $data = [
-            'recipe_id'=>$recipe_id,
-            'total_price'=>$totalPrice
+            'recipe_id' => $recipe_id,
+            'total_price' => $totalPrice
         ];
 
         $STATEMENT->execute($data);
@@ -267,11 +270,11 @@ class Recipe extends \app\core\Model
         $itemsInRecipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Getting the items information
-        foreach($itemsInRecipe as $item):
+        foreach ($itemsInRecipe as $item) :
             $SQL = 'SELECT * FROM item WHERE item_id = :item_id';
 
             $STMT = self::$_conn->prepare($SQL);
-            
+
             $STMT->execute(
                 [
                     'item_id' => $item['item_id']
@@ -386,8 +389,8 @@ class Recipe extends \app\core\Model
     // Function to fetch all recipes created by a user
     public function getUserRecipes($user_id)
     {
-        // SQL statement for fetching all recipes created by the user
-        $sql = 'SELECT * FROM recipe WHERE user_id = :user_id';
+        // SQL statement for fetching all recipes created by the user with image paths
+        $sql = 'SELECT *, CONCAT("uploads/", image) AS imagePath FROM recipe WHERE user_id = :user_id';
 
         // Prepare the SQL statement
         $stmt = self::$_conn->prepare($sql);
@@ -398,7 +401,7 @@ class Recipe extends \app\core\Model
         // Execute the statement
         $stmt->execute();
 
-        // Fetch all recipes created by the user as associative array
+        // Fetch all recipes created by the user with image paths as associative array
         $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $recipes;
@@ -575,9 +578,10 @@ class Recipe extends \app\core\Model
         return $recipes;
     }
 
-    public function loadRecipes($query){
+    public function loadRecipes($query)
+    {
         // SQL statement to fetch items based on the provided query
-        $SQL ='SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
+        $SQL = 'SELECT r.*, CONCAT("uploads/", image) AS imagePath, u.username
         FROM recipe r join user u
         ON r.user_id = u.user_id
         WHERE r.privacy_status = "public"
@@ -597,5 +601,4 @@ class Recipe extends \app\core\Model
 
         return $results;
     }
-
 }

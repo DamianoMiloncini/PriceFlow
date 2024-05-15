@@ -22,17 +22,22 @@
 }
 
 #logoSection {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Align items vertically */
+    display: flex;
+    /* Use flexbox to align items horizontally */
+    align-items: center;
+    /* Align items vertically */
 }
 
 #logoText {
-    margin: 0; /* Remove default margin */
+    margin: 0;
+    /* Remove default margin */
 }
 
 .buttons {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Align items vertically */
+    display: flex;
+    /* Use flexbox to align items horizontally */
+    align-items: center;
+    /* Align items vertically */
 }
 
 
@@ -47,8 +52,25 @@
     line-height: 30px;
     height: 40px;
     padding-left: 20px;
-    width: 750px !important; /* Adjust the width as needed */
-    margin-right: 65px; /* Add space between search bar and buttons */
+    width: 750px !important;
+
+}
+
+#searchbutton {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 35px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 40px;
+    margin-right: 65px;
+    line-height: normal;
 }
 
 

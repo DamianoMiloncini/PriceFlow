@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
+    <title><?=__('Search Results')?></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -133,14 +133,14 @@
 
 <body>
     <header>
-        <h1>Search Results</h1>
+        <h1><?=__('Search Results')?></h1>
         <div class="search-container">
             <form action="/Recipe/search" method="GET">
-                <input type="text" id="search" name="query" placeholder="Search Recipes...">
-                <button type="submit">Search</button>
+                <input type="text" id="search" name="query" placeholder="<?=__('Search Recipes...')?>">
+                <button type="submit"><?=__('Search')?></button>
             </form>
         </div>
-        <a href="/Recipe/create" class="create-recipe-btn">Create Recipe</a>
+        <a href="/Recipe/create" class="create-recipe-btn"><?=__('Create Recipe')?></a>
     </header>
 
     <main>
@@ -148,14 +148,17 @@
             <?php foreach ($recipes as $recipe): ?>
             <li class="recipe-item">
                 <div class="image-wrapper">
-                    <img src="/uploads/<?php echo basename($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>">
+                    <img src="/uploads/<?=basename($recipe['image'])?>" alt="<?=htmlspecialchars($recipe['title'])?>">
                 </div>
                 <div class="recipe-info">
-                    <h2><?php echo $recipe['title']; ?></h2>
-                    <p><?php echo $recipe['content']; ?></p>
+                    <h2><?=$recipe['title']?></h2>
                 </div>
                 <div class="actions">
-                <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>">View Details</a>
+                <a href="/Recipe/recipeDetails/<?=$recipe['recipe_id']?>"><?=__('View Details')?></a>
+                <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) : ?>
+                    <a class="edit-btn" href="/Recipe/edit/<?=$recipe['recipe_id']?>"><?=__('Edit')?></a>
+                    <a class="delete-btn" href="/Recipe/deleteConfirmation/<?=$recipe['recipe_id']?>"><?=__('Delete')?></a>
+                <?php endif; ?>
                 </div>
             </li>
             <?php endforeach; ?>
@@ -164,4 +167,3 @@
 </body>
 
 </html>
-

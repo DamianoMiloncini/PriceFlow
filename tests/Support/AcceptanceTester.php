@@ -65,7 +65,6 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iShouldBeRedirectedToTheHomePage()
     {
-        
     }
 
     /**
@@ -90,7 +89,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iLogin()
     {
-        $this->amOnPage('http://localhost/User/login'); 
+        $this->amOnPage('http://localhost/User/login?lang=en');
         $this->fillField("username", "user1");
         $this->fillField("password_hash", "1234");
         $this->click("Login");
@@ -109,10 +108,9 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iCompleteTwoFactorAuthenticationWithMy($arg1)
     {
-        $this->amOnPage('http://localhost/User/check2fa');
+        $this->amOnPage('http://localhost/User/check2fa?lang=en');
         // 2FA HERE
         $totpCode = $arg1; // You must always replace this with the new authenticator code when you test
-        // (we are usig the user1 account for these tests)
 
         $this->fillField("totp", $totpCode);
 
@@ -374,7 +372,15 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iSeeAMap()
     {
-        $this->seeElement('#cartMap'); // Assuming there's a container element for the map
+        $this->seeElement('#cartMap');
+    }
+
+    /**
+     * @Then I see :arg1
+     */
+    public function iSee($arg1)
+    {
+        $this->see('Milk');
     }
 
     /**
@@ -382,12 +388,12 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iSeeMilk()
     {
-        $this->see('Milk'); // Assuming there's a container element for the map
+        $this->see('Milk');
     }
 
     public function iSeeDeleteCartItem()
     {
-        $this->see('Your'); // Assuming there's a container element for the map
+        $this->see('Your');
     }
 
     /**
@@ -412,21 +418,21 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iAmRedirectedTo($arg1)
     {
- 	$this->amOnPage($arg1); 
+        $this->amOnPage($arg1);
     }
 
 
-/**
- * @Then I see an array of :arg1 whose attribute :arg2 contains :arg3
- */
-public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
-{
-    // Check if the item list is visible or present on the page
-    $this->seeElement('#itemList');
+    /**
+     * @Then I see an array of :arg1 whose attribute :arg2 contains :arg3
+     */
+    public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
+    {
+        // Check if the item list is visible or present on the page
+        $this->seeElement('#itemList');
 
-    // Check if any item's attribute contains the specified value
-    $this->see($arg3);
-}
+        // Check if any item's attribute contains the specified value
+        $this->see($arg3);
+    }
 
 
 
@@ -449,25 +455,25 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
         $this->fillField('password_hash', $lastName);
     }
 
-   /**
-    * @When I enter :arg1 ,:arg2, :arg3, :arg4, :arg5
-    */
+    /**
+     * @When I enter :arg1 ,:arg2, :arg3, :arg4, :arg5
+     */
     public function iEnter($arg1, $arg2, $arg3, $arg4, $arg5)
     {
         throw new \PHPUnit\Framework\IncompleteTestError("Step `I enter :arg1 ,:arg2, :arg3, :arg4, :arg5` is not defined");
     }
 
-   /**
-    * @When I click the :arg1 button
-    */
+    /**
+     * @When I click the :arg1 button
+     */
     public function iClickTheButton($arg1)
     {
         $this->click($arg1);
     }
 
-   /**
-    * @Then I should see :arg1 ,:arg2, :arg3, :arg4, :arg5 as my account details
-    */
+    /**
+     * @Then I should see :arg1 ,:arg2, :arg3, :arg4, :arg5 as my account details
+     */
     public function iShouldSeeAsMyAccountDetails($arg1, $arg2, $arg3, $arg4, $arg5)
     {
         throw new \PHPUnit\Framework\IncompleteTestError("Step `I should see :arg1 ,:arg2, :arg3, :arg4, :arg5 as my account details` is not defined");
@@ -478,7 +484,7 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
      */
     public function iShouldBeRedirectedToTheSetup2faPage()
     {
-        $this->seeInCurrentUrl('/User/setup2fa'); 
+        $this->seeInCurrentUrl('/User/setup2fa');
     }
 
     /**
@@ -489,18 +495,18 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
         $this->seeInCurrentUrl('/User/check2fa');
     }
 
-        /**
+    /**
      * @Then I should be redirected to the welcome page
      */
     public function iShouldBeRedirectedToTheWelcomePage()
     {
-        $this->seeInCurrentUrl('/welcome');    
+        $this->seeInCurrentUrl('/welcome');
     }
     /**
      * @When I click the :arg1 link on the top bar view
      */
     public function iClickTheLinkOnTheTopBarView($arg1)
-    { 
+    {
         // $this->click($arg1);
     }
 
@@ -512,15 +518,15 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
         $this->amOnUrl('http://localhost/User/bookmark');
     }
 
-   /**
-    * @Then I should see :arg1
-    */
+    /**
+     * @Then I should see :arg1
+     */
     public function iShouldSee($arg1)
     {
         $this->see($arg1);
     }
 
-        /**
+    /**
      * @Given I am logged in as :arg1 and :arg2
      */
     public function iAmLoggedInAsAnd($arg1, $arg2)
@@ -532,25 +538,25 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
         $this->seeInCurrentUrl('/User/check2fa');
     }
 
-        /**
+    /**
      * @Given I am registered as in as :arg1, :arg2 , :arg3, :arg4
      */
     public function iAmRegisteredAsInAs($arg1, $arg2, $arg3, $arg4)
     {
-        $this->amOnPage("/User/registration");    
+        $this->amOnPage("/User/registration");
         $this->fillField('username', $arg1);
         $this->fillField('password_hash', $arg2);
         $this->fillField('first_name', $arg3);
         $this->fillField('last_name', $arg4);
-        $this->click('input[type=submit][name=create]'); 
+        $this->click('input[type=submit][name=create]');
     }
-        /**
+    /**
      * @When I log out
      */
     public function iLogOut()
     {
-        $this->iAmLoggedInAsAnd('micka','1234');
-        $this->amOnPage("/home");   
+        $this->iAmLoggedInAsAnd('micka', '1234');
+        $this->amOnPage("/home");
         $this->click('a.topbarBtns[name=logout]');
     }
     /**
@@ -565,10 +571,10 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
         $this->fillField('password_hash', $arg2);
         $this->fillField('first_name', $arg3);
         $this->fillField('last_name', $arg4);
-        $this->click('input[type=submit][name=action]'); 
+        $this->click('input[type=submit][name=action]');
     }
 
-        /**
+    /**
      * @Then I should see the value of last name be :arg1
      */
     public function iShouldSeeTheValueOfLastNameBe($arg1)

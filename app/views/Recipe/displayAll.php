@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Recipes</title>
+    <title><?=__('All Recipes')?></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,28 +22,43 @@
 
         header h1 {
             margin: 0;
-            margin-bottom: 10px; /* Add margin below h1 */
+            margin-bottom: 10px;
         }
 
-        .create-recipe-btn {
+        .create-recipe-btn, 
+        .your-recipe-history-btn, 
+        .home-btn {
             background-color: black;
             color: #ffffff;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none; /* Remove default link underline */
+            text-decoration: none;
             position: absolute;
             top: 20px;
-            right: 20px; /* Positioning to the right */
         }
 
-        .create-recipe-btn:hover {
+        .create-recipe-btn {
+            right: 20px;
+        }
+
+        .your-recipe-history-btn {
+            left: 20px;
+        }
+
+        .home-btn {
+            left: 200px;
+        }
+
+        .create-recipe-btn:hover, 
+        .your-recipe-history-btn:hover, 
+        .home-btn:hover {
             background-color: #218838;
         }
 
         .search-container {
-            text-align: center; /* Center align the search container */
+            text-align: center;
         }
 
         .search-container input[type="text"] {
@@ -172,36 +187,39 @@
 </head>
 
 <body>
-
-<?php include 'app/views/topBar.php'; ?>
+    <?php include 'app/views/topBar.php'; ?>
     <header>
-        <h1>All Recipes</h1>
+        <h1><?=__('All Recipes')?></h1>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="/Recipe/displayUserRecipes" class="your-recipe-history-btn"><?=__('Your Recipe History')?></a>
+            <a href="/Recipe/create" class="create-recipe-btn"><?=__('Create Recipe')?></a>
+        <?php endif; ?>
+        <a href="/home" class="home-btn"><?=__('Home')?></a>
         <div class="search-container">
             <form action="/Recipe/search" method="GET">
-                <input type="text" id="search" name="query" placeholder="Search Recipes...">
-                <button type="submit">Search</button>
+                <input type="text" id="search" name="query" placeholder="<?=__('Search Recipes...')?>">
+                <button type="submit"><?=__('Search')?></button>
             </form>
         </div>
-        <a href="/Recipe/create" class="create-recipe-btn">Create Recipe</a>
     </header>
 
     <div class="filters">
         <div class="sort-filter">
             <form action="/Recipe/filterByPrice" method="GET">
-                <label for="sort_order">Sort by Total Price:</label>
+                <label for="sort_order"><?=__('Sort by Total Price:')?></label>
                 <select name="sort_order" id="sort_order">
-                    <option value="asc">Lowest to Highest</option>
-                    <option value="desc">Highest to Lowest</option>
+                    <option value="asc"><?=__('Lowest to Highest')?></option>
+                    <option value="desc"><?=__('Highest to Lowest')?></option>
                 </select>
-                <button type="submit">Sort</button>
+                <button type="submit"><?=__('Sort')?></button>
             </form>
         </div>
         <div class="price-range-filter">
             <form action="/Recipe/filterByPriceRange" method="GET">
-                <label for="min_price">Price Range:</label>
-                <input type="number" id="min_price" name="min_price" placeholder="Minimum Price">
-                <input type="number" id="max_price" name="max_price" placeholder="Maximum Price">
-                <button type="submit">Apply</button>
+                <label for="min_price"><?=__('Price Range:')?></label>
+                <input type="number" id="min_price" name="min_price" placeholder="<?=__('Minimum Price')?>">
+                <input type="number" id="max_price" name="max_price" placeholder="<?=__('Maximum Price')?>">
+                <button type="submit"><?=__('Apply')?></button>
             </form>
         </div>
     </div>
@@ -216,19 +234,19 @@
                         </div>
                         <div class="recipe-info">
                             <h2><?php echo $recipe['title']; ?></h2>
-                            <p>Date Created: <?php echo $recipe['date_created']; ?> by <?php echo $recipe['username'] ?></p>
+                            <p><?=__('Date Created:')?> <?php echo $recipe['date_created']; ?> <?=__('by')?> <?php echo $recipe['username'] ?></p>
                         </div>
                         <div class="actions">
-                            <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>">View Details</a>
+                            <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>"><?=__('View Details')?></a>
                             <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) : ?>
-                                <a class="edit-btn" href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>">Edit</a>
-                                <a class="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>">Delete</a>
+                                <a class="edit-btn" href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>"><?=__('Edit')?></a>
+                                <a class="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>"><?=__('Delete')?></a>
                             <?php endif; ?>
                         </div>
                     </li>
                 <?php endforeach; ?>
             <?php else : ?>
-                <p>No recipes found.</p>
+                <p><?=__('No recipes found.')?></p>
             <?php endif; ?>
         </ul>
     </main>
