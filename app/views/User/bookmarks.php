@@ -1,7 +1,7 @@
 <html>
 
     <head>
-        <title>User Bookmark</title>
+        <title><?=  __('User Bookmark') ?></title>
         <style> 
         #errorBtn {
             text-align: center;
@@ -62,6 +62,7 @@
         }
 
         ?>
+        <a class="userBtn" href="/home"><?= __('Home') ?></a>
     </div>
 
 

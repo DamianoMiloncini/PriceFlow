@@ -82,7 +82,7 @@ Current progress: 40% complete
 - The file "021_displayBookmark.feature" needs to be fixed because the 2fa authentication method makes it fail (just have to slightly change the logic of the method or called the method for the display bookmark).
 
 # Codeception done (Micka)
-- Here are the files that are done ():
+- Here are the files that are done:
 - 006_storeList.feature
 - 013_authentication.feature
 - 021_displayBookmark.feature

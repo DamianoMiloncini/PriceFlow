@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Search Details</title>
+        <title><?= __('Search Details') ?></title>
         <style>
         body {
             display: flex;
@@ -19,8 +19,8 @@
     </head>
     <body>
         <div class = "container">
-             <label>Store brand: <?= $data['displayName']['text'] ?></label><br>
-             <label>Address: <?= $data['formattedAddress'] ?></label><br>
+             <label><?= __('Store brand') ?>: <?= $data['displayName']['text'] ?></label><br>
+             <label><?= __('Address') ?>: <?= $data['formattedAddress'] ?></label><br>
              <?php  
                 //convert boolean
                 if($data['currentOpeningHours']['openNow']) {
@@ -29,10 +29,10 @@
                  else {
                     $isOpen = 'Closed';
                  }
-                 echo <<<HTML
+                 echo '
                  <details>
-                 <summary><label>Hours: $isOpen</label></summary>                 
-                HTML;
+                 <summary><label> ' .  __('Hours') . ': $isOpen</label></summary> 
+                 ';                
                 //get the weekly hours schedule
                 foreach($data['currentOpeningHours']["weekdayDescriptions"] as $day) {
                         echo "<label>$day</label><br>";
@@ -40,7 +40,7 @@
              ?>
              
              </details>
-             <label>Phone Number: +<?=$data['internationalPhoneNumber']?></label><br>
+             <label><?= __('Phone Number') ?>: +<?=$data['internationalPhoneNumber']?></label><br>
         </div>
     </body>
 </html>

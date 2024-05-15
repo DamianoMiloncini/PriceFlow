@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>User's profile </title>
+    <title><?= __('User\'s profile')?> </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="\app\views\Styles\styles.css">
     <style>
@@ -63,11 +63,20 @@
                         </tr>
                     </table>
                     <br>
-                    <a class="userBtn" href="/User/updateLocation"><?= __('Update Location') ?></a>
             <!-- check if the user has a registered a location, else don't show the rest of the html -->
              <a class="userBtn" href="/User/updateAccount"><?= __('Update Profile') ?></a>
              <a class="userBtn" href="/User/passwordCheck"><?= __('Update 2FA secret') ?></a>
-             <a class="userBtn" href="/User/registerLocation"><?= __('Register a favorite Location') ?></a>
+             <?php 
+             //to only display the register location if the user doesnt have one yet
+             $user = new \app\models\User();
+             $user = $user->getByID($_SESSION['user_id']);
+             if($user->address == null) {
+                echo '<a class="userBtn" href="/User/registerLocation">' . __('Register a favorite Location') . '</a>';
+             }
+             else { 
+                echo '<a class="userBtn" href="/User/updateLocation">' . __('Update Location') . '</a>';
+             }
+             ?>
              
              <a class="userBtn" href="/home"><?= __('Home') ?></a>
     </div>

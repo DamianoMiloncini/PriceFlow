@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Register Location</title>
+    <title><?= __('Register Location') ?></title>
     <!-- need some JS :) -->
     <script>
             window.onload = function() {

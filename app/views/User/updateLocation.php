@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Update Location</title>
+    <title><?= __('Update Location') ?></title>
     <!-- need some JS :) -->
     <script>
         function populateCities() {
@@ -36,7 +36,7 @@
     <body>
     <div class='container'>
     <form id="locationInfo" method="POST" action="">
-        <h3>Enter your location details</h3>
+        <h3><?= __('Enter your location details') ?></h3>
         <div class="form-group">
             <label><?= __('Address') ?><input type="number" class="form-control" name="address" value="<?= $data->address ?>"></label>
         </div>
@@ -62,6 +62,7 @@
         </div>
         <br>
         <input type="submit" class="userBtn" name="button" value="<?= __('Save Location') ?>">
+        <a class="userBtn" href="/home"><?= __('Home') ?></a>
     </form>
     </div>
     </body>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-15 03:07+0000\n"
-"PO-Revision-Date: 2024-05-15 03:07+0000\n"
+"POT-Creation-Date: 2024-05-15 16:54+0000\n"
+"PO-Revision-Date: 2024-05-15 16:56+0000\n"
 "Last-Translator: root <EMAIL@ADDRESS>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -18,9 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/views/authenticatedHome copy.php:5 app/views/authenticatedHome.php:5
-#: app/views/Recipe/displayAll.php:197 app/views/Recipe/displayPrivate.php:127
-#: app/views/Recipe/displayUserRecipes.php:127 app/views/User/account.php:72
-#: app/views/User/login.php:65 app/views/User/registration.php:87
+#: app/views/Recipe/displayAll.php:194 app/views/Recipe/displayPrivate.php:127
+#: app/views/Recipe/displayUserRecipes.php:127 app/views/User/account.php:81
+#: app/views/User/bookmarks.php:65 app/views/User/login.php:65
+#: app/views/User/registration.php:87
 msgid "Home"
 msgstr "Home"
 
@@ -36,7 +37,7 @@ msgstr "Filter"
 msgid "Item"
 msgstr "Item"
 
-#: app/views/authenticatedHome copy.php:63 app/views/topBar.php:259
+#: app/views/authenticatedHome copy.php:63 app/views/topBar.php:260
 msgid "Recipe"
 msgstr "Recipe"
 
@@ -44,11 +45,11 @@ msgstr "Recipe"
 msgid "Date created"
 msgstr "Date created"
 
-#: app/views/authenticatedHome copy.php:71 app/views/Recipe/displayAll.php:211
+#: app/views/authenticatedHome copy.php:71 app/views/Recipe/displayAll.php:209
 msgid "Lowest to Highest"
 msgstr "Lowest to Highest"
 
-#: app/views/authenticatedHome copy.php:72 app/views/Recipe/displayAll.php:212
+#: app/views/authenticatedHome copy.php:72 app/views/Recipe/displayAll.php:210
 msgid "Highest to Lowest"
 msgstr "Highest to Lowest"
 
@@ -108,7 +109,7 @@ msgid "Items in recipe"
 msgstr "Items in recipe"
 
 #: app/views/Recipe/addItemToRecipe.php:184
-#: app/views/Recipe/recipeDetails.php:167
+#: app/views/Recipe/recipeDetails.php:168
 msgid "Price"
 msgstr "Price"
 
@@ -117,10 +118,10 @@ msgid "Quantity needed"
 msgstr "Quantity needed"
 
 #: app/views/Recipe/addItemToRecipe.php:205
-#: app/views/Recipe/addItemToRecipe.php:206 app/views/Recipe/displayAll.php:201
+#: app/views/Recipe/addItemToRecipe.php:206 app/views/Recipe/displayAll.php:198
 #: app/views/Recipe/displayPrivate.php:133
 #: app/views/Recipe/displayUserRecipes.php:133
-#: app/views/Recipe/searchResults.php:140 app/views/topBar.php:257
+#: app/views/Recipe/searchResults.php:140 app/views/topBar.php:258
 msgid "Search"
 msgstr "Search"
 
@@ -133,7 +134,7 @@ msgid "Add"
 msgstr "Add"
 
 #: app/views/Recipe/create.php:7 app/views/Recipe/create.php:99
-#: app/views/Recipe/displayAll.php:195 app/views/Recipe/displayPrivate.php:135
+#: app/views/Recipe/displayAll.php:201 app/views/Recipe/displayPrivate.php:135
 #: app/views/Recipe/displayUserRecipes.php:135
 #: app/views/Recipe/searchResults.php:143
 msgid "Create Recipe"
@@ -208,68 +209,68 @@ msgstr "Cancel"
 msgid "All Recipes"
 msgstr "All Recipes"
 
-#: app/views/Recipe/displayAll.php:194
+#: app/views/Recipe/displayAll.php:193
 msgid "Your Recipe History"
 msgstr "Your Recipe History"
 
-#: app/views/Recipe/displayAll.php:200 app/views/Recipe/searchResults.php:139
+#: app/views/Recipe/displayAll.php:197 app/views/Recipe/searchResults.php:139
 msgid "Search Recipes..."
 msgstr "Search Recipes..."
 
-#: app/views/Recipe/displayAll.php:209
+#: app/views/Recipe/displayAll.php:207
 msgid "Sort by Total Price:"
 msgstr "Sort by Total Price:"
 
-#: app/views/Recipe/displayAll.php:214
+#: app/views/Recipe/displayAll.php:212
 msgid "Sort"
 msgstr "Sort"
 
-#: app/views/Recipe/displayAll.php:219
+#: app/views/Recipe/displayAll.php:217
 msgid "Price Range:"
 msgstr "Price Range:"
 
-#: app/views/Recipe/displayAll.php:220
+#: app/views/Recipe/displayAll.php:218
 msgid "Minimum Price"
 msgstr "Minimum Price"
 
-#: app/views/Recipe/displayAll.php:221
+#: app/views/Recipe/displayAll.php:219
 msgid "Maximum Price"
 msgstr "Maximum Price"
 
-#: app/views/Recipe/displayAll.php:222
+#: app/views/Recipe/displayAll.php:220
 msgid "Apply"
 msgstr "Apply"
 
-#: app/views/Recipe/displayAll.php:237 app/views/Recipe/displayPrivate.php:148
+#: app/views/Recipe/displayAll.php:235 app/views/Recipe/displayPrivate.php:148
 #: app/views/Recipe/displayUserRecipes.php:148
 msgid "Date Created:"
 msgstr "Date Created:"
 
-#: app/views/Recipe/displayAll.php:237
+#: app/views/Recipe/displayAll.php:235
 msgid "by"
 msgstr "by"
 
-#: app/views/Recipe/displayAll.php:240 app/views/Recipe/displayPrivate.php:150
+#: app/views/Recipe/displayAll.php:239 app/views/Recipe/displayPrivate.php:150
 #: app/views/Recipe/displayUserRecipes.php:150
 #: app/views/Recipe/searchResults.php:157
 msgid "View Details"
 msgstr "View Details"
 
-#: app/views/Recipe/displayAll.php:242 app/views/Recipe/displayPrivate.php:152
+#: app/views/Recipe/displayAll.php:241 app/views/Recipe/displayPrivate.php:152
 #: app/views/Recipe/displayUserRecipes.php:152
-#: app/views/Recipe/recipeDetails.php:175
+#: app/views/Recipe/recipeDetails.php:176
 #: app/views/Recipe/searchResults.php:159
 msgid "Edit"
 msgstr "Edit"
 
-#: app/views/Recipe/displayAll.php:243 app/views/Recipe/displayPrivate.php:153
+#: app/views/Recipe/displayAll.php:242 app/views/Recipe/displayPrivate.php:153
 #: app/views/Recipe/displayUserRecipes.php:153
-#: app/views/Recipe/recipeDetails.php:176
+#: app/views/Recipe/recipeDetails.php:177
 #: app/views/Recipe/searchResults.php:160 app/views/User/bookmarks.php:54
 msgid "Delete"
 msgstr "Delete"
 
-#: app/views/Recipe/displayAll.php:249
+#: app/views/Recipe/displayAll.php:248
 msgid "No recipes found."
 msgstr "No recipes found."
 
@@ -339,19 +340,23 @@ msgstr "Recipe Details"
 msgid "Date Created"
 msgstr "Date Created"
 
-#: app/views/Recipe/recipeDetails.php:165
+#: app/views/Recipe/recipeDetails.php:158
+msgid "Total Price"
+msgstr "Total Price"
+
+#: app/views/Recipe/recipeDetails.php:166
 msgid "Brand"
 msgstr "Brand"
 
-#: app/views/Recipe/recipeDetails.php:166
+#: app/views/Recipe/recipeDetails.php:167
 msgid "Quantity"
 msgstr "Quantity"
 
-#: app/views/Recipe/recipeDetails.php:168
+#: app/views/Recipe/recipeDetails.php:169
 msgid "Quantity Needed"
 msgstr "Quantity Needed"
 
-#: app/views/Recipe/recipeDetails.php:178
+#: app/views/Recipe/recipeDetails.php:179
 msgid "Back to Recipes"
 msgstr "Back to Recipes"
 
@@ -359,29 +364,54 @@ msgstr "Back to Recipes"
 msgid "Search Results"
 msgstr "Search Results"
 
-#: app/views/topBar.php:256
+#: app/views/storeDetails.php:3
+msgid "Search Details"
+msgstr "Search Details"
+
+#: app/views/storeDetails.php:22
+msgid "Store brand"
+msgstr "Store brand"
+
+#: app/views/storeDetails.php:23 app/views/User/account.php:45
+#: app/views/User/registerLocation.php:44 app/views/User/updateLocation.php:41
+msgid "Address"
+msgstr "Address"
+
+#: app/views/storeDetails.php:34
+msgid "Hours"
+msgstr "Hours"
+
+#: app/views/storeDetails.php:43
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: app/views/topBar.php:257
 msgid "Search products, recipes"
 msgstr "Search products, recipes"
 
-#: app/views/topBar.php:258
+#: app/views/topBar.php:259
 msgid "Account"
 msgstr "Account"
 
-#: app/views/topBar.php:260
+#: app/views/topBar.php:261
 msgid "Bookmarks"
 msgstr "Bookmarks"
 
-#: app/views/topBar.php:261
+#: app/views/topBar.php:262
 msgid "Signout"
 msgstr "Signout"
 
-#: app/views/topBar.php:266 app/views/User/login.php:58
+#: app/views/topBar.php:267 app/views/User/login.php:58
 msgid "Log In"
 msgstr "Log In"
 
-#: app/views/topBar.php:267
+#: app/views/topBar.php:268
 msgid "Sign Up"
 msgstr "Sign Up"
+
+#: app/views/User/account.php:4
+msgid "User's profile"
+msgstr "User's profile"
 
 #: app/views/User/account.php:31 app/views/User/login.php:60
 #: app/views/User/registration.php:78 app/views/User/update.php:11
@@ -398,63 +428,70 @@ msgstr "First Name"
 msgid "Last Name"
 msgstr "Last Name"
 
-#: app/views/User/account.php:45 app/views/User/registerLocation.php:41
-#: app/views/User/updateLocation.php:41
-msgid "Address"
-msgstr "Address"
-
-#: app/views/User/account.php:49 app/views/User/registerLocation.php:44
+#: app/views/User/account.php:49 app/views/User/registerLocation.php:47
 #: app/views/User/updateLocation.php:44
 msgid "Street"
 msgstr "Street"
 
-#: app/views/User/account.php:53 app/views/User/registerLocation.php:47
+#: app/views/User/account.php:53 app/views/User/registerLocation.php:50
 #: app/views/User/updateLocation.php:47
 msgid "City"
 msgstr "City"
 
-#: app/views/User/account.php:57 app/views/User/registerLocation.php:53
+#: app/views/User/account.php:57 app/views/User/registerLocation.php:64
 #: app/views/User/updateLocation.php:54
 msgid "Province"
 msgstr "Province"
 
-#: app/views/User/account.php:61 app/views/User/registerLocation.php:60
+#: app/views/User/account.php:61 app/views/User/registerLocation.php:71
 #: app/views/User/updateLocation.php:61
 msgid "Postal Code"
 msgstr "Postal Code"
 
-#: app/views/User/account.php:66
-msgid "Update Location"
-msgstr "Update Location"
-
-#: app/views/User/account.php:68
+#: app/views/User/account.php:67
 msgid "Update Profile"
 msgstr "Update Profile"
 
-#: app/views/User/account.php:69
+#: app/views/User/account.php:68
 msgid "Update 2FA secret"
 msgstr "Update 2FA secret"
 
-#: app/views/User/account.php:70
+#: app/views/User/account.php:74
 msgid "Register a favorite Location"
 msgstr "Register a favorite Location"
+
+#: app/views/User/account.php:77 app/views/User/updateLocation.php:4
+msgid "Update Location"
+msgstr "Update Location"
+
+#: app/views/User/bookmarks.php:4
+msgid "User Bookmark"
+msgstr "User Bookmark"
 
 #: app/views/User/bookmarks.php:61
 msgid "No favorites saved"
 msgstr "No favorites saved"
 
-#: app/views/User/check2fa.php:6 app/views/User/passwordCheck.php:34
+#: app/views/User/check2fa.php:3 app/views/User/setup2fa.php:3
+msgid "2fa set up"
+msgstr "2fa set up"
+
+#: app/views/User/check2fa.php:60 app/views/User/passwordCheck.php:34
 msgid "Submit the 6-digit code for this site from your Authenticator app"
 msgstr "Submit the 6-digit code for this site from your Authenticator app"
 
-#: app/views/User/check2fa.php:8 app/views/User/setup2fa.php:68
+#: app/views/User/check2fa.php:62 app/views/User/setup2fa.php:68
 msgid "Current code"
 msgstr "Current code"
 
-#: app/views/User/check2fa.php:10 app/views/User/passwordCheck.php:39
+#: app/views/User/check2fa.php:64 app/views/User/passwordCheck.php:39
 #: app/views/User/setup2fa.php:69
 msgid "Verify code"
 msgstr "Verify code"
+
+#: app/views/User/login.php:4
+msgid "User Login"
+msgstr "User Login"
 
 #: app/views/User/login.php:62 app/views/User/passwordCheck.php:28
 #: app/views/User/registration.php:80 app/views/User/update.php:14
@@ -473,11 +510,15 @@ msgstr "Security Check"
 msgid "Authentication check"
 msgstr "Authentication check"
 
-#: app/views/User/registerLocation.php:39
+#: app/views/User/registerLocation.php:4
+msgid "Register Location"
+msgstr "Register Location"
+
+#: app/views/User/registerLocation.php:42
 msgid "Enter your location details"
 msgstr "Enter your location details"
 
-#: app/views/User/registerLocation.php:62 app/views/User/updateLocation.php:64
+#: app/views/User/registerLocation.php:73 app/views/User/updateLocation.php:64
 msgid "Save Location"
 msgstr "Save Location"
 
@@ -500,6 +541,10 @@ msgstr ""
 "Authenticator. The authenticator app will generate codes that are valid for "
 "30 seconds only. Enter such a code and submit it while it is \r\n"
 "still valid to apply the 2-factor authentication protection to your account."
+
+#: app/views/User/update.php:3
+msgid "Update view"
+msgstr "Update view"
 
 #: app/views/User/update.php:24
 msgid "Update my account"

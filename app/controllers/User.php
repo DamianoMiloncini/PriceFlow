@@ -84,7 +84,7 @@ class User extends \app\core\Controller {
         }
     }
     
-
+    #[\app\accessFilters\Login]
     //user logout
     function logout() {
         //erase the user from the session
@@ -93,7 +93,7 @@ class User extends \app\core\Controller {
         //redirect the user to the login page
         header('location:/home');
     }
-
+    #[\app\accessFilters\Login]
     //update user account informations
     function updateUser() {
         $user = new \app\models\User();
@@ -157,7 +157,6 @@ class User extends \app\core\Controller {
 			$this->view('User/setup2fa',['QRCode'=>$QRCode]);
 		}
 	}
-    //
     function check2fa(){
         if($_SERVER['REQUEST_METHOD']==='POST'){
             $options = new AuthenticatorOptions();
@@ -190,7 +189,7 @@ class User extends \app\core\Controller {
             }
  
     }
-
+    #[\app\accessFilters\Login]
     function update2FA() {
         $user = new \app\models\User();
         $options = new AuthenticatorOptions();
@@ -227,7 +226,7 @@ class User extends \app\core\Controller {
 			$this->view('User/setup2fa',['QRCode'=>$QRCode]);
 		}
     }
-
+    #[\app\accessFilters\Login]
     function verifyPassword() {
         //check that the user has submitted something
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
