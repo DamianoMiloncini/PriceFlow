@@ -549,3 +549,46 @@ msgstr "Mettre a jour votre compte"
 msgid "Update my account"
 msgstr "Mettre a jour mon compte"
 
+#: app/views/Item/individual.php:21
+msgid "Item not found"
+msgstr "Article non-trouve"
+
+#: app/views/Item/individual.php:33
+msgid "Bookmark"
+msgstr "Favoris"
+
+#: app/views/Item/individual.php:37
+msgid "Add to Cart"
+msgstr "Ajouter au panier"
+
+#: app/views/Item/itemList.php:36
+msgid "Sort by Price"
+msgstr "Trier par prix"
+
+#: app/views/Item/itemList.php:42
+msgid "Min Price"
+msgstr "Prix minimum"
+
+#: app/views/Item/itemList.php:44
+msgid "Max Price"
+msgstr "Prix maximum"
+
+#: app/views/Item/itemList.php:46
+msgid "Store"
+msgstr "Magasin"
+
+#: app/views/Item/itemList.php:48
+msgid "All"
+msgstr "Tout"
+
+#: app/views/Item/itemList.php:58
+msgid "Low to High"
+msgstr "Prix croissant"
+
+#: app/views/Item/itemList.php:59
+msgid "High to Low"
+msgstr "Prix decroissant"
+
+#: app/views/Item/itemList.php:64
+msgid "No items found"
+msgstr "Article non trouve"
