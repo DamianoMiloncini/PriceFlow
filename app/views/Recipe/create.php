@@ -55,6 +55,7 @@
             border-radius: 5px;
             box-sizing: border-box;
             margin-bottom: 20px;
+            resize: none;
         }
 
         input[type="file"] {

@@ -41,16 +41,16 @@
                     <div id="middleHeading">
 
                         <h1 class='leading'>
-                            The World's
+                            <?= __("The World's") ?>
                             <br>
-                            <span style="color: #006eff;">Best Prices</span>
+                            <span style="color: #006eff;"><?= __('Best Prices') ?></span>
                             <br>
-                            Are On PriceWave
+                            <?= __('Are On PriceWave') ?>
                         </h1>
 
-                        <h4 class='subText'>A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another</h4>
+                        <h4 class='subText'><?= __('A breakthrough platform to help shoppers and chefs efficiently find the best prices in local proximities, discovering inspiration, and connect with one another') ?></h4>
                         <div class='buttonArea'>
-                            <a id="log" href="User/registration">Get Started</a>
+                            <a id="log" href="User/registration"><?= __('Get Started') ?></a>
                         </div>
 
                     </div>

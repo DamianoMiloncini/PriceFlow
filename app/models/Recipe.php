@@ -68,7 +68,7 @@ class Recipe extends \app\core\Model
             [
                 'recipe_id' => $recipe_id,
                 'item_id' => $item_id,
-                'quantity_needed' => 0,
+                'quantity_needed' => 1,
             ]
         );
 
@@ -593,7 +593,7 @@ class Recipe extends \app\core\Model
 
         // Execute the statement
         $statement->execute([
-            'query' => "$query%",
+            'query' => "%$query%",
         ]);
 
         // Fetch all rows as associative arrays

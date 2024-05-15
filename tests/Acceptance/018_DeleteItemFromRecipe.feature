@@ -1,6 +1,9 @@
 Feature: Delete item from user's personal recipe
 
-  Scenario: User deletes "Flour" from "Vanilla Cake" recipe and verifies removal
-  Given I am on "http://localhost/recipes/vanilla-cake"
-  When I click the "Remove" button for the "Flour" item associated with the "Vanilla Cake" recipe
-  Then "Flour" will be removed from the "Vanilla Cake" recipe list
+  Scenario: User deletes "Milk" from recipe
+  Given I am logged in
+  And I complete two-factor authentication with my "031168" 
+  And I am on "http://localhost/Recipe/addItemToRecipe/2"
+  Then I see "Milk"
+  When I click "Del"
+  Then I dont see "Milk" in the item list

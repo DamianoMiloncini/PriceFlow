@@ -18,14 +18,14 @@
             echo ("Total: $" . $totalItemPrice);
 
             ?>
-            
+
         </h5>
 
         <input id="itemId" type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
         <input id="cartId" type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
         <div id="cartButtons">
-            <button type="submit" id="minusBtn" name="minus1" class="bttns" onClick="minus1('<?php echo $item['item_id']; ?>');">-</button>
-            <button type="submit" id="addBtn" name="add1" class="bttns" onClick="add1('<?php echo $item['item_id']; ?>');">+</button>
+            <button type="submit" id="minusBtn" name="minus1" class="bttns" onClick="minus1('<?php echo $item['item_id']; ?>'); updateCheckout();">-</button>
+            <button type="submit" id="addBtn" name="add1" class="bttns" onClick="add1('<?php echo $item['item_id']; ?>'); updateCheckout();">+</button>
             <button type="submit" class="bttns" name="deleteButton" onClick="deleteItem('<?php echo $item['item_id']; ?>');"><i class="bi bi-trash3"></i></button>
         </div>
     </div>
