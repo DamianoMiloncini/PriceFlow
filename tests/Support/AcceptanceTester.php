@@ -839,6 +839,14 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     {
         $this->fillField($arg1, $arg2);
     }
+
+    /**
+     * @When I set the store filter to :arg1
+     */
+    public function iSetTheStoreFilterTo($arg1)
+    {
+        $this->selectOption('storeFilter', $arg1);
+    }
 }
 
 
