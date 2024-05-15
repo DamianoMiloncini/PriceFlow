@@ -20,7 +20,7 @@ Feature: User Authentication
     Given I am logged in as "micka" and "1234" 
     And I complete two-factor authentication with my "code"
     When I log out
-    Then I should be redirected to the home page
+    Then I should be redirected to the welcome page
 
    Scenario: User updates account
    Given I am logged in as "micka" and "1234" 
