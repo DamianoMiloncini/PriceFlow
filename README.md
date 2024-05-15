@@ -81,3 +81,15 @@ Current progress: 40% complete
 - Most of the methods for this feature in the AcceptanceTester.php starts at line 498.
 - The file "021_displayBookmark.feature" needs to be fixed because the 2fa authentication method makes it fail (just have to slightly change the logic of the method or called the method for the display bookmark).
 
+# Codeception done (Micka)
+- Here are the files that are done ():
+- 006_storeList.feature
+- 013_authentication.feature
+- 021_displayBookmark.feature
+- 024_deleteBookmark.feature
+- 030_location.feature
+- 031_updateTwoFactorAuthentication.feature
+- 032_storeDetails.feature
+
+some additional features are within the same file, that's why I have 7 files and not 8 :)
+
