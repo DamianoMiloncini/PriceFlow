@@ -11,6 +11,9 @@
 
 <body class="bg-gray-100">
 
+<?php include('app/views/topBar.php');?>
+
+
     <div class="container mx-auto flex h-screen items-center">
         <div class="zone flex-1 flex justify-center py-20 pr-60" id="zoneA">
             <?php if ($item) : ?>

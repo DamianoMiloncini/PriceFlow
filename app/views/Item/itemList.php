@@ -7,6 +7,7 @@
     <title>Item List</title>
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="\app\views\Styles\styles.css">
     <style>
         /* Additional styles for filter and sort popups */
         .popup {
@@ -24,8 +25,9 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <?php include 'app/views/Item/searchBar.php'; ?>
+<body class="bg-gray-100 mt-32">
+    
+    <?php include('app/views/topBar.php');?>
 
     <div class="flex flex-row mt-4 justify-center gap-4">
         <!-- Filter button -->
