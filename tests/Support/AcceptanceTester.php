@@ -601,6 +601,7 @@ class AcceptanceTester extends \Codeception\Actor
     public function iShouldSeeTheValueOfLastNameBe($arg1)
     {
         $this->seeInField('last_name', $arg1);
+<<<<<<< Updated upstream
     }
     /**
      * @Given I am on the :arg1 page
@@ -808,5 +809,30 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     {
         $this->click($button);
 
+=======
+    }   
+
+	/**
+     * @Then I see :arg1, :arg2, :arg3, :arg4 and :arg5 of said :arg6
+     */
+     public function iSeeAndOfSaid($arg1, $arg2, $arg3, $arg4, $arg5, $arg6)
+     {
+        $this->seeInSource($arg1);
+        $this->seeInSource($arg2);
+        $this->seeInSource($arg3);
+        $this->seeInSource($arg4);
+        $this->seeInSource($arg5);
+        $this->seeInSource($arg6);
+     }
+
+     /**
+     * @When I click the :arg1 card
+     */
+    public function iClickTheCard($arg1)
+    {
+        $this->click(['name' => $arg1]);
+>>>>>>> Stashed changes
     }
 }
+
+
