@@ -146,6 +146,9 @@
 </head>
 
 <body>
+<div id="cartTopBar">
+        <?php include 'app/views/topBar.php'; ?>
+    </div>
     <div class="container">
         <div class="recipe-header">
             <img src="/uploads/<?php echo basename($recipeData['image']); ?>" alt="<?php echo $recipeData['title']; ?>">
