@@ -831,6 +831,14 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     {
         $this->click(['name' => $arg1]);
     }
+
+    /**
+     * @When I fill :arg1 in :arg2
+     */
+    public function iFillIn($arg1, $arg2)
+    {
+        $this->fillField($arg1, $arg2);
+    }
 }
 
 

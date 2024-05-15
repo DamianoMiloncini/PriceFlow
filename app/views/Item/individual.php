@@ -27,7 +27,7 @@
                     <div name="quantity" class="item-quantity text-2xl mt-1 font-normal"><?php echo $item['quantity']; ?></div>
                     <div name="price" class="price font-bold text-4xl mt-5">$<?php echo $item['price']; ?></div>
                     <div class="buttons mt-5 flex text-xl">
-                        <form action="/bookmark/add/<?php echo $item['item_id'] ?>" method="post">
+                        <form name="bookmark" action="/bookmark/add/<?php echo $item['item_id'] ?>" method="post">
                             <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_item">Bookmark</button>
                         </form>
                         <br>

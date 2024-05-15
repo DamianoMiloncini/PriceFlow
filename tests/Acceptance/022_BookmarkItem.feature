@@ -18,6 +18,8 @@ Feature: BookmarkItem
 	Then I see "name", "brand", "price", "quantity" and "image" of said "item"
 
   Scenario: try bookmark "milk"
-        Given I am on "http://localhost/items/metro055300110027"
+        Given I login
+        And I am on "http://localhost/Item/info/metro055300110027"
         When I click the "Bookmark" button
-        Then I see "Skim Milk added to bookmarks" message
+        Then I am redirected to "http://localhost/User/bookmark"
+        And I see "milk"

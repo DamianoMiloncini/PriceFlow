@@ -3,6 +3,6 @@ namespace app\core;
 
 interface AccessFilters{
 
-	public function redirected();
+	// public function redirected();
 
 }

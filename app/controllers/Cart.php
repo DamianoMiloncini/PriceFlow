@@ -6,7 +6,7 @@ namespace app\controllers;
 class Cart extends \app\core\Controller
 {
 
-    #[\app\accessFilters\Login]
+    // #[\app\accessFilters\Login]
     function loadData(){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -192,7 +192,7 @@ class Cart extends \app\core\Controller
 
         
     }
-    #[\app\accessFilters\Login]
+    // #[\app\accessFilters\Login]
     function handler(){
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['minus1'])) {
@@ -212,7 +212,7 @@ class Cart extends \app\core\Controller
             }
         }
     }
-    #[\app\accessFilters\Login]
+    // #[\app\accessFilters\Login]
     function add($item_id)
     {
         $user_id = $_SESSION['user_id']; // Get user id from session
@@ -220,7 +220,7 @@ class Cart extends \app\core\Controller
         $cart -> addToCart($user_id, $item_id);
         header("Location: /cart");
     }
-    #[\app\accessFilters\Login]
+    // #[\app\accessFilters\Login]
     function loadItems($cart_id, $item_id, $method){
 
         if($method === 'minus'){

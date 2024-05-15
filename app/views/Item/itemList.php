@@ -35,12 +35,12 @@
     </div>
 
     <!-- Filter popup -->
-    <div id="filterPopup" class="popup">
+    <form id="filterPopup" class="popup">
         <button onclick="togglePopup('filterPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
         <label for="minPrice">Min Price:</label>
-        <input type="number" id="minPrice" min="0" value="0" step="0.01">
+        <input name="minPrice" type="number" id="minPrice" min="0" value="0" step="0.01">
         <label for="maxPrice">Max Price:</label>
-        <input type="number" id="maxPrice" min="0" value="1000" step="0.01">
+        <input name="maxPrice" type="number" id="maxPrice" min="0" value="1000" step="0.01">
         <label for="storeFilter">Store:</label>
         <select id="storeFilter">
             <option value="">All</option>
@@ -48,7 +48,7 @@
             <option value="superc">Super C</option>
         </select>
         <button onclick="applyFilter()" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Apply</button>
-    </div>
+    </form>
 
     <!-- Sort popup -->
     <div id="sortPopup" class="popup">
@@ -91,6 +91,7 @@
 
         // Function to apply price and store filter
         function applyFilter() {
+            event.preventDefault();
             var minPrice = parseFloat(document.getElementById("minPrice").value);
             var maxPrice = parseFloat(document.getElementById("maxPrice").value);
             var selectedStore = document.getElementById("storeFilter").value.toLowerCase(); // Get selected store
@@ -198,6 +199,7 @@
 
         // Call retrieveFiltersFromCookies on page load
         window.onload = function() {
+            event.preventDefault();
             retrieveFiltersFromCookies();
             applyFilter(); // Apply filters on page load
         };
