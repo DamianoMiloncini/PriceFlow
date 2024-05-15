@@ -3,7 +3,7 @@
 
 <head>
 
-<style>
+    <style>
         #wrapper {
             background-color: #fffbfb;
             color: #333;
@@ -226,18 +226,25 @@
 <body>
 
     <form>
-    <div id='wrapper'>
-    
+        <div id='wrapper'>
+
             <div id="logoSection">
                 <a href="/home" style="text-decoration: none">
                     <!-- <img id="iconLogo" src="app\resources\PriceWave.png"> -->
                     <h1 id="logoText">PriceWave</h1>
                     <!-- <img id="textLogo" src="app\resources\PriceWaveText.png"> -->
+
                 </a>
+
+                <!-- Might do this -->
+                <a id="language" href="?lang=en">EN</a>
+
             </div>
 
 
+
             <nav class='buttons'>
+
                 <?php
                 //if the user is logged in, have a view profile button and a logout button
                 if (isset($_SESSION['user_id'])) {
@@ -246,27 +253,28 @@
                     $user = $user->getByID($_SESSION['user_id']);
 
                     //if the user has informations (which means they are logged in), display profile button & logoutbutton
-                    if ($user) {
-                        echo '<textarea id="search" name="searchBar" placeholder="Search products, recipes"></textarea></textarea>';
-                        echo '<button id="searchButton" name="searchButton" class="topbarBtns">Search</button>';
-                        echo '<a class="topbarBtns" href="/User/account">Account</a>';
-                        echo '<a class="topbarBtns" href="/Recipe/displayAll">Recipe</a>';
-                        echo '<a class="topbarBtns" href="/User/bookmark">Bookmarks</a>';
-                        echo '<a name="logout" class="topbarBtns" href="/User/logout">Signout</a>';
-                        echo '<a id="cart" class="bi bi-cart4" href="/cart"></i></a>';
-                    }
-                } else {
-                    echo '<a id="login" href="/User/login">Log In</a>';
-                    echo '<a id="register" href="/User/registration">Sign Up</a>';
-                }
+                    if ($user) { ?>
+                        <textarea id="search" name="searchBar" placeholder="<?= __("Search products, recipes") ?>"></textarea></textarea>
+                        <button id="searchButton" name="searchButton" class="topbarBtns"><?= __("Search") ?></button>
+                        <a class="topbarBtns" href="/User/account"><?= __("Account") ?></a>
+                        <a class="topbarBtns" href="/Recipe/displayAll"><?= __("Recipe") ?></a>
+                        <a class="topbarBtns" href="/User/bookmark"><?= __("Bookmarks") ?></a>
+                        <a name="logout" class="topbarBtns" href="/User/logout"><?= __("Signout") ?></a>
+                        <a id="cart" class="bi bi-cart4" href="/cart"></i></a>
+                    <?php }
+                } else { ?>
+
+                    <a id="login" href="/User/login"><?= __("Log In") ?></a>
+                    <a id="register" href="/User/registration"><?= __("Sign Up") ?></a>
+                <?php }
 
                 ?>
             </nav>
-            
-        
-    </div>
+
+
+        </div>
     </form>
-  
+
 
     <script>
         // Add event listener for Enter key press on search input
@@ -285,6 +293,7 @@
             window.location.href = '/Item/search/' + inputText;
             e.preventDefault(); // Prevent form submission if needed :)))
         });
+
     </script>
 
 </body>

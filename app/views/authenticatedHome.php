@@ -86,7 +86,7 @@
         <?php
             $counter = 0;
             foreach ($data['recipes'] as $recipe) {
-                if ($counter >= 5) {
+                if ($counter >= 4) {
                     break; // Stop iterating once four items have been loaded
                 }
             ?>
@@ -102,7 +102,11 @@
                         </div>
                     </div>
                 </a>
-            <?php } ?>
+                <?php
+                    $counter++;
+                }
+            
+            ?>
         </div>
 
         <img id="poster1" src="app/resources/flyer2.png">

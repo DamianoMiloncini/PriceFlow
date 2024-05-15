@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-14 00:29+0000\n"
+"POT-Creation-Date: 2024-05-15 03:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: app/views/authenticatedHome copy.php:63
+#: app/views/authenticatedHome copy.php:63 app/views/topBar.php:260
 msgid "Recipe"
 msgstr ""
 
@@ -65,12 +65,35 @@ msgstr ""
 msgid "Your Cart"
 msgstr ""
 
-#: app/views/cart.php:26
+#: app/views/cart.php:26 app/views/checkoutButton.php:1
 msgid "Checkout:"
 msgstr ""
 
 #: app/views/cart.php:30
 msgid "Thank you for choosing PriceWave!"
+msgstr ""
+
+#: app/views/home.php:44
+msgid "The World's"
+msgstr ""
+
+#: app/views/home.php:46
+msgid "Best Prices"
+msgstr ""
+
+#: app/views/home.php:48
+msgid "Are On PriceWave"
+msgstr ""
+
+#: app/views/home.php:51
+msgid ""
+"A breakthrough platform to help shoppers and chefs efficiently find the best "
+"prices in local proximities, discovering inspiration, and connect with one "
+"another"
+msgstr ""
+
+#: app/views/home.php:53
+msgid "Get Started"
 msgstr ""
 
 #: app/views/Recipe/addItemToRecipe.php:162
@@ -94,7 +117,7 @@ msgstr ""
 #: app/views/Recipe/addItemToRecipe.php:206 app/views/Recipe/displayAll.php:201
 #: app/views/Recipe/displayPrivate.php:133
 #: app/views/Recipe/displayUserRecipes.php:133
-#: app/views/Recipe/searchResults.php:140
+#: app/views/Recipe/searchResults.php:140 app/views/topBar.php:258
 msgid "Search"
 msgstr ""
 
@@ -106,58 +129,58 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: app/views/Recipe/create.php:7 app/views/Recipe/create.php:98
+#: app/views/Recipe/create.php:7 app/views/Recipe/create.php:99
 #: app/views/Recipe/displayAll.php:195 app/views/Recipe/displayPrivate.php:135
 #: app/views/Recipe/displayUserRecipes.php:135
 #: app/views/Recipe/searchResults.php:143
 msgid "Create Recipe"
 msgstr ""
 
-#: app/views/Recipe/create.php:101
+#: app/views/Recipe/create.php:102
 msgid "Title:"
 msgstr ""
 
-#: app/views/Recipe/create.php:102 app/views/Recipe/edit.php:101
+#: app/views/Recipe/create.php:103 app/views/Recipe/edit.php:101
 msgid "Title"
 msgstr ""
 
-#: app/views/Recipe/create.php:104
+#: app/views/Recipe/create.php:105
 msgid "Content:"
 msgstr ""
 
-#: app/views/Recipe/create.php:105
+#: app/views/Recipe/create.php:106
 msgid "Describe this recipe..."
 msgstr ""
 
-#: app/views/Recipe/create.php:107
+#: app/views/Recipe/create.php:108
 msgid "Duration (minutes):"
 msgstr ""
 
-#: app/views/Recipe/create.php:109
+#: app/views/Recipe/create.php:110
 msgid "duration"
 msgstr ""
 
-#: app/views/Recipe/create.php:112
+#: app/views/Recipe/create.php:113
 msgid "Image:"
 msgstr ""
 
-#: app/views/Recipe/create.php:113
+#: app/views/Recipe/create.php:114
 msgid "image"
 msgstr ""
 
-#: app/views/Recipe/create.php:115
+#: app/views/Recipe/create.php:116
 msgid "Privacy:"
 msgstr ""
 
-#: app/views/Recipe/create.php:117 app/views/Recipe/edit.php:120
+#: app/views/Recipe/create.php:118 app/views/Recipe/edit.php:120
 msgid "Public"
 msgstr ""
 
-#: app/views/Recipe/create.php:118 app/views/Recipe/edit.php:121
+#: app/views/Recipe/create.php:119 app/views/Recipe/edit.php:121
 msgid "Private"
 msgstr ""
 
-#: app/views/Recipe/create.php:121
+#: app/views/Recipe/create.php:122
 msgid "Continue"
 msgstr ""
 
@@ -333,6 +356,30 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
+#: app/views/topBar.php:257
+msgid "Search products, recipes"
+msgstr ""
+
+#: app/views/topBar.php:259
+msgid "Account"
+msgstr ""
+
+#: app/views/topBar.php:261
+msgid "Bookmarks"
+msgstr ""
+
+#: app/views/topBar.php:262
+msgid "Signout"
+msgstr ""
+
+#: app/views/topBar.php:267 app/views/User/login.php:58
+msgid "Log In"
+msgstr ""
+
+#: app/views/topBar.php:268
+msgid "Sign Up"
+msgstr ""
+
 #: app/views/User/account.php:31 app/views/User/login.php:60
 #: app/views/User/registration.php:78 app/views/User/update.php:11
 msgid "Username"
@@ -397,17 +444,13 @@ msgstr ""
 msgid "Submit the 6-digit code for this site from your Authenticator app"
 msgstr ""
 
-#: app/views/User/check2fa.php:8 app/views/User/setup2fa.php:10
+#: app/views/User/check2fa.php:8 app/views/User/setup2fa.php:68
 msgid "Current code"
 msgstr ""
 
 #: app/views/User/check2fa.php:10 app/views/User/passwordCheck.php:39
-#: app/views/User/setup2fa.php:12
+#: app/views/User/setup2fa.php:69
 msgid "Verify code"
-msgstr ""
-
-#: app/views/User/login.php:58
-msgid "Log In"
 msgstr ""
 
 #: app/views/User/login.php:62 app/views/User/passwordCheck.php:28
@@ -443,7 +486,7 @@ msgstr ""
 msgid "Create your account"
 msgstr ""
 
-#: app/views/User/setup2fa.php:7
+#: app/views/User/setup2fa.php:65
 msgid ""
 "Scan the above QR-code with your mobile Authenticator app, such as Google "
 "Authenticator. The authenticator app will generate codes that are valid for "

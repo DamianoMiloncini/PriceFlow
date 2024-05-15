@@ -399,7 +399,39 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iSee($arg1)
     {
-        $this->see('Milk');
+        $this->see($arg1);
+    }
+
+     /**
+     * @Then I don't see :arg1
+     */
+    public function iDontSee($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+    /**
+     * @When I click element :arg1
+     */
+    public function iClickElement($arg1)
+    {
+        $this->click($arg1);
+    }
+
+    /**
+     * @Then I see :arg1 in the item list
+     */
+    public function iSeeInTheItemList($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Then I dont see :arg1 in the item list
+     */
+    public function iDontSeeInTheItemList($arg1)
+    {
+        $this->dontSee($arg1);
     }
 
     /**

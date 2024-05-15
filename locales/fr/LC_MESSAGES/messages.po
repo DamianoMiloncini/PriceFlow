@@ -36,6 +36,30 @@ msgstr "Filtrer"
 msgid "Item"
 msgstr "Article"
 
+#: app/views/topBar.php:256
+msgid "Search products, recipes"
+msgstr "Rechercher des produits, des recettes"
+
+#: app/views/topBar.php:258
+msgid "Account"
+msgstr "Compte"
+
+#: app/views/topBar.php:260
+msgid "Bookmarks"
+msgstr "Favoris"
+
+#: app/views/topBar.php:261
+msgid "Signout"
+msgstr "Deconnecter"
+
+#: app/views/topBar.php:266 app/views/User/login.php:58
+msgid "Log In"
+msgstr "Connexion"
+
+#: app/views/topBar.php:267
+msgid "Sign Up"
+msgstr "Registre"
+
 #: app/views/authenticatedHome copy.php:63
 msgid "Recipe"
 msgstr "Recette"
@@ -61,9 +85,34 @@ msgstr "Titre de la recette: "
 msgid "By"
 msgstr "De"
 
+#: app/views/home.php:44
+msgid "The World's"
+msgstr "Les Meilleurs Prix"
+
+#: app/views/home.php:46
+msgid "Best Prices"
+msgstr "Du Monde"
+
+#: app/views/home.php:48
+msgid "Are On PriceWave"
+msgstr "Sont Sur PriceWave"
+
 #: app/views/cart.php:25
 msgid "Your Cart"
 msgstr "Votre panier"
+
+#: app/views/home.php:51
+msgid ""
+"A breakthrough platform to help shoppers and chefs efficiently find the best "
+"prices in local proximities, discovering inspiration, and connect with one "
+"another"
+msgstr "Une plateforme revolutionnaire pour aider les acheteurs et les chefs a trouver efficacement les meilleurs prix"
+"a proximite locale, a decouvrir l'inspiration et a se connecter les uns aux"
+"autres."
+
+#: app/views/home.php:53
+msgid "Get Started"
+msgstr "Commencer"
 
 #: app/views/cart.php:26
 msgid "Checkout:"
@@ -406,9 +455,6 @@ msgstr "Code actuel"
 msgid "Verify code"
 msgstr "Verification du code"
 
-#: app/views/User/login.php:58
-msgid "Log In"
-msgstr "Connexion"
 
 #: app/views/User/login.php:62 app/views/User/passwordCheck.php:28
 #: app/views/User/registration.php:80 app/views/User/update.php:14

@@ -30,6 +30,7 @@
 
 #logoText {
     margin: 0;
+    margin-bottom: 10px;
     /* Remove default margin */
 }
 
@@ -52,7 +53,7 @@
     line-height: 30px;
     height: 40px;
     padding-left: 20px;
-    width: 750px !important;
+    width: 550px !important;
 
 }
 
@@ -122,4 +123,18 @@
 
 #cart:hover {
     background-color: #0059c6;
+}
+
+#language{
+    padding: 5px 20px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
