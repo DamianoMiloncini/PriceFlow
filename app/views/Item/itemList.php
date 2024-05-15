@@ -63,7 +63,7 @@
         <?php else : ?>
             <?php foreach ($items as $item) : ?>
                 <div class="bg-white rounded-lg shadow-md p-4">
-                    <a href="/Item/info/<?php echo $item->item_id; ?>"> <!-- Wrap the item in an anchor tag with the link attribute -->
+                    <a name="item" href="/Item/info/<?php echo $item->item_id; ?>"> <!-- Wrap the item in an anchor tag with the link attribute -->
                         <img src="<?php echo $item->image; ?>" alt="<?php echo $item->name; ?>" class="w-full mb-2">
                         <p class="mb-2 font-"><?php echo strtoupper($item->brand); ?></p> <!-- Capitalize the brand -->
                         <p class="font-bold mb-2" name="<?php echo $item->name; ?>"> <?php echo $item->name; ?></p>

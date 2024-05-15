@@ -14,18 +14,18 @@
     <div class="container mx-auto flex h-screen items-center">
         <div class="zone flex-1 flex justify-center py-20 pr-60" id="zoneA">
             <?php if ($item) : ?>
-                <img src="<?php echo $item['image']; ?>" alt="Item Image" class="w-full h-full w-auto h-auto">
+                <img name="image" src="<?php echo $item['image']; ?>" alt="Item Image" class="w-full h-full w-auto h-auto">
             <?php else : ?>
                 <p>Item not found.</p>
             <?php endif; ?>
         </div>
         <div class="zone flex-1 flex flex-col items-center justify-center" id="zoneB">
             <?php if ($item) : ?>
-                <div class="item-info text-left">
-                    <div class="brand text-2xl font-normal"><?php echo $item['brand']; ?></div>
-                    <div class="item-name text-4xl font-bold mt-1"><?php echo $item['name']; ?></div>
-                    <div class="item-quantity text-2xl mt-1 font-normal"><?php echo $item['quantity']; ?></div>
-                    <div class="price font-bold text-4xl mt-5">$<?php echo $item['price']; ?></div>
+                <div name="item" class="item-info text-left">
+                    <div name="brand" class="brand text-2xl font-normal"><?php echo $item['brand']; ?></div>
+                    <div name="name" class="item-name text-4xl font-bold mt-1"><?php echo $item['name']; ?></div>
+                    <div name="quantity" class="item-quantity text-2xl mt-1 font-normal"><?php echo $item['quantity']; ?></div>
+                    <div name="price" class="price font-bold text-4xl mt-5">$<?php echo $item['price']; ?></div>
                     <div class="buttons mt-5 flex text-xl">
                         <form action="/bookmark/add/<?php echo $item['item_id'] ?>" method="post">
                             <button class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_item">Bookmark</button>
