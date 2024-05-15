@@ -36,17 +36,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage($url); //
     }
 
-    // /**
-    //  * @When I enter :username ,:firstName, :lastName, :password in the register page
-    //  */
-    // public function iEnterInTheRegisterPage($username, $firstName, $lastName,$password)
-    // {
-    //     $this->fillField('username', $username);
-    //     $this->fillField('first_name', $firstName);
-    //     $this->fillField('last_name', $lastName);
-    //     $this->fillField('password_hash', $password);
-    // }
-
     /**
      * @When I click :arg1 button
      */
@@ -63,22 +52,14 @@ class AcceptanceTester extends \Codeception\Actor
         $this->seeInCurrentUrl('/User/login'); //verify if the redirection was completed
     }
 
-    /**
+        /**
      * @When I enter :arg1 and :arg2 in the login form
      */
     public function iEnterAndInTheLoginForm($username, $password)
     {
         $this->fillField('username', $username);
         $this->fillField('password_hash', $password);
-    }
-
-    // /**
-    //  * @Then I should be redirected to the Home Page
-    //  */
-    // public function iShouldBeRedirectedToTheHomePage()
-    // {
-    //     $this->seeInCurrentUrl('/home'); //verify if the redirection was completed
-    // }
+        }
     /**
      * @Then I should be redirected to the home page
      */
@@ -544,10 +525,11 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
      */
     public function iAmLoggedInAsAnd($arg1, $arg2)
     {
-        $this->amOnPage("/User/login");
+        $this->amOnPage("http://localhost/User/login");
         $this->fillField('username',$arg1);
         $this->fillField('password_hash',$arg2);
-        $this->click('input[type=submit][name=Login]');    
+        $this->click('input[type=submit][name=Login]');   
+        $this->seeInCurrentUrl('/User/check2fa');
     }
 
         /**
@@ -577,7 +559,7 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
     public function iUpdate($arg1, $arg2, $arg3, $arg4)
     {
         $this->iAmLoggedInAsAnd('micka','1234');
-        $this->iCompleteTwoFactorAuthenticationWithMy('276447');
+        $this->iCompleteTwoFactorAuthenticationWithMy('416571');
         $this->amOnPage("/User/updateAccount");
         $this->fillField('username', $arg1);
         $this->fillField('password_hash', $arg2);
@@ -592,5 +574,65 @@ public function iSeeAnArrayOfWhoseAttributeContains($arg1, $arg2, $arg3)
     public function iShouldSeeTheValueOfLastNameBe($arg1)
     {
         $this->seeInField('last_name', $arg1);
-    }   
+    }  
+    
+    
+        /**
+     * @When I click on the item :arg1 on the home page
+     */
+    public function iClickOnTheItemOnTheHomePage($arg1)
+    {
+        $this->amOnPage('/home'); //ensure that you were able to log in
+        $this->click('a[href="/Item/info/superc041331078221"]');//need to give the specific item link
+        $this->see($arg1); //make sure that you see "Malta Goya"
+    }
+
+    /**
+     * @Given I register my location as :arg1, :arg2, :arg3 , :arg4, :arg5
+     */
+    public function iRegisterMyLocationAs($address, $street, $city,$province, $postal_code)
+    {
+        $this->amOnPage("/User/registerLocation");
+        $this->fillField('address', $address);
+        $this->fillField('street',$street);
+        $this->selectOption('province',$province);
+        $this->selectOption('city', $city);
+        $this->fillField('postal_code', $postal_code);
+        $this->click('input[type=submit][name=button]'); 
+    }
+
+
+    /**
+     * @When I click on the store :arg1
+     */
+    public function iClickOnTheStore($arg1)
+    { 
+        //when i use the arg it gives me an error cause it looks for a name attribute ? 
+        $this->click('Super C, 1515 Blvd. Marcel-Laurin, Montréal, QC H4R 0B7, Canada');//need to give the specific item link
+    }
+
+        /**
+     * @Then I should see :arg1 as my address in my account page
+     */
+     public function iShouldSeeAsMyAddressInMyAccountPage($arg1)
+     {
+        $this->amOnPage("/User/account");
+        $this->seeInField('input[name="address"]', $arg1);
+    }
+
+    /**
+     * @Given I update my location to :arg1, :arg2, :arg3 , :arg4, :arg5
+     */
+     public function iUpdateMyLocationTo($address, $street, $city,$province, $postal_code)
+     {
+        $this->amOnPage("/User/updateLocation");
+        $this->fillField('address', $address);
+        $this->fillField('street',$street);
+        $this->selectOption('province',$province);
+        $this->selectOption('city', $city);
+        $this->fillField('postal_code', $postal_code);
+        $this->click('input[type=submit][name=button]');
+            
+     }
+
 }

@@ -134,11 +134,8 @@ class ItemController extends \app\core\Controller
        //My API key :) i took a 90 day trial for this project esti
        $apiKey = 'AIzaSyC7s5_jgqD1sKbMsREIn68_Rk_jNYnfvnQ';
 
-       //put the user's postal_code
-       // $postalCode = 'H3J 2A3';
-
        //Radius (in meters) for nearby search
-       $radius = 5000;
+       $radius = 2500;
 
        //print_r($userLatitude);
        //print_r($userLongitude);
@@ -203,8 +200,6 @@ class ItemController extends \app\core\Controller
        if ($storeName != null && isset($results['places'])) {
            foreach ($results['places'] as $place) {
                if (str_contains($place['displayName']['text'], $storeName)) { // Check if the place is a Metro store
-                   //bool to check if the store exists in the db already
-                   $storeExists = false;
                    //add the api places in an array to send in the view later
                    $stores[] = $place;
 
