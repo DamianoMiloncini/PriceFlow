@@ -4,15 +4,16 @@ Feature: ViewItem
   I need to have searched for an item and have at least 1 item returned and click on the item
 
   Scenario: try SearchForItem "milk"
-        Given I am on "http://localhost/home"
+        Given I login
+        And I am on "http://localhost/home"
         When I enter "milk" in the search bar
-        And click Search
-        Then I am redirected to "http://localhost/items/milk"
-	And I see an array of "item" whose attribute "name" contains "milk"
+        And I click "searchButton"
+        Then I am redirected to "http://localhost/Item/search/milk"
+        And I see an array of "item" whose attribute "name" contains "milk"
 
   Scenario: try ViewItem "milk"
-	Given I am on "http://localhost/items/milk"
-	And I see an array of "item" whose attribute "name" contains "milk"
-	When I click on an "item" from the array
+	Given I am on "http://localhost/Item/search/milk"
+  And I see an array of "item" whose attribute "name" contains "milk"
+	When I click the "item" card 
 	Then I see "name", "brand", "price", "quantity" and "image" of said "item"
 

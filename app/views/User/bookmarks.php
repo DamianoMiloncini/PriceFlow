@@ -46,7 +46,7 @@
                 echo '
                 <div class="container">
                     <img class="itemImages" src="' . $item['image'] . '">
-                    <div class="itemInfo">
+                    <div name=' . $item['item_id'] . ' class="itemInfo">
                         <h5>' . $item['name'] . '</h5>
                         <h6 style="margin-left:2%;">' . $item['brand'] . '</h6>
                         <h6 style="margin-left:2%;">Price: ' . $item['price'] . '</h6>
