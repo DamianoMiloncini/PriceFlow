@@ -601,8 +601,8 @@ class AcceptanceTester extends \Codeception\Actor
     public function iShouldSeeTheValueOfLastNameBe($arg1)
     {
         $this->seeInField('last_name', $arg1);
-<<<<<<< Updated upstream
     }
+    
     /**
      * @Given I am on the :arg1 page
      */
@@ -809,7 +809,6 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     {
         $this->click($button);
 
-=======
     }   
 
 	/**
@@ -831,7 +830,6 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     public function iClickTheCard($arg1)
     {
         $this->click(['name' => $arg1]);
->>>>>>> Stashed changes
     }
 }
 
