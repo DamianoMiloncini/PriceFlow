@@ -175,8 +175,14 @@
             <?php if (isset($_SESSION['user_id']) && $recipeData['user_id'] === $_SESSION['user_id']) : ?>
                 <a href="/Recipe/edit/<?php echo $recipeData['recipe_id']; ?>" class="edit-button"><?=__('Edit')?></a>
                 <a href="/Recipe/deleteConfirmation/<?php echo $recipeData['recipe_id']; ?>" class="delete-button"><?=__('Delete')?></a>
-            <?php endif; ?>
-            <a href="/Recipe/displayAll" class="back-button"><?=__('Back to Recipes')?></a>
+            <?php endif; 
+            
+            if (isset($_SESSION['user_id'])) {
+            ?>
+                    <a href="/Recipe/displayAll" class="back-button"><?=__('Back to Recipes')?></a>
+            <?php } else { ?>
+                    <a href="/" class="back-button"><?=__('Back Home')?></a>
+                <?php } ?>
         </div>
     </div>
 </body>

@@ -6,4 +6,4 @@ Feature: Delete item from user's personal recipe
   And I am on "http://localhost/Recipe/addItemToRecipe/2"
   Then I see "Milk"
   When I click "Del"
-  Then I dont see "Milk" in the item list
+  Then "Milk" gets deleted

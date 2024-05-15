@@ -53,14 +53,14 @@ class AcceptanceTester extends \Codeception\Actor
         $this->seeInCurrentUrl('/User/login'); //verify if the redirection was completed
     }
 
-        /**
+    /**
      * @When I enter :arg1 and :arg2 in the login form
      */
     public function iEnterAndInTheLoginForm($username, $password)
     {
         $this->fillField('username', $username);
         $this->fillField('password_hash', $password);
-        }
+    }
     /**
      * @Then I should be redirected to the home page
      */
@@ -116,6 +116,14 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField("totp", $totpCode);
 
         $this->click('action');
+    }
+
+    /**
+     * @Then :arg1 gets deleted
+     */
+    public function getsDeleted($arg1)
+    {
+        $this->dontSee($arg1);
     }
 
     /**
@@ -176,7 +184,7 @@ class AcceptanceTester extends \Codeception\Actor
     /**
      * @When I create a new recipe with title :title and items :items
      */
-/**
+    /**
      * @When I create a new recipe with title :title and items :items
      */
     public function iCreateANewRecipeWithTitleAndItems($title, $items)
@@ -379,38 +387,38 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->see($arg1);
     }
-        /**
-        * @Then I don't see :arg1
-        */
-       public function iDontSee($arg1)
-       {
-           $this->dontSee($arg1);
-       }
-   
-       /**
-        * @When I click element :arg1
-        */
-       public function iClickElement($arg1)
-       {
-           $this->click($arg1);
-       }
-   
-       /**
-        * @Then I see :arg1 in the item list
-        */
-       public function iSeeInTheItemList($arg1)
-       {
-           $this->see($arg1);
-       }
-   
-       /**
-        * @Then I dont see :arg1 in the item list
-        */
-       public function iDontSeeInTheItemList($arg1)
-       {
-           $this->dontSee($arg1);
-       }
-    
+    /**
+     * @Then I don't see :arg1
+     */
+    public function iDontSee($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+    /**
+     * @When I click element :arg1
+     */
+    public function iClickElement($arg1)
+    {
+        $this->click($arg1);
+    }
+
+    /**
+     * @Then I see :arg1 in the item list
+     */
+    public function iSeeInTheItemList($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Then I dont see :arg1 in the item list
+     */
+    public function iDontSeeInTheItemList($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
 
     /**
      * @Then I see milk
@@ -430,16 +438,15 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iClickDeleteForItem()
     {
-        // Click the delete button associated with the specified item in the cart
-        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); // Assuming item name is unique
+        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); 
         $this->click($itemSelector . ' .bttns[name="deleteButton"]');
     }
 
     public function iSeeItemRemoved()
     {
         // Implement logic to verify that the specified item is removed from the cart
-        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); // Assuming item name is unique
-        $this->dontSeeElement($itemSelector); // Assuming the item is removed and no longer visible
+        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); 
+        $this->dontSeeElement($itemSelector); 
     }
 
     /**
@@ -553,9 +560,9 @@ class AcceptanceTester extends \Codeception\Actor
     public function iAmLoggedInAsAnd($arg1, $arg2)
     {
         $this->amOnPage("http://localhost/User/login");
-        $this->fillField('username',$arg1);
-        $this->fillField('password_hash',$arg2);
-        $this->click('input[type=submit][name=Login]');   
+        $this->fillField('username', $arg1);
+        $this->fillField('password_hash', $arg2);
+        $this->click('input[type=submit][name=Login]');
         $this->seeInCurrentUrl('/User/check2fa');
     }
 
@@ -585,7 +592,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iUpdate($arg1, $arg2, $arg3, $arg4)
     {
-        $this->iAmLoggedInAsAnd('micka','1234');
+        $this->iAmLoggedInAsAnd('micka', '1234');
         $this->iCompleteTwoFactorAuthenticationWithMy('416571');
         $this->amOnPage("/User/updateAccount");
         $this->fillField('username', $arg1);
@@ -602,7 +609,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->seeInField('last_name', $arg1);
     }
-    
+
     /**
      * @Given I am on the :arg1 page
      */
@@ -611,7 +618,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/Recipe/displayAll');
     }
 
-        /**
+    /**
      * @When I enter :arg1 into the search prompt
      */
     public function iEnterIntoTheSearchPrompt($arg1)
@@ -619,31 +626,31 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField('#search', $arg1);
     }
 
-   /**
-    * @When I click on the :arg1 button
-    */
+    /**
+     * @When I click on the :arg1 button
+     */
     public function iClickOnTheButton($arg1)
     {
         $this->click('button[type="submit"]');
     }
 
-   /**
-    * @Then I should be on :arg1
-    */
+    /**
+     * @Then I should be on :arg1
+     */
     public function iShouldBeOn($arg1)
     {
         $this->seeInCurrentUrl($arg1);
     }
 
-   /**
-    * @Then I should see a list of :arg1 recipes
-    */
+    /**
+     * @Then I should see a list of :arg1 recipes
+     */
     public function iShouldSeeAListOfRecipes($arg1)
     {
         $this->see($arg1, '.recipe-info h2');
     }
 
-        /**
+    /**
      * @When I enter minimum price :arg1 and maximum price :arg2
      */
     public function iEnterMinimumPriceAndMaximumPrice($arg1, $arg2)
@@ -652,83 +659,82 @@ class AcceptanceTester extends \Codeception\Actor
         $this->maxPrice = $arg2;
     }
 
-   /**
-    * @When I click on the Apply button
-    */
+    /**
+     * @When I click on the Apply button
+     */
     public function iClickOnTheApplyButton()
     {
         $this->click('.price-range-filter button[type="submit"]');
     }
-   /**
-    * @Then I should see the recipes :arg1 and :arg2 in the recipe list on this page :arg3
-    */
+    /**
+     * @Then I should see the recipes :arg1 and :arg2 in the recipe list on this page :arg3
+     */
     public function iShouldSeeTheRecipesAndInTheRecipeListOnThisPage($arg1, $arg2, $arg3)
     {
         $this->amOnPage($arg3);
 
-    // Maximum number of attempts to check for the element
-    $maxAttempts = 10;
+        // Maximum number of attempts to check for the element
+        $maxAttempts = 10;
 
-    // Check if the element is present
-    for ($i = 0; $i < $maxAttempts; $i++) {
-        try {
-            // Attempt to find the element
-            $this->see($arg1, '.recipe-info h2');
-            $this->see($arg2, '.recipe-info h2');
+        // Check if the element is present
+        for ($i = 0; $i < $maxAttempts; $i++) {
+            try {
+                // Attempt to find the element
+                $this->see($arg1, '.recipe-info h2');
+                $this->see($arg2, '.recipe-info h2');
 
-            // If the element is found, break out of the loop
-            break;
-        } catch (\Exception $e) {
-            // If element is not found, wait for a short interval before retrying
-            sleep(1);
+                // If the element is found, break out of the loop
+                break;
+            } catch (\Exception $e) {
+                // If element is not found, wait for a short interval before retrying
+                sleep(1);
+            }
         }
-    }
 
-    // Perform assertions after the loop
-    $this->see($arg1, '.recipe-info h2');
-    $this->see($arg2, '.recipe-info h2');
+        // Perform assertions after the loop
+        $this->see($arg1, '.recipe-info h2');
+        $this->see($arg2, '.recipe-info h2');
     }
 
     /**
      * @Then I should see the total price of recipe id :num1 is :arg1
      */
     /**
- * @Then I should see the total price of recipe id :num1 is :arg1
- */
-public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
-{
-    $locator = ".recipe-item:has(a[href*='/Recipe/recipeDetails/{$num1}']) .price";
-    $foundPrice = $this->grabTextFrom($locator);
+     * @Then I should see the total price of recipe id :num1 is :arg1
+     */
+    public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
+    {
+        $locator = ".recipe-item:has(a[href*='/Recipe/recipeDetails/{$num1}']) .price";
+        $foundPrice = $this->grabTextFrom($locator);
 
-    if ($foundPrice !== $arg1) {
-        throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
+        if ($foundPrice !== $arg1) {
+            throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
+        }
     }
 
-    }     
-    
-    
-        /**
+
+    /**
      * @When I click on the item :arg1 on the home page
      */
     public function iClickOnTheItemOnTheHomePage($arg1)
     {
         $this->amOnPage('/home'); //ensure that you were able to log in
-        $this->click('a[href="/Item/info/superc041331078221"]');//need to give the specific item link
+        $this->click('a[href="/Item/info/superc041331078221"]'); //need to give the specific item link
         $this->see($arg1); //make sure that you see "Malta Goya"
     }
 
     /**
      * @Given I register my location as :arg1, :arg2, :arg3 , :arg4, :arg5
      */
-    public function iRegisterMyLocationAs($address, $street, $city,$province, $postal_code)
+    public function iRegisterMyLocationAs($address, $street, $city, $province, $postal_code)
     {
         $this->amOnPage("/User/registerLocation");
         $this->fillField('address', $address);
-        $this->fillField('street',$street);
-        $this->selectOption('province',$province);
+        $this->fillField('street', $street);
+        $this->selectOption('province', $province);
         $this->selectOption('city', $city);
         $this->fillField('postal_code', $postal_code);
-        $this->click('input[type=submit][name=button]'); 
+        $this->click('input[type=submit][name=button]');
     }
 
 
@@ -736,16 +742,16 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
      * @When I click on the store :arg1
      */
     public function iClickOnTheStore($arg1)
-    { 
+    {
         //when i use the arg it gives me an error cause it looks for a name attribute ? 
-        $this->click('Super C, 1515 Blvd. Marcel-Laurin, Montréal, QC H4R 0B7, Canada');//need to give the specific item link
+        $this->click('Super C, 1515 Blvd. Marcel-Laurin, Montréal, QC H4R 0B7, Canada'); //need to give the specific item link
     }
 
-        /**
+    /**
      * @Then I should see :arg1 as my address in my account page
      */
-     public function iShouldSeeAsMyAddressInMyAccountPage($arg1)
-     {
+    public function iShouldSeeAsMyAddressInMyAccountPage($arg1)
+    {
         $this->amOnPage("/User/account");
         $this->seeInField('input[name="address"]', $arg1);
     }
@@ -753,19 +759,18 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     /**
      * @Given I update my location to :arg1, :arg2, :arg3 , :arg4, :arg5
      */
-     public function iUpdateMyLocationTo($address, $street, $city,$province, $postal_code)
-     {
+    public function iUpdateMyLocationTo($address, $street, $city, $province, $postal_code)
+    {
         $this->amOnPage("/User/updateLocation");
         $this->fillField('address', $address);
-        $this->fillField('street',$street);
-        $this->selectOption('province',$province);
+        $this->fillField('street', $street);
+        $this->selectOption('province', $province);
         $this->selectOption('city', $city);
         $this->fillField('postal_code', $postal_code);
         $this->click('input[type=submit][name=button]');
-            
-     }
+    }
 
-         /**
+    /**
      * @When click on the :arg1 link in my account page
      */
     public function clickOnTheLinkInMyAccountPage($arg1)
@@ -773,20 +778,19 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
         $this->amOnPage("/User/account");
         // $this->click(".$arg1");
         $this->click("//a[@class='userBtn' and contains(text(), '$arg1')]");
-
     }
 
-     /**
+    /**
      * @Then I should enter my password :arg1 and my secret :arg2
      */
     public function iShouldEnterMyPasswordAndMySecret($password, $secret)
     {
         $this->fillField('password', $password);
-        $this->fillField('totp',$secret);
+        $this->fillField('totp', $secret);
         $this->click('input[type=submit][name=action]');
     }
 
-        /**
+    /**
      * @Then I should be redirected to the :arg1 page
      */
     public function iShouldBeRedirectedToThePage($arg1)
@@ -794,7 +798,7 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
         $this->seeInCurrentUrl($arg1);
     }
 
-   /**
+    /**
      * @Then I should not see :arg1
      */
     public function iShouldNotSee($arg1)
@@ -802,29 +806,28 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
         $this->dontSee($arg1);
     }
 
-        /**
+    /**
      * @When I click :arg1 button on bookmark item :arg2
      */
     public function iClickButtonOnBookmarkItem($button, $arg2)
     {
         $this->click($button);
+    }
 
-    }   
-
-	/**
+    /**
      * @Then I see :arg1, :arg2, :arg3, :arg4 and :arg5 of said :arg6
      */
-     public function iSeeAndOfSaid($arg1, $arg2, $arg3, $arg4, $arg5, $arg6)
-     {
+    public function iSeeAndOfSaid($arg1, $arg2, $arg3, $arg4, $arg5, $arg6)
+    {
         $this->seeInSource($arg1);
         $this->seeInSource($arg2);
         $this->seeInSource($arg3);
         $this->seeInSource($arg4);
         $this->seeInSource($arg5);
         $this->seeInSource($arg6);
-     }
+    }
 
-     /**
+    /**
      * @When I click the :arg1 card
      */
     public function iClickTheCard($arg1)
@@ -840,5 +843,3 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
         $this->fillField($arg1, $arg2);
     }
 }
-
-
