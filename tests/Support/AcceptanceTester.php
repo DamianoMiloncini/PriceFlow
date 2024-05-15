@@ -23,7 +23,6 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-
     protected $minPrice;
     protected $maxPrice;
     /**
@@ -91,13 +90,8 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iLogin()
     {
-<<<<<<< HEAD
-        $this->amOnPage('http://localhost/User/login?lang=en'); 
-        $this->fillField("username", "sheldon");
-=======
         $this->amOnPage('http://localhost/User/login?lang=en');
         $this->fillField("username", "user1");
->>>>>>> e1dd51e9aee316f7256acbfc2d5ffa1c0a5c98e4
         $this->fillField("password_hash", "1234");
         $this->click("Login");
     }
@@ -195,7 +189,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->selectOption('privacy_status', 'public');  // Setting privacy status to public
         $this->pressButton('Continue');  // Pressing the 'Continue' button to submit the form
     }
-
     /**
      * @Then the recipe :recipeTitle should be created successfully
      */
@@ -203,7 +196,6 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->assertPageContainsText($recipeTitle);
     }
-
     /**
      * @Given I have a recipe titled :arg1 with cooking instructions :arg2
      */
@@ -240,14 +232,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('View Recipes');
     }
 
-    // /**
-    //  * @Then I should see a list of recipes
-    //  */
-    // public function iShouldSeeAListOfRecipes()
-    // {
-    //     $this->seeElement('.recipe');
-    // }
-
     /**
      * @When I view my profile
      */
@@ -267,10 +251,10 @@ class AcceptanceTester extends \Codeception\Actor
     /**
      * @Given there are recipes available
      */
-    // public function thereAreRecipesAvailable()
-    // {
-    //     $this->seeElement('.recipe');
-    // }
+    public function thereAreRecipesAvailable()
+    {
+        $this->seeElement('.recipe');
+    }
 
     /**
      * @When I filter recipes by date created
@@ -395,38 +379,38 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->see($arg1);
     }
-
-     /**
-     * @Then I don't see :arg1
-     */
-    public function iDontSee($arg1)
-    {
-        $this->dontSee($arg1);
-    }
-
-    /**
-     * @When I click element :arg1
-     */
-    public function iClickElement($arg1)
-    {
-        $this->click($arg1);
-    }
-
-    /**
-     * @Then I see :arg1 in the item list
-     */
-    public function iSeeInTheItemList($arg1)
-    {
-        $this->see($arg1);
-    }
-
-    /**
-     * @Then I dont see :arg1 in the item list
-     */
-    public function iDontSeeInTheItemList($arg1)
-    {
-        $this->dontSee($arg1);
-    }
+        /**
+        * @Then I don't see :arg1
+        */
+       public function iDontSee($arg1)
+       {
+           $this->dontSee($arg1);
+       }
+   
+       /**
+        * @When I click element :arg1
+        */
+       public function iClickElement($arg1)
+       {
+           $this->click($arg1);
+       }
+   
+       /**
+        * @Then I see :arg1 in the item list
+        */
+       public function iSeeInTheItemList($arg1)
+       {
+           $this->see($arg1);
+       }
+   
+       /**
+        * @Then I dont see :arg1 in the item list
+        */
+       public function iDontSeeInTheItemList($arg1)
+       {
+           $this->dontSee($arg1);
+       }
+    
 
     /**
      * @Then I see milk
@@ -514,14 +498,6 @@ class AcceptanceTester extends \Codeception\Actor
     public function iClickTheButton($arg1)
     {
         $this->click($arg1);
-    }
-
-    /**
-     * @Then I should see :arg1 ,:arg2, :arg3, :arg4, :arg5 as my account details
-     */
-    public function iShouldSeeAsMyAccountDetails($arg1, $arg2, $arg3, $arg4, $arg5)
-    {
-        throw new \PHPUnit\Framework\IncompleteTestError("Step `I should see :arg1 ,:arg2, :arg3, :arg4, :arg5 as my account details` is not defined");
     }
 
     /**
@@ -625,9 +601,7 @@ class AcceptanceTester extends \Codeception\Actor
     public function iShouldSeeTheValueOfLastNameBe($arg1)
     {
         $this->seeInField('last_name', $arg1);
-<<<<<<< HEAD
     }
-
     /**
      * @Given I am on the :arg1 page
      */
@@ -684,7 +658,6 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->click('.price-range-filter button[type="submit"]');
     }
-
    /**
     * @Then I should see the recipes :arg1 and :arg2 in the recipe list on this page :arg3
     */
@@ -729,8 +702,8 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
     if ($foundPrice !== $arg1) {
         throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
     }
-=======
-    }  
+
+    }     
     
     
         /**
@@ -790,8 +763,5 @@ public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
         $this->click('input[type=submit][name=button]');
             
      }
-
->>>>>>> e1dd51e9aee316f7256acbfc2d5ffa1c0a5c98e4
-}
 
 }
