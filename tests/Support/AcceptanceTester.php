@@ -119,6 +119,14 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
+     * @Then :arg1 gets deleted
+     */
+    public function getsDeleted($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+    /**
      * @Then I should see the login form
      */
     public function iShouldSeeTheLoginForm()
@@ -173,6 +181,67 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see('All your bookmarks');
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @When I create a new recipe with title :title and items :items
+     */
+    /**
+     * @When I create a new recipe with title :title and items :items
+     */
+    public function iCreateANewRecipeWithTitleAndItems($title, $items)
+    {
+        $this->clickLink('Create Recipe');
+        $this->fillField('title', $title);  // Field 'title' corresponds to <input type="text" id="title" name="title">
+        $this->fillField('content', $items);  // Field 'content' corresponds to <textarea name="content" ...>
+        $this->fillField('duration', 30);  // Assuming a fixed duration value for simplicity
+        $this->attachFile('image', 'path/to/image.jpg');  // Providing a sample path to an image
+        $this->selectOption('privacy_status', 'public');  // Setting privacy status to public
+        $this->pressButton('Continue');  // Pressing the 'Continue' button to submit the form
+    }
+    /**
+     * @Then the recipe :recipeTitle should be created successfully
+     */
+    public function theRecipeShouldBeCreatedSuccessfully($recipeTitle)
+    {
+        $this->assertPageContainsText($recipeTitle);
+    }
+    /**
+     * @Given I have a recipe titled :arg1 with cooking instructions :arg2
+     */
+    public function iHaveARecipeTitledWithCookingInstructions($title, $instructions)
+    {
+        $this->click('Edit Recipe');
+        $this->fillField('Cooking Instructions', $instructions);
+        $this->click('Save Recipe');
+    }
+
+    /**
+     * @When I update the cooking instructions of the recipe :arg1 to :arg2
+     */
+    public function iUpdateTheCookingInstructionsOfTheRecipeTo($title, $instructions)
+    {
+        $this->click('Edit Recipe');
+        $this->fillField('Cooking Instructions', $instructions);
+        $this->click('Save Recipe');
+    }
+
+    /**
+     * @Then the cooking instructions for the recipe :arg1 should be updated successfully
+     */
+    public function theCookingInstructionsForTheRecipeShouldBeUpdatedSuccessfully($recipeTitle)
+    {
+        $this->see('Cooking instructions updated successfully for ' . $recipeTitle);
+    }
+
+    /**
+     * @When I view the recipes
+     */
+    public function iViewTheRecipes()
+    {
+        $this->click('View Recipes');
+    }
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
 
     /**
      * @When I view my profile
@@ -290,16 +359,15 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iClickDeleteForItem()
     {
-        // Click the delete button associated with the specified item in the cart
-        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); // Assuming item name is unique
+        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); 
         $this->click($itemSelector . ' .bttns[name="deleteButton"]');
     }
 
     public function iSeeItemRemoved()
     {
         // Implement logic to verify that the specified item is removed from the cart
-        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); // Assuming item name is unique
-        $this->dontSeeElement($itemSelector); // Assuming the item is removed and no longer visible
+        $itemSelector = sprintf('.itemCard:contains("%s")', 'Frozen Potato'); 
+        $this->dontSeeElement($itemSelector); 
     }
 
     /**
@@ -542,6 +610,7 @@ class AcceptanceTester extends \Codeception\Actor
                 // If element is not found, wait for a short interval before retrying
                 sleep(1);
             }
+<<<<<<< HEAD
         }
 
         // Perform assertions after the loop
@@ -577,12 +646,22 @@ class AcceptanceTester extends \Codeception\Actor
 
         if (abs($grabbedPrice - $expectedPrice) > $tolerance) {
             throw new \RuntimeException("The price of the recipe '{$arg1}' does not match the expected value '{$arg2}'.");
+=======
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
         }
+
+<<<<<<< HEAD
+=======
+        // Perform assertions after the loop
+        $this->see($arg1, '.recipe-info h2');
+        $this->see($arg2, '.recipe-info h2');
     }
 
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
     /**
      * @Then I should see the recipes displayed in the following order
      */
+<<<<<<< HEAD
     public function iShouldSeeTheRecipesDisplayedInTheFollowingOrder()
     {
         // Get the position of "Fruit Bowl" and "Fresh Fruit" in the HTML
@@ -592,10 +671,23 @@ class AcceptanceTester extends \Codeception\Actor
         // Check if "Fruit Bowl" appears before "Fresh Fruit" in the HTML
         if ($fruitBowlPosition === false || $freshFruitPosition === false || $fruitBowlPosition > $freshFruitPosition) {
             throw new \Exception("Fruit Bowl is not displayed on top.");
+=======
+    /**
+     * @Then I should see the total price of recipe id :num1 is :arg1
+     */
+    public function iShouldSeeTheTotalPriceOfRecipeIdIs($num1, $arg1)
+    {
+        $locator = ".recipe-item:has(a[href*='/Recipe/recipeDetails/{$num1}']) .price";
+        $foundPrice = $this->grabTextFrom($locator);
+
+        if ($foundPrice !== $arg1) {
+            throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
         }
     }
 
 
+<<<<<<< HEAD
 
    /**
     * @When I update the duration of the recipe to :arg1
@@ -614,6 +706,8 @@ class AcceptanceTester extends \Codeception\Actor
     $this->assertEquals($arg1, $updatedDuration);
     }
 
+=======
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
     /**
      * @When I click on the item :arg1 on the home page
      */
@@ -759,6 +853,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->selectOption($arg1, $arg2);
     }
+<<<<<<< HEAD
 
     /**
      * @Then I see :arg1 recipe
@@ -827,3 +922,6 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
 }
+=======
+}
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5

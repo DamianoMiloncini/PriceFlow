@@ -31,37 +31,37 @@
 
     <div class="flex flex-row mt-4 justify-center gap-4">
         <!-- Filter button -->
-        <button onclick="togglePopup('filterPopup')" class="w-20 bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Filter</button>
+        <button onclick="togglePopup('filterPopup')" class="w-20 bg-blue-500 text-white px-4 py-2 rounded-md mb-4"><?= __('Filter') ?></button>
         <!-- Sort button -->
-        <button onclick="togglePopup('sortPopup')" class="w-32 bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Sort by Price</button>
+        <button onclick="togglePopup('sortPopup')" class="w-32 bg-blue-500 text-white px-4 py-2 rounded-md mb-4"><?= __('Sort by Price') ?></button>
     </div>
 
     <!-- Filter popup -->
     <form id="filterPopup" class="popup">
         <button onclick="togglePopup('filterPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
-        <label for="minPrice">Min Price:</label>
+        <label for="minPrice"><?= __('Min Price') ?>:</label>
         <input name="minPrice" type="number" id="minPrice" min="0" value="0" step="0.01">
-        <label for="maxPrice">Max Price:</label>
+        <label for="maxPrice"><?= __('Max Price') ?>:</label>
         <input name="maxPrice" type="number" id="maxPrice" min="0" value="1000" step="0.01">
-        <label for="storeFilter">Store:</label>
+        <label for="storeFilter"><?= __('Store') ?>:</label>
         <select name="storeFilter" id="storeFilter">
-            <option value="">All</option>
+            <option value=""><?= __('All') ?></option>
             <option value="metro">Metro</option>
             <option value="superc">Super C</option>
         </select>
-        <button onclick="applyFilter()" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Apply</button>
+        <button onclick="applyFilter()" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"><?= __('Apply') ?></button>
     </form>
 
     <!-- Sort popup -->
     <form id="sortPopup" class="popup">
         <button onclick="togglePopup('sortPopup')" class="absolute top-0 right-0 px-3 py-1 text-xl">&times;</button>
-        <button onclick="sortItems('asc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Low to High</button>
-        <button onclick="sortItems('desc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">High to Low</button>
+        <button onclick="sortItems('asc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"><?= __('Low to High') ?></button>
+        <button onclick="sortItems('desc')" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"><?= __('High to Low') ?></button>
     </form>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-60" id="itemList">
         <?php if (empty($items)) : ?>
-            <p>No items found</p>
+            <p><?= __('No items found') ?></p>
         <?php else : ?>
             <?php foreach ($items as $item) : ?>
                 <div class="bg-white rounded-lg shadow-md p-4">

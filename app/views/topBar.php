@@ -27,6 +27,7 @@
         }
 
         #logoText {
+            display: flex;
             color: #191919;
             font-family: 'Nunito Sans', sans-serif;
             font-size: 18px;
@@ -37,6 +38,7 @@
         }
 
         #textLogo {
+            display: flex;
             height: auto;
             width: 3%;
         }
@@ -48,7 +50,7 @@
         }
 
         .buttons {
-            display: inline-block;
+            display: flex;
             padding: 10px 20px;
             font-size: 15px;
             font-weight: 300;
@@ -61,7 +63,7 @@
         }
 
         #register {
-            display: inline-block;
+            display: flex
             padding: 5px 20px;
             background-color: #006eff;
             font-size: 15px;
@@ -192,6 +194,38 @@
             transition: background-color 0.3s ease;
         }
 
+        #search {
+            resize: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 35px;
+            line-height: 30px;
+            height: 40px;
+            padding-left: 20px;
+            width: 550px !important;
+
+        }
+
+        #searchbutton {
+            display: inline-block;
+            padding: 5px 20px;
+            background-color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 35px;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            height: 40px;
+            margin-right: 65px;
+            line-height: normal;
+        }
+
         #cart {
             font-size: 18px;
             display: inline-block;
@@ -210,6 +244,20 @@
             background-color: #0059c6;
             /* Change background color on hover */
             cursor: pointer;
+        }
+
+        .language {
+            padding: 5px 20px;
+            background-color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 35px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
         }
     </style>
 
@@ -237,8 +285,8 @@
                 </a>
 
                 <!-- Might do this -->
-                <a id="language" href="?lang=en">EN</a>
-                <a id="languageFrench" href="?lang=fr">FR</a>
+                <a class="language" href="?lang=en">EN</a>
+                <a class="language" href="?lang=fr">FR</a>
 
             </div>
 
@@ -294,7 +342,6 @@
             window.location.href = '/Item/search/' + inputText;
             e.preventDefault(); // Prevent form submission if needed :)))
         });
-
     </script>
 
 </body>

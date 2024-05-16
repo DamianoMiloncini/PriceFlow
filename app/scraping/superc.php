@@ -58,7 +58,5 @@ function scrapeSuperCItems($query)
         $items[] = $item;
     });
     
-    
-
     return $items;
 }
