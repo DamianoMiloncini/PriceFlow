@@ -65,7 +65,7 @@
                         <img id="recipeImage" src="/uploads/<?php echo basename($recipe['imagePath']); ?>">
                         <div id="recipeInformation">
                             <div class="recipeHeading">
-                                <h5><?php echo $recipe['title'] ?></h5> <br>
+                                <h5 style="font-weight: bold; font-size: 16px;"><?php echo $recipe['title'] ?></h5> <br>
                                 <h6><?= __('By') . ' ' . $recipe['username']; ?></h6>
                             </div>
                             <h7><?php echo $recipe['date_created'] ?></h7>
@@ -98,7 +98,7 @@
                             <div id="itemInformation">
                                 <div class="itemHeading" style="margin-bottom: 25px;">
                                     <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
-                                    <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
+                                    <h5 style="font-weight: bold; font-size: 16px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
                                     <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
                                 </div>
                                 <h7>$<?php echo $item['price'] ?></h7><br>
@@ -138,7 +138,7 @@
                             <div id="itemInformation">
                                 <div class="itemHeading" style="margin-bottom: 25px;">
                                     <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
-                                    <h5 style="font-size:18px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
+                                    <h5 style="font-weight: bold; font-size: 16px;"><?= __('') . $item['name'] ?></h5><br> <!-- to try -->
                                     <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
                                 </div>
                                 <h7>$<?php echo $item['price'] ?></h7><br>
@@ -171,7 +171,7 @@
                             <div id="itemInformation">
                                 <div class="itemHeading" style="margin-bottom: 25px;">
                                     <h6 style="font-size:15px; font-weight:400"><?php echo $item['brand']; ?></h6><br>
-                                    <h5 style="font-size:18px;"><?php echo $item['name'] ?></h5><br>
+                                    <h5 style="font-weight: bold; font-size: 16px;"><?php echo $item['name'] ?></h5><br>
                                     <h6 style="font-size:15px; font-weight:400;"><?php echo $item['quantity']; ?></h6><br>
                                 </div>
                                 <h7>$<?php echo $item['price'] ?></h7><br>
