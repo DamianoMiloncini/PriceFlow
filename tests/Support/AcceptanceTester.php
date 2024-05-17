@@ -111,7 +111,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('http://localhost/User/check2fa?lang=en');
         // 2FA HERE
-        $totpCode = $arg1; // You must always replace this with the new authenticator code when you test
+        $totpCode = 112686; // You must always replace this with the new authenticator code when you test
 
         $this->fillField("totp", $totpCode);
 
@@ -181,6 +181,8 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see('All your bookmarks');
     }
 
+<<<<<<< HEAD
+=======
     /**
      * @When I create a new recipe with title :title and items :items
      */
@@ -239,6 +241,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->click('View Recipes');
     }
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
 
     /**
      * @When I view my profile
@@ -249,14 +252,6 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
-     * @Then I should see only my own recipes
-     */
-    public function iShouldSeeOnlyMyOwnRecipes()
-    {
-        $this->see('My Recipes');
-    }
-
-    /**
      * @Given there are recipes available
      */
     public function thereAreRecipesAvailable()
@@ -264,37 +259,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->seeElement('.recipe');
     }
 
-    /**
-     * @When I filter recipes by date created
-     */
-    public function iFilterRecipesByDateCreated()
-    {
-        $this->selectOption('Sort By', 'Date Created');
-    }
-
-    /**
-     * @Then I should see recipes sorted by date created
-     */
-    public function iShouldSeeRecipesSortedByDateCreated()
-    {
-        $this->see('Sorted by Date Created');
-    }
-
-    /**
-     * @When I filter recipes by price
-     */
-    public function iFilterRecipesByPrice()
-    {
-        $this->selectOption('Sort By', 'Price');
-    }
-
-    /**
-     * @Then I should see recipes sorted by price
-     */
-    public function iShouldSeeRecipesSortedByPrice()
-    {
-        $this->see('Sorted by Price');
-    }
 
     /**
      * @When I search for :arg1
@@ -303,49 +267,6 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->fillField('Search', $searchQuery);
         $this->executeJS("document.querySelector('#search-field').dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));");
-    }
-
-
-    /**
-     * @Then I should see relevant recipes
-     */
-    public function iShouldSeeRelevantRecipes()
-    {
-        $this->see('Search Results');
-    }
-
-    /**
-     * @When I delete the recipe :arg1
-     */
-    public function iDeleteTheRecipe($recipeTitle)
-    {
-        $this->click('Delete Recipe');
-    }
-
-    /**
-     * @Then the recipe :arg1 should be deleted successfully
-     */
-    public function theRecipeShouldBeDeletedSuccessfully($recipeTitle)
-    {
-        $this->dontSee($recipeTitle);
-    }
-
-    /**
-     * @Given there is a recipe titled :arg1
-     */
-    public function thereIsARecipeTitled($recipeTitle)
-    {
-        $this->click('View Details');
-        $this->see($recipeTitle);
-    }
-
-    /**
-     * @When I view the current price of the recipe :arg1
-     */
-    public function iViewTheCurrentPriceOfTheRecipe($recipeTitle)
-    {
-        $this->click('View Recipe');
-        $this->click('View Price');
     }
 
     /**
@@ -689,6 +610,7 @@ class AcceptanceTester extends \Codeception\Actor
                 // If element is not found, wait for a short interval before retrying
                 sleep(1);
             }
+<<<<<<< HEAD
         }
 
         // Perform assertions after the loop
@@ -697,8 +619,59 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
-     * @Then I should see the total price of recipe id :num1 is :arg1
+     * @Given I am on the :arg1
      */
+    public function iAmOnThe($arg1)
+    {
+        $this->amOnPage($arg1);
+    }
+
+    /**
+     * @Then I should see the total price of the :arg1 recipe is :arg2
+     */
+    public function iShouldSeeTheTotalPriceOfTheRecipeIs($arg1, $arg2)
+    {
+        $priceElement = $this->grabTextFrom("//h2[contains(text(), '{$arg1}')]/following-sibling::p[@class='price']");
+
+        $this->comment("Grabbed price for '{$arg1}': Price: {$priceElement}");
+
+        $priceElement = preg_replace('/[^0-9.]/', '', $priceElement);
+
+        $expectedPrice = (float) $arg2;
+
+        $grabbedPrice = (float) $priceElement;
+
+        $tolerance = 0.01;
+
+
+        if (abs($grabbedPrice - $expectedPrice) > $tolerance) {
+            throw new \RuntimeException("The price of the recipe '{$arg1}' does not match the expected value '{$arg2}'.");
+=======
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
+        }
+
+<<<<<<< HEAD
+=======
+        // Perform assertions after the loop
+        $this->see($arg1, '.recipe-info h2');
+        $this->see($arg2, '.recipe-info h2');
+    }
+
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
+    /**
+     * @Then I should see the recipes displayed in the following order
+     */
+<<<<<<< HEAD
+    public function iShouldSeeTheRecipesDisplayedInTheFollowingOrder()
+    {
+        // Get the position of "Fruit Bowl" and "Fresh Fruit" in the HTML
+        $fruitBowlPosition = strpos($this->grabPageSource(), 'Fruit Bowl');
+        $freshFruitPosition = strpos($this->grabPageSource(), 'Fresh Fruit');
+
+        // Check if "Fruit Bowl" appears before "Fresh Fruit" in the HTML
+        if ($fruitBowlPosition === false || $freshFruitPosition === false || $fruitBowlPosition > $freshFruitPosition) {
+            throw new \Exception("Fruit Bowl is not displayed on top.");
+=======
     /**
      * @Then I should see the total price of recipe id :num1 is :arg1
      */
@@ -709,10 +682,32 @@ class AcceptanceTester extends \Codeception\Actor
 
         if ($foundPrice !== $arg1) {
             throw new \RuntimeException("Expected total price '$arg1' does not match actual total price '$foundPrice'");
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
         }
     }
 
 
+<<<<<<< HEAD
+
+   /**
+    * @When I update the duration of the recipe to :arg1
+    */
+    public function iUpdateTheDurationOfTheRecipeTo($arg1)
+    {
+        $this->fillField("input[name='duration']", $arg1);
+    }
+
+   /**
+    * @Then the duration of the recipe should be updated to :arg1
+    */
+    public function theDurationOfTheRecipeShouldBeUpdatedTo($arg1)
+    {
+        $updatedDuration = $this->grabValueFrom("input[name='duration']");
+    $this->assertEquals($arg1, $updatedDuration);
+    }
+
+=======
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5
     /**
      * @When I click on the item :arg1 on the home page
      */
@@ -858,4 +853,75 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->selectOption($arg1, $arg2);
     }
+<<<<<<< HEAD
+
+    /**
+     * @Then I see :arg1 recipe
+     */
+    public function iSeeRecipe($arg1)
+    {
+        $this->see($arg1);
+    }
+
+        /**
+     * @When I go to http://localhost/Recipe/create
+     */
+    public function iGoToHttplocalhostRecipecreate($url)
+    {
+        $this->amOnPage($url);
+    
+        $this->amOnPage('http://localhost/Recipe/create');
+    }
+
+   /**
+    * @When I enter :arg1 in the title field
+    */
+    public function iEnterInTheTitleField($arg1)
+    {
+        $this->fillField('title', $arg1);
+    }
+
+   /**
+    * @When I enter :arg1 in the content field
+    */
+    public function iEnterInTheContentField($arg1)
+    {
+        $this->fillField('content', $arg1);
+    }
+
+   /**
+    * @When I enter :arg1 for the duration
+    */
+    public function iEnterForTheDuration($arg1)
+    {
+        $this->fillField('duration', $arg1);
+    }
+
+   /**
+    * @When I add the image :arg1 to the recipe
+    */
+    public function iAddTheImageToTheRecipe($arg1)
+    {
+        $this->attachFile('image', $arg1);
+    }
+
+   /**
+    * @When I select :arg1 for the privacy status
+    */
+    public function iSelectForThePrivacyStatus($arg1)
+    {
+        $this->selectOption('privacy_status', $arg1);
+    }
+
+   /**
+    * @Then I should be redirected to :arg1
+    */
+    public function iShouldBeRedirectedTo($arg1)
+    {
+        $this->seeCurrentUrlEquals($arg1);
+    }
+
 }
+=======
+}
+>>>>>>> d3a833b41101fcfcfda6b42dc86f882ccbbfa4d5

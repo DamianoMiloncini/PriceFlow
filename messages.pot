@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-15 16:54+0000\n"
+"POT-Creation-Date: 2024-05-15 20:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: app/views/Recipe/displayAll.php:194 app/views/Recipe/displayPrivate.php:127
 #: app/views/Recipe/displayUserRecipes.php:127 app/views/User/account.php:81
 #: app/views/User/bookmarks.php:65 app/views/User/login.php:65
-#: app/views/User/registration.php:87
+#: app/views/User/registration.php:87 app/views/User/updateLocation.php:65
 msgid "Home"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: app/views/authenticatedHome copy.php:61
+#: app/views/authenticatedHome copy.php:61 app/views/Item/itemList.php:34
 msgid "Filter"
 msgstr ""
 
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: app/views/authenticatedHome copy.php:63 app/views/topBar.php:260
+#: app/views/authenticatedHome copy.php:63 app/views/topBar.php:261
 msgid "Recipe"
 msgstr ""
 
@@ -97,6 +97,54 @@ msgstr ""
 msgid "Get Started"
 msgstr ""
 
+#: app/views/Item/individual.php:21
+msgid "Item not found"
+msgstr ""
+
+#: app/views/Item/individual.php:33
+msgid "Bookmark"
+msgstr ""
+
+#: app/views/Item/individual.php:37
+msgid "Add to Cart"
+msgstr ""
+
+#: app/views/Item/itemList.php:36
+msgid "Sort by Price"
+msgstr ""
+
+#: app/views/Item/itemList.php:42
+msgid "Min Price"
+msgstr ""
+
+#: app/views/Item/itemList.php:44
+msgid "Max Price"
+msgstr ""
+
+#: app/views/Item/itemList.php:46
+msgid "Store"
+msgstr ""
+
+#: app/views/Item/itemList.php:48
+msgid "All"
+msgstr ""
+
+#: app/views/Item/itemList.php:52 app/views/Recipe/displayAll.php:220
+msgid "Apply"
+msgstr ""
+
+#: app/views/Item/itemList.php:58
+msgid "Low to High"
+msgstr ""
+
+#: app/views/Item/itemList.php:59
+msgid "High to Low"
+msgstr ""
+
+#: app/views/Item/itemList.php:64
+msgid "No items found"
+msgstr ""
+
 #: app/views/Recipe/addItemToRecipe.php:162
 msgid "Add item to recipe"
 msgstr ""
@@ -118,7 +166,7 @@ msgstr ""
 #: app/views/Recipe/addItemToRecipe.php:206 app/views/Recipe/displayAll.php:198
 #: app/views/Recipe/displayPrivate.php:133
 #: app/views/Recipe/displayUserRecipes.php:133
-#: app/views/Recipe/searchResults.php:140 app/views/topBar.php:258
+#: app/views/Recipe/searchResults.php:140 app/views/topBar.php:259
 msgid "Search"
 msgstr ""
 
@@ -232,10 +280,6 @@ msgstr ""
 
 #: app/views/Recipe/displayAll.php:219
 msgid "Maximum Price"
-msgstr ""
-
-#: app/views/Recipe/displayAll.php:220
-msgid "Apply"
 msgstr ""
 
 #: app/views/Recipe/displayAll.php:235 app/views/Recipe/displayPrivate.php:148
@@ -382,27 +426,27 @@ msgstr ""
 msgid "Phone Number"
 msgstr ""
 
-#: app/views/topBar.php:257
+#: app/views/topBar.php:258
 msgid "Search products, recipes"
 msgstr ""
 
-#: app/views/topBar.php:259
+#: app/views/topBar.php:260
 msgid "Account"
 msgstr ""
 
-#: app/views/topBar.php:261
+#: app/views/topBar.php:262
 msgid "Bookmarks"
 msgstr ""
 
-#: app/views/topBar.php:262
+#: app/views/topBar.php:263
 msgid "Signout"
 msgstr ""
 
-#: app/views/topBar.php:267 app/views/User/login.php:58
+#: app/views/topBar.php:268 app/views/User/login.php:58
 msgid "Log In"
 msgstr ""
 
-#: app/views/topBar.php:268
+#: app/views/topBar.php:269
 msgid "Sign Up"
 msgstr ""
 
@@ -511,7 +555,7 @@ msgstr ""
 msgid "Register Location"
 msgstr ""
 
-#: app/views/User/registerLocation.php:42
+#: app/views/User/registerLocation.php:42 app/views/User/updateLocation.php:39
 msgid "Enter your location details"
 msgstr ""
 
@@ -536,7 +580,7 @@ msgid ""
 msgstr ""
 
 #: app/views/User/update.php:3
-msgid "Update view"
+msgid "Update your account"
 msgstr ""
 
 #: app/views/User/update.php:24

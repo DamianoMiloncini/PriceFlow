@@ -52,8 +52,5 @@ function scrapeMetroItems($query)
         $items[] = $item;
     });
 
-
-
-    print_r($items);
     return $items;
 }

@@ -239,7 +239,7 @@
                             <a href="/Recipe/recipeDetails/<?php echo $recipe['recipe_id']; ?>"><?=__('View Details')?></a>
                             <?php if (isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) : ?>
                                 <a class="edit-btn" href="/Recipe/edit/<?php echo $recipe['recipe_id']; ?>"><?=__('Edit')?></a>
-                                <a class="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>"><?=__('Delete')?></a>
+                                <a class="delete-btn" name="delete-btn" href="/Recipe/deleteConfirmation/<?php echo $recipe['recipe_id']; ?>"><?=__('Delete')?></a>
                             <?php endif; ?>
                         </div>
                     </li>
