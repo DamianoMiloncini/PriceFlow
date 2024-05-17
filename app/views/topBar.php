@@ -11,9 +11,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-            margin-bottom: 100px;
         }
 
         #wrapper::after {
@@ -26,6 +27,13 @@
             width: 100%;
         }
 
+        #logoSection {
+            display: flex;
+            /* Use flexbox to align items horizontally */
+            align-items: center;
+            /* Align items vertically */
+        }
+
         #logoText {
             display: flex;
             color: #191919;
@@ -35,7 +43,10 @@
             font-weight: 700;
             padding-left: 15px;
             padding-top: 8px;
+            margin: 0;
+            margin-bottom: 10px;
         }
+
 
         #textLogo {
             display: flex;
@@ -59,11 +70,11 @@
             border-radius: 5px;
             cursor: pointer;
             margin-left: auto;
-            /* Align buttons to the right */
+            align-items: center;
         }
 
         #register {
-            display: flex
+            display: flex;
             padding: 5px 20px;
             background-color: #006eff;
             font-size: 15px;
@@ -81,6 +92,23 @@
             background-color: #0059c6;
             /* Change background color on hover */
             cursor: pointer;
+        }
+
+        .userBtn {
+            padding: 5px 20px;
+            background-color: #eff7ff;
+            font-size: 15px;
+            font-weight: 600;
+            color: #006eff;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 35px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .userBtn:hover {
+            background-color: #d4e7ff;
         }
 
         .topbarBtns {
@@ -125,17 +153,6 @@
             cursor: pointer;
         }
 
-        #cartQuickView {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 10px;
-            width: auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
 
         ol {
             list-style-type: none;
@@ -209,7 +226,7 @@
 
         }
 
-        #searchbutton {
+        #topbarSearchButton {
             display: inline-block;
             padding: 5px 20px;
             background-color: #fff;
@@ -219,6 +236,7 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 35px;
             margin-left: 5px;
+            color: black;
             cursor: pointer;
             transition: background-color 0.3s ease;
             height: 40px;
@@ -266,7 +284,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="app/views/Styles/styles.css">
+    <!-- <link rel="stylesheet" href="app/views/Styles/styles.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
 </head>
@@ -303,8 +321,8 @@
 
                     //if the user has informations (which means they are logged in), display profile button & logoutbutton
                     if ($user) { ?>
-                        <textarea id="search" name="searchBar" placeholder="<?= __("Search products, recipes") ?>"></textarea></textarea>
-                        <button id="searchButton" name="searchButton" class="topbarBtns"><?= __("Search") ?></button>
+                        <textarea style="resize:none;" id="search" name="searchBar" placeholder="<?= __("Search products, recipes") ?>"></textarea></textarea>
+                        <button id="topbarSearchButton" name="searchButton" class="topbarBtns"><?= __("Search") ?></button>
                         <a class="topbarBtns" href="/User/account"><?= __("Account") ?></a>
                         <a class="topbarBtns" href="/Recipe/displayAll"><?= __("Recipe") ?></a>
                         <a class="topbarBtns" href="/User/bookmark"><?= __("Bookmarks") ?></a>
@@ -337,7 +355,7 @@
         });
 
         // Add event listener for click on search button
-        document.getElementById('searchButton').addEventListener('click', function() {
+        document.getElementById('topbarSearchButton').addEventListener('click', function() {
             var inputText = document.getElementById("search").value;
             window.location.href = '/Item/search/' + inputText;
             e.preventDefault(); // Prevent form submission if needed :)))

@@ -158,11 +158,6 @@
 
     </div>
 
-
-
-    <!-- Button to show/hide map -->
-    <!-- <button id="toggleMapButton" class="btn btn-primary" onclick="toggleMap()">Show Map</button> -->
-
     <!-- Map container -->
     <div id="cartMap">
         <?php include 'app/views/map.php';

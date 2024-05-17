@@ -7,9 +7,9 @@
     <title><?= __('Create Recipe') ?></title>
 
     <style>
-        body {
+        #container {
+            
             font-family: 'Nunito Sans', sans-serif;
-            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,13 +18,15 @@
             min-height: 100vh;
         }
 
-        #wrapper {
+        #wrapper2 {
+            margin-top: 10%;
             background-color: #ffffff;
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 100%;
+            margin-bottom: 15%;
         }
 
         h2 {
@@ -89,38 +91,44 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
-
     </style>
 
 </head>
 
 <body>
-    <div id="wrapper">
-        <h2><?= __('Create Recipe') ?></h2>
 
-        <form action="/Recipe/create" method="post" enctype="multipart/form-data">
-            <label for="title"><?= __('Title:') ?></label>
-            <input type="text" id="title" name="title" placeholder=<?= __("Title") ?> required>
+    <?php include 'app/views/topBar.php'; ?>
 
-            <label for="content"><?= __('Content:') ?></label>
-            <textarea name="content" rows="6" placeholder=<?= __("Describe this recipe...") ?> required></textarea>
+    <div id="container">
+        <div id="wrapper2">
+            <h2><?= __('Create Recipe') ?></h2>
 
-            <label for="duration"><?= __('Duration (minutes):') ?></label>
-            <div style="display: flex;">
-                <input type="number" id="duration" name=<?= __('duration') ?> required>
-            </div>
+            <form action="/Recipe/create" method="post" enctype="multipart/form-data">
+                <label for="title"><?= __('Title:') ?></label>
+                <input type="text" id="title" name="title" placeholder=<?= __("Title") ?> required>
 
-            <label for="image"><?= __('Image:') ?></label>
-            <input type="file" id="image" name=<?= __("image") ?> required>
+                <label for="content"><?= __('Content:') ?></label>
+                <textarea style="resize:none;" name="content" rows="6" placeholder=<?= __("Describe this recipe...") ?> required></textarea>
 
-            <label for="privacy_status"><?= __('Privacy:') ?></label>
-            <select id="privacy_status" name="privacy_status">
-                <option value="public"><?= __('Public') ?></option>
-                <option value="private"><?= __('Private') ?></option>
-            </select>
+                <label for="duration"><?= __('Duration (minutes):') ?></label>
+                <div style="display: flex;">
+                    <input type="number" id="duration" name=<?= __('duration') ?> required>
+                </div>
 
-            <button type="submit"><?= __('Continue') ?></button>
-        </form>
+                <label for="image"><?= __('Image:') ?></label>
+                <input type="file" id="image" name=<?= __("image") ?> required>
+                <br>
+                <label for="privacy_status"><?= __('Privacy:') ?></label>
+                <select id="privacy_status" name="privacy_status">
+                    <option value="public"><?= __('Public') ?></option>
+                    <option value="private"><?= __('Private') ?></option>
+                </select>
+
+                <br><br>
+
+                <button type="submit"><?= __('Continue') ?></button>
+            </form>
+        </div>
     </div>
 </body>
 

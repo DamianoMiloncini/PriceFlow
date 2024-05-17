@@ -95,7 +95,7 @@ class Cart extends \app\core\Controller
        // $postalCode = 'H3J 2A3';
 
        //Radius (in meters) for nearby search
-       $radius = 5000;
+       $radius = 2500;
 
        print_r($userLatitude);
        print_r($userLongitude);
@@ -218,8 +218,17 @@ class Cart extends \app\core\Controller
         $user_id = $_SESSION['user_id']; // Get user id from session
         $cart = new \app\models\Cart();
         $cart -> addToCart($user_id, $item_id);
-        header("Location: /cart");
+        header('location: /item/cartConfirmation/' . $item_id);
     }
+
+    function confirmation($item_id){
+        $itemModel = new \app\models\Item();
+        $item = $itemModel->getById($item_id);
+
+        $this->view('Item/itemConfirmation', ['item' => $item]);
+    }
+
+
     #[\app\accessFilters\Login]
     function loadItems($cart_id, $item_id, $method){
 

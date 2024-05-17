@@ -9,6 +9,7 @@
                 </div>
                 <h7>$<?php echo $item->price; ?></h7>
                 <input type="hidden" name="item_id" value="<?php echo $item->item_id ?>">
+                <br>
                 <button type="submit" id="addButton">Add</button>
             </div>
         </div>

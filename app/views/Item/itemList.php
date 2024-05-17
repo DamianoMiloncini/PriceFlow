@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 mt-32">
+<body style="margin-left: 10%; margin-right: 10%;"class="bg-gray-100 mt-32">
     
     <?php include('app/views/topBar.php');?>
 
@@ -65,7 +65,7 @@
         <?php else : ?>
             <?php foreach ($items as $item) : ?>
                 <div class="bg-white rounded-lg shadow-md p-4">
-                    <a name="item" href="/Item/info/<?php echo $item->item_id; ?>"> <!-- Wrap the item in an anchor tag with the link attribute -->
+                    <a style="color:black; text-decoration: none;" name="item" href="/Item/info/<?php echo $item->item_id; ?>"> <!-- Wrap the item in an anchor tag with the link attribute -->
                         <img src="<?php echo $item->image; ?>" alt="<?php echo $item->name; ?>" class="w-full mb-2">
                         <p class="mb-2 font-"><?php echo strtoupper($item->brand); ?></p> <!-- Capitalize the brand -->
                         <p class="font-bold mb-2" name="<?php echo $item->name; ?>"> <?php echo $item->name; ?></p>

@@ -187,7 +187,7 @@
 </head>
 
 <body>
-    <?php include 'app/views/topBar.php'; ?>
+<?php include 'app/views/topBar.php'; ?>
     <header>
         <h1><?=__('All Recipes')?></h1>
         <a href="/Recipe/displayUserRecipes" class="your-recipe-history-btn"><?=__('Your Recipe History')?></a>

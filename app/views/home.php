@@ -107,14 +107,14 @@
                 </div>
                 <div id="searchButtons">
 
-                    <div id="sortButton">
+                    <!-- <div id="sortButton">
                         <select id="sortOptions" name="sortOptions">
                             <option value="" disabled selected><i class="bi bi-funnel"></i>Sort</option>
                             <option value="dateCreated">Date created</option>
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
 

@@ -8,14 +8,17 @@
 
 
     <style>
-        #wrapper {
+        #container {
+            margin-top: 5%;
+            border-radius: 15px;
             font-family: 'Nunito Sans', sans-serif;
-            background-color: whitesmoke;
+            background-color: #fff;
             margin-left: 20%;
             margin-right: 20%;
             text-align: center;
             padding-top: 2%;
             padding-bottom: 100%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
         }
 
         #itemBoxWrapper {
@@ -27,7 +30,7 @@
             width: 50%;
         }
 
-        #search {
+        #itemSearch {
             resize: none;
             font-size: 15px;
             font-weight: 600;
@@ -38,11 +41,10 @@
             line-height: 30px;
             height: 40px;
             padding-left: 20px;
-            width: 75%;
+            width: 95%;
         }
 
         #items {
-            margin: 20px;
             margin: 20px;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -51,19 +53,22 @@
         }
 
         .item {
+            height: 100%;
+            width: 100%;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            text-align: left;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            display: flex;
         }
 
         #itemImage {
+            display: block;
             width: 100%;
-            height: 100px;
-            object-fit: cover;
-            opacity: 0.9;
-            /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
         }
 
 
@@ -154,12 +159,65 @@
             background-color: #d4e7ff;
             cursor: pointer;
         }
+
+        #searchBtn {
+            width: 8%;
+            height: 45px;
+            display: inline-block;
+            background-color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 35px;
+            cursor: pointer;
+            letter-spacing: 0px;
+            transition: background-color 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            line-height: 40px;
+        }
+
+        #doneBtn {
+            width: 8%;
+            height: 45px;
+            display: inline-block;
+            background-color: #006eff;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 35px;
+            cursor: pointer;
+            letter-spacing: 0px;
+            transition: background-color 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s ease;
+        }
+
+        #doneBtn:hover {
+            background-color: #0059c6;
+            cursor: pointer;
+        }
+
+        .divider {
+            margin-top: 1.5%;
+            margin-bottom: 1.5%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.08);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <div id="wrapper">
-        <?= __('Add item to recipe') ?> <?php echo $data['recipes']['title'] ?>
+    <?php include 'app/views/topBar.php'; ?>
+    <div id="container">
+        <h4><?= __('Add item to recipe') ?></h4><h4 style="color: #006eff"><?php echo $data['recipes']['title'] ?></h4>
         <div class="divider"></div>
         <?= __('Items in recipe') ?>
 
@@ -188,7 +246,7 @@
                         <div id="cartButtons">
                             <button type="submit" id="minusBtn" name="minus1" class="bttns" onClick="minus1('<?php echo $item['item_id']; ?>');">-</button>
                             <button type="submit" id="addBtn" name="add1" class="bttns" onClick="add1('<?php echo $item['item_id']; ?>');">+</button>
-                            <a><button type="submit" class="bttns" name="deleteButton" onClick="deleteItem('<?php echo $item['item_id']; ?>');">Del</button></a>
+                            <a><button type="submit" class="bttns" name="deleteButton" onClick="deleteItem('<?php echo $item['item_id']; ?>');"><i class="bi bi-trash3"></i></button></a>
                         </div>
                         <!-- </div> -->
                         <h5 style="margin-left:2%;">
@@ -197,14 +255,19 @@
 
             <?php }
             } else {
-                echo "<h4><?=__('Empty')?></h4>";
+                echo "Your recipe is empty... Try adding some ingredients!";
             } ?>
 
         </div>
 
-        <textarea id="search" name="searchBar" placeholder='<?= __('Search') ?>'></textarea>
-        <button onclick="fetchData()"><?= __('Search') ?></button>
-        <a href="/home"><?= __('Done') ?></a>
+        <div class="divider"></div>
+
+        <textarea id="itemSearch" name="searchBar" placeholder='<?= __('Search') ?>'></textarea>
+
+        <button id="searchBtn" onclick="fetchData()"><?= __('Search') ?></button>
+        <a id="doneBtn" href="/home"><?= __('Done') ?></a>
+
+
 
         <div id="items">
             <?php foreach ($data['items'] as $item) : ?>
@@ -218,6 +281,7 @@
                             </div>
                             <h7>$<?php echo $item['price'] ?></h7>
                             <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?>">
+                            <br>
                             <button type="submit" id="addButton"><?= __('Add') ?></button>
                         </div>
                     </div>
@@ -231,7 +295,7 @@
 
 <script>
     function fetchData() {
-        var inputText = document.getElementById("search").value;
+        var inputText = document.getElementById("itemSearch").value;
         if (inputText == '') return;
         var url = "/Recipe/items/" + inputText;
         // Make the fetch request

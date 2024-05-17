@@ -43,3 +43,4 @@ $this->addRoute('Recipe/itemsInRecipe/{recipe_id}/{item_id}/{method}', 'Recipe,i
 $this->addRoute('Recipe/recipeHomePage/{searchTerm}', 'Recipe,homePageView');
 $this->addRoute('test', 'Recipe,testing');
 $this->addRoute('Cart/checkoutButton', 'Cart,checkoutButton');
+$this->addRoute('item/cartConfirmation/{item_id}', 'Cart,confirmation');

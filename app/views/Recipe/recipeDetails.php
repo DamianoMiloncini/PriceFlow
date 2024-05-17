@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=__('Recipe Details')?></title>
+    <title><?= __('Recipe Details') ?></title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -17,7 +17,6 @@
         .container {
             max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -30,11 +29,9 @@
         }
 
         .recipe-header img {
-            max-width: 120px;
-            height: auto;
-            border-radius: 50%;
-            border: 4px solid #eee;
-            margin-bottom: 20px;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
         }
 
         .recipe-header h1 {
@@ -141,24 +138,25 @@
                 margin-bottom: 15px;
                 margin-right: 0;
             }
+
         }
     </style>
 </head>
 
 <body>
-<div id="cartTopBar">
+    <div id="cartTopBar">
         <?php include 'app/views/topBar.php'; ?>
     </div>
     <div class="container">
         <div class="recipe-header">
-            <img src="/uploads/<?php echo basename($recipeData['image']); ?>" alt="<?php echo $recipeData['title']; ?>">
+            <img id="recipeImage" src="/uploads/<?php echo basename($recipeData['image']); ?>" alt="<?php echo $recipeData['title']; ?>">
             <h1><?php echo $recipeData['title']; ?></h1>
         </div>
         <div class="recipe-content">
-            <p><strong><?=__('Content')?>:</strong> <?php echo $recipeData['content']; ?></p>
-            <p><strong><?=__('Duration')?>:</strong> <?php echo $recipeData['duration']; ?></p>
-            <p><strong><?=__('Date Created')?>:</strong> <?php echo $recipeData['date_created']; ?></p>
-            <p><strong><?=__('Total Price')?>:</strong> <?php echo $recipeData['total_price']; ?></p>
+            <p><strong><?= __('Content') ?>:</strong> <?php echo $recipeData['content']; ?></p>
+            <p><strong><?= __('Duration') ?>:</strong> <?php echo $recipeData['duration']; ?></p>
+            <p><strong><?= __('Date Created') ?>:</strong> <?php echo $recipeData['date_created']; ?></p>
+            <p><strong><?= __('Total Price') ?>:</strong> <?php echo $recipeData['total_price']; ?></p>
         </div>
         <div class="recipe-items">
             <?php foreach ($data['itemsInRecipe'] as $item) { ?>
@@ -166,26 +164,26 @@
                     <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
                     <div>
                         <h5><?php echo $item['name']; ?></h5>
-                        <h6><?=__('Brand')?>: <?php echo $item['brand']; ?></h6>
-                        <h6><?=__('Quantity')?>: <?php echo $item['quantity']; ?></h6>
-                        <h6><?=__('Price')?>: $<?php echo $item['price']; ?></h6>
-                        <h6><?=__('Quantity Needed')?>: <?php echo $item['quantity_needed']; ?></h6>
+                        <h6><?= __('Brand') ?>: <?php echo $item['brand']; ?></h6>
+                        <h6><?= __('Quantity') ?>: <?php echo $item['quantity']; ?></h6>
+                        <h6><?= __('Price') ?>: $<?php echo $item['price']; ?></h6>
+                        <h6><?= __('Quantity Needed') ?>: <?php echo $item['quantity_needed']; ?></h6>
                     </div>
                 </div>
             <?php } ?>
         </div>
         <div class="button-group">
             <?php if (isset($_SESSION['user_id']) && $recipeData['user_id'] === $_SESSION['user_id']) : ?>
-                <a href="/Recipe/edit/<?php echo $recipeData['recipe_id']; ?>" class="edit-button"><?=__('Edit')?></a>
-                <a href="/Recipe/deleteConfirmation/<?php echo $recipeData['recipe_id']; ?>" class="delete-button"><?=__('Delete')?></a>
-            <?php endif; 
-            
+                <a href="/Recipe/edit/<?php echo $recipeData['recipe_id']; ?>" class="edit-button"><?= __('Edit') ?></a>
+                <a href="/Recipe/deleteConfirmation/<?php echo $recipeData['recipe_id']; ?>" class="delete-button"><?= __('Delete') ?></a>
+            <?php endif;
+
             if (isset($_SESSION['user_id'])) {
             ?>
-                    <a href="/Recipe/displayAll" class="back-button"><?=__('Back to Recipes')?></a>
+                <a href="/Recipe/displayAll" class="back-button"><?= __('Back to Recipes') ?></a>
             <?php } else { ?>
-                    <a href="/" class="back-button"><?=__('Back Home')?></a>
-                <?php } ?>
+                <a href="/" class="back-button"><?= __('Back Home') ?></a>
+            <?php } ?>
         </div>
     </div>
 </body>

@@ -110,7 +110,7 @@
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.2,
-            radius: 5000
+            radius: 2500
         }).addTo(map);
 
         // POLYGONS - not sure if well use this

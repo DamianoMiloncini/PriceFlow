@@ -62,7 +62,6 @@
 }
 
 #poster2{
-    margin-bottom: 5%;
     width: 100%;
     border-radius: 10px;
 }
@@ -271,7 +270,8 @@ h4 {
 }
 
 .divider {
-    margin-top: 1%;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.08);
     bottom: 0;
@@ -358,7 +358,7 @@ h4 {
 
 #recipeImage {
     width: 100%;
-    height: 150px;
+    height: 125px;
     object-fit: cover;
     opacity: 0.9;
     /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
