@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 13, 2024 at 06:13 AM
+-- Generation Time: May 17, 2024 at 07:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,7 +70,7 @@ INSERT INTO `cart` (`cart_id`, `user_id`, `cart_price`) VALUES
 (6, 11, 49.68),
 (7, 13, 0),
 (8, 14, 0),
-(9, 15, 32.43);
+(9, 15, 39.41);
 
 -- --------------------------------------------------------
 
@@ -760,7 +760,9 @@ INSERT INTO `items_in_cart` (`cart_id`, `item_id`, `quantity_purchased`) VALUES
 (6, 'metro672774017470', 1),
 (9, '1', 2),
 (9, 'metro055300111000', 2),
-(9, 'metro055773004892', 1);
+(9, 'metro055773004892', 1),
+(9, 'metro068200550503', 1),
+(9, 'superc068700101298', 1);
 
 -- --------------------------------------------------------
 
@@ -779,11 +781,14 @@ CREATE TABLE `items_in_recipe` (
 --
 
 INSERT INTO `items_in_recipe` (`recipe_id`, `item_id`, `quantity_needed`) VALUES
-(1, '2', 2),
-(2, '1', 3),
-(2, 'metro039978001290', 1),
-(3, 'metro039978001290', 2),
-(4, 'metro057700015551', 1);
+(5, '1', 3),
+(5, 'metro059749896061', 3),
+(6, '2', 2),
+(6, 'metro033383465043', 3),
+(6, 'metro055300110027', 2),
+(7, 'superc033383441252', 2),
+(7, 'superc067311010333', 3),
+(8, 'superc031200046079', 2);
 
 -- --------------------------------------------------------
 
@@ -1486,10 +1491,10 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`recipe_id`, `user_id`, `title`, `content`, `date_created`, `privacy_status`, `duration`, `image`, `total_price`) VALUES
-(1, 14, 'Fruit Bowl', 'very sweet', '2024-05-12 16:13:04', 'public', '45', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634306561393062343839625f696d616765362e6a7067, '8.18'),
-(2, 15, 'Fresh Fruit', 'Very fresh LOL', '2024-05-13 03:39:46', 'public', '15', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634313862383233616566315f696d61676531302e6a7067, '22.36'),
-(3, 15, 'Gourmet Steak', 'Lost of protein\r\nThe steak looks kinda gross ngl', '2024-05-13 03:42:07', 'public', '45', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634313863306637386339355f696d616765392e6a7067, '12.98'),
-(4, 15, 'Actual Steak', 'made a mistake', '2024-05-13 03:43:02', 'public', '55', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634313863343662636437665f696d616765382e6a7067, '9.99');
+(5, 15, 'Gourmet Steak', 'Very healthy steak\r\n\r\nI dare you to slap someone with it', '2024-05-17 17:17:35', 'public', '45', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634373931326665376166375f696d616765382e6a7067, '31.14'),
+(6, 15, 'Quick Salad', 'If you\'re healthy this is for you!\r\n\r\nGet all of your ingredients and follow the instructions', '2024-05-17 17:18:50', 'public', '20', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634373931376133636336355f696d616765332e6a7067, '37.03'),
+(7, 15, 'Fruit Bowl', 'SO YUMMY WTF\r\n', '2024-05-17 17:19:58', 'public', '10', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634373931626562396666305f696d61676531302e6a7067, '24.89'),
+(8, 15, 'Pear Juice', 'if you have left over pears... do this!', '2024-05-17 17:21:07', 'public', '40', 0x2f6f70742f6c616d70702f6874646f63732f75706c6f6164732f363634373932303330633538615f696d61676531312e6a7067, '10.58');
 
 -- --------------------------------------------------------
 
@@ -1510,6 +1515,7 @@ INSERT INTO `search_query` (`query`) VALUES
 ('apple'),
 ('banana'),
 ('bread'),
+('celery'),
 ('cereal'),
 ('cheese'),
 ('chips'),
@@ -1532,6 +1538,7 @@ INSERT INTO `search_query` (`query`) VALUES
 ('metro068200010120'),
 ('milk'),
 ('milks'),
+('pear'),
 ('potato'),
 ('potatoes'),
 ('powder'),
@@ -1702,7 +1709,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `store`

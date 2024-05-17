@@ -356,6 +356,7 @@
 
         // Add event listener for click on search button
         document.getElementById('topbarSearchButton').addEventListener('click', function() {
+            event.preventDefault();
             var inputText = document.getElementById("search").value;
             window.location.href = '/Item/search/' + inputText;
             e.preventDefault(); // Prevent form submission if needed :)))
