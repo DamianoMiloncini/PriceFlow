@@ -10,13 +10,17 @@
         label {
             color: #333;
         }
+        .containerL{
+            margin: 8%;
+        }
     </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="\app\views\Styles\styles.css">
 </head>
 <body>
+<?php include 'app/views/topBar.php'; ?>
 <h3><?= __('Authentication check')?></h3>
-<div class='container'>
+<div class='containerL'>
 <form method="post" action="">
     <?php 
     if($data != null) {

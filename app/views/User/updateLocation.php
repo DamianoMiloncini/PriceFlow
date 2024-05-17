@@ -2,6 +2,12 @@
 
 <head>
     <title><?= __('Update Location') ?></title>
+
+    <style>
+            .containerU{
+                margin: 8%;
+            }
+        </style>
     <!-- need some JS :) -->
     <script>
         function populateCities() {
@@ -34,7 +40,9 @@
 </head>
 
     <body>
-    <div class='container'>
+
+    <?php include 'app/views/topBar.php'; ?>
+    <div class='containerU'>
     <form id="locationInfo" method="POST" action="">
         <h3><?= __('Enter your location details') ?></h3>
         <div class="form-group">

@@ -2,6 +2,12 @@
 
 <head>
     <title><?= __('Register Location') ?></title>
+
+    <style>
+        .containerR{
+            margin: 8%;
+        }
+        </style>
     <!-- need some JS :) -->
     <script>
             window.onload = function() {
@@ -37,7 +43,10 @@
 </head>
 
     <body>
-    <div class='container'>
+
+    <?php include 'app/views/topBar.php'; ?>
+
+    <div class='containerR'>
     <form id="locationInfo" method="POST" action="">
         <h3><?= __('Enter your location details') ?></h3>
         <div class="form-group">
