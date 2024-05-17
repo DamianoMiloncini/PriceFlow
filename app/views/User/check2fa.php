@@ -11,7 +11,7 @@
             margin: 0;
         }
 
-        .container {
+        .containerFa {
             width: 350px;
             padding: 20px;
             height: auto;
@@ -35,7 +35,7 @@
             margin-bottom: 10px;
         }
 
-        .userBtn {
+        .userBtnFa {
             width: 100%;
             padding: 10px;
             border: none;
@@ -49,19 +49,19 @@
             margin-top: 10px;
         }
 
-        .userBtn:hover {
+        .userBtnFa:hover {
             background-color: #0056b3;
         }
 
         </style>
 </head>
 <body>
-    <div class = "container">
+    <div class = "containerFa">
 <p><?= __('Submit the 6-digit code for this site from your Authenticator app') ?></p>
 <form method="post" action="">
 <label><?= __('Current code')?> :<input type="text" name="totp" 
 /></label>
-<input class = "userBtn" type="submit" name="action" value="<?= __('Verify code') ?>" />
+<input class = "userBtnFa" type="submit" name="action" value="<?= __('Verify code') ?>" />
 </form>
     </div>
 </body>

@@ -138,7 +138,10 @@ class Recipe extends \app\core\Model
     {
 
         // Getting recipe info
-        $sql = 'SELECT * FROM recipe WHERE recipe_id = :recipe_id';
+        $sql = 'SELECT r.*, u.username 
+        FROM recipe r join user u
+        ON r.user_id = u.user_id
+        WHERE recipe_id = :recipe_id';
 
         $stmt = self::$_conn->prepare($sql);
 

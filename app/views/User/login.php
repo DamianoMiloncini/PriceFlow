@@ -22,7 +22,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         }
 
-        .input {
+        .inputLog {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -32,7 +32,7 @@
         }
 
 
-        .userBtn {
+        .userBtnLog {
             width: 100%;
             padding: 10px;
             border: none;
@@ -48,6 +48,9 @@
     </head>
 
     <body>
+
+    <?php include 'app/views/topBar.php'; ?>
+
         <?php 
         if (isset($_SESSION['error_message'])) {
             echo "<script>alert('{$_SESSION['error_message']}')</script>";
@@ -58,11 +61,11 @@
     <h3><?= __('Log In')?></h3>
         <form method="POST" action="">
             <label><?= __('Username') ?></label>
-            <input class = "input" type="text" name="username" placeholder="micka"><br>
+            <input class = "inputLog" type="text" name="username" placeholder="micka"><br>
             <label><?= __('Password') ?></label>
-            <input class = "input" type="text" name="password_hash" placeholder="1234!"><br><br>
-            <input class = "userBtn" type="submit" name="Login" value="<?= __('Submit') ?>"><br>
-            <a class="userBtn" href="/home"><?= __('Home') ?></a>
+            <input class = "inputLog" type="text" name="password_hash" placeholder="1234!"><br><br>
+            <input class = "userBtnLog" type="submit" name="Login" value="<?= __('Submit') ?>"><br>
+            <a class="userBtnLog" href="/home"><?= __('Home') ?></a>
         </form>
     </div>
 

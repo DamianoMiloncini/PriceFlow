@@ -358,7 +358,7 @@ class Recipe extends \app\core\Controller
 
         $data = [
             'recipeData' => $recipeData,
-            'itemsInRecipe' => $itemsInRecipe
+            'itemsInRecipe' => $itemsInRecipe,
         ];
 
         // Display recipe details

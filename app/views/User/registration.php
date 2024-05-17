@@ -14,7 +14,7 @@
             margin: 0;
         }
 
-        .container {
+        .containerReg {
             width: 300px;
             padding: 20px;
             width: 300px;
@@ -44,7 +44,7 @@
             margin-bottom: 10px;
         }
 
-        .userBtn {
+        .userBtnReg {
             width: 100%;
             padding: 10px;
             border: none;
@@ -57,13 +57,14 @@
             text-decoration: none;
         }
 
-        .userBtn:hover {
+        .userBtnReg:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 
 <body>
+<?php include 'app/views/topBar.php'; ?>
 <?php 
 if (isset($_SESSION['error_message'])) {
     echo "<script>alert('{$_SESSION['error_message']}')</script>";
@@ -71,7 +72,7 @@ if (isset($_SESSION['error_message'])) {
 }
 ?>
     
-    <div class='container'>
+    <div class='containerReg'>
     <h3><?= __('Create your account')?></h3>
         <form method="POST" action="">
             <div class="form-group">
@@ -83,8 +84,8 @@ if (isset($_SESSION['error_message'])) {
             <input type="text" name="first_name" placeholder="Michaella"><br>
             <label><?= __('Last Name') ?></label>
             <input type="text" name="last_name" placeholder="Bob"><br>
-            <input class="userBtn" type="submit" name="create" value="<?= __('Submit') ?>"><br>
-            <a class="userBtn" href="/home"><?= __('Home') ?></a>
+            <input class="userBtnReg" type="submit" name="create" value="<?= __('Submit') ?>"><br>
+            <a class="userBtnReg" href="/home"><?= __('Home') ?></a>
         </form>
     </div>
 
